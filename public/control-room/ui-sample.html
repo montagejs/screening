@@ -1,0 +1,177 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple UI Sample</title>
+        <script src="../node_modules/montage/montage.js"></script>
+        
+        <style>
+            body {
+                background-color: #E6E6E6;
+            }
+            h1 {
+                text-align: center;
+            }
+            .scrollTest {
+                overflow: scroll;
+                width: 640px;
+                height: 480px;
+                border: 1px solid #686868;
+                margin: 5px;
+            }
+        </style>
+
+        <script type="text/montage-serialization">
+        {
+            "textfield1": {
+                "module": "montage/ui/textfield.reel",
+                "name": "Textfield",
+                "properties": {
+                    "element": {"#": "testInput"}
+                }
+            },
+            "button1": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "testButton"}
+                }
+            },
+            "checkbox1": {
+                "module": "montage/ui/checkbox.reel",
+                "name": "Checkbox",
+                "properties": {
+                    "element": {"#": "testCheckbox"}
+                }
+            },
+            "slider1": {
+                "module": "montage/ui/slider.reel",
+                "name": "Slider",
+                "properties": {
+                    "element": {"#": "testSlider"}
+                }
+            },
+            "toggle1": {
+                "module": "montage/ui/toggle.reel",
+                "name": "Toggle",
+                "properties": {
+                    "element": {"#": "testToggle"}
+                }
+            },
+            "owner": {
+                "module": "montage/ui/application",
+                "name": "Application",
+                "properties": {
+                    "components": [
+                        {"@": "textfield1"},
+                        {"@": "button1"},
+                        {"@": "checkbox1"},
+                        {"@": "slider1"},
+                        {"@": "toggle1"}
+                    ]
+                }
+            }
+        }
+        </script>
+    </head>
+
+    <body>
+        <h1>UI Control Sample</h1>
+        <div>
+            <input id="testInput"></input>
+        </div>
+        <div>
+            <button id="testButton">Click Me</button>
+        </div>
+        <div>
+            <input type="checkbox" id="testCheckbox"></input>
+        </div>
+        <div id="testSlider"></div>
+        <div id="testToggle"></div>
+        
+        <div class="scrollTest">
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas dignissim purus sit amet quam imperdiet interdum. 
+                Nulla ac eros ac dolor vulputate feugiat quis at turpis. Nunc mollis varius eros, nec tempor elit sollicitudin vel. 
+                Curabitur varius, velit eget iaculis fringilla, tellus lectus aliquet odio, in mollis mauris justo sed dui. Sed 
+                eget mauris rutrum risus consequat tempor sed non odio. Morbi accumsan placerat elit et euismod. Donec sapien enim, 
+                congue id faucibus et, fringilla ut orci. Proin a velit ut erat aliquam vulputate. Curabitur lobortis, metus ac 
+                mattis aliquam, nisi nibh ullamcorper lacus, vitae commodo augue ante eu neque. Nulla tincidunt lectus id justo 
+                eleifend ut ullamcorper quam mattis. Pellentesque scelerisque massa et quam sodales suscipit. Praesent magna leo, 
+                suscipit vitae bibendum lacinia, viverra eget sem. Vestibulum pretium tortor ac tortor tincidunt placerat. Donec 
+                laoreet tempus faucibus.</p>
+
+            <p>Curabitur lobortis, risus ac volutpat scelerisque, turpis risus consequat nisi, et rutrum enim neque sed lorem. 
+                Integer convallis felis nulla, et volutpat ipsum. Nam ut lobortis diam. In venenatis quam at sem consectetur 
+                malesuada. Nullam pulvinar est at metus lobortis lacinia. Suspendisse nisl nisl, consequat consequat lacinia ut, 
+                consequat in nibh. Vestibulum lacus est, euismod eget facilisis sed, egestas vel urna. Suspendisse porttitor 
+                suscipit orci eget ultricies. Quisque sed lorem eu tellus fermentum pharetra. Fusce placerat convallis tempor. Nunc 
+                euismod elementum eros at porttitor. Sed sit amet quam sapien, nec vestibulum nibh. Integer sit amet magna felis, a 
+                mollis velit. Cras non interdum erat. Praesent ut imperdiet massa. Suspendisse nec sapien eu erat mollis facilisis. 
+                Phasellus libero orci, viverra et mattis id, suscipit et nisl. Nulla mauris lorem, hendrerit vitae tempor ac, 
+                condimentum non ipsum. In sagittis, nisl vitae cursus facilisis, ante nunc blandit urna, et interdum dui risus sed 
+                elit. Aenean sapien erat, faucibus ac lacinia vitae, luctus quis nisl.</p>
+
+            <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent quam lectus, 
+                posuere quis ultrices bibendum, accumsan eu purus. Nullam ultrices mi nisi, in elementum nibh. Nunc euismod arcu sit 
+                amet mauris faucibus iaculis. Quisque id turpis a arcu ultrices commodo et quis ligula. Curabitur id mi leo. 
+                Phasellus posuere lacus quis lorem pulvinar a interdum diam pharetra. Duis et neque erat, quis tincidunt neque. 
+                Curabitur sed rhoncus dolor. Maecenas lorem eros, placerat id vehicula non, lacinia nec quam. Sed in sem non velit 
+                laoreet pretium vitae vel nunc. Donec sit amet diam sit amet sapien tempus faucibus. Pellentesque habitant morbi 
+                tristique senectus et netus et malesuada fames ac turpis egestas. Proin gravida nibh eu nibh varius luctus porttitor 
+                urna euismod. Morbi rhoncus auctor lacus in interdum. Fusce rutrum urna id lacus viverra sodales. Donec tincidunt, 
+                urna quis porttitor elementum, ipsum turpis lacinia leo, a mollis urna mauris nec tortor. Sed molestie lacus sed nisi 
+                tempus eu commodo nulla posuere. Nunc rhoncus, metus in iaculis tempor, purus massa dignissim sem, ac adipiscing ante 
+                nulla ac orci. Ut suscipit euismod pulvinar.</p>
+
+            <p>Nullam varius risus eget quam pulvinar blandit. Proin hendrerit placerat iaculis. Nulla ac odio sed dolor consectetur 
+                auctor. Curabitur rhoncus orci ac lacus posuere egestas. Sed sodales nunc vel purus ultricies nec accumsan eros 
+                tristique. Donec sit amet ante eget odio mollis venenatis at vitae sapien. Quisque in vehicula turpis. In viverra, 
+                neque non imperdiet auctor, erat eros tincidunt magna, vitae laoreet ligula augue a nulla. Nullam libero ante, 
+                ultricies bibendum ultrices vitae, fringilla vitae augue. Donec vel tellus nulla, ac laoreet odio. Suspendisse 
+                vehicula nisi eu ante porta pretium.</p>
+
+            <p>In et leo purus, quis condimentum mi. In facilisis faucibus iaculis. Pellentesque eu nibh id turpis elementum pulvinar. 
+                Nullam porttitor tincidunt sapien nec malesuada. Nulla vel orci ac ligula consectetur dictum. Suspendisse non urna dui. 
+                Maecenas nec turpis ac mi congue euismod. Phasellus id sagittis dui. Ut tincidunt, augue vel porta volutpat, nisl eros 
+                bibendum leo, eget tincidunt ligula erat non nibh. Morbi sed tempus tortor. Cras sem nibh, iaculis a gravida sit amet, 
+                aliquet a risus. Mauris ac libero id nisl sodales rutrum vel ac dolor. Sed interdum dui ut est venenatis porta. 
+                Aliquam facilisis tortor ac ligula lobortis sed faucibus diam vulputate. Ut varius tristique bibendum. Curabitur tempus 
+                eleifend dui id suscipit. Suspendisse aliquet blandit enim, in posuere libero aliquam a. Aenean ultrices nisl non dui 
+                dapibus egestas. Phasellus commodo hendrerit felis vel fringilla.</p>
+        </div>
+        <h2>Loooong text</h2>
+        <p>Let's have some text here, so the page is definitely longer than the screen, so we can test scrolling of the page.</p>
+        <br /><br />
+        <h2>Loooong text</h2>
+        <p>Let's have some text here, so the page is definitely longer than the screen, so we can test scrolling of the page.</p>
+        <br /><br />
+        <h2>Loooong text</h2>
+        <p>Let's have some text here, so the page is definitely longer than the screen, so we can test scrolling of the page.</p>
+        <br /><br />
+        <h2>Loooong text</h2>
+        <p>Let's have some text here, so the page is definitely longer than the screen, so we can test scrolling of the page.</p>
+        <br /><br />
+        <h2>Loooong text</h2>
+        <p>Let's have some text here, so the page is definitely longer than the screen, so we can test scrolling of the page.</p>
+        <br /><br />
+        <h2>Loooong text</h2>
+        <p>Let's have some text here, so the page is definitely longer than the screen, so we can test scrolling of the page.</p>
+        <br /><br />
+        <h2>Loooong text</h2>
+        <p>Let's have some text here, so the page is definitely longer than the screen, so we can test scrolling of the page.</p>
+        <br /><br />
+        <h2>Loooong text</h2>
+        <p>Let's have some text here, so the page is definitely longer than the screen, so we can test scrolling of the page.</p>
+        <br /><br />
+        <h2>Loooong text</h2>
+        <p>Let's have some text here, so the page is definitely longer than the screen, so we can test scrolling of the page.</p>
+        <br /><br />
+        <h2>Loooong text</h2>
+        <p>Let's have some text here, so the page is definitely longer than the screen, so we can test scrolling of the page.</p>
+        <br /><br />
+    </body>
+</html>

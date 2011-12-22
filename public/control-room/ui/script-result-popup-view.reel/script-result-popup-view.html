@@ -1,0 +1,58 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="script-result-popup-view.css">
+        <script type="text/montage-serialization">
+        {
+            "scriptresultlog1": {
+                "module": "control-room/ui/script-result-log",
+                "name": "ScriptResultLog",
+                "properties": {
+                    "element": {"#": "status"}
+                },
+                "bindings": {
+                    "result": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "status",
+                        "oneway": true
+                    }
+                }
+            },
+            "link1": {
+                "module": "control-room/ui/link",
+                "name": "Link",
+                "properties": {
+                    "element": {"#": "viewResult"}
+                },
+                "bindings": {
+                    "link": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "resultUrl",
+                        "oneway": true
+                    }
+                }
+            },
+            "owner": {
+                "module": "control-room/ui/script-result-popup-view.reel",
+                "name": "ScriptResultPopupView",
+                "properties": {
+                    "element": {"#": "scriptResultPopup"}
+                }
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div id="scriptResultPopup">
+            <h1 id="status"></h1>
+            <p><a id="viewResult" href="#" class="link" target="_blank" style="display: none">View result</a></p>
+            <p>Click to view result</p>
+        </div>
+    </body>
+</html>

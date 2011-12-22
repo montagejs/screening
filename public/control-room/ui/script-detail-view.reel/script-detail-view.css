@@ -1,0 +1,109 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+.scriptDetail {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    
+    background-color: #FFFFFF;
+}
+
+.scriptDetail .content {
+    padding: 0;
+    overflow: auto;
+}
+
+.scriptManager .result {
+    background:#F2F2F2;
+    padding:8px;
+}
+
+.scriptDetail .codeHeader {
+    margin: 0px;
+    padding: 8px;
+    background-color: #e3f0f5;
+    border-top: 1px solid #c2d8e1;
+    border-bottom: 1px solid #c2d8e1;
+    color: #7fadbe;
+}
+
+.scriptDetail .codeHeader label {
+    display: inline-block;
+    margin-left: 0.5em;
+}
+
+.scriptDetail .codeHeader input {
+    background-color: #eef6f9;
+    border: 1px solid #c1ccd0;
+    border-radius: 3px;
+    color: #000000;
+    padding: 3px;
+    font-size: 1.0em;
+    display: block;
+}
+
+.scriptDetail input.name {
+    width: 300px;
+}
+
+.scriptDetail input.tags {
+    width: 300px;
+}
+
+.scriptDetail label {
+    display: block;
+}
+
+.CodeMirror {
+    background-color: #FFFFFF;
+    
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    
+    overflow-y: auto;
+    overflow-x: auto;
+}
+
+.CodeMirror-scroll {
+    height: auto !important;
+    width: auto !important;
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+}
+
+.pauseRecord {
+    display: none;
+}
+
+.versionString {
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    display: block;
+    font-size: 0.8em;
+    font-style: italic;
+    background-color: #333333;
+    border-radius: 3px;
+    padding: 4px 6px 4px 4px;
+}
+
+.link:link {
+    color: #AEAEAE;
+}
+
+.link:visited {
+    color: #AEAEAE;
+}
+
+label .label-subtext {
+    font-size: 0.75em;
+    margin-left: 1em;
+}

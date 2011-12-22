@@ -1,0 +1,66 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+.scriptListView {
+    position: relative;
+}
+
+.scriptListView .scriptList {
+    /*position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;*/
+    background-color: #F2F2F2;
+}
+
+.scriptListView.noUploader .scriptList {
+    position: absolute;
+    top: 58px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #F2F2F2;
+}
+
+.scriptList {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+}
+
+.scriptList .montage-list-scrollView {
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+}
+
+.scriptList li {
+    list-style: none;
+}
+
+.scriptList li.selected {
+    background-color: #DEDEDE;
+}
+
+/* Very hacky! I'd rather not have to do this */
+/*
+.scriptListView .scriptList>div { 
+    height: 100%;
+}
+*/
+.scriptList .uploadScript {
+    width:300px;
+    height:80px;
+    display:block;
+    border:1px solid red;
+}

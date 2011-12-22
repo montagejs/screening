@@ -1,0 +1,65 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="preference-select-item.css">
+        <script type="text/montage-serialization">
+        {
+            "dynamictext1": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "name"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "preferenceObject.name",
+                        "oneway": true
+                    }
+                }
+            },
+            "combobox1": {
+                "module": "control-room/ui/combo-box.reel",
+                "name": "ComboBox",
+                "properties": {
+                    "element": {"#": "value"}
+                },
+                "bindings": {
+                    "options": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "preferenceObject.options",
+                        "oneway": false
+                    },
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "preferenceObject.value",
+                        "oneway": false
+                    }
+                }
+            },
+            "owner": {
+                "module": "control-room/ui/preference-select-item.reel",
+                "name": "PreferenceSelectItem",
+                "properties": {
+                    "element": {"#": "preferenceSelectItem"}
+                }
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div id="preferenceSelectItem" class="preferenceSelectItem value">
+            <p id="name"></p>
+            <span>
+                <select id="value" class="value">
+                </select>
+            </span>
+        </div>
+    </body>
+</html>

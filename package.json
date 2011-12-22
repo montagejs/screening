@@ -1,0 +1,8 @@
+{
+    "name": "screening",
+    "description": "Montage Testing Framework",
+    "version": "0.1",
+    "mappings": {
+        "montage": "public/node_modules/montage"
+    }
+}

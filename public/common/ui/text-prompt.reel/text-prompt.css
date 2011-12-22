@@ -1,0 +1,47 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+.mon-text-prompt {
+    font-family: "AG Buch BQ Regular", "AG Buch BQ", Helvetica, Arial, sans-serif;
+    background-color: #333;
+    margin: 0;
+    padding: 0px 10px;
+    width: 400px;
+    height: 200px;
+}
+.mon-text-prompt .header {
+    height: 25px;
+    color: #fff;
+}
+.mon-text-prompt .header h4 {
+    margin:  0;
+    padding: 5px 0;
+    font-weight: normal;
+}
+.mon-text-prompt .content {
+    text-align: center;
+    margin: 5px 0;
+    background-color: #e6e6e6;
+    padding: 10px;
+    
+}
+.mon-text-prompt .msg-container {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+}
+.mon-text-prompt .msg {
+    font-size: 18pt;
+    font-weight: normal;
+}
+
+.mon-text-prompt .prompt-input {
+    font-size: 12pt;
+    font-weight: normal;
+    width: 100%;
+    color: #000000;
+}
+.mon-text-prompt .action-container {
+    padding: 10px 0;
+}

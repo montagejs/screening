@@ -1,0 +1,405 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="script-result-view.css">
+        <script type="text/montage-serialization">
+        {
+            "dynamictext1": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "testcaseName"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "testcaseName",
+                        "oneway": true
+                    }
+                }
+            },
+            "link1": {
+                "module": "control-room/ui/link",
+                "name": "Link",
+                "properties": {
+                    "element": {"#": "downloadJson"}
+                },
+                "bindings": {
+                    "link": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "downloadJsonUrl",
+                        "oneway": true
+                    }
+                }
+            },
+            "link2": {
+                "module": "control-room/ui/link",
+                "name": "Link",
+                "properties": {
+                    "element": {"#": "viewJson"}
+                },
+                "bindings": {
+                    "link": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "viewJsonUrl",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext2": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "testcaseId"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "testcaseId",
+                        "oneway": true
+                    }
+                }
+            },
+            "scriptresultlog1": {
+                "module": "control-room/ui/script-result-log",
+                "name": "ScriptResultLog",
+                "properties": {
+                    "element": {"#": "status"}
+                },
+                "bindings": {
+                    "result": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "status",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext3": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "agent"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "agent",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext4": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "totalSuccessfulAsserts"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "totalSuccessfulAsserts",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext5": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "totalFailedAsserts"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "totalFailedAsserts",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext6": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "totalExceptions"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "totalExceptions",
+                        "oneway": true
+                    }
+                }
+            },
+            "scriptresultlog2": {
+                "module": "control-room/ui/script-result-log",
+                "name": "ScriptResultLog",
+                "properties": {
+                    "element": {"#": "result"}
+                },
+                "bindings": {
+                    "result": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.result",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext7": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "type"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.type",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext8": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "fileName"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.fileName",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext9": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "detail"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.detail",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext10": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "time"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.time",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext11": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "lineNumber"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.lineNumber",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext12": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "columnNumber"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.columnNumber",
+                        "oneway": true
+                    }
+                }
+            },
+            "repetition1": {
+                "module": "montage/ui/repetition.reel",
+                "name": "Repetition",
+                "properties": {
+                    "element": {"#": "resultDetails"}
+                },
+                "bindings": {
+                    "objects": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "messages",
+                        "oneway": true
+                    }
+                }
+            },
+            "owner": {
+                "module": "control-room/ui/script-result-view.reel",
+                "name": "ScriptResultView",
+                "properties": {
+                    "element": {"#": "scriptResult"}
+                }
+            },
+            "warningsDiv": {
+                "module": "montage/ui/component",
+                "name": "Component",
+                "properties": {
+                    "element": {"#": "warnings"},
+                    "hasTemplate": false
+                },
+                "bindings": {
+                    "element.style.display": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "warningsStyle",
+                        "oneway": false
+                    }
+                }
+            },
+            "warningsRepetition": {
+                "module": "montage/ui/repetition.reel",
+                "name": "Repetition",
+                "properties": {
+                    "element": {"#": "warningsList"}
+                },
+                "bindings": {
+                    "objects": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "warnings",
+                        "oneway": true
+                    }
+                }
+            },
+            "warningType": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "warningType"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "warningsRepetition"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.type",
+                        "oneway": true
+                    }
+                }
+            },
+            "warningMessage": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "warningMessage"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "warningsRepetition"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.message",
+                        "oneway": true
+                    }
+                }
+            },
+            "warningLineNumber": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "warningLineNumber"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "warningsRepetition"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.lineNumber",
+                        "oneway": true
+                    }
+                }
+            },
+            "warningColumnNumber": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "warningColumnNumber"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "warningsRepetition"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.columnNumber",
+                        "oneway": true
+                    }
+                }
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div id="scriptResult">
+            <h1>Test result for <span id="testcaseName"></span> (Agent: <span id="agent">Agent</span>)</h1>
+            <p>(test result id: <span id="testcaseId"></span>)</p>
+            <p><a class="link" id="downloadJson" href="#">Download result as JSON</a> &raquo; <a class="link" id="viewJson" href="#">View result as JSON</a> <br><em class="note">(for saving the page as HTML right-click and select "save as ...")</em></p>
+            <div id="warnings" class="warningBox">
+                <p>Warning! The script contains invalid elements:</p>
+                <ul id="warningsList">
+                    <li><strong><span id="warningType"></span></strong> - <span id="warningMessage"></span> (<span id="warningLineNumber"></span>:<span id="warningColumnNumber"></span>)</li>
+                </ul>
+            </div>
+            <h2>Summary (<span id="status"></span>)</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Status</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="pass">
+                        <td>PASSED</td>
+                        <td id="totalSuccessfulAsserts"></td>
+                    </tr>
+                    <tr class="alt fail">
+                        <td>FAILED</td>
+                        <td id="totalFailedAsserts"></td>
+                    </tr>
+                    <tr class="exception">
+                        <td>EXCEPTION</td>
+                        <td id="totalExceptions"></td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2>Details</h2>
+            <table class="result-detail">
+                <thead>
+                    <tr>
+                        <th class="resultColumn">Result</th>
+                        <th class="objectColumn">Object</th>
+                        <th class="filenameColumn">Filename</th>
+                        <th class="lineColumnColumn">Line/Column</th>
+                        <th>Details</th>
+                        <th class="timeColumn">Time</th>
+                    </tr>
+                </thead>
+                <tbody id="resultDetails">
+                    <tr>
+                        <td id="result">Result</td>
+                        <td id="type">Object</td>
+                        <td id="fileName" class="fileName">Filename</td>
+                        <td><span id="lineNumber">0</span> / <span id="columnNumber">0</span></td>
+                        <td><pre id="detail">Detail</pre></td>
+                        <td><span id="time">Time</span> ms</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

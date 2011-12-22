@@ -1,0 +1,147 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+body {
+    margin:1em;
+}
+
+table {
+    width:100%;
+    text-align:left;
+    vertical-align:top;
+    border-radius:10px;
+    box-shadow:3px 3px 5px #AAA;
+    background:white;
+    border-collapse:collapse;
+    table-layout:fixed;
+    word-wrap: break-word;
+}
+
+th {
+    background-color: #584C4C;
+    background-image: -webkit-linear-gradient(top, #6f6161, #584c4c);
+    color:white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.link {
+    color: #584C4C;
+}
+
+.note {
+    font-size:0.8em;
+    font-style:normal;
+}
+
+th:first-child {
+    border-top-left-radius:10px;
+}
+
+th:last-child {
+    border-top-right-radius:10px;
+}
+
+td, th {
+    padding:10px;
+    vertical-align: top;
+    word-wrap: break-word;
+    table-layout: fixed;
+}
+
+.pass {
+    color:#668014;
+}
+
+.fail {
+    color:#CC1100;
+}
+
+.exception {
+    color:#F00;
+}
+
+.result {
+    color:#FFF;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.passed {
+    color:#668014;
+    text-shadow: #AAA 0.1em 0.1em 0.2em;
+}
+
+.failed {
+    color:#CC1100;
+    text-shadow: #AAA 0.1em 0.1em 0.2em;
+}
+
+.exception {
+    color: #F00;
+    text-shadow: #AAA 0.1em 0.1em 0.2em;
+}
+
+td.pass {
+    background-color:#668014;
+}
+
+td.fail {
+    background-color:#CC1100;
+}
+
+td.fileName {
+	/*white-space: nowrap;*/
+	/*overflow: hidden;*/
+	/*text-overflow: ellipsis;*/
+}
+
+td.exception {
+    background-color:#F00;
+    color:#FFF;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+td.start, td.end {
+    background-color:#AAA;
+}
+
+.result-detail th:first-child, .result-detail td:first-child{text-align:center;}
+tr:nth-child(even){ background-color:#F1F1F1; }
+
+.result-detail .resultColumn {
+    width: 90px;
+}
+
+.result-detail .objectColumn {
+    width: 100px;
+}
+
+.result-detail .timeColumn {
+    width: 80px;
+}
+
+.result-detail .lineColumnColumn {
+    width: 80px;
+}
+
+.result-detail .filenameColumn {
+    width: 150px;
+}
+
+.warningBox {
+    border: solid 1px #9F6000;
+    background: #FEEFB3;
+    color: #9F6000;
+    padding: 4px;
+    text-align: center;
+    box-shadow:3px 3px 5px #AAA;
+}
+
+.warningBox p {
+    font-weight: bolder;
+}
+
+.warningBox li {
+    text-align: left;
+}

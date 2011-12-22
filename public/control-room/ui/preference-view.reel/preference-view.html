@@ -1,0 +1,112 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="preference-view.css">
+        <script type="text/montage-serialization">
+        {
+            "preferencetextitem1": {
+                "module": "control-room/ui/preference-text-item.reel",
+                "name": "PreferenceTextItem",
+                "properties": {
+
+                },
+                "bindings": {
+                    "preferenceObject": {
+                        "boundObject": {"@": "preferenceList"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration",
+                        "oneway": true
+                    }
+                }
+            },
+            "preferencebooleanitem1": {
+                "module": "control-room/ui/preference-boolean-item.reel",
+                "name": "PreferenceBooleanItem",
+                "properties": {
+
+                },
+                "bindings": {
+                    "preferenceObject": {
+                        "boundObject": {"@": "preferenceList"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration",
+                        "oneway": true
+                    }
+                }
+            },
+            "preferenceselectitem1": {
+                "module": "control-room/ui/preference-select-item.reel",
+                "name": "PreferenceSelectItem",
+                "properties": {
+
+                },
+                "bindings": {
+                    "preferenceObject": {
+                        "boundObject": {"@": "preferenceList"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration",
+                        "oneway": true
+                    }
+                }
+            },
+            "substitution1": {
+                "module": "montage/ui/substitution.reel",
+                "name": "Substitution",
+                "properties": {
+                    "element": {"#": "preferenceItem"},
+                    "switchComponents": {
+                        "text": {"@": "preferencetextitem1"},
+                        "boolean": {"@": "preferencebooleanitem1"},
+                        "select": {"@": "preferenceselectitem1"}
+                    }
+                },
+                "bindings": {
+                    "switchValue": {
+                        "boundObject": {"@": "preferenceList"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.type",
+                        "oneway": true
+                    }
+                }
+            },
+            "preferenceList": {
+                "module": "montage/ui/list.reel",
+                "name": "List",
+                "properties": {
+                    "element": {"#": "preferenceList"},
+                    "isSelectionEnabled": false,
+                    "axis": "vertical"
+                },
+                "bindings": {
+                    "objects": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "preferences",
+                        "oneway": true
+                    }
+                }
+            },
+            "owner": {
+                "module": "control-room/ui/preference-view.reel",
+                "name": "PreferenceView",
+                "properties": {
+                    "element": {"#": "preferenceView"},
+                    "preferenceList": {"@" : "preferenceList"}
+                }
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div id="preferenceView" class="preferenceView">
+            <h1>Preferences</h1>
+            
+            <ul id="preferenceList">
+                <li id="">
+                    <div id="preferenceItem"></div>
+                </li>
+            </ul>
+        </div>
+    </body>
+</html>

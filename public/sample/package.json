@@ -1,0 +1,9 @@
+{
+    "name": "screening/sample",
+    "description": "Sample Page for Screening",
+    "version": "0.1",
+    "mappings": {
+        "montage": "../node_modules/montage",
+        "screening/common": "../common"
+    }
+}

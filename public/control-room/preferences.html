@@ -1,0 +1,54 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Preferences Panel</title>
+        
+        <script src="../node_modules/montage/montage.js" data-package=".."></script>
+        
+        <!--link rel="stylesheet" href="css/driver.css" type="text/css" media="all" title="no title" charset="utf-8" /-->
+
+        <link rel="stylesheet" href="css/screening.css" type="text/css" media="all" title="no title" charset="utf-8" />
+
+        <script type="text/montage-serialization">
+        {
+            "preferenceview1": {
+                "module": "control-room/ui/preference-view.reel",
+                "name": "PreferenceView",
+                "properties": {
+                    "element": {"#": "preferences"}
+                }
+            },
+            "menu1": {
+                "module": "control-room/ui/menu.reel",
+                "name": "Menu",
+                "properties": {
+                    "element": {"#": "menu"}
+                }
+            },
+            "owner": {
+                "module": "montage/ui/application",
+                "name": "Application",
+                "properties": {
+                    "components": [
+                        {"@": "preferenceview1"},
+                        {"@": "menu1"}
+                    ]
+                }
+            }
+        }
+        </script>
+    </head>
+
+    <body>
+        <div id="menu"></div>
+        <div id="wrapper">
+            
+            <div id="preferences">Loading...</div>
+        </div>
+    </body>
+</html>

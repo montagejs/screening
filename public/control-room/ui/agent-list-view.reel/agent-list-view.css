@@ -1,0 +1,25 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+.agentListView {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+}
+
+.agentListView .agentList {
+    background-color: #F2F2F2;
+    list-style: none;
+    white-space: nowrap;
+}
+
+.agentListView .agentList li {
+    display: inline-block;
+    height: 100%;
+}

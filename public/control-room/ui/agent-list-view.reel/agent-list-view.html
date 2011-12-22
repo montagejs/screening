@@ -1,0 +1,131 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="agent-list-view.css">
+
+        <script type="text/montage-serialization">
+        {
+            "agentview": {
+                "module": "control-room/ui/agent-view.reel",
+                "name": "AgentView",
+                "properties": {
+                    "element": {"#": "agentView"}
+                },
+                "bindings": {
+                    "agent": {
+                        "boundObject": {"@": "agentList"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration",
+                        "oneway": true
+                    }
+                }
+            },
+            "agentList": {
+                "module": "montage/ui/list.reel",
+                "name": "List",
+                "properties": {
+                    "element": {"#": "agentList"},
+                    "axis": "horizontal",
+                    "isSelectionEnabled": true
+                },
+                "bindings": {
+                    "contentController": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "agentController",
+                        "oneway": true
+                    }
+                }
+            },
+            "menuButtons": {
+                "module": "montage/ui/button-group.reel",
+                "name": "ButtonGroup",
+                "properties": {
+                    "element": {"#": "menuButtons"}
+                }
+            },
+            "addWebdriverAction": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "addWebDriverAgent"
+                }
+            },
+            "addWebdriverBtn": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "addWebdriver"}
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "addWebdriverAction"},
+                        "capture": false
+                    }
+                ]
+            },
+            "webdriverPrompt": {
+                "module": "common/ui/text-prompt.reel",
+                "name": "TextPrompt",
+                "properties": {
+                    "msg": "Enter Webdriver URL:",
+                    "value": "http://localhost:9515",
+                    "element": {"#": "webdriverUrlPrompt"}
+                }
+            },
+            "owner": {
+                "module": "control-room/ui/agent-list-view.reel",
+                "name": "AgentListView",
+                "properties": {
+                    "element": {"#": "agentListView"},
+                    "webdriverUrlPrompt": {"@": "webdriverPrompt"},
+                    "addWebdriverButton": {"@": "addWebdriverBtn"}
+                }
+            }
+        }
+        </script>
+        <!-- Commented out components
+        "actioneventlistener1": {
+            "module": "montage/core/event/action-event-listener",
+            "name": "ActionEventListener",
+            "properties": {
+                "handler": {"@": "owner"},
+                "action": "launchNewAgent"
+            }
+        },
+        "button1": {
+            "module": "montage/ui/button.reel",
+            "name": "Button",
+            "properties": {
+                "element": {"#": "newAgent"}
+            },
+            "listeners": [
+                {
+                    "type": "action",
+                    "listener": {"@": "actioneventlistener1"},
+                    "capture": false
+                }
+            ]
+        },
+        -->
+    </head>
+    <body>
+        <div id="agentListView" class="agentListView">
+            <div id="menuBar" class="menuBar">
+                <div id="menuButtons" class="small">
+                    <div id="addWebdriver" class="submit">Add WebDriver Agent</div>
+                </div>
+            </div>
+            <ul id="agentList" class="agentList flexFill">
+                <li><div id="agentView"></div></li>
+            </ul>
+            <div id="webdriverUrlPrompt" style="display: none; margin: auto;"></div>
+        </div>
+    </body>
+</html>

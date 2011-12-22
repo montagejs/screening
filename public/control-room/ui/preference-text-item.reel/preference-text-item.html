@@ -1,0 +1,57 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="preference-text-item.css">
+        <script type="text/montage-serialization">
+        {
+            "dynamictext1": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "name"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "preferenceObject.name",
+                        "oneway": true
+                    }
+                }
+            },
+            "textfield1": {
+                "module": "montage/ui/textfield.reel",
+                "name": "Textfield",
+                "properties": {
+                    "element": {"#": "value"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "preferenceObject.value",
+                        "oneway": false
+                    }
+                }
+            },
+            "owner": {
+                "module": "control-room/ui/preference-text-item.reel",
+                "name": "PreferenceTextItem",
+                "properties": {
+                    "element": {"#": "preferenceTextItem"}
+                }
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div id="preferenceTextItem" class="preferenceTextItem">
+            <p id="name"></p>
+            <input id="value" />
+        </div>
+    </body>
+</html>

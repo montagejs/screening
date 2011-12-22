@@ -1,0 +1,76 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="script-search.css">
+        <script type="text/montage-serialization">
+        {
+            "owner": {
+                "module": "control-room/ui/script-search.reel",
+                "name": "ScriptSearch",
+                "properties": {
+                    "element": {"#": "scriptSearch"},
+                    "scriptSearchBox": {"@": "scriptSearchBox"},
+                    "scriptSearchCombo": {"@": "scriptSearchCombo"}
+                }
+            },
+            "scriptSearchCombo": {
+                "module": "control-room/ui/combo-box.reel",
+                "name": "ComboBox",
+                "properties": {
+                    "element": {"#": "searchScope"}
+                }
+            },
+            "scriptSearchBox": {
+                "module": "montage/ui/textfield.reel",
+                "name": "Textfield",
+                "properties": {
+                    "element": {"#": "scriptSearchBox"}
+                }
+            },
+            "searchButton": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "searchButton"}
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "searchActionEventListener"}
+                    }
+                ]
+            },
+            "searchActionEventListener": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "searchAction"
+                }
+            }
+        }
+        </script>
+    </head>
+    <body>
+    <div id="scriptSearch" class="scriptSearch">
+        <span>
+            <select id="searchScope" class="searchScope">
+                <option>Name</option>
+                <option>Tags</option>
+            </select>
+        </span>
+        <span>
+            <input type="search" id="scriptSearchBox" class="scriptSearchBox" placeholder="Enter a script name or tag">
+        </span>
+        <span>
+            <button id="searchButton" class="button icon search primary big searchButton">Search</button>
+        </span>
+    </div>
+    </body>
+</html>

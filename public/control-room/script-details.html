@@ -1,0 +1,65 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Script Details</title>
+        
+        <script src="../node_modules/montage/montage.js" data-package=".."></script>
+        
+        <script src="/screening/common/codemirror2/lib/codemirror.js"></script>
+        <link rel="stylesheet" href="/screening/common/codemirror2/lib/codemirror.css">
+        <script src="/screening/common/codemirror2/mode/javascript/javascript.js"></script>
+        <link rel="stylesheet" href="/screening/common/codemirror2/theme/default.css">
+        
+        <link rel="stylesheet" href="css/driver.css" type="text/css" media="all" title="no title" charset="utf-8" />
+        
+        <script type="text/montage-serialization">
+        {
+            "scriptdetailview1": {
+                "module": "control-room/ui/script-detail-view.reel",
+                "name": "ScriptDetailView",
+                "properties": {
+                    "element": {"#": "scriptDetails"},
+                    "scriptName": "calculator.txt"
+                }
+            },
+            "textfield1": {
+                "module": "montage/ui/textfield.reel",
+                "name": "Textfield",
+                "properties": {
+                    "element": {"#": "scriptNameField"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "scriptdetailview1"},
+                        "boundObjectPropertyPath": "scriptName",
+                        "oneway": false
+                    }
+                }
+            },
+            "owner": {
+                "module": "montage/ui/application",
+                "name": "Application",
+                "properties": {
+                    "components": [
+                        {"@": "scriptdetailview1"},
+                        {"@": "textfield1"}
+                    ]
+                }
+            }
+        }
+        </script>
+    </head>
+
+    <body>
+        <div id="wrapper">
+            <h3>Available Scripts</h3>
+            <input type="text" value="scriptNameField" id="scriptNameField"/>
+            <div id="scriptDetails">Loading...</div>
+        </div>
+    </body>
+</html>

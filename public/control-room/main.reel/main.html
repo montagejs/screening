@@ -1,0 +1,145 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="main.css" type="text/css" media="all" title="no title" charset="utf-8" />
+        
+        <script type="text/montage-serialization">
+        {
+            "scriptcontrollerdelegate1": {
+                "module": "control-room/main.reel",
+                "name": "ScriptControllerDelegate"
+            },
+            "scriptlistview1": {
+                "module": "control-room/ui/script-list-view.reel",
+                "name": "ScriptListView",
+                "properties": {
+                    "delegate": {"@": "scriptcontrollerdelegate1"}
+                }
+            },
+            "arraycontroller1": {
+                "module": "montage/ui/controller/array-controller",
+                "name": "ArrayController",
+                "properties": {
+                    "selectObjectsOnAddition": true,
+                    "automaticallyOrganizeObjects": true
+                }
+            },
+            "arraycontroller2": {
+                "module": "montage/ui/controller/array-controller",
+                "name": "ArrayController",
+                "properties": {
+                    "selectObjectsOnAddition": true,
+                    "automaticallyOrganizeObjects": true,
+                    "delegate": {"@": "scriptcontrollerdelegate1"}
+                }
+            },
+            "scriptlistview1": {
+                "module": "control-room/ui/script-list-view.reel",
+                "name": "ScriptListView",
+                "properties": {
+                    "element": {"#": "scriptList"}
+                },
+                "bindings": {
+                    "scriptController": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "scripts",
+                        "oneway": true
+                    }
+                }
+            },
+            "scriptdetailview1": {
+                "module": "control-room/ui/script-detail-view.reel",
+                "name": "ScriptDetailView",
+                "properties": {
+                    "element": {"#": "scriptDetail"}
+                },
+                "bindings": {
+                    "scriptSource": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "scripts.selectedObjects.0",
+                        "oneway": true
+                    },
+                    "activeAgents": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "agents.selectedObjects",
+                        "oneway": true
+                    },
+                    "serverVersion": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "serverVersion",
+                        "oneway": true
+                    }
+                }
+            },
+            "agentlistview1": {
+                "module": "control-room/ui/agent-list-view.reel",
+                "name": "AgentListView",
+                "properties": {
+                    "element": {"#": "agentList"}
+                },
+                "bindings": {
+                    "agentController": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "agents",
+                        "oneway": true
+                    }
+                }
+            },
+            "owner": {
+                "module": "control-room/main.reel",
+                "name": "Main",
+                "properties": {
+                    "element": {"#": "scriptManager"},
+                    
+                    "scriptDetail": {"@": "scriptdetailview1"},
+                    "emptyDetail": {"#": "emptyDetail"},
+                    "scriptList": {"@": "scriptlistview1"},
+                    "agents": {"@": "arraycontroller1"},
+                    "scripts": {"@": "arraycontroller2"}
+                }
+            }
+        }
+        </script>
+    </head>
+
+    <body>
+        <section id="scriptManager" class="mon-dock-view scriptManager">
+            <section id="topDockArea" class="dockPanel dockHorizontalPanel">
+                <!-- Empty -->
+            </section>
+        
+            <section id="middleDockArea" class="dockHorizontalPanel flexFill">
+                <section id="leftDockArea" class="dockPanel dockVerticalPanel">
+                   <div id="scriptList" class="scriptList flexFill dockVerticalPanel"></div>
+                </section>
+            
+                <section id="centralDockArea" class="dockPanel dockVerticalPanel flexFill">
+                    <div id="scriptDetail" class="scriptDetail dockVerticalPanel flexFill"></div>
+                    <div id="emptyDetail" class="emptyDetail centeredContent flexFill">
+                        <div class="centeredWrapper">
+                            <p>
+                                No script selected.<br/><br/>
+                                Please select a script from the list on the left<br/>
+                                or click "New" to begin editing.
+                            </p>
+                        </div>
+                    </div>
+                </section>
+            
+                <section id="rightDockArea" class="dockPanel dockVerticalPanel">
+                    <!-- Empty -->
+                </section>
+            </section>
+        
+            <section id="bottomDockArea" class="dockPanel dockHorizontalPanel">
+                <div id="agentList" class="agentList flexFill"></div>
+            </section>
+        </section>
+    </body>
+</html>

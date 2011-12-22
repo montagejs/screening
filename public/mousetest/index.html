@@ -1,0 +1,151 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Mouse Path Smoothing Test</title>
+        
+        <style>
+            body {
+                background-color: #CCCCCC;
+                text-align: center;
+            }
+            
+            #viewport {
+                background-color: white;
+                margin: 2em;
+            }
+        </style>
+        
+        <script>
+            "use strict";
+            
+            var viewport, ctx, capture = false;
+            
+            var pts = [];
+            
+            // Note: This one isn't used, just keeping it around in case I find it useful later
+            function pointToLineDistance(point, segStart, segEnd) {
+                var xd = (segEnd.x-segStart.x);
+                var yd = (segEnd.y-segStart.y);
+                
+                var num = Math.abs(xd*(segStart.y-point.y) - (segStart.x-point.x)*yd);
+                var den = Math.sqrt((xd*xd) + (yd*yd));
+                
+                return num/den;
+            }
+            
+            // Calculates the perpendicular distance of a point to a line segment
+            function pointToSegmentDistance(point, segStart, segEnd) {
+                var px = (segEnd.x-segStart.x);
+                var py = (segEnd.y-segStart.y);
+                
+                var lenSqr = (px*px) + (py*py);
+                
+                var u = ((point.x-segStart.x)*px + (point.y-segStart.y)*py) / lenSqr;
+                
+                // clamp u to [0,1]
+                u = u > 1 ? 1 : (u < 0 ? 0 : u);
+                
+                var dx = (segStart.x + u * px) - point.x;
+                var dy = (segStart.y + u * py) - point.y;
+                
+                return Math.sqrt((dx*dx) + (dy*dy));
+            }
+            
+            // Use the Ramer–Douglas–Peucker algorithm to reduce the numbers of points in the set given
+            // http://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
+            function reducePoints(points, epsilon) {
+                var dist, maxDist = 0;
+                var index = 0;
+                
+                var numPoint = points.length;
+                for(var i = 1; i < numPoint; ++i) {
+                    dist = pointToSegmentDistance(points[i], points[0], points[numPoint-1]);
+                    if(dist > maxDist) {
+                        index = i;
+                        maxDist = dist;
+                    }
+                }
+                
+                var reducedPoints;
+                if(maxDist >= epsilon) {
+                    var pointsA, pointsB;
+                    // Call recursively using the point with the maximum displacement as the start/end of two new segments
+                    pointsA = reducePoints(points.slice(0, index+1), epsilon);
+                    pointsB = reducePoints(points.slice(index), epsilon);
+                    reducedPoints = pointsA.concat(pointsB.slice(1));
+                } else {
+                    reducedPoints = [points[0], points[numPoint-1]];
+                }
+                
+                return reducedPoints;
+            }
+            
+            window.addEventListener("load", function() {
+                viewport = document.getElementById("viewport");
+                ctx = viewport.getContext("2d");
+                
+                viewport.addEventListener("mousedown", function() {
+                    capture = true;
+                });
+                
+                window.addEventListener("mouseup", function() {
+                    capture = false;
+                    
+                    if(pts.length > 2) {
+                        
+                        pts = reducePoints(pts, 10);
+                        
+                        ctx.strokeStyle = "rgb(0,200,0)";
+                        ctx.fillStyle = "rgb(0,200,0)";
+                        
+                        ctx.beginPath();
+                        
+                        var pt = pts[0], pt2;
+                        
+                        ctx.moveTo(pt.x,pt.y);
+                        for(var i = 1; i < pts.length; ++i) {
+                            pt = pts[i];
+                            ctx.lineTo(pt.x,pt.y);
+                        }
+                        ctx.stroke();
+                        
+                        // Fill points
+                        for(var i = 0; i < pts.length; ++i) {
+                            pt = pts[i];
+                            ctx.beginPath();
+                            ctx.arc(pt.x,pt.y,3,0,Math.PI*2,false);
+                            ctx.fill();
+                        }
+                        
+                        pts = [];
+                    }
+                });
+                
+                viewport.addEventListener("mousemove", function(event) {
+                    if(!capture) { return; }
+                    
+                    var x = event.x - viewport.offsetLeft;
+                    var y = event.y - viewport.offsetTop;
+                    
+                    pts.push({ x:x, y:y });
+                    
+                    ctx.fillStyle = "rgb(0,0,200)";
+                    //ctx.fillRect (10, 10, 55, 50);
+                    
+                    ctx.beginPath();
+                    ctx.arc(x,y,2,0,Math.PI*2,false);
+                    ctx.fill();
+                });
+            });
+        </script>
+        
+    </head>
+    <body>
+        <canvas id="viewport" width="800" height="600"></canvas>
+    </body>
+</html>

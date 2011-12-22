@@ -1,0 +1,110 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="script-results-search.css">
+        <script type="text/montage-serialization">
+        {
+            "textfield1": {
+                "module": "montage/ui/textfield.reel",
+                "name": "Textfield",
+                "properties": {
+                    "element": {"#": "resultsSearchBox"}
+                }
+            },
+            "actioneventlistener1": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "searchAction"
+                }
+            },
+            "button1": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "search"}
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "actioneventlistener1"}
+                    }
+                ]
+            },
+            "actioneventlistener2": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "toggleSearchOptions"
+                }
+            },
+            "button2": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "options"}
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "actioneventlistener2"},
+                        "capture": false
+                    }
+                ]
+            },
+            "dynamictext1": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "value": "Advanced Options coming soon!"
+                }
+            },
+            "substitution1": {
+                "module": "montage/ui/substitution.reel",
+                "name": "Substitution",
+                "properties": {
+                    "element": {"#": "searchOptions"},
+                    "switchComponents": {
+                        "true": {"@": "dynamictext1"}
+                    }
+                },
+                "bindings": {
+                    "switchValue": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "searchOptionsVisible",
+                        "oneway": true
+                    }
+                }
+            },
+            "owner": {
+                "module": "ui/script-results-search.reel",
+                "name": "ScriptResultsSearch",
+                "properties": {
+                    "element": {"#": "resultsSearch"},
+                    "resultsSearchBox": {"@": "textfield1"}
+                }
+            }
+        }
+        </script>
+    </head>
+    <body>
+    <div id="resultsSearch" class="resultsSearch">
+        <span>
+            <input type="search" id="resultsSearchBox" class="resultsSearchBox" placeholder="Enter a name, agent or script name">
+            <span class="button-group">
+                <button id="search" class="button icon search primary big">Search</button>
+                <button id="options" class="button icon settings" style="display: none;">Options</button><!-- Temporarily hiding Search Options -->
+            </span>
+            <div id="searchOptions"></div>
+        </span>
+    </div>
+    </body>
+</html>

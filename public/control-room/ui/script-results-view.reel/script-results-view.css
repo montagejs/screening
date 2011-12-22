@@ -1,0 +1,135 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+body {
+    margin:1em;
+}
+
+table {
+    width:100%;
+    text-align:left;
+    vertical-align:top;
+    border-radius:10px;
+    box-shadow:3px 3px 5px #AAA;
+    background:white;
+    border-collapse:collapse;
+}
+
+th {
+    background-color: #584C4C;
+    background-image: -webkit-linear-gradient(top, #6f6161, #584c4c);
+    color:white;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.link {
+    color: #584C4C;
+}
+
+.note {
+    font-size:0.8em;
+    font-style:normal;
+}
+
+th:first-child {
+    border-top-left-radius:10px;
+}
+
+th:last-child {
+    border-top-right-radius:10px;
+}
+
+td, th {
+    padding:10px;
+}
+
+.pass {
+    color:#668014;
+}
+
+.fail {
+    color:#CC1100;
+}
+
+.exception {
+    color:#F00;
+}
+
+.result {
+    color:#FFF;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.passed {
+    color:#668014;
+    text-shadow: #AAA 0.1em 0.1em 0.2em;
+}
+
+.failed {
+    color:#CC1100;
+    text-shadow: #AAA 0.1em 0.1em 0.2em;
+}
+
+.exception {
+    color: #F00;
+    text-shadow: #AAA 0.1em 0.1em 0.2em;
+}
+
+td.pass {
+    background-color:#668014;
+}
+
+td.fail {
+    background-color:#CC1100;
+}
+
+td.exception {
+    background-color:#F00;
+    color:#FFF;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+td.start, td.end {
+    background-color:#AAA;
+}
+
+td.testcaseName {
+    outline-width: thick;
+}
+
+td.testcaseName:hover {
+    background-color: #584C4C;
+    opacity: 60;
+    color: #f5f5f5;
+    cursor: pointer;
+}
+
+.result-detail th:first-child, .result-detail td:first-child{text-align:center;}
+tr:nth-child(even){ background-color:#F1F1F1; }
+
+.Checkbox .button {
+    border: 0px;
+    padding: 0px;
+}
+
+.currentPage {
+    width: 40px;
+}
+
+.paging {
+    float: right;
+}
+
+/*Remove the spinner on <input type"number">*/
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.montage-button.disabled {
+    color: GrayText;
+    cursor: inherit;
+}

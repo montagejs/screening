@@ -1,0 +1,143 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="script-list-view.css">
+        <script type="text/montage-serialization">
+        {
+            "scriptSourceView": {
+                "module": "control-room/ui/script-source-view.reel",
+                "name": "ScriptSourceView",
+                "properties": {
+                    "element": {"#": "scriptSource"}
+                },
+                "bindings": {
+                    "scriptSource": {
+                        "boundObject": {"@": "scriptList"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration",
+                        "oneway": true
+                    }
+                }
+            },
+            "scriptList": {
+                "module": "montage/ui/list.reel",
+                "name": "List",
+                "properties": {
+                    "element": {"#": "scriptList"},
+                    "axis": "vertical",
+                    "isSelectionEnabled": true
+                },
+                "bindings": {
+                    "contentController": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "scriptController",
+                        "oneway": true
+                    }
+                }
+            },
+            "menuButtons": {
+                "module": "montage/ui/button-group.reel",
+                "name": "ButtonGroup",
+                "properties": {
+                    "element": {"#": "menuButtons"}
+                }
+            },
+            "actioneventlistener1": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "createNewScript"
+                }
+            },
+            "button1": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "newScript"}
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "actioneventlistener1"},
+                        "capture": false
+                    }
+                ]
+            },
+            "actioneventlistener2": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "downloadAllScripts"
+                }
+            },
+            "button2": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "downloadAll"}
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "actioneventlistener2"},
+                        "capture": false
+                    }
+                ]
+            },
+            "scriptuploader1": {
+                "module": "control-room/ui/script-uploader.reel",
+                "name": "ScriptUploader",
+                "properties": {
+                    "element": {"#": "scriptUploader"}
+                }
+            },
+            "scriptsearch1": {
+                "module": "control-room/ui/script-search.reel",
+                "name": "ScriptSearch",
+                "properties": {
+                    "element": {"#": "scriptSearch"}
+                },
+                "listeners": [
+                    {
+                        "type": "refreshScriptList",
+                        "listener": {"@": "owner"},
+                        "capture": false
+                    }
+                ]
+            },
+            "owner": {
+                "module": "control-room/ui/script-list-view.reel",
+                "name": "ScriptListView",
+                "properties": {
+                    "element": {"#": "scriptListView"},
+                    "scriptUploader": {"@": "scriptuploader1"}
+                }
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div id="scriptListView" class="scriptListView">
+            <div id="menuBar" class="menuBar button-container">
+                <div id="menuButtons" class="small">
+                    <div id="newScript" class="submit">New</div>
+                    <div id="downloadAll" class="text">Download All</div>
+                </div>
+            </div>
+            <div id="scriptUploader" class="">
+                <p>Drag Script Here To Upload</p>
+            </div>
+            <div id="scriptSearch"></div>
+            <ul id="scriptList" class="scriptList flexFill">
+                <li><div id="scriptSource"></div></li>
+            </ul>
+        </div>
+    </body>
+</html>

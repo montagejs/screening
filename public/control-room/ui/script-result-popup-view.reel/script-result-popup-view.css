@@ -1,0 +1,49 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+body {
+    margin:1em;
+}
+
+.link {
+    color: #584C4C;
+}
+
+.note {
+    font-size:0.8em;
+    font-style:normal;
+}
+
+.pass {
+    color:#668014;
+}
+
+.fail {
+    color:#CC1100;
+}
+
+.exception {
+    color:#F00;
+}
+
+.result {
+    color:#FFF;
+    text-shadow: black 0.1em 0.1em 0.2em;
+}
+
+.passed {
+    color:#668014;
+    text-shadow: #AAA 0.1em 0.1em 0.2em;
+}
+
+.failed {
+    color:#CC1100;
+    text-shadow: #AAA 0.1em 0.1em 0.2em;
+}
+
+.exception {
+    color: #F00;
+    text-shadow: #AAA 0.1em 0.1em 0.2em;
+}

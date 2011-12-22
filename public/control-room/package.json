@@ -1,0 +1,9 @@
+{
+    "name": "screening/control-room",
+    "description": "Montage Testing Framework Controller App",
+    "version": "0.1",
+    "mappings": {
+        "montage": "../node_modules/montage",
+        "screening/common": "../common"
+    }
+}

@@ -1,0 +1,85 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple UI Sample, No Montage</title>
+
+        <style>
+            body {
+                margin-top:20px;
+                background:#E6E6E6;
+                font-family: 'AG Buch BQ Regular', 'AG Buch BQ', Helvetica, Arial, sans-serif;
+            }
+
+            form {
+                border-radius: 10px;
+                border:1px dotted gray;
+                width:500px;
+                margin:0 auto;
+                padding:20px;
+                -webkit-box-shadow: 1px 1px 5px #BBB;
+            }
+            h1 {
+                text-align: center;
+            }
+            label {
+                font-size:1.3em;
+                margin-bottom:20px;
+                margin-right: 20px;
+                display:inline-block;
+            }
+            #slider {
+                display: inline-block;
+                margin-top: -20px;
+                margin-bottom: -20px;
+                margin-left: -20px;
+                width: 300px;
+            }
+            #toggle {
+                display: inline-block;
+                margin-right: 20px;
+            }
+            #button {
+                margin-right: 20px;
+            }
+        </style>
+        
+        <script>
+            window.addEventListener("load", function(event) {
+                var button = document.getElementById("button");
+                var button2 = document.getElementById("button2");
+                var textField = document.getElementById("textField");
+                
+                button.addEventListener("click", function(event) {
+                    textField.value = "Clicked Button 1";
+                    event.preventDefault();
+                });
+                
+                button2.addEventListener("click", function(event) {
+                    textField.value = "Clicked Button 2";
+                    event.preventDefault();
+                });
+            });
+        </script>
+        
+    </head>
+
+    <body>
+        <h1>Non-Montage Control Sample</h1>
+        <form>
+            <div>
+                <label for="textField">Text Field:</label>
+                <input id="textField" style="width: 350px;" value="Click a button"/>
+            </div>
+            <div>
+                <label for="button">Buttons:</label>
+                <button id="button" class="text">Click Me</button>
+                <button id="button2" class="text">Or Me</button>
+            </div>
+        </form>
+    </body>
+</html>

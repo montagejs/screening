@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Simple UI Sample</title>
+        <script src="../node_modules/montage/montage.js"></script>
+        
+        <style>
+            body {
+                margin-top:20px;
+                background:#E6E6E6;
+                font-family: 'AG Buch BQ Regular', 'AG Buch BQ', Helvetica, Arial, sans-serif;
+            }
+
+            form {
+                border-radius: 10px;
+                border:1px dotted gray;
+                width:500px;
+                margin:0 auto;
+                padding:20px;
+                -webkit-box-shadow: 1px 1px 5px #BBB;
+            }
+            h1 {
+                text-align: center;
+            }
+            label {
+                font-size:1.3em;
+                margin-bottom:20px;
+                margin-right: 20px;
+                display:inline-block;
+            }
+            .slider {
+                display: inline-block;
+                margin-top: -20px;
+                margin-bottom: -20px;
+                margin-left: -20px;
+                width: 300px;
+            }
+            .toggle {
+                display: inline-block;
+                margin-right: 20px;
+            }
+            .button {
+                margin-right: 20px;
+            }
+        </style>
+
+        <script type="text/montage-serialization">
+        {
+            "textfield1": {
+                "module": "montage/ui/textfield.reel",
+                "name": "Textfield",
+                "properties": {
+                    "element": {"#": "textField"}
+                }
+            },
+            "slider1": {
+                "module": "montage/ui/slider.reel",
+                "name": "Slider",
+                "properties": {
+                    "element": {"#": "slider"}
+                }
+            },
+            "textfield2": {
+                "module": "montage/ui/textfield.reel",
+                "name": "Textfield",
+                "properties": {
+                    "element": {"#": "sliderValue"},
+                    "readOnly": true
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "slider1"},
+                        "boundObjectPropertyPath": "value",
+                        "oneway": true
+                    }
+                }
+            },
+            "toggle1": {
+                "module": "montage/ui/toggle.reel",
+                "name": "Toggle",
+                "properties": {
+                    "element": {"#": "toggle"}
+                }
+            },
+            "textfield3": {
+                "module": "montage/ui/textfield.reel",
+                "name": "Textfield",
+                "properties": {
+                    "element": {"#": "toggleValue"},
+                    "readOnly": true
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "toggle1"},
+                        "boundObjectPropertyPath": "value",
+                        "oneway": true
+                    }
+                }
+            },
+            "button1": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "button"}
+                }
+            },
+            "button2": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "button2"}
+                }
+            },
+            "owner": {
+                "module": "montage/ui/application",
+                "name": "Application",
+                "properties": {
+                    "components": [
+                        {"@": "textfield1"},
+                        {"@": "slider1"},
+                        {"@": "textfield2"},
+                        {"@": "toggle1"},
+                        {"@": "textfield3"},
+                        {"@": "button1"},
+                        {"@": "button2"}
+                    ]
+                }
+            }
+        }
+        </script>
+    </head>
+
+    <body>
+        <h1>Montage <span>Control</span> Sample</h1>
+        <form>
+            <div>
+                <label for="textField">Text Field:</label>
+                <input id="textField" style="width: 350px;"/>
+            </div>
+            <div>
+                <label for="slider">Slider:</label>
+                <div id="slider" class="slider"></div>
+                <input id="sliderValue" style="width: 75px;"/>
+            </div>
+            <div>
+                <label for="toggle">Toggle:</label>
+                <div id="toggle" class="toggle"></div>
+                <input id="toggleValue" style="width: 75px;"/>
+            </div>
+            <div>
+                <label for="button">Buttons:</label>
+                <div id="button" class="text button">Click Me</div>
+                <div id="button2" class="text">Or Me</div>
+            </div>
+        </form>
+        <script type="text/javascript">
+            ;(function(){
+                var colors = ["red", "blue", "green", "black", "yellow", "white"];
+                // Iterate over the colors by moving them from beginning to end :)
+                setInterval(function(){ var c = colors.shift(); document.querySelector("span").style.color = c; colors.push(c); }, 1000);
+            })();
+        </script>
+    </body>
+</html>

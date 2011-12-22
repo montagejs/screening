@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="10px" height="8px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<path d="M1,0 l8,0 l0,1 l-8,0 z" fill="#000" fill-opacity=".05"/>
+<path d="M1,1 l8,0 l-4,6 z" fill="#353535"/>
+<path d="M3,2 l4,0 l-2,3 z" fill="#404040"/>
+<path d="M1,1 l0,1 l4,6 l4,-6 l0,-1 l-4,6 z" fill="#ccc" fill-opacity=".35"/>
+</svg>

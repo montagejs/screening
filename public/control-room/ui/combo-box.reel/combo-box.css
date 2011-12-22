@@ -1,0 +1,238 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+.montage-combobox {
+    display: inline-block;
+    position: relative;
+    font-family: "AG Buch BQ Regular", "AG Buch BQ", Helvetica, Arial, sans-serif;
+    color: #000;
+    height: 28px;
+    border-radius: 14px;
+    background: -webkit-gradient(linear, left top, left bottom, from(#989898), to(#cbcbcb));
+    -webkit-box-shadow: 0 -1px 0 #dcdcdc, 0 1px 0 #f7f7f7;
+    cursor: default;
+}
+.montage-combobox .button {
+    display: block;
+    right: 1px;
+    top: 1px;
+    position: absolute;
+    width: 26px;
+    height: 26px;
+    border-radius: 0 13px 13px 0;
+    background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e6e6e6));
+    background-repeat: no-repeat;
+    -webkit-transition: opacity 150ms;
+}
+.montage-combobox .icon {
+    display: block;
+    right: 10px;
+    top: 11px;
+    position: absolute;
+    width: 9px;
+    height: 8px;
+    background: url(arrow-light-icon-off.svg);
+    background-repeat: no-repeat;
+    -webkit-transition: all 300ms;
+    -webkit-transform-origin: 4px 3px;
+    -webkit-transform: translate3d(0,0,0) rotate3d(0,0,1,0);
+    opacity: 1;
+}
+.montage-combobox .active.icon {
+    -webkit-transform: rotate3d(0,0,1,90deg);
+    opacity: 0;    
+}
+.montage-combobox .iconon {
+    display: block;
+    right: 10px;
+    top: 11px;
+    position: absolute;
+    width: 9px;
+    height: 8px;
+    background: url(arrow-light-icon-on.svg);
+    background-repeat: no-repeat;
+    -webkit-transition: all 300ms;
+    -webkit-transform-origin: 4px 3px 0;
+    -webkit-transform: translate3d(0,0,0) rotate3d(0,0,1,0);
+    opacity: 0;
+}
+.montage-combobox .active.iconon {
+    -webkit-transform: rotate3d(0,0,1,90deg);
+    opacity: 1;    
+}
+.montage-combobox .label {
+    position: absolute;
+    display: block;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    right: 28px;
+    background-color: #fff;
+    height: 24px;
+    border-radius: 13px 0 0 13px;
+    overflow: hidden;
+    font-size: 14px;
+    line-height: 24px;
+    padding: 2px 8px 0 14px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    -webkit-transition: all 150ms;
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0);    
+}
+.montage-combobox .button.pressed {
+    opacity: .5;
+}
+.montage-combobox .label.pressed {
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.35);
+}
+.montage-combobox-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: none;
+    overflow: hidden;
+    opacity: 0.01;
+    -webkit-transition: opacity 250ms;
+    z-index: 9999;
+}
+.montage-combobox-container .combolist {
+    font-family: "AG Buch BQ Regular", "AG Buch BQ", Helvetica, Arial, sans-serif;
+    position: absolute;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    max-width: 85%;
+    -webkit-transform: translateZ(0);
+}
+.montage-combobox-container .combolist > div {
+    background: #f2f2f2;
+    height: 48px;
+    line-height: 48px;
+    font-size: 18px;
+    padding: 1px 68px 1px 16px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-shadow: inset -4px 0 0 rgba(0,0,0,.15), inset 0 1px 0 #f8f8f8, inset 0 -1px 0 #e6e6e6;
+    cursor: default;
+}
+.montage-combobox-container .combolist > div.pressed { 
+    background-color: #ccc;
+    -webkit-box-shadow:
+        inset -4px 0 0 rgba(0,0,0,.15),
+        inset 0 1px 0 #f8f8f8,
+        inset 0 -1px 0 #e6e6e6,
+        inset -7px -4px 0 #f2f2f2,
+        inset 3px 3px 0 #f2f2f2,
+        inset 0 3px 2px rgba(0,0,0,.3),
+        inset 3px 0 2px rgba(0,0,0,.3),
+        inset 0 -4px 2px rgba(0,0,0,.3),
+        inset -7px 0 2px rgba(0,0,0,.3); 
+}
+.montage-combobox-container .combolist > div.pressed.selected { 
+    background-color: #ccc;
+    -webkit-box-shadow:    
+        inset 0 1px 0 #f8f8f8,
+        inset 0 -1px 0 #e6e6e6,
+        inset -3px -4px 0 #f2f2f2,
+        inset 3px 3px 0 #f2f2f2,
+        inset 0 3px 2px rgba(0,0,0,.3),
+        inset 3px 0 2px rgba(0,0,0,.3),
+        inset 0 -4px 2px rgba(0,0,0,.3),
+        inset -3px 0 2px rgba(0,0,0,.3); 
+}
+.montage-combobox-container .combolist > div.selected {
+    -webkit-box-shadow: inset 0 1px 0 #f8f8f8, inset 0 -1px 0 #e6e6e6; 
+}
+.montage-combobox-container .combolist > div.selected:before {
+    content: url(arrow-light-icon-on.svg);
+    display: block;
+    position: absolute;
+    right: 0;
+    height: 8px;
+    width: 9px;
+    -webkit-transform-origin: 4px 4px 0;
+    -webkit-transform: translate3d(-35px, 21px, 0) scale3d(1, -1, 0) rotate3d(0,0,1,-90deg);
+}
+
+
+.montage-combobox.dark {
+    color: #fff;
+    background: #333;
+    -webkit-box-shadow: 0 -1px 0 #4d4d4d, 0 1px 0 #7b7b7b;
+}
+.montage-combobox.dark .button {
+    background: -webkit-gradient(linear, left top, left bottom, from(#767676), to(#5c5c5c));
+}
+.montage-combobox.dark .icon {
+    right: 10px;
+    top: 11px;
+    width: 10px;
+    height: 8px;
+    background: url(arrow-dark-icon-off.svg);
+    -webkit-transform-origin: 6px 3px;
+    -webkit-transform: translate3d(0,0,0) rotate3d(0,0,1,0);
+}
+.montage-combobox.dark .active.icon {
+    -webkit-transform: translate3d(-1px,1px,0) rotate3d(0,0,1,90deg);
+}
+.montage-combobox.dark .iconon {
+    right: 10px;
+    top: 11px;
+    width: 10px;
+    height: 8px;
+    background: url(arrow-dark-icon-on.svg);
+    -webkit-transform-origin: 6px 3px 0;
+    -webkit-transform: translate3d(0,0,0) rotate3d(0,0,1,0);
+}
+.montage-combobox.dark .active.iconon {
+    -webkit-transform: translate3d(-1px,1px,0) rotate3d(0,0,1,90deg);
+}
+.montage-combobox.dark .label {
+    background-color: #666;
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,0);
+    text-shadow: 0 0 2px #404040;
+}
+.montage-combobox.dark .button.pressed {
+    opacity: .6;
+}
+.montage-combobox.dark .label.pressed {
+    -webkit-box-shadow: inset 0 0 2px rgba(0,0,0,.45);
+}
+.montage-combobox-container.dark .combolist > div {
+    color: #fff;
+    text-shadow: 0 0 2px #404040;
+    background: #666;
+    -webkit-box-shadow: inset -4px 0 0 rgba(0,0,0,.15), inset 0 1px 0 #757575, inset 0 -1px 0 #575757;
+}
+.montage-combobox-container.dark .combolist > div.pressed { 
+    background-color: #404040;
+    -webkit-box-shadow:
+        inset -4px 0 0 rgba(0,0,0,.15),
+        inset 0 1px 0 #757575,
+        inset 0 -1px 0 #575757,
+        inset -7px -3px 0 #666,
+        inset 3px 3px 0 #666,
+        inset 0 -4px 0 #8a8a8a;
+}
+.montage-combobox-container.dark .combolist > div.pressed.selected { 
+    background-color: #404040;
+    -webkit-box-shadow:    
+        inset 0 1px 0 #757575,
+        inset 0 -1px 0 #575757,
+        inset -3px -3px 0 #666,
+        inset 3px 3px 0 #666,
+        inset 0 -4px 0 #8a8a8a;
+}
+.montage-combobox-container.dark .combolist > div.selected {
+    -webkit-box-shadow: inset 0 1px 0 #757575, inset 0 -1px 0 #575757; 
+}
+.montage-combobox-container.dark .combolist > div.selected:before {
+    content: url(arrow-dark-icon-on.svg);
+    height: 8px;
+    width: 10px;
+    -webkit-transform-origin: 4px 4px 0;
+    -webkit-transform: translate3d(-34px, 20px, 0) scale3d(1, -1, 0) rotate3d(0,0,1,-90deg);
+}

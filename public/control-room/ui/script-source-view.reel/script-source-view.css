@@ -1,0 +1,52 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+.scriptSource {
+    border-bottom: 1px solid #DEDEDE;
+    border-top: 1px solid #FFFFFF;
+    padding: 8px 15px 8px 15px;
+}
+
+.selected .scriptSource {
+    border-top: 0;
+    padding-top: 9px;
+    box-shadow: 0 1px 2px #666666 inset;
+}
+
+.scriptSource .name {
+    font-weight: normal;
+    display: block;
+}
+
+.scriptSource .size, .scriptSource .modified {
+    font-size: 0.9em;
+    font-style: italic;
+}
+
+.scriptSource .size:after {
+    content: " bytes - "
+}
+
+.scriptSource .download {
+    display: block;
+}
+
+textarea {
+    width:600px;
+    min-height:300px;
+}
+
+/* This is the little blue arrow that appears after the selected script */
+.selected .scriptSource:before {
+    float: right;
+    content: "\025b6";
+    font-size: 0.8em;
+    margin-right: -12px;
+    
+    background-color: #17b1e9;
+    -webkit-background-clip: text;
+    color: transparent;
+    text-shadow: rgba(255,255,255,0.5) 0 5px 6px;
+}

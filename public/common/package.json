@@ -1,0 +1,8 @@
+{
+    "name": "screening/common",
+    "description": "Montage Testing Framework Shared Components",
+    "version": "0.1",
+    "mappings": {
+        "montage": "../node_modules/montage"
+    }
+}

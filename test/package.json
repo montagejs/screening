@@ -1,0 +1,10 @@
+{
+    "name": "screening/test",
+    "description": "Montage Testing Framework Unit Tests",
+    "version": "0.1",
+    "mappings": {
+        "montage": "../m-js",
+        "screening/common": "../screening/common",
+        "screening/server": "../server"
+    }
+}

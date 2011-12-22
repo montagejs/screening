@@ -1,0 +1,4 @@
+/* <notice>
+ Code from webxray: https://github.com/toolness/webxray
+ MPL license https://github.com/toolness/webxray
+ </notice> */

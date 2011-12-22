@@ -1,0 +1,323 @@
+<!-- <copyright>
+  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+  </copyright> -->
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" type="text/css" href="script-results-view.css">
+        <script type="text/montage-serialization">
+        {
+            "scriptResultsSearch": {
+                "module": "ui/script-results-search.reel",
+                "name": "ScriptResultsSearch",
+                "properties": {
+                    "element": {"#": "resultsSearch"}
+                },
+                "listeners": [
+                    {
+                        "type": "refreshResults",
+                        "listener": {"@": "owner"},
+                        "capture": false
+                    }
+                ]
+            },
+            "actioneventlistener1": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "deleteResults"
+                }
+            },
+            "selectAllListener": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "selectAllResults"
+                }
+            },
+            "previousPageListener": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "previousPage"
+                }
+            },
+            "nextPageListener": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "nextPage"
+                }
+            },
+            "button1": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "deleteResults"}
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "actioneventlistener1"},
+                        "capture": false
+                    }
+                ]
+            },
+            "selectAllBtn": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "selectAllResults"}
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "selectAllListener"},
+                        "capture": false
+                    }
+                ]
+            },
+            "currentPage": {
+                "module": "montage/ui/textfield.reel",
+                "name": "Textfield",
+                "properties": {
+                    "element": {"#": "currentPage"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "currentPage",
+                        "oneway": false
+                    }
+                }
+            },
+            "totalPagesText": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "totalPagesText"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "totalPages",
+                        "oneway": true
+                    }
+                }
+            },
+            "previousPageButtonTop": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "previousPageTop"}
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "previousPageListener"},
+                        "capture": false
+                    }
+                ]
+            },
+            "nextPageButtonTop": {
+                "module": "montage/ui/button.reel",
+                "name": "Button",
+                "properties": {
+                    "element": {"#": "nextPageTop"}
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "nextPageListener"},
+                        "capture": false
+                    }
+                ]
+            },
+            "link1": {
+                "module": "control-room/ui/link",
+                "name": "Link",
+                "properties": {
+                    "element": {"#": "resultViewLink"}
+                },
+                "bindings": {
+                    "link": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.resultUrl",
+                        "oneway": true
+                    }
+                }
+            },
+            "checkbox1": {
+                "module": "montage/ui/checkbox.reel",
+                "name": "Checkbox",
+                "properties": {
+                    "element": {"#": "testcaseSelected"}
+                },
+                "bindings": {
+                    "checked": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.selected"
+                    }
+                }
+            },
+            "clickabletext1": {
+                "module": "control-room/ui/clickable-text",
+                "name": "ClickableText",
+                "properties": {
+                    "element": {"#": "testcaseName"},
+                    "propertyToDisplay": "name"
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext1": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "testcaseAgent"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.agent",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext2": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "testcaseScript"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.script",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext3": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "testcaseStart"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.startTime",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext4": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "testcaseEnd"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.endTime",
+                        "oneway": true
+                    }
+                }
+            },
+            "dynamictext5": {
+                "module": "montage/ui/dynamic-text.reel",
+                "name": "DynamicText",
+                "properties": {
+                    "element": {"#": "testcaseSummary"}
+                },
+                "bindings": {
+                    "value": {
+                        "boundObject": {"@": "repetition1"},
+                        "boundObjectPropertyPath": "objectAtCurrentIteration.summary",
+                        "oneway": true
+                    }
+                }
+            },
+            "repetition1": {
+                "module": "montage/ui/repetition.reel",
+                "name": "Repetition",
+                "properties": {
+                    "element": {"#": "resultsDetails"}
+                },
+                "bindings": {
+                    "objects": {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "results",
+                        "oneway": true
+                    }
+                }
+            },
+            "owner": {
+                "module": "control-room/ui/script-results-view.reel",
+                "name": "ScriptResultsView",
+                "properties": {
+                    "element": {"#": "scriptResults"},
+                    "currentPageTextField": {"@": "currentPage"},
+                    "previousPageButtonTop": {"@": "previousPageButtonTop"},
+                    "nextPageButtonTop": {"@": "nextPageButtonTop"},
+                    "scriptResultsSearch": {"@": "scriptResultsSearch"},
+                    "selectAllButton": {"@": "selectAllBtn"}
+                }
+            }
+        }
+        </script>
+    </head>
+    <body>
+        <div id="scriptResults">
+            <h1>Test Results</h1>
+            <div id="resultsSearch"></div>
+            <div class="button-group">
+                <button id="deleteResults" class="button primary">Delete</button>
+                <button id="selectAllResults" class="button">Select All</button>
+            </div>
+            <div class="paging" class="paging">
+                <button id="previousPageTop" class="button">&larr;</button>
+                Page <input type="number" id="currentPage" class="currentPage" min="1" size="3"> of <span id="totalPagesText"></span>
+                <button id="nextPageTop" class="button">&rarr;</button>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th>Name</th>
+                        <th>Agent</th>
+                        <th>Script</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Summary</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsDetails">
+                    <tr>
+                        <td><input type="checkbox" id="testcaseSelected" /></td>
+                        <td id="testcaseName" class="testcaseName">-</td>
+                        <td id="testcaseAgent"></td>
+                        <td id="testcaseScript"></td>
+                        <td id="testcaseStart"></td>
+                        <td id="testcaseEnd"></td>
+                        <td><a href="#" id="resultViewLink"><span id="testcaseSummary"></span></a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </body>
+</html>

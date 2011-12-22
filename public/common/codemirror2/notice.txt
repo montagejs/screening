@@ -1,0 +1,4 @@
+/* <notice>
+ Code from CodeMirror: http://codemirror.net/<br/>
+ MIT license http://codemirror.net/LICENSE<br/>
+ </notice> */

@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="10px" height="8px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+<defs>
+<linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:#0dade7;"/>
+<stop offset="100%" style="stop-color:#1fbffa;"/>
+</linearGradient>
+<linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="0%">
+<stop offset="0%" style="stop-color:#000;stop-opacity:.9"/>
+<stop offset="100%" style="stop-color:#fff;stop-opacity:.5"/>
+</linearGradient>
+</defs>
+<path d="M0,.6 l10,0 l-5,8 z" fill="url(#g2)"/>
+<path d="M1,1 l8,0 l-4,6 z" fill="url(#g1)"/>
+</svg>

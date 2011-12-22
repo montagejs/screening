@@ -1,0 +1,114 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+@import url(http://fonts.googleapis.com/css?family=Droid+Sans&v1);
+
+body {
+    background-color: #E6E6E6;
+    font-family:'Droid Sans', sans-serif;
+    font-size: 0.9em;
+}
+
+.scriptManager {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
+
+.scriptManager #scriptList {
+    width: 300px;
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    border-right: 3px solid #898989;
+}
+
+.scriptManager #preferenceView {
+    width:300px;
+    box-flex:1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    border-left: 3px solid #898989;
+}
+
+.scriptManager .agentList {
+    height: 140px;
+}
+
+.scriptManager .menuBar {
+    color:#aeaeae;
+    background-color: #584c4c;
+    background-image: -webkit-linear-gradient(top, #6f6161, #584c4c);
+
+    height: 32px;
+    margin: 0;
+    padding: 3px 3px 2px 3px;
+    white-space: nowrap;
+    z-index: 2;
+    -webkit-box-shadow: 0 1px 4px #444444;
+}
+
+.scriptManager .menuBar .montage-button-group {
+    display: inline-block;
+    margin-right: 12px;
+}
+
+.scriptManager .centeredContent {
+    width: 100%; height: 100%; display: table;
+}
+
+.scriptManager .centeredWrapper {
+    display: table-cell; vertical-align: middle; width: 100%; text-align: center;
+}
+
+.scriptManager .scriptDetail {
+    display: none;
+    height: 100%;
+    width: 100%;
+}
+
+.scriptManager .emptyDetail p {
+    display: block;
+    color: #888888;
+    width: 400px;
+    margin: auto;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    -webkit-box-shadow: 1px 1px 4px #444444 inset;
+}
+
+/* Docked panel implementation */
+.mon-dock-view .dockHorizontalPanel {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+
+    box-orient: horizontal;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+}
+
+.mon-dock-view, .mon-dock-view .dockVerticalPanel {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+}
+
+.mon-dock-view .dockPanel {
+    position: relative;
+}
+
+.mon-dock-view .flexFill {
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+}
