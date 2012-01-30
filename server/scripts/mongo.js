@@ -19,10 +19,11 @@ var downloadFile = function(fileUrl, path, cb) {
     var pathName = url.parse(fileUrl).pathname;
     var fileName = pathName.split("/").pop();
 
+    var fullPathToFile = path + "/" + fileName;
     if (process.env.http_proxy) {
-        request({url: fileUrl, proxy: process.env.http_proxy}, cb).pipe(fs.createWriteStream(path + "/" + fileName));
+        request({url: fileUrl, proxy: process.env.http_proxy}, cb).pipe(fs.createWriteStream(fullPathToFile));
     } else {
-        request(fileUrl).pipe(fs.createWriteStream(fileName), cb);
+        request(fileUrl, cb).pipe(fs.createWriteStream(fullPathToFile));
     }
 }
 
