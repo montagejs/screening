@@ -70,8 +70,6 @@
 /* Menubar */
 
 .scriptList .menuBar {
-    display: -webkit-box;
-    -webkit-box-align: center;
     -webkit-box-pack: justify;
 }
 
@@ -86,29 +84,3 @@
     background-size: auto 100%;
     
 }
-
-button {
-    height: 24px;
-    text-shadow: 0 1px hsla(0,0%,100%,.4);
-    border: 1px solid hsl(0,0%,20%);
-    border-radius: 4px;
-    background-image: -webkit-linear-gradient(top, hsl(0,0%,95%), hsl(0,0%,80%) );
-    box-shadow: inset 0px 1px 0px hsla(0,0%,100%,1), 0px 2px 1px hsla(0,0%,0%,.3);
-    -webkit-user-select: none;
-    cursor: pointer;
-    outline: none;
-}
-
-button:hover {
-    background-image: -webkit-linear-gradient(top, hsl(0,0%,98%), hsl(0,0%,90%) );
-}
-
-button:active {
-    background-image: -webkit-linear-gradient(top, hsl(0,0%,85%), hsl(0,0%,70%) );
-    /box-shadow: inset 0px 2px 3px hsla(0,0%,0%,.3);
-    box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.5);
-    -webkit-transform: translateY(1px);
-}
-
-
-
