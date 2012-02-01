@@ -40,13 +40,6 @@
                     }
                 }
             },
-            "menuButtons": {
-                "module": "montage/ui/button-group.reel",
-                "name": "ButtonGroup",
-                "properties": {
-                    "element": {"#": "menuButtons"}
-                }
-            },
             "actioneventlistener1": {
                 "module": "montage/core/event/action-event-listener",
                 "name": "ActionEventListener",
@@ -125,10 +118,11 @@
     </head>
     <body>
         <div id="scriptListView" class="scriptListView">
-            <div id="menuBar" class="menuBar button-container">
-                <div id="menuButtons" class="small">
-                    <div id="newScript" class="submit">New</div>
-                    <div id="downloadAll" class="text">Download All</div>
+            <div id="menuBar" class="menuBar">
+                <div class="logo">Screening</div>
+                <div id="menuButtons" class="">
+                    <button id="newScript" class="">New</button>
+                    <button id="downloadAll" class="">Download All</button>
                 </div>
             </div>
             <div id="scriptUploader" class="">
