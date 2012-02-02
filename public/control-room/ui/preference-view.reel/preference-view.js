@@ -10,16 +10,16 @@ var PreferenceManager = require("control-room/preference-manager").PreferenceMan
 exports.PreferenceView = Montage.create(Component, {
     
     _storageIssue: {
-        value: false,
+        value: false
     },
     
     preferences: { // TODO rename this to be be somethign better, it's not a list really.
         value: {},
-        distinct: true,
+        distinct: true
     },
     
     preferenceList: {
-        value: null,
+        value: null
     },
     
     prepareForDraw: {
