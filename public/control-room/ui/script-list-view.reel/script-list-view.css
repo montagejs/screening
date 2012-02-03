@@ -4,16 +4,31 @@
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
+
 .scriptListView {
     position: relative;
 }
 
+/* Menubar */
+
+.scriptList .menuBar {
+    -webkit-box-pack: justify;
+}
+
+.scriptList .menuBar .logo {
+    color: #000000;
+    text-shadow: 0 1px hsla(0,0%,100%,.2);
+    text-transform: uppercase;
+    font: bold 16px/24px "Lucida Grande", Lucida, Verdana, sans-serif;
+    
+    padding-left: 34px;
+    background: url('../../img/logo.png') no-repeat left center;
+    background-size: auto 100%;
+    
+}
+
 .scriptListView .scriptList {
-    /*position: absolute;
-    left: 0;
-    bottom: 0;
-    right: 0;*/
-    background-color: #F2F2F2;
+    background-color: hsl(0,0%,80%);
 }
 
 .scriptListView.noUploader .scriptList {
@@ -47,10 +62,22 @@
 
 .scriptList li {
     list-style: none;
+    background-color: hsl(0,0%,94%);
+}
+
+.scriptList li:hover {
+    cursor: pointer;
+    background-color: hsl(0,0%,99%);
+}
+
+.scriptList li:active {
+    background-color: hsl(0,0%,90%);
 }
 
 .scriptList li.selected {
-    background-color: #DEDEDE;
+    cursor: default;
+    background-color: hsl(198, 90%, 85%);
+    color: hsl(198,30%,40%);
 }
 
 /* Very hacky! I'd rather not have to do this */
@@ -66,21 +93,3 @@
     border:1px solid red;
 }
 
-
-/* Menubar */
-
-.scriptList .menuBar {
-    -webkit-box-pack: justify;
-}
-
-.scriptList .menuBar .logo {
-    color: #000000;
-    text-shadow: 0 1px hsla(0,0%,100%,.2);
-    text-transform: uppercase;
-    font: bold 16px/24px "Lucida Grande", Lucida, Verdana, sans-serif;
-    
-    padding-left: 34px;
-    background: url('../../img/logo.png') no-repeat left center;
-    background-size: auto 100%;
-    
-}
