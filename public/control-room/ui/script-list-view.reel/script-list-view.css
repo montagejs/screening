@@ -7,6 +7,33 @@
 
 .scriptListView {
     position: relative;
+    width: 300px;
+}
+
+.scriptListView .scriptList {
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    
+    border-right: 1px solid hsl(0,0%,80%) ;
+    background-color: hsl(0,0%,80%);
+}
+
+.scriptListView.noUploader .scriptList {
+    position: absolute;
+    top: 58px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: #F2F2F2;
 }
 
 /* Menubar */
@@ -27,32 +54,8 @@
     
 }
 
-.scriptListView .scriptList {
-    background-color: hsl(0,0%,80%);
-}
 
-.scriptListView.noUploader .scriptList {
-    position: absolute;
-    top: 58px;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-color: #F2F2F2;
-}
-
-.scriptList {
-    display: box;
-    display: -webkit-box;
-    display: -moz-box;
-    
-    box-orient: vertical;
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    
-    box-flex: 1;
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-}
+/* List */
 
 .scriptList .montage-list-scrollView {
     box-flex: 1;
