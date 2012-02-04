@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>Substitution inside Repetition</title>
+    <script src="../node_modules/montage/montage.js" data-package=".."></script>
+
+    <script type="text/montage-serialization">
+            {
+                "componentType": {
+                    "module": "montage/ui/dynamic-text.reel",
+                    "name": "DynamicText",
+                    "properties": {
+                        "value": "hi",
+                        "element": {"#": "componentType"}
+                    },
+                    "bindings": {
+                        "value": {
+                            "boundObject": {"@": "repetition"},
+                            "boundObjectPropertyPath": "objectAtCurrentIteration.type",
+                            "oneway": true
+                        }
+                    }
+                },
+                "dynamicTextWithNoBindings": {
+                    "module": "montage/ui/dynamic-text.reel",
+                    "name": "DynamicText",
+                    "properties": {
+                        "value": "hardcoded value"
+                    }
+                },
+                "dynamicText": {
+                    "module": "montage/ui/dynamic-text.reel",
+                    "name": "DynamicText",
+                    "value": "XX",
+                    "bindings": {
+                        "value": {
+                            "boundObject": {"@": "repetition"},
+                            "boundObjectPropertyPath": "objectAtCurrentIteration.value",
+                            "oneway": true
+                        }
+                    }
+                },
+                "arrayController": {
+                    "name": "ArrayController",
+                    "module": "montage/ui/controller/array-controller",
+                    "properties": {
+                        "selectObjectsOnAddition": true,
+                        "automaticallyOrganizeObjects": true,
+                        "content": [
+                            {"type": "text", "value": "I'm a text"},
+                            {"type": "hardcodedText", "value": ""}
+                        ]
+                    }
+                },
+                "repetition": {
+                    "module": "montage/ui/repetition.reel",
+                    "name": "Repetition",
+                    "properties": {
+                        "element": {"#": "repetition"},
+                        "isSelectionEnabled": false,
+                        "axis": "vertical",
+                        "contentController": {"@": "arrayController"}
+                    }
+                },
+                "substitution": {
+                    "module": "montage/ui/substitution.reel",
+                    "name": "Substitution",
+                    "properties": {
+                        "element": {"#": "substitution"},
+                        "switchComponents": {
+                            "text": {"@": "dynamicText"},
+                            "hardcodedText": {"@": "dynamicTextWithNoBindings"}
+                        }
+                    },
+                    "bindings": {
+                        "switchValue": {
+                            "boundObject": {"@": "repetition"},
+                            "boundObjectPropertyPath": "objectAtCurrentIteration.type",
+                            "oneway": true
+                        }
+                    }
+                },
+                "owner": {
+                    "module": "montage/ui/application",
+                    "name": "Application"
+                }
+            }
+            </script>
+</head>
+<body>
+<h1>Substitution inside Repetition</h1>
+    <pre>
+        Should print this:
+
+        * text
+        * I'm a text
+        * hardcodedText
+        * hardcoded value
+    </pre>
+    <ul id="repetition">
+        <li id="componentType"></li>
+        <li id="substitution"></li>
+    </ul>
+</body>
+</html>

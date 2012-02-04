@@ -14,11 +14,11 @@ exports.PreferenceView = Montage.create(Component, {
     },
     
     preferences: { // TODO rename this to be be somethign better, it's not a list really.
-        value: {},
+        value: [],
         distinct: true
     },
     
-    preferenceList: {
+    preferenceRepetition: {
         value: null
     },
     
@@ -28,7 +28,9 @@ exports.PreferenceView = Montage.create(Component, {
                 localStorage['screening.test.local.storage.availability'] = 'test';
                 localStorage.removeItem('screening.test.local.storage.availability');
                 this.preferences = PreferenceManager.getPreferences();
+                console.log(this.preferences);
             } catch (e) {
+                console.error(e);
                 this._storageIssue = true;
                 return;
             }
@@ -38,13 +40,13 @@ exports.PreferenceView = Montage.create(Component, {
     draw: {
         value: function() {
             if(this._storageIssue) {
-                this.preferenceList.element.style.display = "none";
+                this.preferenceRepetition.element.style.display = "none";
                 
                 var storageMessage = document.createElement('div');
                 storageMessage.setAttribute('class', 'storageIssue');
                 storageMessage.innerText = "There is an issue with local storage, maybe you have your cookies disabled?"
 
-                this.preferenceList.element.parentElement.appendChild(storageMessage);
+                this.preferenceRepetition.element.parentElement.appendChild(storageMessage);
             }
         }
     }
