@@ -50,6 +50,7 @@
     color: hsl(0,0%,60%);
     background-color: hsl(0, 0%, 90%);
     border-bottom: 1px solid hsl(0, 0%, 70%);
+    border-left: 1px solid hsl(0, 0%, 80%);   
 }
 
 .scriptDetail .codeHeader label {
@@ -93,6 +94,7 @@ label .label-subtext {
     
     background-color: hsl(0, 0%, 98%);
     font-size: 1.1em;
+    border-left: 1px solid hsl(0, 0%, 80%);   
 }
 
 

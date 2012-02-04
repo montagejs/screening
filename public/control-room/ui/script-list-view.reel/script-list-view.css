@@ -8,7 +8,7 @@
 .scriptListView {
     position: relative;
     width: 300px;
-    background-color: hsl(198, 20%, 87%);
+    background-color: hsl(0,0%,90%);
 }
 
 .scriptListView .scriptList {
@@ -22,9 +22,7 @@
     
     box-flex: 1;
     -webkit-box-flex: 1;
-    -moz-box-flex: 1; 
-    
-    border-right: 1px solid hsl(0, 0%, 80%);   
+    -moz-box-flex: 1;     
 }
 
 .scriptListView.noUploader .scriptList {
@@ -79,11 +77,13 @@
 
 .scriptList li.selected {
     cursor: default;
-    background-color: transparent;
-    color: hsl(198,30%,40%);
+    background-color: hsl(198,60%,88%);
+    color: hsl(198,30%,30%);
+    
 }
 .scriptList li.selected .scriptSource {
     box-shadow: none;
+    border-bottom: 1px solid hsl(198,60%,75%);
 }
 
 /* Very hacky! I'd rather not have to do this */
