@@ -7,6 +7,15 @@
  </copyright> */
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans&v1);
 
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: hsl(0,0%,60%);
+}
+
 body {
     background-color: #E6E6E6;
     font-family:'Droid Sans', sans-serif;

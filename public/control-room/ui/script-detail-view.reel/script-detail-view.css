@@ -5,6 +5,7 @@
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
+
 .scriptDetail {
     display: box;
     display: -webkit-box;
@@ -12,74 +13,11 @@
     
     box-orient: vertical;
     -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    
-    background-color: #FFFFFF;
+    -moz-box-orient: vertical;    
 }
 
-.scriptDetail .content {
-    padding: 0;
-    overflow: auto;
-}
 
-.scriptManager .result {
-    background:#F2F2F2;
-    padding:8px;
-}
-
-.scriptDetail .codeHeader {
-    margin: 0px;
-    padding: 8px;
-    background-color: #e3f0f5;
-    border-top: 1px solid #c2d8e1;
-    border-bottom: 1px solid #c2d8e1;
-    color: #7fadbe;
-}
-
-.scriptDetail .codeHeader label {
-    display: inline-block;
-    margin-left: 0.5em;
-}
-
-.scriptDetail .codeHeader input {
-    background-color: #eef6f9;
-    border: 1px solid #c1ccd0;
-    border-radius: 3px;
-    color: #000000;
-    padding: 3px;
-    font-size: 1.0em;
-    display: block;
-}
-
-.scriptDetail input.name {
-    width: 300px;
-}
-
-.scriptDetail input.tags {
-    width: 300px;
-}
-
-.scriptDetail label {
-    display: block;
-}
-
-.CodeMirror {
-    background-color: #FFFFFF;
-    
-    box-flex: 1;
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    
-    overflow-y: auto;
-    overflow-x: auto;
-}
-
-.CodeMirror-scroll {
-    height: auto !important;
-    width: auto !important;
-    overflow-y: visible !important;
-    overflow-x: visible !important;
-}
+/* Bar */
 
 .pauseRecord {
     display: none;
@@ -94,15 +32,82 @@
     padding: 5px;
 }
 
+
+.scriptDetail .content {
+    padding: 0;
+    overflow: auto;
+}
+
+.scriptManager .result {
+    background:#F2F2F2;
+    padding:8px;
+}
+
+/* Header */
+
+.scriptDetail .codeHeader {
+    padding: 4px 0;
+    color: hsl(0,0%,60%);
+    background-color: hsl(0, 0%, 90%);
+    border-bottom: 1px solid hsl(0, 0%, 70%);
+}
+
+.scriptDetail .codeHeader label {
+    display: inline-block;
+    margin-left: 6px;
+    font-size: .9em;
+}
+
+.scriptDetail .codeHeader input {
+    width: 300px;
+    background-color: hsl(0,0%,98%);
+    border: 1px solid hsl(0,0%,75%);
+    border-radius: 4px;
+    color: #000000;
+    padding: 3px;
+    font-size: 1.2em;
+    display: block;
+}
+
+.scriptDetail .codeHeader input:focus {
+    outline: none;
+    border-color: hsl(198,100%,50%);
+    box-shadow: inset 0px 1px 2px hsla(0,0%,0%,.2);
+}
+
+label .label-subtext {
+    font-size: 0.75em;
+    margin-left: 1em;
+}
+
+
+/* CodeMirror */
+
+.CodeMirror {
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;
+    
+    overflow-y: auto;
+    overflow-x: auto;
+    
+    background-color: hsl(0, 0%, 98%);
+    font-size: 1.1em;
+}
+
+
+.CodeMirror-scroll {
+    height: auto !important;
+    width: auto !important;
+    overflow-y: visible !important;
+    overflow-x: visible !important;
+}
+
+
 .link:link {
     color: #AEAEAE;
 }
 
 .link:visited {
     color: #AEAEAE;
-}
-
-label .label-subtext {
-    font-size: 0.75em;
-    margin-left: 1em;
 }
