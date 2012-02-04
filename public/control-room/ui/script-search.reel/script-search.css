@@ -9,9 +9,11 @@
 .scriptSearch {
     display: -webkit-box;
     -webkit-box-align: center;
-    height: 40px;
+    height: 42px;
     padding: 0 6px;
-    background-color: hsl(0,0%,70%);
+    /border-top: 1px solid hsl(0,0%,77%);
+    border-bottom: 1px solid hsl(0,0%,83%);
+    border-right: 1px solid hsl(0, 0%, 80%);
 }
 
 .scriptSearch .searchScope {

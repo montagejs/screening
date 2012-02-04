@@ -8,6 +8,7 @@
 .scriptListView {
     position: relative;
     width: 300px;
+    background-color: hsl(198, 20%, 87%);
 }
 
 .scriptListView .scriptList {
@@ -21,10 +22,9 @@
     
     box-flex: 1;
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;
+    -moz-box-flex: 1; 
     
-    border-right: 1px solid hsl(0,0%,80%) ;
-    background-color: hsl(0,0%,80%);
+    border-right: 1px solid hsl(0, 0%, 80%);   
 }
 
 .scriptListView.noUploader .scriptList {
@@ -65,22 +65,25 @@
 
 .scriptList li {
     list-style: none;
-    background-color: hsl(0,0%,94%);
+    background-color: hsl(198,50%,96%);
 }
 
 .scriptList li:hover {
     cursor: pointer;
-    background-color: hsl(0,0%,99%);
+    background-color: hsl(198,50%,98%);
 }
 
 .scriptList li:active {
-    background-color: hsl(0,0%,90%);
+    background-color: hsl(198,50%,96%);
 }
 
 .scriptList li.selected {
     cursor: default;
-    background-color: hsl(198, 90%, 85%);
+    background-color: transparent;
     color: hsl(198,30%,40%);
+}
+.scriptList li.selected .scriptSource {
+    box-shadow: none;
 }
 
 /* Very hacky! I'd rather not have to do this */

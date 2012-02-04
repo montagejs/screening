@@ -16,8 +16,7 @@
     background-color: hsl(0,0%,60%);
 }
 
-body {
-    background-color: #E6E6E6;
+body {   
     font-family:'Droid Sans', sans-serif;
     font-size: 0.9em;
 }
@@ -77,18 +76,20 @@ body {
 .scriptManager .scriptDetail {
     display: none;
     height: 100%;
-    width: 100%;
+    width: 100%;   
 }
 
 .scriptManager .emptyDetail p {
     display: block;
-    color: #888888;
+    color: #666;
+    text-shadow: 0 1px 0 hsla(0,0%,100%,.6);
     width: 400px;
     margin: auto;
     text-align: center;
     padding: 10px;
     border-radius: 5px;
-    -webkit-box-shadow: 1px 1px 4px #444444 inset;
+    background-color: hsla(0,0%,0%,.05);
+    box-shadow: inset 0 1px 4px hsla(0,0%,0%,.15);
 }
 
 /* Docked panel implementation */
