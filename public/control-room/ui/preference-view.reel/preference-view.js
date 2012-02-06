@@ -28,7 +28,6 @@ exports.PreferenceView = Montage.create(Component, {
                 localStorage['screening.test.local.storage.availability'] = 'test';
                 localStorage.removeItem('screening.test.local.storage.availability');
                 this.preferences = PreferenceManager.getPreferences();
-                console.log(this.preferences);
             } catch (e) {
                 console.error(e);
                 this._storageIssue = true;

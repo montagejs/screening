@@ -13,7 +13,6 @@ exports.PreferenceBooleanItem = Montage.create(Component, {
 
     prepareForDraw: {
         value: function() {
-            console.log("prepareForDraw",self.preferenceObject);
         }
     }
 });
