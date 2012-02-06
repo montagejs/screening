@@ -46,39 +46,47 @@
 /* Header */
 
 .scriptDetail .codeHeader {
-    padding: 4px 0;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    height: 42px;
     color: hsl(0,0%,60%);
     background-color: hsl(0, 0%, 90%);
-    border-bottom: 1px solid hsl(0, 0%, 70%);
+    border-bottom: 1px solid hsl(0, 0%, 80%);
     border-left: 1px solid hsl(0, 0%, 80%);   
 }
 
 .scriptDetail .codeHeader label {
-    display: inline-block;
-    margin-left: 6px;
+    display: block;
+    padding: 0 8px 0 15px;
     font-size: .9em;
 }
 
 .scriptDetail .codeHeader input {
-    width: 300px;
-    background-color: hsl(0,0%,98%);
-    border: 1px solid hsl(0,0%,75%);
-    border-radius: 4px;
-    color: #000000;
-    padding: 3px;
-    font-size: 1.2em;
     display: block;
+    -webkit-box-flex: 1;
+    margin-right: 20px;
+    padding: 3px 3px 3px 0px;
+    color: #000000;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px dashed hsl(0,0%,75%);
+    font-size: 1.2em;
+    cursor: text;
+}
+
+.scriptDetail .codeHeader input:hover {
+    border-bottom: 1px solid hsl(0,0%,75%);
 }
 
 .scriptDetail .codeHeader input:focus {
     outline: none;
-    border-color: hsl(198,100%,50%);
-    box-shadow: inset 0px 1px 2px hsla(0,0%,0%,.2);
+    border-bottom: 1px solid hsl(0,0%,40%);
 }
 
-label .label-subtext {
+.scriptDetail .codeHeader label .label-subtext {
     font-size: 0.75em;
-    margin-left: 1em;
+    margin-left: 5px;
+    display: none;
 }
 
 
