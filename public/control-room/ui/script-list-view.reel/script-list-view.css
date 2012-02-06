@@ -44,12 +44,9 @@
     color: #000000;
     text-shadow: 0 1px hsla(0,0%,100%,.2);
     text-transform: uppercase;
-    font: bold 16px/24px "Lucida Grande", Lucida, Verdana, sans-serif;
-    
+    font: bold 16px/40px "Lucida Grande", Lucida, Verdana, sans-serif;
     padding-left: 34px;
     background: url('../../img/logo.png') no-repeat left center;
-    background-size: auto 100%;
-    
 }
 
 

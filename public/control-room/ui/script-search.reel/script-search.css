@@ -10,7 +10,7 @@
     display: -webkit-box;
     -webkit-box-align: center;
     height: 42px;
-    padding: 0 6px;
+    padding: 0 8px;
     border-bottom: 1px solid hsl(0,0%,83%);
 }
 
