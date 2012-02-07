@@ -1,20 +1,23 @@
+/* @override http://localhost:8081/screening/control-room/ui/agent-view.reel/agent-view.css */
+
 /* <copyright>
  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
+
 .agentView {
+    position: relative;
     text-align: center;
     width: 82px;
     padding: 5px;
-    margin: 3px;
-    border-radius: 5px;
-    
+    margin: 10px 0 0 10px;
+    border-radius: 10px;
 }
 
 .selected .agentView {
-    background-color: #DEDEDE;
-    box-shadow: 1px 1px 2px #666666 inset;
+    background-color: hsl(198,100%,90%);
+    box-shadow: inset 0 0 0 2px hsl(198,100%,50%), inset 0 1px 3px 2px hsla(0,0%,0%,.3);
 }
 
 .agentView .agentIcon {
@@ -22,7 +25,7 @@
     background-size:100%;
     height: 64px;
     width: 64px;
-    margin: 0px auto 5px auto;
+    margin: 0px auto;
     background-repeat: norepeat;
 }
 
@@ -33,27 +36,22 @@
 }
 
 .agentView .agentDelete {
-    float:right;
-    background:#ECECEC;
-    color:black;
-    width:18px;
-    height:18px;
-    border-radius:18px;
-    border:1px solid #666666;
-    margin-right:-7px;
-    margin-top:-7px;
+    position: absolute;
+    top: -7px;
+    right: -7px;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    color: #fff;
+    border-radius: 20px;
+    border: none;
+    background: hsl(0,0%,0%);
     cursor:pointer;
-}
-
-.agentView .agentDelete:before {
-    content:"x";
-    font-size:15px;
-    text-align:center;
-    display:block;
-    line-height:0.9em;
+    font-weight: bold;
+    font-size: 18px;
+    box-shadow: 0 0 0 2px white, 0 1px 3px 2px hsla(0,0%,0%,.7);
 }
 
 .agentView .agentDelete:hover {
-    background-color:#3072B3;
-    color:white;
+    background-color: hsl(0,0%,20%);
 }

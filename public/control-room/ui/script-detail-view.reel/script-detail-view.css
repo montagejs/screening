@@ -1,8 +1,11 @@
+/* @override http://localhost:8081/screening/control-room/ui/script-detail-view.reel/script-detail-view.css */
+
 /* <copyright>
  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
+
 .scriptDetail {
     display: box;
     display: -webkit-box;
@@ -10,10 +13,29 @@
     
     box-orient: vertical;
     -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    
-    background-color: #FFFFFF;
+    -moz-box-orient: vertical;    
 }
+
+
+/* Bar */
+
+.scriptDetail .menuBar {
+    border-left: 1px solid hsla(0,0%,0%,.15);
+}
+
+.pauseRecord {
+    display: none;
+}
+
+.versionString {
+    display: block;
+    font-size: 0.8em;
+    font-style: italic;
+    background-color: #333333;
+    border-radius: 4px;
+    padding: 5px;
+}
+
 
 .scriptDetail .content {
     padding: 0;
@@ -25,52 +47,68 @@
     padding:8px;
 }
 
+/* Header */
+
 .scriptDetail .codeHeader {
-    margin: 0px;
-    padding: 8px;
-    background-color: #e3f0f5;
-    border-top: 1px solid #c2d8e1;
-    border-bottom: 1px solid #c2d8e1;
-    color: #7fadbe;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    height: 42px;
+    color: hsl(0,0%,60%);
+    background-color: hsl(0, 0%, 90%);
+    border-bottom: 1px solid hsl(0, 0%, 80%);
+    border-left: 1px solid hsl(0, 0%, 80%);
 }
 
 .scriptDetail .codeHeader label {
-    display: inline-block;
-    margin-left: 0.5em;
+    display: block;
+    padding: 0 8px 0 15px;
+    font-size: .9em;
 }
 
 .scriptDetail .codeHeader input {
-    background-color: #eef6f9;
-    border: 1px solid #c1ccd0;
-    border-radius: 3px;
+    display: block;
+    -webkit-box-flex: 1;
+    margin-right: 20px;
+    padding: 3px 3px 3px 0px;
     color: #000000;
-    padding: 3px;
-    font-size: 1.0em;
-    display: block;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px dashed hsl(0,0%,75%);
+    font-size: 1.2em;
+    cursor: text;
 }
 
-.scriptDetail input.name {
-    width: 300px;
+.scriptDetail .codeHeader input:hover {
+    border-bottom: 1px solid hsl(0,0%,75%);
 }
 
-.scriptDetail input.tags {
-    width: 300px;
+.scriptDetail .codeHeader input:focus {
+    outline: none;
+    border-bottom: 1px solid hsl(0,0%,40%);
 }
 
-.scriptDetail label {
-    display: block;
+.scriptDetail .codeHeader label .label-subtext {
+    font-size: 0.75em;
+    margin-left: 5px;
+    display: none;
 }
+
+
+/* CodeMirror */
 
 .CodeMirror {
-    background-color: #FFFFFF;
-    
     box-flex: 1;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     
     overflow-y: auto;
     overflow-x: auto;
+    
+    background-color: hsl(0, 0%, 98%);
+    font-size: 1.1em;
+    border-left: 1px solid hsl(0, 0%, 80%);   
 }
+
 
 .CodeMirror-scroll {
     height: auto !important;
@@ -79,21 +117,6 @@
     overflow-x: visible !important;
 }
 
-.pauseRecord {
-    display: none;
-}
-
-.versionString {
-    position: absolute;
-    top: 7px;
-    right: 7px;
-    display: block;
-    font-size: 0.8em;
-    font-style: italic;
-    background-color: #333333;
-    border-radius: 3px;
-    padding: 4px 6px 4px 4px;
-}
 
 .link:link {
     color: #AEAEAE;
@@ -101,9 +124,4 @@
 
 .link:visited {
     color: #AEAEAE;
-}
-
-label .label-subtext {
-    font-size: 0.75em;
-    margin-left: 1em;
 }
