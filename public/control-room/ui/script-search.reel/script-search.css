@@ -1,30 +1,27 @@
+/* @override http://localhost:8081/screening/control-room/ui/script-search.reel/script-search.css */
+
 /* <copyright>
  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
-.searchScope {
-    width: 90px;
+
+.scriptSearch {
+    display: -webkit-box;
+    -webkit-box-align: center;
+    height: 42px;
+    padding: 0 8px;
+    border-bottom: 1px solid hsl(0,0%,83%);
 }
 
-.script-search {
-    
-}
-
-.scriptSearch span {
-    vertical-align: middle;
-}
-
-.scriptSearch .montage-combobox .button {
-    padding: 0;
-    border: 0;
+.scriptSearch .montage-combobox {
+    display: block;
 }
 
 .scriptSearch .scriptSearchBox {
-    width: 177px;
+    display: block;
+    -webkit-box-flex: 1;
+    margin: 0 6px;
 }
 
-.scriptSearch .searchButton {
-    width: 50px;
-    padding: 0.5em 1em 0.5em 0.5em;
-}
+.scriptSearch .searchButton {}
