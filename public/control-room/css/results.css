@@ -15,6 +15,17 @@ body {
     font-size: 0.9em;
 }
 
+a {
+    color: hsl(210,100%,60%);
+    text-decoration: none;
+}
+a:visited {
+    color: hsl(210,0%,40%);
+}
+a:hover {
+    text-decoration: underline;
+}
+
 .menuBar {
     display: -webkit-box;
     -webkit-box-align: center;
@@ -39,4 +50,23 @@ body {
     font: bold 16px/40px "Lucida Grande", Lucida, Verdana, sans-serif;
     padding-left: 34px;
     background: url('../img/logo.png') no-repeat left center;
+}
+
+/* Box --------------------------------------- */
+
+.box {
+    max-width: 1200px;
+    margin: 20px auto;
+    box-sizing: border-box;
+    border: 5px solid hsl(0,0%,98%);
+    border-radius: 6px;
+    box-shadow: 0px 1px 2px hsla(0,0%,0%,.2);
+}
+
+@media all and (max-width: 1240px) {
+    .box {
+        margin: 0px;
+        border-radius: 0;
+        border: none;
+    }
 }

@@ -6,26 +6,6 @@
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
 
-
-/* Box --------------------------------------- */
-
-.box {
-    max-width: 1200px;
-    margin: 20px auto;
-    box-sizing: border-box;
-    border: 5px solid hsl(0,0%,98%);
-    border-radius: 6px;
-    box-shadow: 0px 1px 2px hsla(0,0%,0%,.2);
-}
-
-@media all and (max-width: 1240px) {
-    .box {
-        margin: 0px;
-        border-radius: 0;
-        border: none;
-    }
-}
-
 .controls {
     display: -webkit-box;
     -webkit-box-align: center;
@@ -80,17 +60,6 @@ th {
     color: white;
     font-size: 15px;
     text-shadow: 0 1px 0 black;
-}
-
-a {
-    color: hsl(210,100%,60%);
-    text-decoration: none;
-}
-a:visited {
-    color: hsl(210,0%,60%);
-}
-a:hover {
-    text-decoration: underline;
 }
 
 .note {
