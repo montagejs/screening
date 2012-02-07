@@ -1,21 +1,37 @@
+/* @override http://localhost:8081/screening/control-room/ui/script-uploader.reel/script-uploader.css */
+
 /* <copyright>
  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
+
 .scriptUploader {
-    background: rgba(66,66,66,.6);
-    color: white;
-    height:25px;
-    display:block;
-    padding-top:15px;
-    text-align:center;
-    border-bottom:2px solid black;
+    display: -webkit-box;
+    -webkit-box-align: center;
+    -webkit-box-pack: center;
+    position: relative;
+    padding: 10px;
+    height: 41px;
+    color: hsl(0,0%,60%);
+    background-color: hsl(0, 0%, 90%);
+    cursor: default;
 }
 
-.scriptUploader.dragover {
-    background: rgba(66,66,66,.2);
-    color:rgb(0,0,0);
+.scriptUploader:before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    bottom: 10px;
+    border-radius: 8px;
+    border: 2px dashed hsl(0,0%,75%);    
+}
+
+.scriptUploader.dragover:before {
+    border-color: hsl(0,0%,45%);
+    cursor: copy;
 }
 
 .scriptUploader.unsupported {
