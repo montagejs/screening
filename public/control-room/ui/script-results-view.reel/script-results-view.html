@@ -8,6 +8,7 @@
     <head>
         <meta http-equiv="content-type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" type="text/css" href="script-results-view.css">
+        <link rel="stylesheet" href="../../css/button.css" type="text/css" />
         <script type="text/montage-serialization">
         {
             "scriptResultsSearch": {
@@ -283,41 +284,54 @@
     </head>
     <body>
         <div id="scriptResults">
-            <h1>Test Results</h1>
-            <div id="resultsSearch"></div>
-            <div class="button-group">
-                <button id="deleteResults" class="button primary">Delete</button>
-                <button id="selectAllResults" class="button">Select All</button>
-            </div>
-            <div class="paging" class="paging">
-                <button id="previousPageTop" class="button">&larr;</button>
-                Page <input type="number" id="currentPage" class="currentPage" min="1" size="3"> of <span id="totalPagesText"></span>
-                <button id="nextPageTop" class="button">&rarr;</button>
-            </div>
-            <table>
-                <thead>
-                    <tr>
-                        <th></th>
-                        <th>Name</th>
-                        <th>Agent</th>
-                        <th>Script</th>
-                        <th>Start</th>
-                        <th>End</th>
-                        <th>Summary</th>
-                    </tr>
-                </thead>
-                <tbody id="resultsDetails">
-                    <tr>
-                        <td><input type="checkbox" id="testcaseSelected" /></td>
-                        <td id="testcaseName" class="testcaseName">-</td>
-                        <td id="testcaseAgent"></td>
-                        <td id="testcaseScript"></td>
-                        <td id="testcaseStart"></td>
-                        <td id="testcaseEnd"></td>
-                        <td><a href="#" id="resultViewLink"><span id="testcaseSummary"></span></a></td>
-                    </tr>
-                </tbody>
-            </table>
+            <header class="menuBar">
+                <div class="logo">Screening</div>
+                <div id="resultsSearch"></div>
+            </header>
+            
+            <section class="box">
+                <section class="controls">
+                    <div>
+                        <button id="deleteResults" class="button primary">Delete</button>
+                        <button id="selectAllResults" class="button">Select All</button>
+                    </div>
+                    
+                    <h1>Test Results</h1>
+                    
+                    <div class="paging" class="paging">
+                        <button id="previousPageTop" class="button">&larr;</button>
+                        Page <input type="number" id="currentPage" class="currentPage" min="1" size="3"> of <span id="totalPagesText"></span>
+                        <button id="nextPageTop" class="button">&rarr;</button>
+                    </div>
+                </section>
+            
+                <table>
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                            <th>Agent</th>
+                            <th>Script</th>
+                            <th>Start</th>
+                            <th>End</th>
+                            <th>Summary</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsDetails">
+                        <tr>
+                            <td><input type="checkbox" id="testcaseSelected" /></td>
+                            <td id="testcaseName" class="testcaseName">-</td>
+                            <td id="testcaseAgent"></td>
+                            <td id="testcaseScript"></td>
+                            <td id="testcaseStart"></td>
+                            <td id="testcaseEnd"></td>
+                            <td><button id="resultViewLink"><span id="testcaseSummary"></span></button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+            </section>
+            
         </div>
     </body>
 </html>
