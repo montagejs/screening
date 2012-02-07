@@ -14,8 +14,8 @@
     border-bottom: 1px solid hsl(0,0%,83%);
 }
 
-.scriptSearch .searchScope {
-    width: 90px;
+.scriptSearch .montage-combobox {
+    display: block;
 }
 
 .scriptSearch .scriptSearchBox {
