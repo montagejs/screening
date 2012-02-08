@@ -3,8 +3,11 @@
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
+
 .menu {
-    border-bottom:1px solid black;
-    padding-bottom:5px;
-    margin-bottom:5px;
+    margin-right: 5px;
+}
+
+.menu a:hover {
+    text-decoration: none;
 }
