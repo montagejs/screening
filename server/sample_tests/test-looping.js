@@ -5,7 +5,6 @@ agent.gotoUrl("/screening/control-room/ui-sample.html");
 
 
 var inputNode = agent.element("/html/body/div/input");
-//var inputNode = agent.element("#testInput");
 var scrollArea = agent.element(".scrollTest");
 
 var expected = "0123456789";
@@ -24,10 +23,7 @@ for (var i=0, l=10; i<l; i++){
     scrollArea.setScroll(0, i*10);
     assertEqual([0, i*10], scrollArea.getScroll());
     // Check that the scroll position is always in the range of (i-1)*10 +/- 2
-// TODO    scrollArea.getScrollY().assertPrecision((i-1)*10, 2);
 }
 assertEqual([0, 90], scrollArea.getScroll());
 
 
-
-//*/
