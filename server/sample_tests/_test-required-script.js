@@ -1,3 +1,6 @@
+//This script contains library of functions used by "test-script"
+//Do not execute thie script by itself!
+
 //
 // The first parameter is always the global context, that contains
 // everything that is global in the parent test script.
