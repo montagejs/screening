@@ -4,7 +4,6 @@ var agent = new Agent();
 agent.gotoUrl("/screening/control-room/ui-sample.html");
 
 var inputNode = agent.element("/html/body/div/input");
-//var inputNode = agent.element("#testInput");
 var scrollArea = agent.element(".scrollTest");
 
 inputNode.sendKeys("javascript rox");
@@ -23,4 +22,3 @@ assertGreater(100, agent.getScroll()[1]);
 
 agent.wait(1000);
 
-//*/

@@ -11,7 +11,6 @@ nodes.push(agent.element("/html/body/div/input"));
 nodes.push(agent.element("/html/body/div[3]/span/input"));
 nodes.push(agent.element(".scrollTest"));
 
-//var nodes = agent.elements("#testInput, #testCheckbox, .scrollTest");
 
 //length
 assertEqual(3, nodes.length);
@@ -53,4 +52,3 @@ for (i=0;i<nodes.length;i++)
 }
 
 
-//*/
