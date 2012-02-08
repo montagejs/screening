@@ -345,61 +345,77 @@
     </head>
     <body>
         <div id="scriptResult">
-            <h1>Test result for <span id="testcaseName"></span> (Agent: <span id="agent">Agent</span>)</h1>
-            <p>(test result id: <span id="testcaseId"></span>)</p>
-            <p><a class="link" id="downloadJson" href="#">Download result as JSON</a> &raquo; <a class="link" id="viewJson" href="#">View result as JSON</a> <br><em class="note">(for saving the page as HTML right-click and select "save as ...")</em></p>
-            <div id="warnings" class="warningBox">
-                <p>Warning! The script contains invalid elements:</p>
-                <ul id="warningsList">
-                    <li><strong><span id="warningType"></span></strong> - <span id="warningMessage"></span> (<span id="warningLineNumber"></span>:<span id="warningColumnNumber"></span>)</li>
-                </ul>
-            </div>
-            <h2>Summary (<span id="status"></span>)</h2>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Status</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="pass">
-                        <td>PASSED</td>
-                        <td id="totalSuccessfulAsserts"></td>
-                    </tr>
-                    <tr class="alt fail">
-                        <td>FAILED</td>
-                        <td id="totalFailedAsserts"></td>
-                    </tr>
-                    <tr class="exception">
-                        <td>EXCEPTION</td>
-                        <td id="totalExceptions"></td>
-                    </tr>
-                </tbody>
-            </table>
-            <h2>Details</h2>
-            <table class="result-detail">
-                <thead>
-                    <tr>
-                        <th class="resultColumn">Result</th>
-                        <th class="objectColumn">Object</th>
-                        <th class="filenameColumn">Filename</th>
-                        <th class="lineColumnColumn">Line/Column</th>
-                        <th>Details</th>
-                        <th class="timeColumn">Time</th>
-                    </tr>
-                </thead>
-                <tbody id="resultDetails">
-                    <tr>
-                        <td id="result">Result</td>
-                        <td id="type">Object</td>
-                        <td id="fileName" class="fileName">Filename</td>
-                        <td><span id="lineNumber">0</span> / <span id="columnNumber">0</span></td>
-                        <td><pre id="detail">Detail</pre></td>
-                        <td><span id="time">Time</span> ms</td>
-                    </tr>
-                </tbody>
-            </table>
+            <header class="menuBar">
+                <div class="logo">Screening</div>
+                <p>(test result id: <span id="testcaseId"></span>)</p>
+            </header>
+            
+            <section class="box">
+                <section class="title">
+                    <h1>Test result for <span id="testcaseName"></span> (Agent: <span id="agent">Agent</span>)</h1>
+                </section>
+                
+                <p class="download">
+                    <a id="downloadJson" href="#">Download result as JSON</a> 
+                    <a id="viewJson" href="#">View result as JSON</a>
+                    <em class="note">(for saving the page as HTML right-click and select "save as ...")</em>
+                </p>
+                
+                <div id="warnings" class="warningBox">
+                    <p>Warning! The script contains invalid elements:</p>
+                    <ul id="warningsList">
+                        <li><strong><span id="warningType"></span></strong> - <span id="warningMessage"></span> (<span id="warningLineNumber"></span>:<span id="warningColumnNumber"></span>)</li>
+                    </ul>
+                </div>
+                
+                <h2>Summary (<span id="status"></span>)</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="pass">
+                            <td>PASSED</td>
+                            <td id="totalSuccessfulAsserts"></td>
+                        </tr>
+                        <tr class="alt fail">
+                            <td>FAILED</td>
+                            <td id="totalFailedAsserts"></td>
+                        </tr>
+                        <tr class="exception">
+                            <td>EXCEPTION</td>
+                            <td id="totalExceptions"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h2>Details</h2>
+                <table class="result-detail">
+                    <thead>
+                        <tr>
+                            <th class="resultColumn">Result</th>
+                            <th class="objectColumn">Object</th>
+                            <th class="filenameColumn">Filename</th>
+                            <th class="lineColumnColumn">Line/Column</th>
+                            <th>Details</th>
+                            <th class="timeColumn">Time</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultDetails">
+                        <tr>
+                            <td id="result">Result</td>
+                            <td id="type">Object</td>
+                            <td id="fileName" class="fileName">Filename</td>
+                            <td><span id="lineNumber">0</span> / <span id="columnNumber">0</span></td>
+                            <td><pre id="detail">Detail</pre></td>
+                            <td><span id="time">Time</span> ms</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+                
         </div>
     </body>
 </html>

@@ -3,17 +3,75 @@
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
-body {
-    margin:1em;
+
+
+.title {
+    padding: 20px;
+    text-align: center;
+    background-color: hsl(0,0%,70%);
 }
+
+.title > h1 {
+    margin: 0;
+    color: #555;
+    text-shadow: 0 1px 1px hsla(0,0%,100%,.5);
+    font: bold 19px/1em "Lucida Grande", Lucida, Verdana, sans-serif;
+}
+
+.title > h1 > span {
+    color: #000;
+}
+
+.download {
+    margin: 0;
+    padding: 20px;
+    color: #999;
+    font-size: 1.2em;
+    text-align: center;
+}
+
+.download a {
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    font-size: 1.1em;
+    line-height: 1.2em;
+    background-color: hsl(0,0%,95%);
+    border-radius: 6px;
+    text-shadow: 0 1px 1px hsla(0,0%,100%,.8);
+    box-shadow: 0px 1px 2px hsla(0,0%,0%,.2);
+    text-decoration: none;
+}
+
+.download a:hover {
+    background-color: hsl(0,0%,98%);
+    text-decoration: none;
+}
+
+.download a:active {
+    background-color: hsl(0,0%,95%);
+    -webkit-transform: translateY(1px);
+}
+
+.download .note {
+    display: block;
+    font-size:0.8em;
+    font-style:normal;
+}
+
+h2 {
+    padding: 10px;
+    margin: 20px 0 0 0;
+    text-align: center;
+    color: #555;
+}
+
+
 
 table {
     width:100%;
     text-align:left;
     vertical-align:top;
-    border-radius:10px;
-    box-shadow:3px 3px 5px #AAA;
-    background:white;
     border-collapse:collapse;
     table-layout:fixed;
     word-wrap: break-word;
@@ -23,25 +81,14 @@ th {
     background-color: #584C4C;
     background-image: -webkit-linear-gradient(top, #6f6161, #584c4c);
     color:white;
-    text-shadow: black 0.1em 0.1em 0.2em;
+    text-shadow: 0 1px 1px hsla(0,0%,0%,.4);
 }
 
 .link {
     color: #584C4C;
 }
 
-.note {
-    font-size:0.8em;
-    font-style:normal;
-}
 
-th:first-child {
-    border-top-left-radius:10px;
-}
-
-th:last-child {
-    border-top-right-radius:10px;
-}
 
 td, th {
     padding:10px;
@@ -50,36 +97,27 @@ td, th {
     table-layout: fixed;
 }
 
-.pass {
-    color:#668014;
-}
-
-.fail {
-    color:#CC1100;
-}
-
-.exception {
-    color:#F00;
-}
-
-.result {
-    color:#FFF;
-    text-shadow: black 0.1em 0.1em 0.2em;
-}
-
+.pass,
 .passed {
-    color:#668014;
-    text-shadow: #AAA 0.1em 0.1em 0.2em;
+    color: hsl(114, 97%, 35%);
 }
 
+.fail,
 .failed {
-    color:#CC1100;
-    text-shadow: #AAA 0.1em 0.1em 0.2em;
+    color: hsl(0, 95%, 41%);
 }
 
 .exception {
-    color: #F00;
-    text-shadow: #AAA 0.1em 0.1em 0.2em;
+    color: hsl(41, 100%, 41%);
+}
+
+.pass,
+.passed,
+.fail,
+.failed,
+.exception,
+.result {
+    text-shadow: 0 1px 1px hsla(0,0%,100%,.4);
 }
 
 td.pass {
@@ -106,8 +144,13 @@ td.start, td.end {
     background-color:#AAA;
 }
 
-.result-detail th:first-child, .result-detail td:first-child{text-align:center;}
-tr:nth-child(even){ background-color:#F1F1F1; }
+.result-detail th:first-child, 
+.result-detail td:first-child {
+    text-align:center;
+}
+tr:nth-child(even){ 
+    background-color:#F1F1F1; 
+}
 
 .result-detail .resultColumn {
     width: 90px;
