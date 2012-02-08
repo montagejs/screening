@@ -21,7 +21,7 @@
     ],
     "repository": {
         "type": "git",
-        "url": "ssh://bnh378@rangergerrit.am.mot-mobility.com:29418/ranger/platform/frameworks/screening"
+        "url": "git@github.com:Motorola-Mobility/screening.git"
     },
     "engines": {
         "node": "~0.4"
