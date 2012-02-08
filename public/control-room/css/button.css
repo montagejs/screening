@@ -82,8 +82,8 @@ button.disabled {
 button.blue { background-color: hsl(198,100%,70%); }
 button.blue:hover { background-color: hsl(198,100%,75%); }
 
-button.red { background-color: hsl(0,80%,68%); }
-button.red:hover { background-color: hsl(0,80%,73%); }
+button.red { background-color: hsl(0,100%,70%); }
+button.red:hover { background-color: hsl(0,100%,73%); }
 
 button.green { background-color: hsl(140,70%,65%); }
 button.green:hover { background-color: hsl(140,70%,72%); }
