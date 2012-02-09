@@ -18,7 +18,7 @@
                 },
                 "bindings": {
                     "preferenceObject": {
-                        "boundObject": {"@": "preferenceList"},
+                        "boundObject": {"@": "preference-repetition"},
                         "boundObjectPropertyPath": "objectAtCurrentIteration",
                         "oneway": true
                     }
@@ -32,7 +32,7 @@
                 },
                 "bindings": {
                     "preferenceObject": {
-                        "boundObject": {"@": "preferenceList"},
+                        "boundObject": {"@": "preference-repetition"},
                         "boundObjectPropertyPath": "objectAtCurrentIteration",
                         "oneway": true
                     }
@@ -46,7 +46,7 @@
                 },
                 "bindings": {
                     "preferenceObject": {
-                        "boundObject": {"@": "preferenceList"},
+                        "boundObject": {"@": "preference-repetition"},
                         "boundObjectPropertyPath": "objectAtCurrentIteration",
                         "oneway": true
                     }
@@ -65,26 +65,35 @@
                 },
                 "bindings": {
                     "switchValue": {
-                        "boundObject": {"@": "preferenceList"},
+                        "boundObject": {"@": "preference-repetition"},
                         "boundObjectPropertyPath": "objectAtCurrentIteration.type",
                         "oneway": true
                     }
                 }
             },
-            "preferenceList": {
-                "module": "montage/ui/list.reel",
-                "name": "List",
+            "preferences-controller": {
+                "name": "ArrayController",
+                "module": "montage/ui/controller/array-controller",
                 "properties": {
-                    "element": {"#": "preferenceList"},
-                    "isSelectionEnabled": false,
-                    "axis": "vertical"
+                    "selectObjectsOnAddition": true,
+                    "automaticallyOrganizeObjects": true
                 },
                 "bindings": {
-                    "objects": {
+                    "content": {
                         "boundObject": {"@": "owner"},
                         "boundObjectPropertyPath": "preferences",
                         "oneway": true
                     }
+                }
+            },
+            "preference-repetition": {
+                "module": "montage/ui/repetition.reel",
+                "name": "Repetition",
+                "properties": {
+                    "element": {"#": "preference-repetition"},
+                    "isSelectionEnabled": false,
+                    "axis": "vertical",
+                    "contentController": {"@": "preferences-controller"}
                 }
             },
             "owner": {
@@ -92,7 +101,7 @@
                 "name": "PreferenceView",
                 "properties": {
                     "element": {"#": "preferenceView"},
-                    "preferenceList": {"@" : "preferenceList"}
+                    "preferenceRepetition": {"@" : "preference-repetition"}
                 }
             }
         }
@@ -101,12 +110,10 @@
     <body>
         <div id="preferenceView" class="preferenceView">
             <h1>Preferences</h1>
-            
-            <ul id="preferenceList">
-                <li id="">
-                    <div id="preferenceItem"></div>
-                </li>
-            </ul>
+
+            <div id="preference-repetition">
+                <div id="preferenceItem"></div>
+            </div>
         </div>
     </body>
 </html>
