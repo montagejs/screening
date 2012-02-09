@@ -87,6 +87,10 @@ From SCREENING_HOME:
 
 This will download all the libraries used by Screening into: SCREENING_HOME/server/node_modules.
 
+The Montage submodule also needs to initialized. From SCREENING_HOME:
+
+    git submodule init
+    git submodule update
 
 ### Download and install MongoDB
 
