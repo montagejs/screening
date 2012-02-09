@@ -216,6 +216,11 @@ var POST = exports.POST = function(request) {
         headers: mix({}, POSTHeaders, {host: parsedUrl.host}, request.headers)
     }
 
+    // Fix the body
+    if(typeof(request.body) === "object") {
+        request.body = JSON.stringify(request.body);
+    }
+
     options.headers['Content-Length'] = (request.body && request.body.length) ? request.body.length : "0";
 
     var defer = Q.defer();
@@ -229,7 +234,7 @@ var POST = exports.POST = function(request) {
             var ret = responseHandler(null, res, fullBody);
 
             if (ret.statusCode && ret.statusCode >= 400) {
-                var retBody = JSON.parse(body);
+                var retBody = JSON.parse(fullBody);
                 defer.reject(retBody);
             }
             else {
@@ -240,7 +245,11 @@ var POST = exports.POST = function(request) {
     httpReq.on("error", function(e) {
         defer.reject(e);
     });
-    httpReq.write(new Buffer(request.body));
+
+    if (request.body) {
+        httpReq.write(new Buffer(request.body))
+    }
+
     httpReq.end();
 
     return defer.promise;
