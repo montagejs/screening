@@ -8,7 +8,6 @@ agent.gotoUrl("/webapps/screening/public/sample/sample.html");
 agent.setWindowSize(1254, 852);
 
 
-//element.sendKeys("SomeText" + Key.BACKSPACE + Key.BACKSPACE);
 
 agent.element("/html/body/form/div/input").sendKeys("h");
 agent.wait(288);

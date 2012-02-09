@@ -3,7 +3,6 @@ agent.gotoUrl("/screening/control-room/ui-sample.html");
 
 
 var sliderNode = agent.element("/html/body/div[4]/div/div[9]/div")
-//var sliderNode = agent.element("#testSlider");
 
 function resetSlider(){
     // Reset slider.

@@ -1,3 +1,6 @@
 [submodule "public/node_modules/montage"]
 	path = public/node_modules/montage
 	url = git@github.com:Motorola-Mobility/montage.git
+[submodule "public/node_modules/montage-samples"]
+	path = public/node_modules/montage-samples
+	url = git@github.com:Motorola-Mobility/montage-samples.git
