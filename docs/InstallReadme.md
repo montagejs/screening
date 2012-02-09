@@ -89,8 +89,7 @@ This will download all the libraries used by Screening into: `SCREENING_HOME`/se
 
 The Montage submodule also needs to initialized. From `SCREENING_HOME`:
 
-    git submodule init
-    git submodule update
+    git submodule update --init
 
 ### Download and install MongoDB
 
@@ -152,4 +151,7 @@ The output from the last command should look like this:
 Verify that the server was started up correctly by navigating to the Control Room at:
 
     http://localhost:8081/screening/control-room/index.html
+
+Proceed to the first section of [REST API WebDriver Tutorial](RestApiWebDriverTutorial.md) to set up
+a driver.
 

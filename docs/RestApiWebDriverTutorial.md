@@ -6,7 +6,7 @@
 
 # REST API WebDriver Tutorial
 
-This is a simple tutorial that will walk you thru the process of starting up WebDriver, connecting an agent,
+This is a simple tutorial that will walk you through the process of starting up WebDriver, connecting an agent,
 executing a test and finally getting the results.
 
 This tutorial assumes a few things:
@@ -17,9 +17,7 @@ This tutorial assumes a few things:
 
 ## WebDriver
 
-First you need to download the ChromeDriver binary for your platform from:
-
-    http://code.google.com/p/chromium/downloads/list
+First you need to download the ChromeDriver binary for your platform from http://code.google.com/p/chromium/downloads/list
 
 And then execute **chromedriver**, you'll get something like this:
 
