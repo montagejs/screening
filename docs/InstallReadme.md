@@ -67,27 +67,27 @@ command line.
 
 When uncompressed, it creates a structure similar to this:
 
-    SCREENING_HOME
+    `SCREENING_HOME`
         ├── common
         ├── docs
         ├── public
         ├── server
         └── test
 
-We'll refer to the base directory as SCREENING_HOME from now on.
+We'll refer to the base directory as `SCREENING_HOME` from now on.
 
 ### Install dependencies
 
 Use npm to install the Screening dependencies:
 
-From SCREENING_HOME:
+From `SCREENING_HOME`:
 
     cd server
     npm install
 
-This will download all the libraries used by Screening into: SCREENING_HOME/server/node_modules.
+This will download all the libraries used by Screening into: `SCREENING_HOME`/server/node_modules.
 
-The Montage submodule also needs to initialized. From SCREENING_HOME:
+The Montage submodule also needs to initialized. From `SCREENING_HOME`:
 
     git submodule init
     git submodule update
@@ -103,7 +103,7 @@ on your path. To install a specific version use `brew versions mongodb`.
 
 However it's also possible to download it automatically with the following command:
 
-From SCREENING_HOME:
+From `SCREENING_HOME`:
 
     cd server
     npm run-script install-mongodb
@@ -113,7 +113,7 @@ depending on the platform):
 
     ~/mongodb-osx-x86_64-2.0.1
 
-We'll refer to this as MONGO_HOME.
+We'll refer to this as `MONGO_HOME`.
 
 ## Startup Screening
 
@@ -123,7 +123,7 @@ Important note: The MongoDB server must be started before the Screening server.
 
 Make sure that a directory called ~/data/db exists. This is created by the previous step, and if not then create it.
 
-From MONGO_HOME:
+From `MONGO_HOME`:
 
     ./bin/mongod --dbpath ~/data/db/
 
@@ -131,7 +131,7 @@ This will start MongoDB on the standard port (27017).
 
 ### Startup the Screening Server
 
-From SCREENING_HOME:
+From `SCREENING_HOME`:
 
     cd server
     npm start
