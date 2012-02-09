@@ -63,7 +63,7 @@ Then verify that the installation was completed successfully by printing out the
 Screening comes distributed as a tarball. You can uncompress it in the location of your choice by using a GUI or the
 command line.
 
-    tar -xzvf 
+    tar -xzvf
 
 When uncompressed, it creates a structure similar to this:
 
@@ -92,6 +92,10 @@ This will download all the libraries used by Screening into: SCREENING_HOME/serv
 
 MongoDB can be downloaded from http://www.mongodb.org/downloads. Screening has been tested with version 2.0.
 Please use the 64-bit version if your system supports it.
+
+Note: On OSX if you use the [Homebrew](http://mxcl.github.com/homebrew/) package manager you
+can install mongodb with `brew install mongodb`. `mongod` will then be available directly
+on your path. To install a specific version use `brew versions mongodb`.
 
 However it's also possible to download it automatically with the following command:
 
