@@ -27,18 +27,18 @@ var Script = exports.Script = function(mongoDbProvider) {
     // an object. But it would just be overhead for now, since access (for now) is only done
     // explicitly onto a option using the full string, for getting and setting.
     // Maybe later, but would be just overhead now.
-    
-   /**  
+
+   /**
    @enum module:screening/script.Script
    */
     this._options = {
-        /** 
+        /**
          * Tell the test script to quit on the first assert's failure.
          * If set to false, failing asserts will be reported but not lead to
          * stopping the test script.
          * There is also a way to set this value in the UI explicitly for test,
          * setting the option inside the script will override that UI option.
-         * @type {Boolean} 
+         * @type {Boolean}
          * @default false
          */
         "exitOnFailure": false,
@@ -50,7 +50,7 @@ var Script = exports.Script = function(mongoDbProvider) {
          * the element can still not be found the test script will abort with an error "No such element".
          * This timeout does also apply as the default timeout for all waitFor*() functions,
          * if no explicit timeout is given to them as one of it's parameters.
-         * @type {Integer} 
+         * @type {Integer}
          * @default 3000ms
          */
         "timeout": 3000,
@@ -101,7 +101,7 @@ var Script = exports.Script = function(mongoDbProvider) {
          * For sequential mousemoves and touchmoves this value is not taken into account,
          * they come with their own recorded timeouts each, those are used, since otherwise
          * each mousemove would require those max timeout to be waited.
-         * @type {Integer} 
+         * @type {Integer}
          * @default 150ms
          */
         "sync.noChangeTimeout": 150,
@@ -110,7 +110,7 @@ var Script = exports.Script = function(mongoDbProvider) {
          * If the site changes constantly we don't want each command to wait eternally, so set this
          * timeout to when the command shall be considered done the latest, in order to not
          * block the script.
-         * @type {Integer} 
+         * @type {Integer}
          * @default 2000ms
          */
         "sync.maxWaitTimeout": 2000,
@@ -134,7 +134,7 @@ var Script = exports.Script = function(mongoDbProvider) {
 };
 
 /**
- * Sets the value of the specified option.
+ * Sets the value of the specified option. For an option list see [set options]{@link module:screening/script}.
  * @function module:screening/script.Script#setOption
  * @param {String} key Option name to set.
  * @param {String} value Value to set option to.
@@ -184,7 +184,7 @@ Script.prototype.require = function(filename) {
                 defer.reject("Unexpected error, found more than one script that matches the name: " + filename);
                 return;
             }
-            
+
             var script = scripts[0];
 
             // Create temp directory

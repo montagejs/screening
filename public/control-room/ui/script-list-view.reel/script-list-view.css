@@ -1,18 +1,28 @@
+/* @override http://localhost:8081/screening/control-room/ui/script-list-view.reel/script-list-view.css */
 /* <copyright>
  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
+
 .scriptListView {
     position: relative;
+    width: 300px;
+    background-color: hsl(0,0%,90%);
 }
 
 .scriptListView .scriptList {
-    /*position: absolute;
-    left: 0;
-    bottom: 0;
-    right: 0;*/
-    background-color: #F2F2F2;
+    display: box;
+    display: -webkit-box;
+    display: -moz-box;
+    
+    box-orient: vertical;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    
+    box-flex: 1;
+    -webkit-box-flex: 1;
+    -moz-box-flex: 1;     
 }
 
 .scriptListView.noUploader .scriptList {
@@ -24,19 +34,27 @@
     background-color: #F2F2F2;
 }
 
-.scriptList {
-    display: box;
-    display: -webkit-box;
-    display: -moz-box;
-    
-    box-orient: vertical;
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    
-    box-flex: 1;
-    -webkit-box-flex: 1;
-    -moz-box-flex: 1;
+/* Menubar */
+
+.scriptList .menuBar {
+    -webkit-box-pack: justify;
 }
+
+.scriptList .menuButtons {
+    margin-right: 2px;
+}
+
+.scriptList .menuBar .logo {
+    color: #000000;
+    text-shadow: 0 1px hsla(0,0%,100%,.2);
+    text-transform: uppercase;
+    font: bold 16px/40px "Lucida Grande", Lucida, Verdana, sans-serif;
+    padding-left: 34px;
+    background: url('../../img/logo.png') no-repeat left center;
+}
+
+
+/* List */
 
 .scriptList .montage-list-scrollView {
     box-flex: 1;
@@ -46,10 +64,27 @@
 
 .scriptList li {
     list-style: none;
+    background-color: hsl(198,50%,96%);
+}
+
+.scriptList li:hover {
+    cursor: pointer;
+    background-color: hsl(198,50%,98%);
+}
+
+.scriptList li:active {
+    background-color: hsl(198,50%,96%);
 }
 
 .scriptList li.selected {
-    background-color: #DEDEDE;
+    cursor: default;
+    background-color: hsl(198,60%,88%);
+    color: hsl(198,30%,30%);
+    
+}
+.scriptList li.selected .scriptSource {
+    box-shadow: none;
+    border-bottom: 1px solid hsl(198,60%,75%);
 }
 
 /* Very hacky! I'd rather not have to do this */
@@ -64,3 +99,4 @@
     display:block;
     border:1px solid red;
 }
+

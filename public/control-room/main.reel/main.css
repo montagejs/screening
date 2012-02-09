@@ -1,3 +1,5 @@
+/* @override http://localhost:8081/screening/control-room/main.reel/main.css */
+
 /* <copyright>
  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
@@ -5,8 +7,16 @@
  </copyright> */
 @import url(http://fonts.googleapis.com/css?family=Droid+Sans&v1);
 
-body {
-    background-color: #E6E6E6;
+::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 5px;
+    height: 5px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: hsl(0,0%,60%);
+}
+
+body {   
     font-family:'Droid Sans', sans-serif;
     font-size: 0.9em;
 }
@@ -36,25 +46,23 @@ body {
 }
 
 .scriptManager .agentList {
-    height: 140px;
+    height: 150px;
 }
 
 .scriptManager .menuBar {
+    display: -webkit-box;
+    -webkit-box-align: center;
     color:#aeaeae;
     background-color: #584c4c;
     background-image: -webkit-linear-gradient(top, #6f6161, #584c4c);
-
-    height: 32px;
+    
+    box-sizing: border-box;
+    height: 42px;
     margin: 0;
-    padding: 3px 3px 2px 3px;
+    padding: 0px 6px;
     white-space: nowrap;
     z-index: 2;
-    -webkit-box-shadow: 0 1px 4px #444444;
-}
-
-.scriptManager .menuBar .montage-button-group {
-    display: inline-block;
-    margin-right: 12px;
+    -webkit-box-shadow: inset 0 -1px 0px hsla(0,0%,0%,.4), inset 0 1px 0px hsla(0,0%,0%,.5);
 }
 
 .scriptManager .centeredContent {
@@ -68,18 +76,20 @@ body {
 .scriptManager .scriptDetail {
     display: none;
     height: 100%;
-    width: 100%;
+    width: 100%;   
 }
 
 .scriptManager .emptyDetail p {
     display: block;
-    color: #888888;
+    color: #666;
+    text-shadow: 0 1px 0 hsla(0,0%,100%,.6);
     width: 400px;
     margin: auto;
     text-align: center;
     padding: 10px;
     border-radius: 5px;
-    -webkit-box-shadow: 1px 1px 4px #444444 inset;
+    background-color: hsla(0,0%,0%,.05);
+    box-shadow: inset 0 1px 4px hsla(0,0%,0%,.15);
 }
 
 /* Docked panel implementation */

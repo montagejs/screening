@@ -1,0 +1,96 @@
+/* @override http://localhost:8081/screening/control-room/css/button.css */
+
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+
+/* Button Group -------------------------------------------- */
+
+.buttonGroup {
+    display: -webkit-box;
+    padding: 0 4px;
+}
+
+.buttonToggle {
+    display: -webkit-box;
+    padding: 0 2px;
+}
+
+.buttonGroup.spacer {
+    -webkit-box-flex: 1;
+}
+
+.buttonGroup button {
+    display: block;
+    margin: 0;
+    border-radius: 0;
+    border-left-width: 0;
+    border-right-width: 0;
+}
+
+.buttonGroup button:first-child {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-left-width: 1px;
+}
+
+.buttonGroup button:last-child {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    border-right-width: 1px;
+}
+
+
+/* Button -------------------------------------------- */
+
+
+button {
+    height: 24px;
+    padding: 0 8px;
+    text-shadow: 0 1px hsla(0,0%,100%,.4);
+    border: 1px solid hsl(0,0%,65%);
+    border-radius: 4px;
+    background-color: hsl(0,0%,90%);
+    background-image: -webkit-linear-gradient(top, hsla(0,0%,100%,.6), hsla(0,0%,100%,0) 50%, hsla(0,0%,0%,0) 50%, hsla(0,0%,0%,.1) );
+    box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.7), 0px 1px 1px hsla(0,0%,0%,.15);
+    -webkit-user-select: none;
+    cursor: pointer;
+    outline: none;
+}
+
+button:hover {
+    background-color: hsl(0,0%,95%);
+}
+
+button:active {
+    background-image: -webkit-linear-gradient(top, hsla(0,0%,0%,0), hsla(0,0%,0%,.2) );
+    box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.5);
+    -webkit-transform: translateY(1px);
+}
+
+/* States */
+
+button.disabled {
+    opacity: .3;
+    pointer-events: none;
+}
+
+
+/* Specials -------------------------------------------- */
+
+.menuBar button {
+    border-color: hsl(0,0%,20%);
+    box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.5), 0px 1px 1px hsla(0,0%,0%,.3);
+}
+
+button.blue { background-color: hsl(198,100%,70%); }
+button.blue:hover { background-color: hsl(198,100%,75%); }
+
+button.red { background-color: hsl(0,100%,70%); }
+button.red:hover { background-color: hsl(0,100%,73%); }
+
+button.green { background-color: hsl(140,70%,65%); }
+button.green:hover { background-color: hsl(140,70%,72%); }
+

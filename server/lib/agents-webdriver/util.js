@@ -11,7 +11,9 @@ var createWebdriverSession = exports.createWebdriverSession = function(url) {
     session.init = function(caps, cb){
         caps = caps ? caps : {};
         caps['browserName'] = 'chrome';
-        this.startSession(caps).then(cb);
+        this.startSession(caps).then(cb, function(errorBody) {
+            console.error("**** WEBDRIVER START SESSION REJECTED! *****", errorBody);
+        });
     }
     return session;
 };

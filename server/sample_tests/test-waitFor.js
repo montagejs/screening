@@ -5,7 +5,6 @@ var agent = new Agent();
 agent.gotoUrl("/webapps/screening/public/sample/sample.html");
 
 var textField = agent.element("/html/body/form/div/input");
-//var textField = agent.element("#textField");
 var span = agent.element("span");
 
 //
@@ -47,7 +46,3 @@ assertNotEqual("nada", span.getAttribute("style"));
 // The following attribute doesn't change, so the following will fail.
 //el.waitForAttributeChange("class"); // This would ABORT the test script!!!
 
-
-/*
-waitForWindow
-//*/

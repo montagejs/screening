@@ -61,34 +61,6 @@
                     }
                 }
             },
-            "buttonGroup1": {
-                "module": "montage/ui/bluemoon/button-group.reel",
-                "name": "ButtonGroup",
-                "properties": {
-                    "element": {"#": "buttonGroup1"}
-                }
-            },
-            "buttonGroup2": {
-                "module": "montage/ui/bluemoon/button-group.reel",
-                "name": "ButtonGroup",
-                "properties": {
-                    "element": {"#": "buttonGroup2"}
-                }
-            },
-            "buttonGroup3": {
-                "module": "montage/ui/bluemoon/button-group.reel",
-                "name": "ButtonGroup",
-                "properties": {
-                    "element": {"#": "buttonGroup3"}
-                }
-            },
-            "buttonGroup4": {
-                "module": "montage/ui/bluemoon/button-group.reel",
-                "name": "ButtonGroup",
-                "properties": {
-                    "element": {"#": "buttonGroup4"}
-                }
-            },
             "actioneventlistener1": {
                 "module": "montage/core/event/action-event-listener",
                 "name": "ActionEventListener",
@@ -294,35 +266,37 @@
     <body>
         <!-- One line summary of a test script -->
         <div id="scriptDetail" class="scriptDetail">
-            <div class="menuBar button-container">
-                <div id="buttonGroup1" class="small">
-                    <div id="run" class="submit">Run</div>
-                    <div id="allResults" class="text">All Results</div>
+            <div class="menuBar">
+                <div class="buttonToggle">
+                    <button id="pauseRecord" class="red" style="display: none;">Pause Recording</button>
+                    <button id="record" class="red">Record</button>
                 </div>
-                <div id="buttonGroup2" class="small">
-                    <div id="save" class="text">Save</div>
-                    <div id="delete" class="cancel">Delete</div>
-                    <div id="download" class="text">Download</div>
+                <div class="buttonGroup">
+                    <button id="run" class="green">Run</button>
                 </div>
-                <div id="buttonGroup3" class="small">
-                    <div id="pauseRecord" class="text" style="display: none;">Pause Recording</div>
-                    <div id="record" class="text">Record</div>
+                <div class="buttonGroup">
+                    <button id="save">Save</button>
+                    <button id="delete">Delete</button>
+                    <button id="download">Download</button>
                 </div>
-                <div id="buttonGroup4" class="small">
-                    <div id="settings" class="text">Preferences</div>
-                    <!-- <button id="settings" class="button icon settings">Settings</button> -->
+                <div class="buttonGroup spacer"></div>
+                <div class="buttonGroup">
+                    <button id="allResults">All Results</button>
                 </div>
-                <div class="versionString">Ver. <span id="serverVersion">--</span></div>
-
+                <div class="buttonGroup">
+                    <button id="settings">Preferences</button>
+                </div>
+                <div class="buttonGroup">
+                    <div class="versionString">Ver. <span id="serverVersion">--</span></div>
+                </div>
             </div>
             <div class="codeHeader">
-                <label for="name">Name
-                    <input type="text" id="name" class="name">
-                </label>
+                <label for="name">Name</label>
+                <input type="text" id="name" class="name">
                 <label for="tags">Tags 
-                    <span class="label-subtext">Space separated. Use " " for tag with multiple words.</span>
-                    <input type="text" id="tags" class="tags">
+                    <span class="label-subtext">Space separated. Use &quot; &quot; for tag with multiple words.</span>
                 </label>
+                <input type="text" id="tags" class="tags" placeholder="Space separated. Use &quot; &quot; for tag with multiple words.">
             </div>
             <textarea type="text" id="code" class="code"></textarea>
             <div id="urlPrompt" style="display: none; margin: auto;"></div>

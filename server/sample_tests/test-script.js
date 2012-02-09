@@ -4,20 +4,11 @@ var agent = new Agent();
 agent.gotoUrl("/webapps/screening/public/sample/sample.html");
 
 //
-// script.wait() NOT IMPLEMTED YET
-//
-//var before = +new Date;
-//script.wait(1000);
-//// Has the script waited at least 800ms?
-//assertLess(before+800, +new Date, "Seems the script.wait(1000) didn't work!");
-
-
-//
 // Testing script.setOption()
 //
 
 // Does setting and getting that option work at all?
-var oldSyncMode = script.getOption("sync.mode"); // Store old sync mode, so we ca restore it later.
+var oldSyncMode = script.getOption("sync.mode"); // Store old sync mode, so we can restore it later.
 script.setOption("sync.mode", "auto");
 assertEqual("auto", script.getOption("sync.mode"));
 // Test it with another option too, to make sure that not only "auto" works :).
@@ -34,7 +25,6 @@ script.setOption("timeout", 8000);
 // This option will effect for how long it will be tried to find an element.
 
 agent.element("/html/body/form/div/input").getText();
-//agent.element("#textField").getText();
 
 //
 // script.require()

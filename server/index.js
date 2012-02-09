@@ -49,13 +49,9 @@ app.configure(function() {
 
 app.configure('development', function() {
     var MONTAGE_PATH = path.join(__dirname, "../../node_modules/montage");
-    var APPS_PATH = path.join(__dirname, "../..");
-    
+
     app.use("/node_modules/montage", express.static(MONTAGE_PATH));
     app.use("/node_modules/montage", express.directory(MONTAGE_PATH));
-    
-    app.use("/webapps", express.static(APPS_PATH));
-    app.use("/webapps", express.directory(APPS_PATH));
 });
 
 app.listen(PORT);
