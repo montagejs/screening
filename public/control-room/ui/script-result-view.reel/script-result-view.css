@@ -23,34 +23,19 @@
 }
 
 .download {
+    position: relative;
+    right: 0;
     margin: 0;
-    padding: 20px;
+    padding: 10px;
     color: #999;
-    font-size: 1.2em;
-    text-align: center;
+    text-align: right;
 }
 
 .download a {
+    margin: 0 0 5px 20px;
+    font-weight: bold;
     display: inline-block;
-    margin: 10px;
-    padding: 10px;
-    font-size: 1.1em;
-    line-height: 1.2em;
-    background-color: hsl(0,0%,95%);
-    border-radius: 6px;
-    text-shadow: 0 1px 1px hsla(0,0%,100%,.8);
-    box-shadow: 0px 1px 2px hsla(0,0%,0%,.2);
     text-decoration: none;
-}
-
-.download a:hover {
-    background-color: hsl(0,0%,98%);
-    text-decoration: none;
-}
-
-.download a:active {
-    background-color: hsl(0,0%,95%);
-    -webkit-transform: translateY(1px);
 }
 
 .download .note {
@@ -62,7 +47,6 @@
 h2 {
     padding: 10px;
     margin: 20px 0 0 0;
-    text-align: center;
     color: #555;
 }
 
@@ -97,51 +81,46 @@ td, th {
     table-layout: fixed;
 }
 
-.pass,
-.passed {
+.passed,
+tr.pass {
     color: hsl(114, 97%, 35%);
 }
 
-.fail,
-.failed {
+.failed,
+tr.fail {
     color: hsl(0, 95%, 41%);
 }
 
-.exception {
+.exception,
+tr.exception {
     color: hsl(41, 100%, 41%);
 }
 
-.pass,
-.passed,
-.fail,
-.failed,
-.exception,
-.result {
-    text-shadow: 0 1px 1px hsla(0,0%,100%,.4);
-}
 
 td.pass {
-    background-color:#668014;
+    color:#FFF;
+    background-color: hsl(114, 97%, 35%);
 }
 
 td.fail {
-    background-color:#CC1100;
+    color:#FFF;
+    background-color: hsl(0, 95%, 41%);
+}
+
+td.exception {
+    color:#FFF;
+    background-color: hsl(41, 100%, 41%);
+}
+
+td.start, td.end {
+    color:#FFF;
+    background-color:#AAA;
 }
 
 td.fileName {
 	/*white-space: nowrap;*/
 	/*overflow: hidden;*/
 	/*text-overflow: ellipsis;*/
-}
-
-td.exception {
-    background-color:#F00;
-    color:#FFF;
-    text-shadow: black 0.1em 0.1em 0.2em;
-}
-
-td.start, td.end {
-    background-color:#AAA;
 }
 
 .result-detail th:first-child, 
