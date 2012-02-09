@@ -165,37 +165,83 @@ var DELETE=exports.DELETE=function(request){
     return defer.promise;
 }
 
-var POST=exports.POST=function(request){
-    var req= {
-        url: request.url,
-        method: "POST",
-        headers: mix({},POSTHeaders,{host: parseUrl(request.url).host}, request.headers)
-    }
-    //print("POST: " + request.body);
-    //print("type: " + typeof request.body);
+/*
+This entire method is re-implemented using only node's http client library, there's a problem
+with the request library and chromedriver 17+.
+Please do not remove. I'll keep this here and keep testing with updated versions of request.
+ */
+//var POST=exports.POST=function(request){
+//    var req= {
+//        url: request.url,
+//        method: "POST",
+//        headers: mix({},POSTHeaders,{host: parseUrl(request.url).host}, request.headers)
+//    }
+//    //print("POST: " + request.body);
+//    //print("type: " + typeof request.body);
+//
+//    //print("POST " + req.url);
+//    if (request.body) {
+//        req.body = request.body;
+//    }
+//    req.headers['Content-Length']=(request.body && request.body.length) ? request.body.length : "0";
+//
+//    var defer = Q.defer();
+//    xhr(req, function(error, response, body){
+//        if(error){
+//            defer.reject(error);
+//        }
+//        else {
+//            ret = responseHandler(error, response, body);
+//            if(ret.statusCode && ret.statusCode >= 400){
+//                var retBody = JSON.parse(body);
+//                defer.reject(retBody);
+//            }
+//            else {
+//                defer.resolve(ret);
+//            }
+//        }
+//    });
+//    return defer.promise;
+//}
 
-    //print("POST " + req.url); 
-    if (request.body) {
-        req.body = request.body;
+var POST = exports.POST = function(request) {
+    var http = require("http");
+
+    var parsedUrl = parseUrl(request.url);
+    var options = {
+        host: parsedUrl.hostname,
+        port: parsedUrl.port,
+        path: parsedUrl.pathname + (parsedUrl.search || "") + (parsedUrl.hash || ""),
+        method: "POST",
+        headers: mix({}, POSTHeaders, {host: parsedUrl.host}, request.headers)
     }
-    req.headers['Content-Length']=(request.body && request.body.length) ? request.body.length : "0";
-        
+
+    options.headers['Content-Length'] = (request.body && request.body.length) ? request.body.length : "0";
+
     var defer = Q.defer();
-    xhr(req, function(error, response, body){
-        if(error){
-            defer.reject(error);
-        }
-        else {
-            ret = responseHandler(error, response, body);
-            if(ret.statusCode && ret.statusCode >= 400){
+
+    var httpReq = http.request(options, function(res) {
+        var fullBody = "";
+        res.on('data', function(chunk) {
+            fullBody += chunk;
+        });
+        res.on('end', function(chunk) {
+            var ret = responseHandler(null, res, fullBody);
+
+            if (ret.statusCode && ret.statusCode >= 400) {
                 var retBody = JSON.parse(body);
                 defer.reject(retBody);
             }
             else {
                 defer.resolve(ret);
             }
-        }
+        });
     });
+    httpReq.on("error", function(e) {
+        defer.reject(e);
+    });
+    httpReq.write(new Buffer(request.body));
+    httpReq.end();
+
     return defer.promise;
 }
-
