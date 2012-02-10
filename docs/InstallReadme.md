@@ -63,39 +63,46 @@ Then verify that the installation was completed successfully by printing out the
 Screening comes distributed as a tarball. You can uncompress it in the location of your choice by using a GUI or the
 command line.
 
-    tar -xzvf 
+    tar -xzvf
 
 When uncompressed, it creates a structure similar to this:
 
-    SCREENING_HOME
+    `SCREENING_HOME`
         ├── common
         ├── docs
         ├── public
         ├── server
         └── test
 
-We'll refer to the base directory as SCREENING_HOME from now on.
+We'll refer to the base directory as `SCREENING_HOME` from now on.
 
 ### Install dependencies
 
 Use npm to install the Screening dependencies:
 
-From SCREENING_HOME:
+From `SCREENING_HOME`:
 
     cd server
     npm install
 
-This will download all the libraries used by Screening into: SCREENING_HOME/server/node_modules.
+This will download all the libraries used by Screening into: `SCREENING_HOME`/server/node_modules.
 
+The Montage submodule also needs to initialized. From `SCREENING_HOME`:
+
+    git submodule update --init
 
 ### Download and install MongoDB
 
 MongoDB can be downloaded from http://www.mongodb.org/downloads. Screening has been tested with version 2.0.
 Please use the 64-bit version if your system supports it.
 
+Note: On OSX if you use the [Homebrew](http://mxcl.github.com/homebrew/) package manager you
+can install mongodb with `brew install mongodb`. `mongod` will then be available directly
+on your path. To install a specific version use `brew versions mongodb`.
+
 However it's also possible to download it automatically with the following command:
 
-From SCREENING_HOME:
+From `SCREENING_HOME`:
 
     cd server
     npm run-script install-mongodb
@@ -105,7 +112,7 @@ depending on the platform):
 
     ~/mongodb-osx-x86_64-2.0.1
 
-We'll refer to this as MONGO_HOME.
+We'll refer to this as `MONGO_HOME`.
 
 ## Startup Screening
 
@@ -115,7 +122,7 @@ Important note: The MongoDB server must be started before the Screening server.
 
 Make sure that a directory called ~/data/db exists. This is created by the previous step, and if not then create it.
 
-From MONGO_HOME:
+From `MONGO_HOME`:
 
     ./bin/mongod --dbpath ~/data/db/
 
@@ -123,7 +130,7 @@ This will start MongoDB on the standard port (27017).
 
 ### Startup the Screening Server
 
-From SCREENING_HOME:
+From `SCREENING_HOME`:
 
     cd server
     npm start
@@ -144,4 +151,7 @@ The output from the last command should look like this:
 Verify that the server was started up correctly by navigating to the Control Room at:
 
     http://localhost:8081/screening/control-room/index.html
+
+Proceed to the first section of [REST API WebDriver Tutorial](RestApiWebDriverTutorial.md) to set up
+a driver.
 
