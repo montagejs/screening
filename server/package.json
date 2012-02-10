@@ -33,7 +33,7 @@
     "dependencies": {
         "ansi-color": "0.2.x",
         "commander": "0.2.x",
-        "express" : "2.4.x",
+        "express" : "2.5.x",
         "mongodb": ">=0.9.6 <=1.0.0",
         "optimist": "0.2.x",
         "q": "0.7.x",
