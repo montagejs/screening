@@ -8,6 +8,12 @@
     margin-right: 5px;
 }
 
+.menu a {
+    outline: none;
+    color: hsl(0,0%,80%);
+}
+
 .menu a:hover {
+    color: hsl(0,0%,100%);
     text-decoration: none;
 }
