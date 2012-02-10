@@ -50,13 +50,13 @@ exports.configureServer = function(customMongoDbProvider) {
 
     // Manually adding a new text/plain parser that will add the body verbatim to req.body
     var bodyParser = express.bodyParser;
-	bodyParser.parse["application/javascript"] = bodyParser.parse["text/plain"] = function(req, options, fn) {
+	bodyParser.parse["application/javascript"] = bodyParser.parse["text/plain"] = function(req, options, callback) {
 		var buf = '';
 		req.setEncoding('utf8');
 		req.on('data', function(chunk) { buf += chunk; });
 		req.on('end', function(){
 			req.body = buf;
-			fn();
+			callback();
 		});
 	};
 	
