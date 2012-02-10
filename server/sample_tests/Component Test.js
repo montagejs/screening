@@ -2,8 +2,7 @@
 
 var agent = new Agent();
 
-agent.gotoUrl("/webapps/screening/public/sample/sample.html");
-
+agent.gotoUrl("/screening/samples/sample.html");
 // Test Values
 var toggleValueComponent = agent.component("/html/body/form/div[3]/input");
 assertEqual(false, toggleValueComponent.getProperty("value"));

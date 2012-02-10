@@ -1,8 +1,7 @@
 script.setOption("exitOnFailure", false);
 
 var agent = new Agent();
-agent.gotoUrl("/webapps/screening/public/sample/sample.html");
-
+agent.gotoUrl("/screening/samples/sample.html");
 //
 // Testing script.setOption()
 //
@@ -30,12 +29,12 @@ agent.element("/html/body/form/div/input").getText();
 // script.require()
 //
 // The following shows how to require a simple script and explicitly get the function "simpleTests"
-var simpleTests = script.require("_test-required-script").simpleTests;
+var simpleTests = script.require("_test-required-script.js").simpleTests;
 // Call the function from the required script.
 simpleTests();
 
 // Require the script and get a handle on all exported functions.
-var requiredScript = script.require("_test-required-script");
+var requiredScript = script.require("_test-required-script.js");
 //console.log(requiredScript);
 // Call a function like so:
 requiredScript.simpleTests();
