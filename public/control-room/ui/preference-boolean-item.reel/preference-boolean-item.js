@@ -10,7 +10,7 @@ exports.PreferenceBooleanItem = Montage.create(Component, {
     preferenceObject: {
         value: null
     },
-    
+
     prepareForDraw: {
         value: function() {
         }
