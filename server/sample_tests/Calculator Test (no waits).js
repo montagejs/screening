@@ -4,8 +4,7 @@ script.setOption("sync.mode", "auto");
 
 // ==== Start Recorded Script, Thu Jul 28 2011 15:46:55 GMT-0700 (PDT)==== 
 var agent = new Agent();
-agent.gotoUrl("/webapps/montage-samples/calculator/");
-
+agent.gotoUrl("/screening/node_modules/montage-samples/calculator/index.html");
 var bigNumber = agent.element("#currentEntry");
 var smallNumbers = agent.element("#led");
 var result = agent.element("#ledRes");
