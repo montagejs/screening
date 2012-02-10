@@ -3,7 +3,7 @@
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> -->
- 
+
 # Agent communication
 
 Agents are entities which are able to remote control one or more browsers and this document 
@@ -48,7 +48,7 @@ iFrame agent see `TestScriptExecution.md`.
 This agent (`server/lib/webdriver-agent.js`) is responsible for handling the connection 
 between the server and a remote Webdriver instance. Our Screening server is able to communicate
 with a Webdriver server through a HTTP REST-API which is standardized in the 
-[JSONWireProtocol](http://code.google.com/p/selenium/wiki/JsonWireProtocol/ "JSONWireProtocol").
+[JSONWireProtocol](http://code.google.com/p/selenium/wiki/JsonWireProtocol "JSONWireProtocol").
 The big difference to the iFrame agent is, that we can connect a Webdriver by telling the Screening 
 server the base URL of it (either through the Control-Room or via REST-API) and we 
 are then able to remote-control as many browser instances this particular Webdriver can handle.
