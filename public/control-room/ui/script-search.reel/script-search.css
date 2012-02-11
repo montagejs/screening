@@ -41,6 +41,7 @@
     display: block;
     -webkit-box-flex: 1;
     margin: 0 0 0 6px;
+    padding-left: 4px;
     height: 24px;
     border-radius: 4px 0 0 4px;
     border: 1px solid hsl(0,0%,65%);
@@ -48,6 +49,12 @@
     background-color: hsl(0,0%,97%);
     box-shadow: inset 0px 1px 1px hsla(0,0%,0%,.1);
     outline: none;
+}
+.scriptSearch .scriptSearchBox::-webkit-search-cancel-button {
+    margin-left: 4px;
+}
+.scriptSearch .scriptSearchBox::-webkit-search-decoration {
+    display: none; /* Removes the padding on the left */
 }
 
 .scriptSearch .scriptSearchBox:hover {
