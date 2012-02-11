@@ -19,6 +19,9 @@ exports.ScriptSearch = Montage.create(Component, {
         value: function() {
             var self = this;
             self.element.addEventListener("keydown", self);
+
+            // TODO: Open a Montage bug for this, there shouldn't be a need to set this manually.
+            self.scriptSearchCombo.contentController.selectedIndexes = [0];
         }
     },
 
@@ -39,7 +42,7 @@ exports.ScriptSearch = Montage.create(Component, {
             var newEvent = document.createEvent("CustomEvent");
             newEvent.initEvent("refreshScriptList", true, false);
             newEvent.searchString = self.scriptSearchBox.value;
-            newEvent.searchScope = self.scriptSearchCombo.value;
+            newEvent.searchScope = self.scriptSearchCombo.contentController.selectedObjects[0].value;
 
             self.dispatchEvent(newEvent);
         }

@@ -14,14 +14,57 @@
     border-bottom: 1px solid hsl(0,0%,83%);
 }
 
-.scriptSearch .montage-combobox {
+.scriptSearch .searchScope {
+    -webkit-appearance: none;
+    position: relative;
     display: block;
+    height: 24px;
+    padding: 0 20px 0 8px;
+    text-shadow: 0 1px hsla(0,0%,100%,.4);
+    border: 1px solid hsl(0,0%,65%);
+    border-radius: 4px;
+    background-color: hsl(0,0%,90%);
+    background-image: url(select-icon.png), -webkit-linear-gradient(top, hsla(0,0%,100%,.6), hsla(0,0%,100%,0) 50%, hsla(0,0%,0%,0) 50%, hsla(0,0%,0%,.1) );
+    background-repeat: no-repeat;
+    background-position: right center;
+    box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.7), 0px 1px 1px hsla(0,0%,0%,.15);
+    -webkit-user-select: none;
+    cursor: pointer;
+    outline: none;
+}
+.scriptSearch .searchScope:hover {
+    background-color: hsl(0,0%,95%);
 }
 
 .scriptSearch .scriptSearchBox {
+    -webkit-appearance: none;
     display: block;
     -webkit-box-flex: 1;
-    margin: 0 6px;
+    margin: 0 0 0 6px;
+    padding-left: 4px;
+    height: 24px;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid hsl(0,0%,65%);
+    border-right: none;
+    background-color: hsl(0,0%,97%);
+    box-shadow: inset 0px 1px 1px hsla(0,0%,0%,.1);
+    outline: none;
+}
+.scriptSearch .scriptSearchBox::-webkit-search-cancel-button {
+    margin-left: 4px;
+}
+.scriptSearch .scriptSearchBox::-webkit-search-decoration {
+    display: none; /* Removes the padding on the left */
 }
 
-.scriptSearch .searchButton {}
+.scriptSearch .scriptSearchBox:hover {
+    background-color: hsl(0,0%,94%);
+}
+.scriptSearch .scriptSearchBox:focus {
+    background-color: hsl(0,0%,100%);
+}
+
+.scriptSearch .searchButton {
+    margin: 0;
+    border-radius: 0 4px 4px 0;
+}
