@@ -247,7 +247,7 @@ var POST = exports.POST = function(request) {
     });
 
     if (request.body) {
-        httpReq.write(new Buffer(request.body))
+        httpReq.write(request.body, "binary");
     }
 
     httpReq.end();
