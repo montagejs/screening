@@ -48,7 +48,7 @@ exports.ScriptListView = Montage.create(Component, {
             var url = "/screening/api/v1/scripts?api_key=5150";
 
             if (searchString && searchString.trim()) {
-                if (searchScope && searchScope === "Tags") {
+                if (searchScope && searchScope === "tags") {
                     // Parse tags: tag "multi word" -> tag, multi word
                     var tags = searchString.match(/\w+|"[^"]+"/g);
                     if (tags) {
@@ -58,7 +58,7 @@ exports.ScriptListView = Montage.create(Component, {
                     }
                     tags = tags.join(",");
                     url += "&tags=" + encodeURIComponent(tags);
-                } else if (searchScope && searchScope === "Name") {
+                } else if (searchScope && searchScope === "name") {
                     url += "&name_search=" + encodeURIComponent(searchString);
                 }
             }
@@ -145,5 +145,5 @@ exports.ScriptListView = Montage.create(Component, {
         value: function() {
             window.location.href = "/screening/api/v1/scripts/archive?api_key=5150";
         }
-    },
+    }
 });

@@ -20,8 +20,8 @@
                 }
             },
             "scriptSearchCombo": {
-                "module": "control-room/ui/combo-box.reel",
-                "name": "ComboBox",
+                "module": "montage/ui/select-input.reel",
+                "name": "SelectInput",
                 "properties": {
                     "element": {"#": "searchScope"}
                 }
@@ -59,11 +59,11 @@
     </head>
     <body>
     <div id="scriptSearch" class="scriptSearch">
-        <select id="searchScope" class="searchScope" style="width:90px;">
-            <option>Name</option>
-            <option>Tags</option>
+        <select id="searchScope" class="searchScope">
+            <option value="name">Name</option>
+            <option value="tags">Tags</option>
         </select>
-        <input type="search" id="scriptSearchBox" class="scriptSearchBox" placeholder="Enter a script name or tag">
+        <input type="search" id="scriptSearchBox" class="scriptSearchBox" placeholder="Enter a name or tag">
         <button id="searchButton" class="button icon search primary big searchButton">Search</button>
     </div>
     </body>
