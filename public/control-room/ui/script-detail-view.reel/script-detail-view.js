@@ -406,10 +406,10 @@ exports.ScriptDetailView = Montage.create(Component, {
             var agent = this.activeAgents[0];
             var app = this.urlPrompt.value;
             this._recordingAgent = agent;
-            this.recordButton.value = "Stop Recording";
+            this.recordButton.label = "Stop Recording";
             this._recordingPaused = false;
             this.pauseRecordButton.element.style.display = "inline-block";
-            this.pauseRecordButton.value = "Pause Recording";
+            this.pauseRecordButton.label = "Pause Recording";
 
             var req = new XMLHttpRequest();
             req.open("POST", "/screening/api/v1/agents/" + agent.info.id + "/recording?api_key=5150", true);
@@ -422,7 +422,7 @@ exports.ScriptDetailView = Montage.create(Component, {
         value: function() {
             var agent = this._recordingAgent;
             this._recordingAgent = null;
-            this.recordButton.value = "Record";
+            this.recordButton.label = "Record";
             this.pauseRecordButton.element.style.display = "none";
 
             var self = this;
@@ -450,7 +450,7 @@ exports.ScriptDetailView = Montage.create(Component, {
         value: function() {
             var agent = this._recordingAgent;
             this._recordingPaused = true;
-            this.pauseRecordButton.value = "Resume Recording";
+            this.pauseRecordButton.label = "Resume Recording";
 
             var self = this;
             var req = new XMLHttpRequest();
@@ -466,7 +466,7 @@ exports.ScriptDetailView = Montage.create(Component, {
         value: function() {
             var agent = this._recordingAgent;
             this._recordingPaused = false;
-            this.pauseRecordButton.value = "Pause Recording";
+            this.pauseRecordButton.label = "Pause Recording";
 
             var self = this;
             var req = new XMLHttpRequest();
