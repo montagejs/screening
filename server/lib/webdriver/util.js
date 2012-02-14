@@ -88,15 +88,15 @@ var strip = function strip(str){
 }
 
 var responseHandler = function (error, response, body) {
-    const HTTP_204 = 204; // The server successfully processed the request, but is not returning any content.
+    const HTTP_204_NO_CONTENT = 204; // The server successfully processed the request, but is not returning any content.
 
     if (response.statusCode >= 300 ||
-        response.statusCode === HTTP_204 // For Selenium Server DELETE
+        response.statusCode === HTTP_204_NO_CONTENT // For Selenium Server DELETE
         ) {
         return response;
     }
 
-    if (response && typeof(body) != "undefined") {
+    if (response && typeof(body) !== "undefined") {
         var ret = "";
         // selenium-server sometimes return an empty body
         try {
