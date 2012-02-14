@@ -87,19 +87,21 @@ var strip = function strip(str){
     return x.join('');
 }
 
-var responseHandler = function(error, response, body){
-    //print("responseHandler() " + response.status + " type: "+ typeof response.status);
-    if (response.statusCode >= 300){
+var responseHandler = function (error, response, body) {
+    const HTTP_204 = 204; // The server successfully processed the request, but is not returning any content.
+
+    if (response.statusCode >= 300 ||
+        response.statusCode === HTTP_204 // For Selenium Server DELETE
+        ) {
         return response;
     }
 
-    if (response && typeof(body) != "undefined"){
-        ret = "";
+    if (response && typeof(body) != "undefined") {
+        var ret = "";
         // selenium-server sometimes return an empty body
         try {
             ret = JSON.parse(strip(body));
-        }
-        catch (ex) {
+        } catch (ex) {
         }
         return ret;
     }
