@@ -99,7 +99,7 @@ var responseHandler = function(error, response, body){
         try {
             ret = JSON.parse(strip(body));
         }
-        catch(ex){
+        catch (ex) {
         }
         return ret;
     }
@@ -234,7 +234,12 @@ var POST = exports.POST = function(request) {
             var ret = responseHandler(null, res, fullBody);
 
             if (ret.statusCode && ret.statusCode >= 400) {
-                var retBody = JSON.parse(fullBody);
+                var retBody;
+                try {
+                    retBody = JSON.parse(fullBody);
+                } catch(ex) {
+                    retBody = "The response contained malformed JSON. Raw output: " + fullBody;
+                }
                 defer.reject(retBody);
             }
             else {
