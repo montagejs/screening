@@ -89,6 +89,12 @@ exports.Main = Montage.create(Component, {
         value: function() {
             var self = this;
 
+            // Confirm navigation away from Control Room if there's an unsaved script
+            window.onbeforeunload = function() {
+                var navigateAwayMessage = "Your changes to the script have not been saved yet.";
+                return self.scriptDetail.needsSave ? navigateAwayMessage : null;
+            }
+
             // Make this class visible to the scripts list delegate
             if (this.scripts.delegate) {
                 this.scripts.delegate.scriptManager = this;
