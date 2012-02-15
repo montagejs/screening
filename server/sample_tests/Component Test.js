@@ -12,10 +12,10 @@ assertEqual("works!", toggleValueComponent.getProperty("value"));
 
 // Bindings with Setable values
 
-var slider = agent.component("//div[contains(@class, 'montage-slider')]");
+var slider = agent.component("//div[contains(concat(' ',normalize-space(@class),' '),' montage-slider ')]");
 slider.setProperty("value", 12);
 
-var sliderValue = agent.component("//form/div[2]/input[contains(@class, 'montage-textfield')]");
+var sliderValue = agent.component("//form/div[2]/input[@id='sliderValue']");
 assertEqual(12, sliderValue.getProperty("value"));
 
 // Test Chaining
