@@ -113,7 +113,7 @@ exports.Main = Montage.create(Component, {
                 self.scriptDetail.clearFields();
             }, false);
 
-            this.socket = io.connect("http://" + document.domain + ":8081", { resource: "screening/socket.io" });
+            this.socket = io.connect("http://" + document.domain + ":" + document.location.port, { resource: "screening/socket.io" });
 
             this._initDriver();
 
