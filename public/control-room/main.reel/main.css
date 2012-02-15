@@ -53,8 +53,8 @@ body {
     display: -webkit-box;
     -webkit-box-align: center;
     color:#aeaeae;
-    background-color: #584c4c;
-    background-image: -webkit-linear-gradient(top, #6f6161, #584c4c);
+    background-color: hsl(0, 0%, 40%);
+    background-image: -webkit-linear-gradient(top, hsl(0, 0%, 40%), hsl(0, 0%, 30%));
     
     box-sizing: border-box;
     height: 42px;
