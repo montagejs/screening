@@ -35,8 +35,7 @@ assertBetween([9.9, 10.1], h2s.length); // 9.9..10.1
 assertPrecision([10, 0.1], h2s.length); // 9.9..10.1
 
 
-var checkbox = agent.element("/html/body/div[3]/span/input");
-//var checkbox = agent.element("#testCheckbox");
+var checkbox = agent.element("#testCheckbox");
 assertFalse(checkbox.getChecked());
 assertTrue(checkbox.click().getChecked());
 

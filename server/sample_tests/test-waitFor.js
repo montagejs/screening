@@ -2,11 +2,10 @@
 script.setOption("timeout", 500);
 
 var agent = new Agent();
-agent.gotoUrl("/webapps/screening/public/sample/sample.html");
-
+agent.gotoUrl("/screening/samples/sample.html");
 var textField = agent.element("/html/body/form/div/input");
 var span = agent.element("span");
-
+var toggle = agent.element("/html/body/form/div[3]/div");
 //
 // waitForElement()
 //
@@ -23,8 +22,10 @@ var el = agent.waitForElement("body", 100);
 //
 // waitForAttributeValue()
 //
-textField.waitForAttributeValue("class", "montage-textfield");
-assertEqual("montage-textfield", textField.getAttribute("class"));
+
+toggle.waitForAttributeValue("class", "toggle montage-toggle");
+assertEqual("toggle montage-toggle", toggle.getAttribute("class"));
+
 
 // The color of the SPAN changes every second and iterates over six colors,
 // so in 8 seconds we should catch red at least once :).

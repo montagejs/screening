@@ -3,8 +3,7 @@
 
 var agent = new Agent();
 
-agent.gotoUrl("/webapps/screening/public/sample/sample.html");
-
+agent.gotoUrl("/screening/samples/sample.html");
 agent.setWindowSize(1254, 852);
 
 
@@ -38,7 +37,7 @@ assertContains("39.28571",agent.element("/HTML/BODY/FORM/DIV[2]/INPUT").getText(
 agent.wait(745);
 
 
-assertEqual("false",agent.element("/HTML/BODY/FORM/DIV[3]/INPUT").getText());
+assertEqual("",agent.element("/HTML/BODY/FORM/DIV[3]/INPUT").getText());
 
 agent.mouseMove([{"x":635,"y":162,"duration":0},{"x":584,"y":183,"duration":132},{"x":521,"y":195,"duration":51},{"x":413,"y":205,"duration":83},{"x":354,"y":195,"duration":217},{"x":305,"y":199,"duration":117},{"x":321,"y":208,"duration":1051}]);
 agent.mouseDown(321,208);
