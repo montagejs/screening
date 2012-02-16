@@ -3,12 +3,9 @@ script.setOption("sync.mode", "none");
 var agent = new Agent();
 agent.gotoUrl("/screening/control-room/ui-sample.html");
 
-var inputNode = agent.element("/html/body/div/input");
-var checkboxNode = agent.element("/html/body/div[3]/span/input");
 
-
-//var inputNode = agent.element("#testInput");
-//var checkboxNode = agent.element("#testCheckbox");
+var inputNode = agent.element("#testInput");
+var checkboxNode = agent.element("#testCheckbox");
 var scrollArea = agent.element(".scrollTest");
 
 //isFocused
@@ -53,7 +50,7 @@ checkboxNode.click();
 assertTrue(checkboxNode.getChecked());
 
 // doesExist
-assertTrue(agent.doesElementExist("/html/body/div[3]/span/input"));
+assertTrue(agent.doesElementExist("#testCheckbox"));
 assertFalse(agent.doesElementExist("selectNoneExistingElement"));
 
 //dispatchEvent
