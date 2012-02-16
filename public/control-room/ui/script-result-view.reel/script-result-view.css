@@ -62,8 +62,8 @@ table {
 }
 
 th {
-    background-color: #584C4C;
-    background-image: -webkit-linear-gradient(top, #6f6161, #584c4c);
+    background-color: hsl(0, 0%, 40%);
+    background-image: -webkit-linear-gradient(top, hsl(0, 0%, 40%), hsl(0, 0%, 30%));
     color:white;
     text-shadow: 0 1px 1px hsla(0,0%,0%,.4);
 }
