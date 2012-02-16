@@ -28,7 +28,7 @@ var resultFilter = exports.resultFilter = function(ret) {
 var Mouse = exports.Mouse = {
     LEFT   : 0,
     MIDDLE : 1,
-    RIGHT  : 2,
+    RIGHT  : 2
 };
 
 /**
@@ -88,6 +88,6 @@ var Key = exports.Key = {
     F10       : "\ue03A",
     F11       : "\ue03B",
     F12       : "\ue03C",
-    COMMAND   : "\ue03D",
+    COMMAND   : "\ue03D"
 };
 

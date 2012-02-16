@@ -222,6 +222,9 @@ var POST = exports.POST = function(request) {
     if(typeof(request.body) === "object") {
         request.body = JSON.stringify(request.body);
     }
+    if (request.body) {
+        request.body = new Buffer(request.body);
+    }
 
     options.headers['Content-Length'] = (request.body && request.body.length) ? request.body.length : "0";
 
@@ -254,7 +257,7 @@ var POST = exports.POST = function(request) {
     });
 
     if (request.body) {
-        httpReq.write(request.body, "binary");
+        httpReq.write(request.body);
     }
 
     httpReq.end();
