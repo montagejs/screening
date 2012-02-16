@@ -1,3 +1,5 @@
+/* @override http://localhost:8081/screening/control-room/ui/menu.reel/menu.css */
+
 /* <copyright>
  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
@@ -8,12 +10,34 @@
     margin-right: 5px;
 }
 
-.menu a {
+.menu a.button {
+    display: inline-block;
+    height: 24px;
+    padding: 0 8px;
+    text-shadow: 0 1px hsla(0,0%,100%,.4);
+    border: 1px solid hsl(0,0%,20%);
+    border-radius: 4px;
+    background-color: hsl(0,0%,90%);
+    background-image: -webkit-linear-gradient(top, hsla(0,0%,100%,.6), hsla(0,0%,100%,0) 50%, hsla(0,0%,0%,0) 50%, hsla(0,0%,0%,.1) );
+    box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.5), 0px 1px 1px hsla(0,0%,0%,.3);
+    -webkit-user-select: none;
+    cursor: pointer;
     outline: none;
-    color: hsl(0,0%,80%);
-}
-
-.menu a:hover {
-    color: hsl(0,0%,100%);
+    
+    color: #000;
+    font-size: 11px;
+    line-height: 24px;
+    box-sizing: border-box;
     text-decoration: none;
 }
+
+.menu a.button:hover {
+    background-color: hsl(0,0%,95%);
+}
+
+.menu a.button:active {
+    background-image: -webkit-linear-gradient(top, hsla(0,0%,0%,0), hsla(0,0%,0%,.2) );
+    box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.5);
+    -webkit-transform: translateY(1px);
+}
+
