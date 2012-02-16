@@ -8,7 +8,7 @@ agent.gotoUrl("/screening/control-room/ui-sample.html");
 var nodes = [];
 
 nodes.push(agent.element("/html/body/div/input"));
-nodes.push(agent.element("/html/body/div[3]/span/input"));
+nodes.push(agent.element("#testCheckbox"));
 nodes.push(agent.element(".scrollTest"));
 
 
