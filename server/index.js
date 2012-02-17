@@ -56,3 +56,4 @@ app.configure('development', function() {
 
 app.listen(PORT);
 console.log("Screening Server running on port " + PORT + " [" + process.env.NODE_ENV + "]");
+console.log("Screening Control Room: http://localhost:" + PORT + "/screening/control-room/index.html");
