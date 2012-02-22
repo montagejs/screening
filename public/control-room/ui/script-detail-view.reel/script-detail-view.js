@@ -31,7 +31,19 @@ exports.ScriptDetailView = Montage.create(Component, {
         value: null
     },
 
+    runButton: {
+        value: null
+    },
+
     saveButton: {
+        value: null
+    },
+
+    deleteButton: {
+        value: null
+    },
+
+    downloadButton: {
         value: null
     },
 
@@ -145,6 +157,22 @@ exports.ScriptDetailView = Montage.create(Component, {
     _codeMirror: {
         enumerable:false,
         value:null
+    },
+
+    didCreate: {
+        value: function() {
+            var self = this;
+
+            self.addEventListener("change@scriptSource", function (event) {
+                if (self.scriptSource) {
+                    self.recordButton.disabled = false;
+                    self.runButton.disabled = false;
+                    self.saveButton.disabled = false;
+                    self.deleteButton.disabled = false;
+                    self.downloadButton.disabled = false;
+                }
+            });
+        }
     },
 
     prepareForDraw: {
@@ -502,6 +530,13 @@ exports.ScriptDetailView = Montage.create(Component, {
             self.scriptNameField.value = "";
             self.scriptTags.value = "";
             self._codeMirror.setValue("");
+
+            // Disable the Record, Run, etc buttons
+            self.recordButton.disabled = true;
+            self.runButton.disabled = true;
+            self.saveButton.disabled = true;
+            self.deleteButton.disabled = true;
+            self.downloadButton.disabled = true;
         }
     }
 });
