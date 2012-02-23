@@ -18,6 +18,10 @@ exports.AgentListView = Montage.create(Component, {
         value: null
     },
 
+    webdriverDialog: {
+        value: null
+    },
+
     addWebdriverButton: {
         value: null
     },
@@ -39,17 +43,24 @@ exports.AgentListView = Montage.create(Component, {
     prepareForDraw: {
         value: function() {
             var self = this;
-            this.agentUrlText = "Go to: <server_root>/screening/agent/index.html";
-            this.webdriverUrlPrompt.addEventListener("message.ok", self._addWebDriverAgentCallback);
+            self.agentUrlText = "Go to: <server_root>/screening/agent/index.html";
+            self.webdriverUrlPrompt.addEventListener("message.ok", self._addWebDriverAgentCallback);
+            self.webdriverDialog.addEventListener("message.ok", self._webdriverDialogCallback);
         }
     },
 
     addWebDriverAgent: {
         value: function() {
             var popup = Popup.create();
-            popup.content = this.webdriverUrlPrompt; // the content inside the Popup
+            popup.content = this.webdriverDialog; // the content inside the Popup
             popup.modal = true;
             popup.show();
+        }
+    },
+
+    _webdriverDialogCallback: {
+        value: function(event) {
+            console.log("Clicked OK in WD Dialog", event);
         }
     },
 
