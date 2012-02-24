@@ -8,7 +8,7 @@ var BaseAgent = require("./base-agent.js").BaseAgent,
     simpleRequest = require("request"),
     createWebdriverSession = require('./agents-webdriver/util.js').createWebdriverSession,
     fs = require("fs"),
-    Q = require("Q");
+    Q = require("q");
     
 var WebDriverAgent = exports.WebDriverAgent = Object.create(BaseAgent, {
 
