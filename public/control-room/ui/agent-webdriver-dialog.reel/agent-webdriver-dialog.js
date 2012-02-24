@@ -9,8 +9,16 @@ exports.AgentWebdriverDialog = Montage.create(Component, {
         value: null
     },
 
-    browserName: {
+    selectedBrowserNames: {
         value: null
+    },
+
+    templateDidLoad: {
+        value: function() {
+            var self = this;
+
+            self.selectedBrowserNames.selectedIndexes = [0];
+        }
     },
 
     handleOkAction: {
@@ -19,10 +27,8 @@ exports.AgentWebdriverDialog = Montage.create(Component, {
 
             var urlAndBrowserName = {
                 url: self.url,
-                browserName: self.browserName
+                browserName: self.selectedBrowserNames.selectedObjects[0].value
             };
-
-            console.log(urlAndBrowserName);
 
             var anEvent = document.createEvent("CustomEvent");
             anEvent.initCustomEvent("message.ok", true, true, urlAndBrowserName);

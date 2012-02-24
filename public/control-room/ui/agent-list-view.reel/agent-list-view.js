@@ -60,7 +60,7 @@ exports.AgentListView = Montage.create(Component, {
 
     _webdriverDialogCallback: {
         value: function(event) {
-            console.log("Clicked OK in WD Dialog", event);
+            console.log("Clicked OK in WD Dialog", event.detail);
         }
     },
 
