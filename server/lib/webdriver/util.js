@@ -96,6 +96,12 @@ var responseHandler = function (error, response, body) {
         return response;
     }
 
+    if (response && typeof(body) === "object") {
+        // Apparently with newer node versions we may get back the parsed JSON object here instead of a string
+        // If so, just return that.
+        return body;
+    }
+
     if (response && typeof(body) !== "undefined") {
         var ret = "";
         // selenium-server sometimes return an empty body
