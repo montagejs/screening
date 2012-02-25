@@ -13,10 +13,11 @@ var BaseAgent = require("./base-agent.js").BaseAgent,
 var WebDriverAgent = exports.WebDriverAgent = Object.create(BaseAgent, {
 
     init: {
-        value: function(url, io) {
+        value: function(capabilities, url, io) {
             this.io = io;
             BaseAgent.init.apply(this, arguments);
             this.id = this.friendlyName;
+            this.capabilities = capabilities;
             this.url = url;
             this.io.sockets.in("drivers").emit("agentConnected", this.getSummary());
             
@@ -74,7 +75,7 @@ var WebDriverAgent = exports.WebDriverAgent = Object.create(BaseAgent, {
             
             // Start the webdriver session
             var session = this.recordingSession = createWebdriverSession(this.url);
-            session.init({browserName:'chrome'}, function() {
+            session.init(this.capabilities, function() {
 
                 // Navigate the new session to the recording URL
                 Q.when(session.get(recordingUrl), function() {
@@ -174,6 +175,5 @@ var WebDriverAgent = exports.WebDriverAgent = Object.create(BaseAgent, {
 
             socket.emit("resumeRecord", callback);
         }
-    },
-
+    }
 });

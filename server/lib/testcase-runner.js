@@ -113,7 +113,7 @@ TestcaseRunner.prototype._executeWebdriverTest = function(testScript, agent, opt
     var agentConstructor = function() { return new WebDriverAgent(session, sync, scriptObject, result); };
 
     // Start the webdriver session
-    session.init({browserName:'chrome'}, function() {
+    session.init(agent.capabilities, function() {
         // Execute the test, using our code synchronization system
         when(self._executeTestInVm(testScript.code, result, agentConstructor, scriptObject, sync), function() {
             // kill the webdriver session

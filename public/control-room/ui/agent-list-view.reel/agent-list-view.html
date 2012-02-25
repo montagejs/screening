@@ -63,15 +63,6 @@
                     }
                 ]
             },
-            "webdriverPrompt": {
-                "module": "common/ui/text-prompt.reel",
-                "name": "TextPrompt",
-                "properties": {
-                    "msg": "Enter Webdriver URL:",
-                    "value": "http://localhost:9515",
-                    "element": {"#": "webdriverUrlPrompt"}
-                }
-            },
             "webdriverDialog": {
                 "module": "control-room/ui/agent-webdriver-dialog.reel",
                 "name": "AgentWebdriverDialog"
@@ -81,37 +72,12 @@
                 "name": "AgentListView",
                 "properties": {
                     "element": {"#": "agentListView"},
-                    "webdriverUrlPrompt": {"@": "webdriverPrompt"},
                     "webdriverDialog": {"@": "webdriverDialog"},
                     "addWebdriverButton": {"@": "addWebdriverBtn"}
                 }
             }
         }
         </script>
-        <!-- Commented out components
-        "actioneventlistener1": {
-            "module": "montage/core/event/action-event-listener",
-            "name": "ActionEventListener",
-            "properties": {
-                "handler": {"@": "owner"},
-                "action": "launchNewAgent"
-            }
-        },
-        "button1": {
-            "module": "montage/ui/button.reel",
-            "name": "Button",
-            "properties": {
-                "element": {"#": "newAgent"}
-            },
-            "listeners": [
-                {
-                    "type": "action",
-                    "listener": {"@": "actioneventlistener1"},
-                    "capture": false
-                }
-            ]
-        },
-        -->
     </head>
     <body>
         <div id="agentListView" class="agentListView">
