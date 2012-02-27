@@ -5,7 +5,6 @@
  </copyright> */
 var settings = require("./settings.js"),
     express = require("express"),
-    sys = require("sys"),
     fs = require("fs"),
     path = require("path"),
     argv = require("optimist").argv,
