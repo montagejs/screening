@@ -7,9 +7,45 @@
  </copyright> */
 
 .resultsSearch {
-    
+    display: -webkit-box;
+    padding-right: 6px;
 }
 
 .resultsSearchBox {
-    width: 200px;
+    width: 220px;
+}
+
+
+.resultsSearch .resultsSearchBox {
+    -webkit-appearance: none;
+    display: block;
+    -webkit-box-flex: 1;
+    margin: 0 0 0 6px;
+    padding-left: 4px;
+    height: 24px;
+    border-radius: 4px 0 0 4px;
+    border: 1px solid hsl(0,0%,15%);
+    border-right: none;
+    background-color: hsl(0,0%,97%);
+    box-shadow: inset 0px 1px 1px hsla(0,0%,0%,.2);
+    outline: none;
+}
+.resultsSearch .resultsSearchBox::-webkit-search-cancel-button {
+    margin-left: 4px;
+}
+.resultsSearch .resultsSearchBox::-webkit-search-decoration {
+    display: none; /* Removes the padding on the left */
+}
+
+.resultsSearch .resultsSearchBox:hover {
+    background-color: hsl(0,0%,94%);
+}
+.resultsSearch .resultsSearchBox:focus {
+    background-color: hsl(0,0%,100%);
+}
+
+.resultsSearch .search {
+    margin: 0;
+    border-radius: 0 4px 4px 0;
+    border-left: none;
 }

@@ -219,6 +219,7 @@ exports.Main = Montage.create(Component, {
             } else if (!newScript) {
                 //this.scriptDetail.element.style.display = "none";
                 this.emptyDetail.style.display = "table";
+                self.scriptDetail.clearFields();
             }
 
             if (newScript) {

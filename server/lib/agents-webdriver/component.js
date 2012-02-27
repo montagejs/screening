@@ -15,7 +15,7 @@ var Q = require("q"),
     Warning = require('../testcase/warning').Warning;
 
 /**
- * @class screening/component.WebDriverComponent
+ * @class module:screening/component.WebDriverComponent
  * @classdesc This class provides all methods that can be executed on a selected component.
 */
 var WebDriverComponent = exports.WebDriverComponent = function(agent, element){
@@ -38,7 +38,7 @@ WebDriverComponent.prototype.getProperty = function(propName){
 
 /**
  * Set the value of the specified component property.
- * @function module:screening/agent.WebDriverAgent#setProperty
+ * @function module:screening/component.WebDriverAgent#setProperty
  * @param {String} attrName The attribute name to query.
  * @para, value Value to set the attribute to.
  * @return {Component} A reference to this, to allow chaining.
@@ -51,7 +51,7 @@ WebDriverComponent.prototype.setProperty = function(propName, value){
 
 /**
  * Call a function on the component.
- * @function module:screening/agent.WebDriverAgent#callMethod 
+ * @function module:screening/component.WebDriverAgent#callMethod 
  * @param {String} func Function name to call.
  * @para, {Array} args Array of values to pass to the function as arguments.
  * @return The return value of the called function.
