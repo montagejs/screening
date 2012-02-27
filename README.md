@@ -1,7 +1,6 @@
 # Screening
 
 Screening is a testing tool for Montaged-based applications.
-
 It runs as a Node.js web application and creates its own server.
 
 # Installation Instructions
