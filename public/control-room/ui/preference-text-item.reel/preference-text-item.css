@@ -1,5 +1,37 @@
+/* @override http://localhost:8081/screening/control-room/ui/preference-text-item.reel/preference-text-item.css */
+
 /* <copyright>
  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
+ 
+ .preferenceTextItem > input {
+     display: inline-block;
+     text-shadow: hsl(0,0%,95%) 0 1px 0;
+     padding: 8px;
+     border-radius: 8px;
+     font-size: 16px;
+ 
+     border: 1px solid hsl(0,0%,70%);
+     background-color: hsl(0,0%,95%);
+     box-shadow: inset 0px 1px 2px hsla(0,0%,0%,.1),
+                         0 1px 0 hsla(0,0%,100%,.6);
+ }
+ .preferenceTextItem > input:focus {
+     outline: none;
+ 
+     border: 1px solid hsl(200,100%,50%);
+     background-color: hsl(200,50%,95%);
+     box-shadow: inset 0px 1px 2px hsla(200,50%,30%,.3),
+                         0 1px 0 hsla(0,0%,100%,.6);
+ }
+ 
+ /* Spin button */
+ .preferenceTextItem > input::-webkit-outer-spin-button {
+     margin-left: 3px;
+     font-size: large;
+ }
+ .preferenceTextItem > input::-webkit-inner-spin-button {
+     font-size: large;
+ }
