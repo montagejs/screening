@@ -10,16 +10,19 @@
 
 .buttonGroup {
     display: -webkit-box;
+    display: -moz-box;
     padding: 0 4px;
 }
 
 .buttonToggle {
     display: -webkit-box;
+    display: -moz-box;
     padding: 0 2px;
 }
 
 .buttonGroup.spacer {
     -webkit-box-flex: 1;
+    -moz-box-flex: 1;
 }
 
 .buttonGroup button {
@@ -54,8 +57,10 @@ button {
     border-radius: 4px;
     background-color: hsl(0,0%,90%);
     background-image: -webkit-linear-gradient(top, hsla(0,0%,100%,.6), hsla(0,0%,100%,0) 50%, hsla(0,0%,0%,0) 50%, hsla(0,0%,0%,.1) );
+    background-image: -moz-linear-gradient(top, hsla(0,0%,100%,.6), hsla(0,0%,100%,0) 50%, hsla(0,0%,0%,0) 50%, hsla(0,0%,0%,.1) );
     box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.7), 0px 1px 1px hsla(0,0%,0%,.15);
     -webkit-user-select: none;
+    -moz-user-select: none;
     cursor: pointer;
     outline: none;
 }
@@ -66,8 +71,10 @@ button:hover {
 
 button:active {
     background-image: -webkit-linear-gradient(top, hsla(0,0%,0%,0), hsla(0,0%,0%,.2) );
+    background-image: -moz-linear-gradient(top, hsla(0,0%,0%,0), hsla(0,0%,0%,.2) );
     box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.5);
     -webkit-transform: translateY(1px);
+    -moz-transform: translateY(1px);
 }
 
 /* States */

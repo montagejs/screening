@@ -8,7 +8,9 @@
 
 .scriptSearch {
     display: -webkit-box;
+    display: -moz-box;
     -webkit-box-align: center;
+    -moz-box-align: center;
     height: 42px;
     padding: 0 8px;
     border-bottom: 1px solid hsl(0,0%,83%);
@@ -16,6 +18,7 @@
 
 .scriptSearch .searchScope {
     -webkit-appearance: none;
+    -moz-appearance: none;
     position: relative;
     display: block;
     height: 24px;
@@ -29,6 +32,7 @@
     background-position: right center;
     box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.7), 0px 1px 1px hsla(0,0%,0%,.15);
     -webkit-user-select: none;
+    -moz-user-select: none;
     cursor: pointer;
     outline: none;
 }
@@ -38,8 +42,10 @@
 
 .scriptSearch .scriptSearchBox {
     -webkit-appearance: none;
+    -moz-appearance: none;
     display: block;
     -webkit-box-flex: 1;
+    -moz-box-flex: 1;
     margin: 0 0 0 6px;
     padding-left: 4px;
     height: 24px;

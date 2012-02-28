@@ -12,17 +12,9 @@
 }
 
 .scriptListView .scriptList {
-    display: box;
     display: -webkit-box;
-    display: -moz-box;
-    
-    box-orient: vertical;
     -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    
-    box-flex: 1;
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;     
 }
 
 .scriptListView.noUploader .scriptList {
@@ -57,9 +49,7 @@
 /* List */
 
 .scriptList .montage-list-scrollView {
-    box-flex: 1;
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;
 }
 
 .scriptList li {
