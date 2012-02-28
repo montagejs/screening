@@ -8,6 +8,7 @@
 
 .resultsSearch {
     display: -webkit-box;
+    display: -moz-box;
     padding-right: 6px;
 }
 
@@ -18,8 +19,10 @@
 
 .resultsSearch .resultsSearchBox {
     -webkit-appearance: none;
+    -moz-appearance: none;
     display: block;
     -webkit-box-flex: 1;
+    -moz-box-flex: 1;
     margin: 0 0 0 6px;
     padding-left: 4px;
     height: 24px;

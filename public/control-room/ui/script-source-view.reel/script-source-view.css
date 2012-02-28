@@ -47,6 +47,7 @@ textarea {
     
     background-color: #17b1e9;
     -webkit-background-clip: text;
+    -moz-background-clip: text;
     color: transparent;
     text-shadow: rgba(255,255,255,0.5) 0 5px 6px;
 }

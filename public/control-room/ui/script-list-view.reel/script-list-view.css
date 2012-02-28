@@ -12,15 +12,10 @@
 }
 
 .scriptListView .scriptList {
-    display: box;
     display: -webkit-box;
-    display: -moz-box;
-    
-    box-orient: vertical;
+    display: -moz-box;  
     -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    
-    box-flex: 1;
+    -moz-box-orient: vertical;   
     -webkit-box-flex: 1;
     -moz-box-flex: 1;     
 }
@@ -38,6 +33,7 @@
 
 .scriptList .menuBar {
     -webkit-box-pack: justify;
+    -moz-box-pack: justify;
 }
 
 .scriptList .menuButtons {
@@ -57,7 +53,6 @@
 /* List */
 
 .scriptList .montage-list-scrollView {
-    box-flex: 1;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
 }
