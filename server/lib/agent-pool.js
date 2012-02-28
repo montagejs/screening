@@ -54,7 +54,7 @@ var AgentPool = Object.create(Object, {
             var agent;
             var self = this;
             if(config.type == this.agentTypes.WEBDRIVER) {
-                agent = Object.create(WebDriverAgent).init(config.url, this.io);
+                agent = Object.create(WebDriverAgent).init(caps, config.url, this.io);
                 agent.type = config.type;
                 this.agents[agent.friendlyName] = agent;
                 // removing a webdriver agent when it is not available anymore
