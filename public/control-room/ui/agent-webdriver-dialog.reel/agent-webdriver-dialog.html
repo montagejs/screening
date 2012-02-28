@@ -1,0 +1,100 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+        <link rel="stylesheet" type="text/css" href="agent-webdriver-dialog.css">
+        <script type="text/montage-serialization">
+            {
+                "owner": {
+                    "module": "control-room/ui/agent-webdriver-dialog.reel",
+                    "name": "AgentWebdriverDialog",
+                    "properties": {
+                        "element": {"#": "webdriverDialog"}
+                    }
+                 },
+
+                "url": {
+                    "module": "montage/ui/textfield.reel",
+                    "name": "Textfield",
+                    "properties": {
+                        "element": {"#": "url"}
+                    },
+                    "bindings": {
+                        "value": {
+                            "boundObject": {"@": "owner"},
+                            "boundObjectPropertyPath": "url",
+                            "oneway": false
+                        }
+                    }
+                },
+
+                "browserName": {
+                    "module": "montage/ui/select-input.reel",
+                    "name": "SelectInput",
+                    "properties": {
+                        "element": {"#": "browserName"}
+                    },
+                    "bindings": {
+                        "contentController.selectedObjects": {
+                            "boundObject": {"@": "owner"},
+                            "boundObjectPropertyPath": "selectedBrowserNames",
+                            "oneway": false
+                        }
+                    }
+                },
+
+                "ok": {
+                    "module": "montage/ui/button.reel",
+                    "name": "Button",
+                    "properties": {
+                        "identifier": "Ok",
+                        "element": {"#": "ok"}
+                    },
+                    "listeners": [
+                        {
+                            "type": "action",
+                            "listener": {"@": "owner"}
+                        }
+                    ]
+                },
+                
+                "cancel": {
+                    "module": "montage/ui/button.reel",
+                    "name": "Button",
+                    "properties": {
+                        "identifier": "Cancel",
+                        "element": {"#": "cancel"}
+                    },
+                    "listeners": [
+                        {
+                            "type": "action",
+                            "listener": {"@": "owner"}
+                        }
+                    ]
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <div id="webdriverDialog" class="webdriverDialog">
+            <div id="content">
+                <div id="agentUrl">
+                    <label for="url">URL</label>
+                    <input type="text" id="url"/>
+                </div>
+                <div id="agentBrowserName">
+                    <label for="browserName">Browser</label>
+                    <select id="browserName">
+                        <option value="chrome">Chrome</option>
+                        <option value="firefox">Firefox</option>
+                    </select>
+                </div>
+                <div id="buttons">
+                    <button id="ok">Ok</button>
+                    <button id="cancel">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

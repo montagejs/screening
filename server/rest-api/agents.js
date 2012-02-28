@@ -185,12 +185,18 @@ module.exports = function(agentPool, testcaseRunner) {
      * Add a remote webdriver to our agentpool
      */
     app.post("/webdriver", function(req, res, next) {
-        var body = req.body;
-        var url = body.url;
+        var body = req.body,
+            url = body.url,
+            browserName = body.browserName;
         if(!url) {
-            console.log("No webdriver URL was passed.");
+            console.error("No webdriver URL was passed.");
             res.statusCode = 400;
             return next(new Error('Webdriver base-URL was not passed.'));
+        }
+        if(!browserName) {
+            console.error("No browserName specified.");
+            res.statusCode = 400;
+            return next(new Error('Webdriver browserName not specified.'));
         }
         // testing the connected agent
         url = url.replace(/\/$/, "");
@@ -202,7 +208,7 @@ module.exports = function(agentPool, testcaseRunner) {
                 return next(new Error(errorMsg));
             }
             else {
-                var agent = agentPool.addAgent({}, {
+                var agent = agentPool.addAgent({browserName: browserName}, {
                     url: url,
                     type: agentPool.agentTypes.WEBDRIVER
                 });

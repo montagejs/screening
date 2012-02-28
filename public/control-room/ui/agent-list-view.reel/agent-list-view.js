@@ -14,7 +14,7 @@ exports.AgentListView = Montage.create(Component, {
         value: null
     },
 
-    webdriverUrlPrompt: {
+    webdriverDialog: {
         value: null
     },
 
@@ -22,40 +22,24 @@ exports.AgentListView = Montage.create(Component, {
         value: null
     },
     
-    _agentUrlText: {
-        enumerable: false,
-        value: ""
-    },
-    
-    agentUrlText: {
-        get: function() {
-            return this._agentUrlText;
-        },
-        set: function(value) {
-            this._agentUrlText = value;
-        }
-    },
-    
-    prepareForDraw: {
+    templateDidLoad: {
         value: function() {
             var self = this;
-            this.agentUrlText = "Go to: <server_root>/screening/agent/index.html";
-            this.webdriverUrlPrompt.addEventListener("message.ok", self._addWebDriverAgentCallback);
+            self.webdriverDialog.addEventListener("message.ok", self._webdriverDialogCallback);
         }
     },
 
     addWebDriverAgent: {
         value: function() {
             var popup = Popup.create();
-            popup.content = this.webdriverUrlPrompt; // the content inside the Popup
+            popup.content = this.webdriverDialog; // the content inside the Popup
             popup.modal = true;
             popup.show();
         }
     },
 
-    _addWebDriverAgentCallback: {
+    _webdriverDialogCallback: {
         value: function(event) {
-            var self = this;
             var req = new XMLHttpRequest();
             req.open("POST", "/screening/api/v1/agents/webdriver?api_key=5150", true);
             req.setRequestHeader("Content-Type", "application/json");
@@ -65,9 +49,7 @@ exports.AgentListView = Montage.create(Component, {
                     Alert.show(resp.error);
                 }
             };
-            req.send(JSON.stringify({
-                url: self.value
-            }));
+            req.send(JSON.stringify(event.detail));
         }
     }
 });
