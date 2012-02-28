@@ -7,13 +7,8 @@
  </copyright> */
 
 .scriptDetail {
-    display: box;
     display: -webkit-box;
-    display: -moz-box;
-    
-    box-orient: vertical;
     -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;    
 }
 
 
@@ -96,13 +91,9 @@
 /* CodeMirror */
 
 .CodeMirror {
-    box-flex: 1;
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;
-    
     overflow-y: auto;
     overflow-x: auto;
-    
     background-color: hsl(0, 0%, 98%);
     font-size: 1.1em;
     border-left: 1px solid hsl(0, 0%, 80%);   

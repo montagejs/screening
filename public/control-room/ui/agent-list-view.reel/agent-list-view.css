@@ -7,13 +7,8 @@
  </copyright> */
 
 .agentListView {
-    display: box;
     display: -webkit-box;
-    display: -moz-box;
-    
-    box-orient: vertical;
     -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
 }
 
 .agentListView .agentList {
