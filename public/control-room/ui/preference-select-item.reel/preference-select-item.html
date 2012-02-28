@@ -24,30 +24,41 @@
                     }
                 }
             },
-            "combobox1": {
-                "module": "montage/ui/select-input.reel",
-                "name": "SelectInput",
+            "optionsController": {
+                "name": "ArrayController",
+                "module": "montage/ui/controller/array-controller",
                 "properties": {
-                    "element": {"#": "value"}
+                    "selectObjectsOnAddition": true,
+                    "automaticallyOrganizeObjects": true
                 },
                 "bindings": {
-                    "options": {
+                    "content": {
                         "boundObject": {"@": "owner"},
                         "boundObjectPropertyPath": "preferenceObject.options",
                         "oneway": false
                     },
-                    "value": {
+                    "selectedObjects.0": {
                         "boundObject": {"@": "owner"},
                         "boundObjectPropertyPath": "preferenceObject.value",
                         "oneway": false
                     }
                 }
             },
+            "selectInput": {
+                "module": "montage/ui/select-input.reel",
+                "name": "SelectInput",
+                "properties": {
+                    "element": {"#": "value"},
+                    "contentController": {"@": "optionsController"}
+                }
+            },
             "owner": {
                 "module": "control-room/ui/preference-select-item.reel",
                 "name": "PreferenceSelectItem",
                 "properties": {
-                    "element": {"#": "preferenceSelectItem"}
+                    "element": {"#": "preferenceSelectItem"},
+                    "optionsController": {"@": "optionsController"},
+                    "selectInput": {"@": "selectInput"}
                 }
             }
         }

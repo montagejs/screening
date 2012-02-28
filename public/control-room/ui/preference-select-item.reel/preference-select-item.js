@@ -4,16 +4,24 @@
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
 var Montage = require("montage/core/core").Montage;
-var Component = require ("montage/ui/component").Component;
+var Component = require("montage/ui/component").Component;
 
 exports.PreferenceSelectItem = Montage.create(Component, {
     preferenceObject: {
         value: null
     },
-    
-    prepareForDraw: {
+
+    optionsController: {
+        value: null
+    },
+
+    selectInput: {
+        value: null
+    },
+
+    templateDidLoad: {
         value: function() {
-            // console.log(this.preferenceObject);
+            this.optionsController.selectedObjects = [this.preferenceObject.value];
         }
     }
 });
