@@ -136,6 +136,11 @@ module.exports = function(scriptsProvider) {
         scriptsProvider.findById(req.params.id, function(err, script) {
             if (err) return next(new Error(err));
 
+            if(!script) {
+                res.statusCode = 400;
+                return next({message: "The script " + req.params.id + " does not exist."});
+            }
+
             hydrateAttributes(script);
             res.send(script);
         });
