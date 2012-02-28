@@ -24,30 +24,41 @@
                     }
                 }
             },
-            "combobox1": {
-                "module": "control-room/ui/combo-box.reel",
-                "name": "ComboBox",
+            "optionsController": {
+                "name": "ArrayController",
+                "module": "montage/ui/controller/array-controller",
                 "properties": {
-                    "element": {"#": "value"}
+                    "selectObjectsOnAddition": true,
+                    "automaticallyOrganizeObjects": true
                 },
                 "bindings": {
-                    "options": {
+                    "content": {
                         "boundObject": {"@": "owner"},
                         "boundObjectPropertyPath": "preferenceObject.options",
                         "oneway": false
                     },
-                    "value": {
+                    "selectedObjects.0": {
                         "boundObject": {"@": "owner"},
                         "boundObjectPropertyPath": "preferenceObject.value",
                         "oneway": false
                     }
                 }
             },
+            "selectInput": {
+                "module": "montage/ui/select-input.reel",
+                "name": "SelectInput",
+                "properties": {
+                    "element": {"#": "value"},
+                    "contentController": {"@": "optionsController"}
+                }
+            },
             "owner": {
                 "module": "control-room/ui/preference-select-item.reel",
                 "name": "PreferenceSelectItem",
                 "properties": {
-                    "element": {"#": "preferenceSelectItem"}
+                    "element": {"#": "preferenceSelectItem"},
+                    "optionsController": {"@": "optionsController"},
+                    "selectInput": {"@": "selectInput"}
                 }
             }
         }
@@ -56,7 +67,7 @@
     <body>
         <div id="preferenceSelectItem" class="preferenceSelectItem value">
             <label id="name"></label>
-            <select id="value" class="value" style="width:120px;"></select>
+            <select id="value" class="value"></select>
         </div>
     </body>
 </html>
