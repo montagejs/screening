@@ -8,9 +8,7 @@
 
 .scriptDetail {
     display: -webkit-box;
-    display: -moz-box;
     -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;    
 }
 
 
@@ -48,9 +46,7 @@
 
 .scriptDetail .codeHeader {
     display: -webkit-box;
-    display: -moz-box;
     -webkit-box-align: center;
-    -moz-box-align: center;
     height: 42px;
     color: hsl(0,0%,60%);
     background-color: hsl(0, 0%, 90%);
@@ -67,7 +63,6 @@
 .scriptDetail .codeHeader input {
     display: block;
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;
     margin-right: 20px;
     padding: 3px 3px 3px 0px;
     color: #000000;
@@ -97,7 +92,6 @@
 
 .CodeMirror {
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;    
     overflow-y: auto;
     overflow-x: auto;
     background-color: hsl(0, 0%, 98%);

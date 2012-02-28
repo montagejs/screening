@@ -28,7 +28,6 @@
     border-radius: 4px;
     background-color: hsl(0,0%,90%);
     background-image: url(select-icon.png), -webkit-linear-gradient(top, hsla(0,0%,100%,.6), hsla(0,0%,100%,0) 50%, hsla(0,0%,0%,0) 50%, hsla(0,0%,0%,.1) );
-    background-image: url(select-icon.png), -moz-linear-gradient(top, hsla(0,0%,100%,.6), hsla(0,0%,100%,0) 50%, hsla(0,0%,0%,0) 50%, hsla(0,0%,0%,.1) );
     background-repeat: no-repeat;
     background-position: right center;
     box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.7), 0px 1px 1px hsla(0,0%,0%,.15);

@@ -30,9 +30,6 @@ a:hover {
     display: -webkit-box;
     -webkit-box-align: center;
     -webkit-box-pack: justify;
-    display: -moz-box;
-    -moz-box-align: center;
-    -moz-box-pack: justify;
     color:#aeaeae;
     background-color: hsl(0, 0%, 40%);
     background-image: -webkit-linear-gradient(top, hsl(0, 0%, 40%), hsl(0, 0%, 30%));
@@ -73,3 +70,39 @@ a:hover {
         border: none;
     }
 }
+
+
+
+
+/* Quick Firefox hack. This feels pretty wrong, sorry to whoever has to change this. ;-) */
+
+@-moz-document url-prefix() { 
+
+    .logo,
+    .resultsSearch,
+    .resultsSearch .resultsSearchBox,
+    .button-group {
+        display: inline-block;
+    }
+    
+    .logo {
+        float: left;
+    }
+
+    .resultsSearch {
+        float: right;
+        margin-top: 7px;
+    }
+    
+    .controls h1,
+    .controls > div {
+        display: inline-block;
+    }
+    
+    .controls .paging {
+        float: right;
+    }
+
+}
+
+

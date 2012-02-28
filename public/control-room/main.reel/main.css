@@ -32,14 +32,12 @@ body {
 .scriptManager #scriptList {
     width: 300px;
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;
     border-right: 3px solid #898989;
 }
 
 .scriptManager #preferenceView {
     width:300px;
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;
     border-left: 3px solid #898989;
 }
 
@@ -49,9 +47,7 @@ body {
 
 .scriptManager .menuBar {
     display: -webkit-box;
-    display: -moz-box;
     -webkit-box-align: center;
-    -moz-box-align: center;
     color:#aeaeae;
     background-color: hsl(0, 0%, 40%);
     background-image: -webkit-linear-gradient(top, hsl(0, 0%, 40%), hsl(0, 0%, 30%));
@@ -74,7 +70,6 @@ body {
 }
 
 .scriptManager .scriptDetail {
-    display: none;
     height: 100%;
     width: 100%;   
 }
@@ -96,14 +91,12 @@ body {
 
 .mon-dock-view .dockHorizontalPanel {
     display: -webkit-box;
-    display: -moz-box;
 }
 
-.mon-dock-view, .mon-dock-view .dockVerticalPanel {
+.mon-dock-view, 
+.mon-dock-view .dockVerticalPanel {
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    display: -moz-box;
-    -moz-box-orient: vertical;
 }
 
 .mon-dock-view .dockPanel {
@@ -112,5 +105,109 @@ body {
 
 .mon-dock-view .flexFill {
     -webkit-box-flex: 1;
-    -moz-box-flex: 1;
+}
+
+
+
+/* Quick Firefox hack. This feels pretty wrong, sorry to whoever has to change this. ;-) */
+
+@-moz-document url-prefix() { 
+    
+    body {
+        overflow: hidden;
+    }
+    
+    /* Middle */
+    #middleDockArea {
+        position: absolute;
+        width: 100%;
+        top: 0;
+        bottom: 155px;
+    }
+    
+    #leftDockArea {
+        position: absolute;
+        width: 300px;
+        top: 0;
+        left: 0;
+        height: 100%;
+    }
+    
+    .scriptSearch .searchScope {
+        padding: 4px 6px 0 4px;
+        background-image: -moz-linear-gradient(top, hsla(0,0%,100%,.6), hsla(0,0%,100%,0) 50%, hsla(0,0%,0%,0) 50%, hsla(0,0%,0%,.1) );
+    }
+
+    #leftDockArea .scriptListView {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    #leftDockArea .scriptList .menuBar .logo {
+        float: left;
+    }
+    #leftDockArea .scriptList .menuBar .menuButtons {
+        float: right;
+        margin-top: 10px;
+    }
+    
+    
+    /* Central */
+    
+    #centralDockArea {
+        position: absolute;
+        top: 0;
+        left: 300px;
+        right: 0;
+        height: 100%;
+    }
+    #centralDockArea .menuBar > div {
+        margin-top: 10px;
+    }
+    
+    #centralDockArea .codeHeader {
+        overflow: hidden;
+    }
+    
+    #centralDockArea .codeHeader label,
+    #centralDockArea .codeHeader input {
+        margin-top: 3px;
+        display: inline-block;
+    }
+    #centralDockArea .codeHeader label {
+        width: auto;
+    }
+    
+    .scriptDetail .codeHeader .tags {
+        width: 280px;
+    }
+    .scriptDetail .codeHeader input:-moz-placeholder {
+        font-size: 11px;
+        padding-top: 4px;
+        color: #999;
+    }
+    
+    .CodeMirror {
+        position: absolute;
+        top: 85px;
+        width: 100%;
+        bottom: 0;
+    }
+    
+    
+    /* Bottom */
+    #bottomDockArea {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+    }
+    .scriptManager .agentList {
+        height: 155px;
+    }
+    .agentListView .menuBar button {
+        margin-top: 10px;
+    }
+
+
 }

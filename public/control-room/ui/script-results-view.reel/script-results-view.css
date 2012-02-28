@@ -8,11 +8,8 @@
 
 .controls {
     display: -webkit-box;
-    display: -moz-box;
     -webkit-box-align: center;
-    -moz-box-align: center;
     -webkit-box-pack: justify;
-    -moz-box-pack: justify;
     padding: 10px;
     background-color: hsl(0,0%,70%);
 }
