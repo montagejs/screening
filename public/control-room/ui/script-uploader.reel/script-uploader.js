@@ -93,11 +93,12 @@ exports.ScriptUploader = Montage.create(Component, {
                         req.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
                         req.onload = function(event) {
                             var script = JSON.parse(this.responseText);
- 
+                            var scriptAddedMsg = (files.length === 1) ? "Your Script has been added" : "Your Scripts have been added";
+
                             if(event.target.status === 200){
                                 self._dispatchUploadEvent(event, script)
-                            
-                                Alert.show("Your Script has been added", function() {
+
+                                Alert.show(scriptAddedMsg, function() {
                                     // Maybe select the script in the future.
                                 });
                             } else {
