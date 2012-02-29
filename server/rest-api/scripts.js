@@ -136,7 +136,7 @@ module.exports = function(scriptsProvider) {
         scriptsProvider.findById(req.params.id, function(err, script) {
             if (err) return next(new Error(err));
 
-            if(!script) {
+            if (!script) {
                 res.statusCode = 400;
                 return next({message: "The script " + req.params.id + " does not exist."});
             }
@@ -157,6 +157,11 @@ module.exports = function(scriptsProvider) {
 
         scriptsProvider.findById(req.params.id, function(err, script) {
             if (err) return next(new Error(err));
+
+            if (!script) {
+                res.statusCode = 400;
+                return next({message: "The script " + req.params.id + " does not exist."});
+            }
 
             res.header('Content-Type', 'text/plain');
             res.header('Pragma', 'private');
