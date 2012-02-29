@@ -71,6 +71,7 @@ exports.configureServer = function(customMongoDbProvider) {
     });
 
     // REST-API wiring
+    routingConfig.apiKeyAuth(app);
     app.use(routingConfig.apiRoot + "/agents", agentsApi);
     app.use(routingConfig.apiRoot + "/scripts", scriptsApi);
     app.use(routingConfig.apiRoot + "/test_results", testResultsApi);

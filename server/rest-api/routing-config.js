@@ -4,12 +4,13 @@
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
 const apiV1Root = '/api/v1';
+const HTTP_200_OK = 200;
+const HTTP_401_UNAUTHORIZED = 401;
+const HTTP_404_NOT_FOUND = 404;
+const HTTP_500_INTERNAL_SERVER_ERROR = 500;
 
-exports.init = function(app) {
-    const HTTP_200_OK = 200;
-    const HTTP_401_UNAUTHORIZED = 401;
-    const HTTP_404_NOT_FOUND = 404;
-    const HTTP_500_INTERNAL_SERVER_ERROR = 500;
+exports.apiKeyAuth = function(app) {
+    var apiKeys = ['0000', '5150', '2112'];
 
     app.use(apiV1Root, function(req, res, next) {
         var key = req.query['api_key'];
@@ -30,6 +31,9 @@ exports.init = function(app) {
         req.key = key;
         next();
     });
+}
+
+exports.init = function(app) {
 
     app.use(app.router);
 
@@ -51,8 +55,6 @@ exports.init = function(app) {
     app.use(apiV1Root, function(req, res) {
         res.send({ error: "Resource not found" }, HTTP_404_NOT_FOUND);
     });
-
-    var apiKeys = ['0000', '5150', '2112'];
 }
 
 /**
