@@ -32,7 +32,7 @@ exports.AgentView = Montage.create(Component, {
             var self = this;
             var clickListener = function(){
                 var xhr = new XMLHttpRequest();
-                var removeAgentUrl = "/screening/api/v1/agents/" + encodeURIComponent(self.agent.info.id);
+                var removeAgentUrl = "/screening/api/v1/agents/" + encodeURIComponent(self.agent.info.id) + "?api_key=5150";
                 xhr.open("DELETE", removeAgentUrl);
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.send();
