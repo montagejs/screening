@@ -31,10 +31,8 @@ exports.ScriptListView = Montage.create(Component, {
             self.scriptUploader.addEventListener('uploadEvent', this, false);
 
             self.element.addEventListener("keyup", function(evt) {
-                if(evt.keyCode === 13) {
-                    debugger;
-                    self.dispatchEvent(MutableEvent.changeEventForKeyAndValue("selectedObjects" , this.scriptSource));
-                    console.log('event getting fired', evt);
+                if(evt.keyCode === 13) { // Enter Key Code
+                    self.scriptController.selectedObjects = [document.activeElement.controller.scriptSource]
                 }
             });
         }
