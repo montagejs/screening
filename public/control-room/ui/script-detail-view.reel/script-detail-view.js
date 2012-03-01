@@ -432,7 +432,7 @@ exports.ScriptDetailView = Montage.create(Component, {
                 return;
             }
             var agent = this.activeAgents[0];
-            var app = this.urlPrompt.value;
+            var urlToRecord = this.urlPrompt.value;
             this._recordingAgent = agent;
             this.recordButton.label = "Stop Recording";
             this._recordingPaused = false;
@@ -441,8 +441,8 @@ exports.ScriptDetailView = Montage.create(Component, {
 
             var req = new XMLHttpRequest();
             req.open("POST", "/screening/api/v1/agents/" + agent.info.id + "/recording?api_key=5150", true);
-            req.setRequestHeader("Content-Type", "text/plain");
-            req.send(app);
+            req.setRequestHeader("Content-Type", "application/json");
+            req.send(JSON.stringify({url: urlToRecord}));
         }
     },
 
