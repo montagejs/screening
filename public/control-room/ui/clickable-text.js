@@ -56,7 +56,7 @@ exports.ClickableText = Montage.create(DynamicText, {
                             console.log("result of PUT: ", data);
                         }, false);
 
-                        var testResultsUrl = "/screening/api/v1/test_results/" + self._value.id;
+                        var testResultsUrl = "/screening/api/v1/test_results/" + self._value.id + "?api_key=5150";
                         xhr.open("PUT", testResultsUrl);
 
                         xhr.setRequestHeader("Content-Type", "application/json");
