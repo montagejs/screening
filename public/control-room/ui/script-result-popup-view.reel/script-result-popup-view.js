@@ -33,7 +33,7 @@ exports.ScriptResultPopupView = Montage.create(Component, {
                 self.status = data.status;
             }, false);
 
-            var url = "/screening/api/v1/test_results/" + self.testcaseId;
+            var url = "/screening/api/v1/test_results/" + self.testcaseId + "?api_key=5150";
             xhr.open("GET", url);
             xhr.send();
 
