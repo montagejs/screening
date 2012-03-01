@@ -6,6 +6,7 @@
 var Montage = require("montage/core/core").Montage;
 var Component = require("montage/ui/component").Component;
 var ScriptSource = require("control-room/script-source").ScriptSource;
+var Keyboard = require("common/keyboard").Keyboard;
 
 exports.ScriptListView = Montage.create(Component, {
     scriptController: {
@@ -31,7 +32,7 @@ exports.ScriptListView = Montage.create(Component, {
             self.scriptUploader.addEventListener('uploadEvent', this, false);
 
             self.element.addEventListener("keyup", function(evt) {
-                if(evt.keyCode === 13) { // Enter Key Code
+                if(evt.keyCode === Keyboard.keyNames["ENTER"]) { // Enter Key Code
                     self.scriptController.selectedObjects = [document.activeElement.controller.scriptSource]
                 }
             });
