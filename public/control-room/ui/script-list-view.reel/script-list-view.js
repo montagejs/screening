@@ -36,6 +36,16 @@ exports.ScriptListView = Montage.create(Component, {
                     self.scriptController.selectedObjects = [document.activeElement.controller.scriptSource]
                 }
             });
+
+            self.element.addEventListener("keydown", function(evt){
+                if(evt.keyCode === Keyboard.keyNames["UP"]) {
+                    document.activeElement.parentElement.previousElementSibling.firstElementChild.focus();
+                }
+
+                if(evt.keyCode === Keyboard.keyNames["DOWN"]) {
+                    document.activeElement.parentElement.nextElementSibling.firstElementChild.focus();
+                }
+            });
         }
     },
 
