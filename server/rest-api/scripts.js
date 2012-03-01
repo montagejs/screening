@@ -138,7 +138,7 @@ module.exports = function(scriptsProvider) {
 
             if (!script) {
                 res.statusCode = 400;
-                return next({message: "The script " + req.params.id + " does not exist."});
+                return next({message: _scriptDoesNotExistMsg(req.params.id)});
             }
 
             hydrateAttributes(script);
@@ -160,7 +160,7 @@ module.exports = function(scriptsProvider) {
 
             if (!script) {
                 res.statusCode = 400;
-                return next({message: "The script " + req.params.id + " does not exist."});
+                return next({message: _scriptDoesNotExistMsg(req.params.id)});
             }
 
             res.header('Content-Type', 'text/plain');
@@ -305,6 +305,10 @@ module.exports = function(scriptsProvider) {
             modified: stat.mtime,
             code: file
         };
+    }
+
+    function _scriptDoesNotExistMsg(scriptId) {
+        return "The script " + scriptId + " does not exist.";
     }
 
     return app;
