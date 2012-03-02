@@ -92,6 +92,9 @@ TestcaseRunner.prototype._executeWebdriverTest = function(testScript, agent, opt
     var session = createWebdriverSession(agent.url);
     var sync = Object.create(Sync).init();
 
+    // Validate that the passed testScript object contains code and name
+    if(!testScript.code || !testScript.name) throw new Error("testScript must be an object with code and name properties.");
+
     // Create the result object
     var result = new Result(agent, {
         id: this.resultsProv.generateId(),
