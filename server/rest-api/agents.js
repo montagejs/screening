@@ -143,8 +143,7 @@ module.exports = function(agentPool, testcaseRunner) {
         }
 
         var source = agent.stopRecording();
-        res.writeHead(200, {'Content-Type': 'application/javascript'});
-        res.end(source);
+        res.send({source: source});
     });
 
     /**
