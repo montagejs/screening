@@ -1077,4 +1077,4 @@ http://localhost:8081/screening/api/v1/test_results/multiple?api_key=5150
 
 #### Body
 
-    {"ok": true}
+    {"status": "ok"}
