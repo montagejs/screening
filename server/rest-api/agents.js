@@ -190,8 +190,7 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider) {
         }
 
         var source = agent.stopRecording();
-        res.writeHead(200, {'Content-Type': 'application/javascript'});
-        res.end(source);
+        res.send({source: source});
     });
 
     /**
@@ -207,8 +206,8 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider) {
         }
 
         var source = agent.pauseRecording();
-        res.writeHead(202, {'Content-Type': 'application/javascript'});
-        res.end(source);
+        res.statusCode = 202;
+        res.send({source: source});
     });
 
     /**
@@ -223,9 +222,9 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider) {
             return next(new Error('agent with id ' + req.params.id + ' does not exist'));
         }
 
-        var source = agent.resumeRecording();
-        res.writeHead(202, {'Content-Type': 'text/plain'});
-        res.end("OK");
+        agent.resumeRecording();
+        res.statusCode = 202;
+        res.send({status: "ok"});
     });
 
     /**
