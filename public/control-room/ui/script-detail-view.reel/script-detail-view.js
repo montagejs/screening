@@ -485,7 +485,8 @@ exports.ScriptDetailView = Montage.create(Component, {
             var req = new XMLHttpRequest();
             req.open("PUT", "/screening/api/v1/agents/" + agent.info.id + "/recording/pause?api_key=5150", true);
             req.onload = function(event) {
-                self.appendCode(this.responseText);
+                var responseBody = JSON.parse(this.responseText);
+                self.appendCode(responseBody.source);
             };
             req.send(null);
         }

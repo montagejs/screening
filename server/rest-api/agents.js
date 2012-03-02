@@ -159,8 +159,8 @@ module.exports = function(agentPool, testcaseRunner) {
         }
 
         var source = agent.pauseRecording();
-        res.writeHead(202, {'Content-Type': 'application/javascript'});
-        res.end(source);
+        res.statusCode = 202;
+        res.send({source: source});
     });
 
     /**
