@@ -175,9 +175,9 @@ module.exports = function(agentPool, testcaseRunner) {
             return next(new Error('agent with id ' + req.params.id + ' does not exist'));
         }
 
-        var source = agent.resumeRecording();
-        res.writeHead(202, {'Content-Type': 'text/plain'});
-        res.end("OK");
+        agent.resumeRecording();
+        res.statusCode = 202;
+        res.send({status: "ok"});
     });
 
     /**
