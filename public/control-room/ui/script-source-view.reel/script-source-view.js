@@ -5,6 +5,7 @@
  </copyright> */
 var Montage = require("montage/core/core").Montage;
 var Component = require ("montage/ui/component").Component;
+var MutableEvent = require("montage/core/event/mutable-event").MutableEvent;
 
 exports.ScriptSourceView = Montage.create(Component, {
     _scriptSource: {
@@ -19,12 +20,5 @@ exports.ScriptSourceView = Montage.create(Component, {
         set: function(value) {
             this._scriptSource = value;
         }
-    },
-
-    /*downloadScriptSource: {
-        value: function() {
-            var self = this;
-            window.location.href = "/screening/api/v1/scripts/" + self.scriptSource.name + "/download?api_key=5150";
-        }
-    }*/
+    }
 });
