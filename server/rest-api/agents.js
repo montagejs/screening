@@ -8,7 +8,7 @@ var path = require('path'),
     express = require('express'),
     simpleRequest = require("request");
 
-module.exports = function(agentPool, testcaseRunner) {
+module.exports = function(agentPool, testcaseRunner, scriptsProvider) {
     var app = express.createServer();
 
     app.mounted(function(otherApp) {
@@ -100,6 +100,53 @@ module.exports = function(agentPool, testcaseRunner) {
         // has completed execution, hence the 201
         res.statusCode = 201;
         res.send({testId: testcaseId});
+    });
+
+    /**
+     * Execute the code from the script specified
+     */
+    app.post("/:id/execute_script/:scriptId", routingConfig.provides('json', '*/*'), function(req, res, next) {
+        var agentId = req.params.id,
+            scriptId = req.params.scriptId,
+            agent = agentPool.getAgentById(agentId),
+            testcaseId,
+            options = {
+                "global._requestOrigin": req.headers && req.headers.origin
+            };
+
+        //TODO: Refactor this agentId check in a function
+        if (!agent) {
+            console.log("Attempted to run test on device that is not connected: " + agentId);
+            res.statusCode = 404;
+            return next(new Error('agent with id ' + agentId + ' does not exist'));
+        }
+
+        try {
+            scriptsProvider.findById(scriptId, function(err, script) {
+                if (err) return next(new Error(err));
+
+                if (!script) {
+                    res.statusCode = 404;
+                    return next({message: "The script " + scriptId + " does not exist."});
+                }
+
+                try {
+                    testcaseId = testcaseRunner.executeTest(script, {id: agentId}, options);
+                } catch(ex) {
+                    console.log("Exception thrown while attempting to run test: " + ex, ex.stack);
+                    res.statusCode = 404;
+                    return next(new Error('Exception thrown while attempting to run test: ' + ex));
+                }
+
+                // Indicate that the code has started to execute, but that doesn't mean that the code
+                // has completed execution, hence the 201
+                res.statusCode = 201;
+                res.send({testId: testcaseId});
+            });
+        } catch (err) {
+            console.error(err);
+            return next({message: "Invalid scriptId: " + scriptId});
+        }
     });
 
     /**
