@@ -132,7 +132,7 @@ module.exports = function(testcaseResultsProvider) {
 
         testcaseResultsProvider.deleteMultipleById(ids, function(err) {
             if (err) return next(new Error(err));
-            res.send({ok: true});
+            res.send({status: "ok"});
         });
     });
 
