@@ -105,9 +105,9 @@ module.exports = function(agentPool, testcaseRunner) {
     /**
      * Begin recording on the agent
      */
-    app.post("/:id/recording", function(req, res, next) {
+    app.post("/:id/recording", routingConfig.provides('application/json'), function(req, res, next) {
         var agent = agentPool.getAgentById(req.params.id);
-        var app = req.body;
+        var body = req.body;
         var options = {
             "global._requestOrigin": req.headers && req.headers.origin
         };
@@ -118,16 +118,16 @@ module.exports = function(agentPool, testcaseRunner) {
             return next(new Error('agent with id ' + req.params.id + ' does not exist'));
         }
 
-        if(!app) {
+        if(!body && !body.url) {
             console.log("No app specified to record on");
             res.statusCode = 400;
             return next(new Error('No app specified to record on'));
         }
 
-        agent.startRecording(app, options);
+        agent.startRecording(body.url, options);
 
-        res.writeHead(201, {'Content-Type': 'text/plain'});
-        res.end("OK");
+        res.statusCode = 201;
+        res.send({status: "ok"});
     });
 
     /**
@@ -143,8 +143,7 @@ module.exports = function(agentPool, testcaseRunner) {
         }
 
         var source = agent.stopRecording();
-        res.writeHead(200, {'Content-Type': 'application/javascript'});
-        res.end(source);
+        res.send({source: source});
     });
 
     /**
@@ -160,8 +159,8 @@ module.exports = function(agentPool, testcaseRunner) {
         }
 
         var source = agent.pauseRecording();
-        res.writeHead(202, {'Content-Type': 'application/javascript'});
-        res.end(source);
+        res.statusCode = 202;
+        res.send({source: source});
     });
 
     /**
@@ -176,9 +175,9 @@ module.exports = function(agentPool, testcaseRunner) {
             return next(new Error('agent with id ' + req.params.id + ' does not exist'));
         }
 
-        var source = agent.resumeRecording();
-        res.writeHead(202, {'Content-Type': 'text/plain'});
-        res.end("OK");
+        agent.resumeRecording();
+        res.statusCode = 202;
+        res.send({status: "ok"});
     });
 
     /**
