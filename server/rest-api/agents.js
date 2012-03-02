@@ -75,7 +75,6 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider) {
             "global._requestOrigin": req.headers && req.headers.origin
         };
 
-        //TODO: Refactor this agentId check in a function
         if (!agent) {
             console.log("Attempted to run test on device that is not connected: " + req.params.id);
             res.statusCode = 404;
@@ -114,7 +113,6 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider) {
                 "global._requestOrigin": req.headers && req.headers.origin
             };
 
-        //TODO: Refactor this agentId check in a function
         if (!agent) {
             console.log("Attempted to run test on device that is not connected: " + agentId);
             res.statusCode = 404;
