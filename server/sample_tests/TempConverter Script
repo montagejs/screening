@@ -5,20 +5,14 @@ var agent = new Agent();
 
 agent.gotoUrl("/screening/node_modules/montage/examples/temp-converter/index.html");
 
-var celsius = agent.element("/HTML/BODY/DIV/LABEL[1]/INPUT");
-var fahrenheit = agent.element("/HTML/BODY/DIV/LABEL[2]/INPUT");
+//var celsius = agent.element("/HTML/BODY/DIV/LABEL[1]/INPUT");
+//var fahrenheit = agent.element("/HTML/BODY/DIV/LABEL[2]/INPUT");
 
-
+var celsius = agent.element("//input[@id='celsius']");
+var fahrenheit = agent.element("//input[@id='fahrenheit']");
+    
+    
 agent.setWindowSize(927, 965);
-
-agent
-    .mouseMove([{"duration":0},{"x":484,"y":477,"duration":3572}])
-    .mouseDown(484,477);
-agent.element("/HTML/BODY/DIV/LABEL[1]/INPUT").focus();
-agent.mouseUp(484,477);
-agent.element("/HTML/BODY/DIV/LABEL[1]/INPUT").click(Mouse.LEFT,44,23);
-agent.wait(1104);
-
 agent
     .mouseDown(484,477)
     .mouseMove([{"x":484,"y":478,"duration":0},{"x":370,"y":481,"duration":150}])
@@ -82,6 +76,17 @@ celsius.sendKeys(Key.BACKSPACE);
 
 assertEqual("", celsius.getText());
 assertEqual("", fahrenheit.getText());
+
+ 
+agent.element("//*[@id='barometer']").mouseDown(5,95);
+agent.element("//*[@id='barometer']").mouseUp(5,95);
   
   
+assertEqual("-25", celsius.getText());
+assertEqual("-13", fahrenheit.getText());
+
+agent.element("//*[@id='barometer']").click(Mouse.LEFT,8,1);
+assertEqual("50", celsius.getText());
+assertEqual("122", fahrenheit.getText());
+
 // ==== End Recorded Script ====
