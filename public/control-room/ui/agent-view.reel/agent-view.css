@@ -29,6 +29,10 @@
     background-repeat: norepeat;
 }
 
+.agentView .agentIcon.firefox {
+    background-image: url("img/firefox_medium.png");
+}
+
 .agentView .agentName {
     overflow: hidden;
     text-overflow: ellipsis;
