@@ -5,12 +5,8 @@ var agent = new Agent();
 
 agent.gotoUrl("/screening/node_modules/montage/examples/temp-converter/index.html");
 
-//var celsius = agent.element("/HTML/BODY/DIV/LABEL[1]/INPUT");
-//var fahrenheit = agent.element("/HTML/BODY/DIV/LABEL[2]/INPUT");
-
 var celsius = agent.element("//input[@id='celsius']");
-var fahrenheit = agent.element("//input[@id='fahrenheit']");
-    
+var fahrenheit = agent.element("//input[@id='fahrenheit']"); 
     
 agent.setWindowSize(927, 965);
 agent
