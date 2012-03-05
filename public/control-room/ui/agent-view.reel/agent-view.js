@@ -54,6 +54,11 @@ exports.AgentView = Montage.create(Component, {
                     this.agentIcon.removeChild(childElements[i]);
                 }
             }
+
+            if(this.agent.info.capabilities && this.agent.info.capabilities.browserName) {
+                var browserName = this.agent.info.capabilities.browserName;
+                this.agentIcon.classList.add(browserName);
+            }
         }
     },
 });
