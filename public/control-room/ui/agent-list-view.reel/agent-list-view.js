@@ -29,6 +29,16 @@ exports.AgentListView = Montage.create(Component, {
         }
     },
 
+    prepareForDraw: {
+        value: function() {
+            var self = this;
+            // Auto-select the first agent if available
+            if (!self.agentController.selectedIndexes && self.agentController.content.length > 0) {
+                self.agentController.selectedIndexes = [0];
+            }
+        }
+    },
+
     addWebDriverAgent: {
         value: function() {
             var popup = Popup.create();
