@@ -58,6 +58,18 @@ exports.Main = Montage.create(Component, {
         value: null
     },
 
+    activeAgents: {
+        value: null
+    },
+
+    selectedAgent: {
+        value: null
+    },
+
+    scriptSource: {
+        value: null
+    },
+
     serverVersion: {
         value: ""
     },
@@ -102,6 +114,10 @@ exports.Main = Montage.create(Component, {
 
             this.scriptDetail.addEventListener("change@scriptSource", function(event) {
                 self.scriptChanged(event.plus, event.minus);
+            }, false);
+
+            this.scriptDetail.addEventListener("change@selectedAgent", function(event) {
+                self.selectedAgentChanged(event.plus, event.minus);
             }, false);
 
             this.scriptDetail.addEventListener("scriptDeleted", function(event) {
@@ -225,6 +241,19 @@ exports.Main = Montage.create(Component, {
             if (newScript) {
                 localStorage["Screening.AppState.CurrentScript"] = newScript.id;
             }
+        }
+    },
+
+    selectedAgentChanged: {
+        value: function(newAgent, prevAgent) {
+            var self = this;
+
+            if (newAgent && newAgent.info.capabilities.browserName !== "chrome") {
+                self.scriptDetail.recordButton.disabled = true;
+            } else {
+                self.scriptDetail.recordButton.disabled = false;
+            }
+
         }
     }
 });
