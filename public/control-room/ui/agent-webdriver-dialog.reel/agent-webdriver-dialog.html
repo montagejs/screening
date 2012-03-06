@@ -79,21 +79,21 @@
     <body>
         <div id="webdriverDialog" class="webdriverDialog">
             <div id="content">
-                <div id="agentUrl">
+                <fieldset id="agentUrl">
                     <label for="url">URL</label>
                     <input type="text" id="url"/>
-                </div>
-                <div id="agentBrowserName">
+                </fieldset>
+                <fieldset id="agentBrowserName">
                     <label for="browserName">Browser</label>
                     <select id="browserName">
                         <option value="chrome">Chrome</option>
                         <option value="firefox">Firefox</option>
                     </select>
-                </div>
-                <div id="buttons">
-                    <button id="ok">Ok</button>
+                </fieldset>
+                <fieldset id="buttons" class="buttons">
                     <button id="cancel">Cancel</button>
-                </div>
+                    <button id="ok" class="blue">OK</button>
+                </fieldset>
             </div>
         </div>
     </body>
