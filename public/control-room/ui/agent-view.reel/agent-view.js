@@ -57,6 +57,7 @@ exports.AgentView = Montage.create(Component, {
 
             if(this.agent.info.capabilities && this.agent.info.capabilities.browserName) {
                 var browserName = this.agent.info.capabilities.browserName;
+                browserName = browserName.replace(/\s/g, ""); // Remove spaces. "internet explorer" => "internetexplorer"
                 this.agentIcon.classList.add(browserName);
             }
         }
