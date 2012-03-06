@@ -25,7 +25,7 @@
 /* Text Field should be global at some point */
 .webdriverDialog input[type="text"] {
     padding-left: 4px;
-    width: 140px;
+    width: 240px;
     height: 24px;
     border-radius: 4px;
     border: 1px solid hsl(0,0%,65%);
@@ -47,7 +47,6 @@
     -webkit-appearance: none;
     position: relative;
     display: inline-block;
-    width: 147px;
     margin: 0;
     padding: 5px 20px 5px 10px;
     text-shadow: 0 1px hsla(0,0%,100%,.4);
