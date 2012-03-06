@@ -238,6 +238,31 @@ WebdriverElement.prototype.setAttribute = function(attrName, attrValue){
 };
 
 /**
+ * Gets the selectedIndex of a select element
+ * @function module:screening/element.WebdriverElement#getSelectedIndex
+ * @return {Integer} selectedIndex
+ */
+WebdriverElement.prototype.getSelectedIndex = function(){
+    var self = this;
+    return this.agent.executeScript("return arguments[0].selectedIndex;", [this.element],
+    function() { return self; } // Allow Chaining
+    );
+};
+
+/**
+ * Set the selectedIndex of a select element
+ * @function module:screening/element.WebdriverElement#setSelectedIndex
+ * @param {Integer} selectedIndex Element attribute to change.
+ * @return {Element} A reference to this, to allow chaining.
+ */
+WebdriverElement.prototype.setSelectedIndex = function(selectedIndex){
+    var self = this;
+    return this.agent.executeScript("arguments[0].selectedIndex = arguments[1];", [this.element, selectedIndex],
+    function() { return self; } // Allow Chaining
+    );
+};
+
+/**
  * Gets the text content of the element. If the element is an input, returns<br>
  * the input value, otherwise returns the innerText of the element.
  * @function module:screening/element.WebdriverElement#getText
@@ -271,7 +296,7 @@ WebdriverElement.prototype.getComputedStyle = function(styleProp){
 
 /**
  * Gets wether or not the element is visible.
- * @function module:screening/element.WebdriverElement#isVisible 
+ * @function module:screening/element.WebdriverElement#isVisible
  * @return {Boolean} True if the element is visible.
  */
 WebdriverElement.prototype.isVisible = function(){
