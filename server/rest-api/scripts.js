@@ -136,6 +136,11 @@ module.exports = function(scriptsProvider) {
         scriptsProvider.findById(req.params.id, function(err, script) {
             if (err) return next(new Error(err));
 
+            if (!script) {
+                res.statusCode = 400;
+                return next({message: _scriptDoesNotExistMsg(req.params.id)});
+            }
+
             hydrateAttributes(script);
             res.send(script);
         });
@@ -152,6 +157,11 @@ module.exports = function(scriptsProvider) {
 
         scriptsProvider.findById(req.params.id, function(err, script) {
             if (err) return next(new Error(err));
+
+            if (!script) {
+                res.statusCode = 400;
+                return next({message: _scriptDoesNotExistMsg(req.params.id)});
+            }
 
             res.header('Content-Type', 'text/plain');
             res.header('Pragma', 'private');
@@ -295,6 +305,10 @@ module.exports = function(scriptsProvider) {
             modified: stat.mtime,
             code: file
         };
+    }
+
+    function _scriptDoesNotExistMsg(scriptId) {
+        return "The script " + scriptId + " does not exist.";
     }
 
     return app;

@@ -170,6 +170,7 @@ POST http://localhost:8081/screening/api/v1/agents/11099235871214500237/execute_
 #### Headers
 
     Content-Type:application/json; charset=UTF-8
+    Origin: http://localhost:8081
 
 #### Body
 
@@ -189,6 +190,32 @@ POST http://localhost:8081/screening/api/v1/agents/11099235871214500237/execute_
 #### Body
 
     {"testId":"c0a64c81-378e-4647-9552-c6f1dcec7cb2"}
+
+--------------------
+
+## POST /agents/:id/execute_script/:scriptId
+
+Executes an existing script on the specified agent.
+
+POST /screening/api/v1/agents/Beauregard/execute_script/4f4ea1ce394ddc3f38000007?api_key=5150
+
+### Request
+
+#### Headers
+
+    Origin: http://localhost:8081
+
+### Response
+
+    HTTP/1.1 201 Created
+
+#### Headers
+
+    Content-Type: application/json; charset=utf-8
+
+#### Body
+
+    {"testId":"4f5158af448fec5b51000002"}
 
 --------------------
 
@@ -1077,4 +1104,4 @@ http://localhost:8081/screening/api/v1/test_results/multiple?api_key=5150
 
 #### Body
 
-    {"ok": true}
+    {"status": "ok"}

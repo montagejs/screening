@@ -41,7 +41,7 @@ exports.configureServer = function(customMongoDbProvider) {
     // runner will output more details by passing --debug
 
     var routingConfig = require("./rest-api/routing-config.js");
-    var agentsApi = require("./rest-api/agents.js")(agentPool, testcaseRunner);
+    var agentsApi = require("./rest-api/agents.js")(agentPool, testcaseRunner, scriptsProvider);
     var scriptsApi = require("./rest-api/scripts.js")(scriptsProvider);
     var testResultsApi = require("./rest-api/test-results.js")(testcaseResultsProvider);
 
@@ -71,6 +71,7 @@ exports.configureServer = function(customMongoDbProvider) {
     });
 
     // REST-API wiring
+    routingConfig.apiKeyAuth(app);
     app.use(routingConfig.apiRoot + "/agents", agentsApi);
     app.use(routingConfig.apiRoot + "/scripts", scriptsApi);
     app.use(routingConfig.apiRoot + "/test_results", testResultsApi);

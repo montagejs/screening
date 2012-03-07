@@ -32,7 +32,7 @@ exports.AgentView = Montage.create(Component, {
             var self = this;
             var clickListener = function(){
                 var xhr = new XMLHttpRequest();
-                var removeAgentUrl = "/screening/api/v1/agents/" + encodeURIComponent(self.agent.info.id);
+                var removeAgentUrl = "/screening/api/v1/agents/" + encodeURIComponent(self.agent.info.id) + "?api_key=5150";
                 xhr.open("DELETE", removeAgentUrl);
                 xhr.setRequestHeader("Content-Type", "application/json");
                 xhr.send();
@@ -53,6 +53,12 @@ exports.AgentView = Montage.create(Component, {
                 for(var i = 0; i < childElements.length; ++i) {
                     this.agentIcon.removeChild(childElements[i]);
                 }
+            }
+
+            if(this.agent.info.capabilities && this.agent.info.capabilities.browserName) {
+                var browserName = this.agent.info.capabilities.browserName;
+                browserName = browserName.replace(/\s/g, ""); // Remove spaces. "internet explorer" => "internetexplorer"
+                this.agentIcon.classList.add(browserName);
             }
         }
     },

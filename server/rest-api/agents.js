@@ -8,7 +8,7 @@ var path = require('path'),
     express = require('express'),
     simpleRequest = require("request");
 
-module.exports = function(agentPool, testcaseRunner) {
+module.exports = function(agentPool, testcaseRunner, scriptsProvider) {
     var app = express.createServer();
 
     app.mounted(function(otherApp) {
@@ -75,7 +75,6 @@ module.exports = function(agentPool, testcaseRunner) {
             "global._requestOrigin": req.headers && req.headers.origin
         };
 
-        //TODO: Refactor this agentId check in a function
         if (!agent) {
             console.log("Attempted to run test on device that is not connected: " + req.params.id);
             res.statusCode = 404;
@@ -103,11 +102,57 @@ module.exports = function(agentPool, testcaseRunner) {
     });
 
     /**
+     * Execute the code from the script specified
+     */
+    app.post("/:id/execute_script/:scriptId", routingConfig.provides('json', '*/*'), function(req, res, next) {
+        var agentId = req.params.id,
+            scriptId = req.params.scriptId,
+            agent = agentPool.getAgentById(agentId),
+            testcaseId,
+            options = {
+                "global._requestOrigin": req.headers && req.headers.origin
+            };
+
+        if (!agent) {
+            console.log("Attempted to run test on device that is not connected: " + agentId);
+            res.statusCode = 404;
+            return next(new Error('agent with id ' + agentId + ' does not exist'));
+        }
+
+        try {
+            scriptsProvider.findById(scriptId, function(err, script) {
+                if (err) return next(new Error(err));
+
+                if (!script) {
+                    res.statusCode = 404;
+                    return next({message: "The script " + scriptId + " does not exist."});
+                }
+
+                try {
+                    testcaseId = testcaseRunner.executeTest(script, {id: agentId}, options);
+                } catch(ex) {
+                    console.log("Exception thrown while attempting to run test: " + ex, ex.stack);
+                    res.statusCode = 404;
+                    return next(new Error('Exception thrown while attempting to run test: ' + ex));
+                }
+
+                // Indicate that the code has started to execute, but that doesn't mean that the code
+                // has completed execution, hence the 201
+                res.statusCode = 201;
+                res.send({testId: testcaseId});
+            });
+        } catch (err) {
+            console.error(err);
+            return next({message: "Invalid scriptId: " + scriptId});
+        }
+    });
+
+    /**
      * Begin recording on the agent
      */
-    app.post("/:id/recording", function(req, res, next) {
+    app.post("/:id/recording", routingConfig.provides('application/json'), function(req, res, next) {
         var agent = agentPool.getAgentById(req.params.id);
-        var app = req.body;
+        var body = req.body;
         var options = {
             "global._requestOrigin": req.headers && req.headers.origin
         };
@@ -118,16 +163,16 @@ module.exports = function(agentPool, testcaseRunner) {
             return next(new Error('agent with id ' + req.params.id + ' does not exist'));
         }
 
-        if(!app) {
+        if(!body && !body.url) {
             console.log("No app specified to record on");
             res.statusCode = 400;
             return next(new Error('No app specified to record on'));
         }
 
-        agent.startRecording(app, options);
+        agent.startRecording(body.url, options);
 
-        res.writeHead(201, {'Content-Type': 'text/plain'});
-        res.end("OK");
+        res.statusCode = 201;
+        res.send({status: "ok"});
     });
 
     /**
@@ -143,8 +188,7 @@ module.exports = function(agentPool, testcaseRunner) {
         }
 
         var source = agent.stopRecording();
-        res.writeHead(200, {'Content-Type': 'application/javascript'});
-        res.end(source);
+        res.send({source: source});
     });
 
     /**
@@ -160,8 +204,8 @@ module.exports = function(agentPool, testcaseRunner) {
         }
 
         var source = agent.pauseRecording();
-        res.writeHead(202, {'Content-Type': 'application/javascript'});
-        res.end(source);
+        res.statusCode = 202;
+        res.send({source: source});
     });
 
     /**
@@ -176,9 +220,9 @@ module.exports = function(agentPool, testcaseRunner) {
             return next(new Error('agent with id ' + req.params.id + ' does not exist'));
         }
 
-        var source = agent.resumeRecording();
-        res.writeHead(202, {'Content-Type': 'text/plain'});
-        res.end("OK");
+        agent.resumeRecording();
+        res.statusCode = 202;
+        res.send({status: "ok"});
     });
 
     /**
