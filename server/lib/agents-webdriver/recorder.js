@@ -216,7 +216,6 @@ var EventUtility = Object.create(Object, {
             // but has no value data associated with it. As such, we have to read the content of the
             // field and use that instead
             if(obj.type == "input" || obj.type == "change") {
-                debugger;
                 if(obj.target.type == "checkbox") {
                     obj.arguments.checked = (event.target.checked ? true : false);
                 } else if (event.target.tagName == "SELECT") {
@@ -259,7 +258,7 @@ var EventUtility = Object.create(Object, {
             if(obj.type === "click" || obj.type === "dblclick" || obj.type === "mousedown" || obj.type === "mouseup" || obj.type === "dragend") {
 
                 if (event.target.tagName == "SELECT") { return null; } // Don't record mouse interaction with selects
-                
+
                 var pos = this.serializeElementPosition(event.target, event);
                 if(pos) {
                     obj.arguments.elementX = pos[0];
