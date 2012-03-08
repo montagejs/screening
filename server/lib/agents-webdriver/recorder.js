@@ -5,7 +5,7 @@
  </copyright> */
 
 /*
- * This file will be executed on a webdriver client to give it recording support. 
+ * This file will be executed on a webdriver client to give it recording support.
  * Since it is run client-side, no requires or external scripts may be used.
  *
  * This file contains no support for playback of events, only recording them.
@@ -17,21 +17,22 @@ function parseUrl(url) {
     var port = portPos != -1 ? url.substring(portPos+1) : "80";
     return {
         domain: domain,
-        port: port,
+        port: port
     };
-};
+}
 
 var server = parseUrl(arguments[0]);
 var agentId = arguments[1];
 
 // If RECORD_INPUT_ONLY is true, only events in this whitelist will be recorded
 var eventWhitelist = [
-    "mousedown", "mousemove", "mouseup", 
+    "mousedown", "mousemove", "mouseup",
     /*"click", "dblclick", "mousewheel",*/
     "keydown", "textInput",
     "touchstart", "touchend", "touchmove",
     /*"focus",*/ "scroll", "resize",
     "drag", "dragover", "dragend",
+    "change"
 ];
 
 var propertyWhitelist = [
@@ -125,7 +126,7 @@ var EventUtility = Object.create(Object, {
     stopListening: {
         value: function() {
             var targetWindow = this._attachedWindow;
-            if(targetWindow == null) {
+            if(targetWindow === null) {
                 return;
             }
             
@@ -212,11 +213,14 @@ var EventUtility = Object.create(Object, {
             };
             
             // change is a special case. It's the only event we get for some input fields,
-            // but has no value data associated with it. As such, we have to read the content of the 
+            // but has no value data associated with it. As such, we have to read the content of the
             // field and use that instead
             if(obj.type == "input" || obj.type == "change") {
                 if(obj.target.type == "checkbox") {
                     obj.arguments.checked = (event.target.checked ? true : false);
+                } else if (event.target.tagName == "SELECT") {
+                    obj.type = "setSelectedIndex";
+                    obj.arguments.selectedIndex = event.target.selectedIndex;
                 } else {
                     obj.arguments.value = event.target.value;
                 }
@@ -252,6 +256,9 @@ var EventUtility = Object.create(Object, {
             }
             
             if(obj.type === "click" || obj.type === "dblclick" || obj.type === "mousedown" || obj.type === "mouseup" || obj.type === "dragend") {
+
+                if (event.target.tagName == "SELECT") { return null; } // Don't record mouse interaction with selects
+
                 var pos = this.serializeElementPosition(event.target, event);
                 if(pos) {
                     obj.arguments.elementX = pos[0];
@@ -302,7 +309,7 @@ var EventUtility = Object.create(Object, {
                     radiusY: touch.radiusY,
                     rotation: touch.rotation,
                     scale: touch.scale,
-                    identifier: touch.identifier,
+                    identifier: touch.identifier
                 };
                 
                 // To reduce serialization complexity, if the touch target is the same as the event target we won't serialize
@@ -419,12 +426,12 @@ var EventUtility = Object.create(Object, {
 });
 
 function injectScript(src, callback) {
-    var a = document, 
+    var a = document,
         b = a.createElement('script');
     b.src = src;
     b.onload = callback;
     a.head.appendChild(b);
-};
+}
 
 //
 // Main script execution

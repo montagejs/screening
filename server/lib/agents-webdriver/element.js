@@ -5,7 +5,7 @@
  </copyright> */
 /**
 	@module screening/element
- */   
+ */
 var Q = require("q"),
     when = Q.when,
     by = require("../webdriver/util").By,
@@ -21,7 +21,7 @@ var Q = require("q"),
  *  >>> // Verify that the returned value really is an instance of Element.
  *  >>> var el = browser.element('WHATEVER');
  *  el instanceof Element
- * 
+ *
  *  >>> // Verify that the parameter passed to element() is provided in Element._selector
  *  >>> var el = browser.element('WHATEVER1');
  *  el._selector == 'WHATEVER1'
@@ -238,6 +238,28 @@ WebdriverElement.prototype.setAttribute = function(attrName, attrValue){
 };
 
 /**
+ * Gets the selectedIndex of a select element
+ * @function module:screening/element.WebdriverElement#getSelectedIndex
+ * @return {Integer} selectedIndex
+ */
+WebdriverElement.prototype.getSelectedIndex = function(){
+    return this.agent.executeScript("return arguments[0].selectedIndex;", [this.element]);
+};
+
+/**
+ * Set the selectedIndex of a select element
+ * @function module:screening/element.WebdriverElement#setSelectedIndex
+ * @param {Integer} selectedIndex Element attribute to change.
+ * @return {Element} A reference to this, to allow chaining.
+ */
+WebdriverElement.prototype.setSelectedIndex = function(selectedIndex){
+    var self = this;
+    return this.agent.executeScript("arguments[0].selectedIndex = arguments[1];", [this.element, selectedIndex],
+        function() { return self; } // Allow Chaining
+    );
+};
+
+/**
  * Gets the text content of the element. If the element is an input, returns<br>
  * the input value, otherwise returns the innerText of the element.
  * @function module:screening/element.WebdriverElement#getText
@@ -271,7 +293,7 @@ WebdriverElement.prototype.getComputedStyle = function(styleProp){
 
 /**
  * Gets wether or not the element is visible.
- * @function module:screening/element.WebdriverElement#isVisible 
+ * @function module:screening/element.WebdriverElement#isVisible
  * @return {Boolean} True if the element is visible.
  */
 WebdriverElement.prototype.isVisible = function(){
@@ -342,7 +364,7 @@ WebdriverElement.prototype.focus = function(){
  * @return {Element} A reference to this, to allow chaining.
  */
 WebdriverElement.prototype.mouseDown = function(x, y){
-    if(x && typeof x !== "number") { 
+    if(x && typeof x !== "number") {
         throw Error("Invalid argument. Function only accepts a numeric X and Y coordinate.");
     }
     
@@ -360,13 +382,13 @@ WebdriverElement.prototype.mousedown = Warning.deprecateApi(WebdriverElement.pro
 
 /**
  * Release the left mouse button at the given coordinate.
- * @function module:screening/element.WebdriverElement#mouseUp 
+ * @function module:screening/element.WebdriverElement#mouseUp
  * @param {Number} x X coordinate relative to the element's left side.
  * @param {Number} y Y coordinate relative to the element's top.
  * @return {Element} A reference to this, to allow chaining.
  */
 WebdriverElement.prototype.mouseUp = function(x, y){
-    if(x && typeof x !== "number") { 
+    if(x && typeof x !== "number") {
         throw Error("Invalid argument. Function only accepts a numeric X and Y coordinate.");
     }
     
@@ -392,7 +414,7 @@ WebdriverElement.prototype.mouseup = Warning.deprecateApi(WebdriverElement.proto
 WebdriverElement.prototype.mouseMove = function(x, y){
     var self = this;
     if(!x.length) {
-        if(x && typeof x !== "number") { 
+        if(x && typeof x !== "number") {
             throw Error("Invalid argument. Function only accepts a numeric X and Y coordinates or an array of coordinates");
         }
         return this.sync.promise(function() {
@@ -444,7 +466,7 @@ WebdriverElement.prototype.mouseMoves = Warning.deprecateApi(WebdriverElement.pr
 WebdriverElement.prototype.click = function(button, x, y){
     var self = this;
     return this.sync.promise(function() {
-        if(x != undefined || y != undefined) {
+        if(x !== undefined || y !== undefined) {
             return when(self.session.moveTo(self.element, x, y), function(){
                 return self.session.click(button);
             });
@@ -476,7 +498,7 @@ WebdriverElement.prototype.mouseClick = WebdriverElement.prototype.click;
 WebdriverElement.prototype.doubleClick = function(x, y){
     var self = this;
     return this.sync.promise(function() {
-        if(x != undefined || y != undefined) {
+        if(x !== undefined || y !== undefined) {
             return when(self.session.moveTo(self.element, x, y), function(){
                 return self.session.doubleClick();
             });
@@ -500,7 +522,7 @@ WebdriverElement.prototype.doubleClick = function(x, y){
  * @return {Element} A reference to this, to allow chaining.
  */
 WebdriverElement.prototype.sendKeys = function(inputString){
-    if(typeof inputString !== "string") { 
+    if(typeof inputString !== "string") {
         throw Error("Invalid argument. Function only accepts a string.");
     }
     
@@ -648,7 +670,7 @@ var WebdriverElementArray = exports.WebdriverElementArray = function(agent, elem
  * Description TODO
  * @function module:screening/element.WebdriverElementArray#prototype
 */
-WebdriverElementArray.prototype = new Array();
+WebdriverElementArray.prototype = [];
 
 /**
  * Get the number of nodes that have been selected by <code>agent.elements()</code>.<br>
@@ -660,7 +682,7 @@ WebdriverElementArray.prototype = new Array();
  * @returns {Integer} The number of elements/nodes found.
  */
 WebdriverElementArray.prototype.getCount = Warning.deprecateApi(function(){
-    return this.length
+    return this.length;
 }, "getCount", "Please use the length proprty instead.");
 
 /**
