@@ -22,7 +22,7 @@ var KeyMap = {
     27:"ESCAPE",
 //    :"SPACE",
     33:"PAGEUP",
-    33:"PAGEDOWN",
+    34:"PAGEDOWN",
     35:"END",
     36:"HOME",
     37:"LEFT",
@@ -61,7 +61,7 @@ var KeyMap = {
     121:"F10",
     122:"F11",
     123:"F12",
-    91:"COMMAND",
+    91:"COMMAND"
 };
 
 /**
@@ -105,7 +105,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             this.actionStack.push({
                 type: "navigate",
                 target: null,
-                url: url,
+                url: url
             });
         }
     },
@@ -121,7 +121,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                 type: "resize",
                 target: null,
                 width: width,
-                height: height,
+                height: height
             });
         }
     },
@@ -161,7 +161,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                         break;
                 }
                 filteredStack.push(action); // If nothing else stopped up, add the action
-            };
+            }
             
             return filteredStack;
         }
@@ -172,7 +172,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
      */
     condenseActions: {
         value: function(stack) {
-            var condensable = ['mousemove', 'textInput']
+            var condensable = ['mousemove', 'textInput'];
             var condensedStack = [];
             var action, nextAction;
             
@@ -182,12 +182,12 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                 
                 if(action.type == "resize" && stack[i+1] && stack[i+1].type == "resize") {
                     continue; // Skip sequences of resizes, only record the last one.
-                } 
+                }
                 
                 // Condense a mousedown/mouseup/click sequence into a single action
                 // When we see a mouse down, do a look-ahead and see if the mouse up occurs on the same element and if we haven't moved too much
                 // If the mouse down/move/up all occur within a certain threshold, collapse it all into a single click;
-                if(action.type === "mousedown") { 
+                if(action.type === "mousedown") {
                     var clickIndex = this._canCondenseToClick(action, stack, i);
                     if(clickIndex != -1) {
                         i = clickIndex;
@@ -225,7 +225,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                 }
                 
                 condensedStack.push(action);
-            };
+            }
             
             return condensedStack;
         }
@@ -521,6 +521,11 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                 case "dblclick":
                     source += ".doubleClick";
                     funcArgs.push(this._translateMouseButton(event.arguments.which), event.arguments.elementX, event.arguments.elementY);
+                    break;
+
+                case "setselectedindex":
+                    source += ".setSelectedIndex";
+                    funcArgs.push(event.arguments.selectedIndex);
                     break;
                     
                 default:
