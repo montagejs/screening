@@ -11,6 +11,10 @@ var Montage = require("montage/core/core").Montage,
     Alert = require ("montage/ui/popup/alert.reel").Alert;
 
 exports.ScriptDetailView = Montage.create(Component, {
+    selectedAgent: {
+        value: null
+    },
+
     activeAgents: {
         value: null
     },
@@ -165,7 +169,10 @@ exports.ScriptDetailView = Montage.create(Component, {
 
             self.addEventListener("change@scriptSource", function (event) {
                 if (self.scriptSource) {
-                    self.recordButton.disabled = false;
+                    // Only enable recording is the selected browser is Chrome
+                    if (self.selectedAgent && self.selectedAgent.info.capabilities.browserName === "chrome") {
+                        self.recordButton.disabled = false;
+                    }
                     self.runButton.disabled = false;
                     self.saveButton.disabled = false;
                     self.deleteButton.disabled = false;
