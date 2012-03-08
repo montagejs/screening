@@ -257,6 +257,9 @@ var EventUtility = Object.create(Object, {
             }
             
             if(obj.type === "click" || obj.type === "dblclick" || obj.type === "mousedown" || obj.type === "mouseup" || obj.type === "dragend") {
+
+                if (event.target.tagName == "SELECT") { return null; } // Don't record mouse interaction with selects
+                
                 var pos = this.serializeElementPosition(event.target, event);
                 if(pos) {
                     obj.arguments.elementX = pos[0];
