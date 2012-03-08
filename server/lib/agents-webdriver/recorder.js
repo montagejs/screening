@@ -5,7 +5,7 @@
  </copyright> */
 
 /*
- * This file will be executed on a webdriver client to give it recording support. 
+ * This file will be executed on a webdriver client to give it recording support.
  * Since it is run client-side, no requires or external scripts may be used.
  *
  * This file contains no support for playback of events, only recording them.
@@ -17,21 +17,21 @@ function parseUrl(url) {
     var port = portPos != -1 ? url.substring(portPos+1) : "80";
     return {
         domain: domain,
-        port: port,
+        port: port
     };
-};
+}
 
 var server = parseUrl(arguments[0]);
 var agentId = arguments[1];
 
 // If RECORD_INPUT_ONLY is true, only events in this whitelist will be recorded
 var eventWhitelist = [
-    "mousedown", "mousemove", "mouseup", 
+    "mousedown", "mousemove", "mouseup",
     /*"click", "dblclick", "mousewheel",*/
     "keydown", "textInput",
     "touchstart", "touchend", "touchmove",
     /*"focus",*/ "scroll", "resize",
-    "drag", "dragover", "dragend",
+    "drag", "dragover", "dragend"
 ];
 
 var propertyWhitelist = [
@@ -212,7 +212,7 @@ var EventUtility = Object.create(Object, {
             };
             
             // change is a special case. It's the only event we get for some input fields,
-            // but has no value data associated with it. As such, we have to read the content of the 
+            // but has no value data associated with it. As such, we have to read the content of the
             // field and use that instead
             if(obj.type == "input" || obj.type == "change") {
                 if(obj.target.type == "checkbox") {
@@ -302,7 +302,7 @@ var EventUtility = Object.create(Object, {
                     radiusY: touch.radiusY,
                     rotation: touch.rotation,
                     scale: touch.scale,
-                    identifier: touch.identifier,
+                    identifier: touch.identifier
                 };
                 
                 // To reduce serialization complexity, if the touch target is the same as the event target we won't serialize
@@ -419,12 +419,12 @@ var EventUtility = Object.create(Object, {
 });
 
 function injectScript(src, callback) {
-    var a = document, 
+    var a = document,
         b = a.createElement('script');
     b.src = src;
     b.onload = callback;
     a.head.appendChild(b);
-};
+}
 
 //
 // Main script execution
