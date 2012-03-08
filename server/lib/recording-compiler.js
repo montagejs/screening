@@ -132,6 +132,9 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
      */
     pushEvent: {
         value: function(event) {
+            if(event.type == "setSelectedIndex") {
+                console.log(event);
+            }
             this.actionStack.push(event);
         }
     },
@@ -521,6 +524,11 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                 case "dblclick":
                     source += ".doubleClick";
                     funcArgs.push(this._translateMouseButton(event.arguments.which), event.arguments.elementX, event.arguments.elementY);
+                    break;
+
+                case "setselectedindex":
+                    source += ".setSelectedIndex";
+                    funcArgs.push(event.arguments.selectedIndex);
                     break;
                     
                 default:

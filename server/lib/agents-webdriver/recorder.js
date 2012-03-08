@@ -31,7 +31,8 @@ var eventWhitelist = [
     "keydown", "textInput",
     "touchstart", "touchend", "touchmove",
     /*"focus",*/ "scroll", "resize",
-    "drag", "dragover", "dragend"
+    "drag", "dragover", "dragend",
+    "change"
 ];
 
 var propertyWhitelist = [
@@ -125,7 +126,7 @@ var EventUtility = Object.create(Object, {
     stopListening: {
         value: function() {
             var targetWindow = this._attachedWindow;
-            if(targetWindow == null) {
+            if(targetWindow === null) {
                 return;
             }
             
@@ -215,8 +216,12 @@ var EventUtility = Object.create(Object, {
             // but has no value data associated with it. As such, we have to read the content of the
             // field and use that instead
             if(obj.type == "input" || obj.type == "change") {
+                debugger;
                 if(obj.target.type == "checkbox") {
                     obj.arguments.checked = (event.target.checked ? true : false);
+                } else if (event.target.tagName == "SELECT") {
+                    obj.type = "setSelectedIndex";
+                    obj.arguments.selectedIndex = event.target.selectedIndex;
                 } else {
                     obj.arguments.value = event.target.value;
                 }
