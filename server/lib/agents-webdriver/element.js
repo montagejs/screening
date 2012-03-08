@@ -244,9 +244,7 @@ WebdriverElement.prototype.setAttribute = function(attrName, attrValue){
  */
 WebdriverElement.prototype.getSelectedIndex = function(){
     var self = this;
-    return this.agent.executeScript("return arguments[0].selectedIndex;", [this.element],
-    function() { return self; } // Allow Chaining
-    );
+    return this.agent.executeScript("return arguments[0].selectedIndex;", [this.element]);
 };
 
 /**
