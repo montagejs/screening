@@ -61,7 +61,7 @@ var KeyMap = {
     121:"F10",
     122:"F11",
     123:"F12",
-    91:"COMMAND",
+    91:"COMMAND"
 };
 
 /**
@@ -132,9 +132,6 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
      */
     pushEvent: {
         value: function(event) {
-            if(event.type == "setSelectedIndex") {
-                console.log(event);
-            }
             this.actionStack.push(event);
         }
     },
