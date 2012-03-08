@@ -217,6 +217,8 @@ Script.prototype.require = function(filename) {
                             return exportsObject[i].apply(exportsObject, [self.globalObjects].concat([].slice.call(arguments)));
                         }
                     })(i);
+                } else {
+                    wrappedExportsObject[i] = exportsObject[i];
                 }
             }
 
