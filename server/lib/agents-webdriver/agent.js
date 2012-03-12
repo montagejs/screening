@@ -30,6 +30,26 @@ var WebDriverAgent = exports.WebDriverAgent = function(session, sync, scriptObje
 };
 
 /**
+ * Get the session capabilities object
+ * @see The <a href="http://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId">JSON Wire Protocol</a>
+ * @function module:screening/agent.WebDriverAgent#getSession
+ */
+WebDriverAgent.prototype.getSession = function() {
+    var self = this;
+    return this.sync.promise(function() {
+        var defer = Q.defer();
+
+        if (self.session && self.session.session && self.session.session.value) {
+            defer.resolve(self.session.session.value);
+        } else {
+            defer.reject("Invalid session capabilities object");
+        }
+
+        return defer.promise;
+    });
+};
+
+/**
  * Explicitly end the current test case with the given message.
  * @function module:screening/agent.WebDriverAgent#endTest
  * @param {String} message Message to log about why the test was ended.
