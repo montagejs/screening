@@ -7,6 +7,7 @@ agent.gotoUrl("/screening/node_modules/montage/examples/uuid-generator/index.htm
 
 agent.setWindowSize(927, 974);
 
+//Gererate 4 UUIDs, verify all are unique
 agent.element("//*[@id='generate-uuid']").click(Mouse.LEFT,76,29);
 agent.wait(1608);
 agent.element("//*[@id='generate-uuid']").click(Mouse.LEFT,76,28);
@@ -28,7 +29,7 @@ assertNotEqual(uuid2, uuid3);
 assertNotEqual(uuid2, uuid4);
 assertNotEqual(uuid3, uuid4);
 
-
+//Refresh page, make sure all UUIDs are gone
 agent.gotoUrl("/screening/node_modules/montage/examples/uuid-generator/index.html");
 
 assertFalse (agent.doesElementExist("/HTML/BODY/UL/LI[1]/INPUT"));

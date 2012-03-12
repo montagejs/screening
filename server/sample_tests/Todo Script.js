@@ -10,7 +10,7 @@ script.setOption("sync.mode", "auto");
 
 
 
-
+//Verify initial state of the app - no items in the list
 agent.setWindowSize(927, 989);
 
 var input = agent.element("//*[@id='taskForm']/DIV/LABEL/INPUT");
@@ -18,6 +18,9 @@ var itemText = agent.element("/HTML/BODY/DIV/DIV");
 
 
 assertEqual("0 items left", itemText.getText()); 
+
+//Add 3 tasks, verify they appear in the list, "Clear Completed" button appears,
+//and total count == 3
 
 input.sendKeys("Task1")
     .sendKeys(Key.ENTER);
@@ -42,6 +45,8 @@ input.sendKeys("Task3")
  
 assertEqual("3 items left", itemText.getText()); 
 
+
+//Mark 2nd Task as completed, verify the task has strike-through, and total count of tasks == 2
 secondCheckBox.click();
 
 var btn_Clear = agent.element("//*[@id='clearCompletedForm']/DIV/INPUT");
@@ -54,13 +59,14 @@ assertEqual("line-through", secondItem.getComputedStyle("text-decoration"));
   
 assertEqual("2 items left", itemText.getText()); 
 
-
+//Clear completed task (Task2), verify it's removed from the list
 btn_Clear.click();
 
 assertEqual("Task3", secondItem.getText()); 
 assertFalse (agent.doesElementExist("//*[@id='clearCompletedForm']/DIV/INPUT"));
 
-
+//Mark all tasks as "Completed"
+//Verify  all check-boxes have check-marks, all tasks are crossed, and tasks count ==0
 btn_Complete.click();
 
 assertEqual ("Mark all as incomplete",btn_Complete.getText());
@@ -75,7 +81,8 @@ assertEqual("line-through", secondItem.getComputedStyle("text-decoration"));
 assertEqual("0 items left", itemText.getText()); 
 assertTrue (agent.doesElementExist("//*[@id='clearCompletedForm']/DIV/INPUT"));
 
-
+//Uncheck check-box next to Task3
+//Verify only Task1 is marked as "Completed"
 secondCheckBox.click();
 assertEqual("Task1", firstItem.getText()); 
 assertEqual("line-through", firstItem.getComputedStyle("text-decoration"));
@@ -85,6 +92,7 @@ assertEqual("none", secondItem.getComputedStyle("text-decoration"));
 assertEqual ("Mark all as complete",btn_Complete.getText());
 assertEqual("1 item left", itemText.getText()); 
 
+//Refresh the page. Verify items on the page persist
 agent.gotoUrl("/screening/node_modules/montage/examples/todo-mvc/index.html");
 
 firstItem = agent.element("/HTML/BODY/DIV/UL/LI/DIV/FORM/DIV/LABEL/SPAN[2]");
@@ -96,13 +104,12 @@ btn_Clear = agent.element("//*[@id='clearCompletedForm']/DIV/INPUT");
 input = agent.element("//*[@id='taskForm']/DIV/LABEL/INPUT");
 itemText = agent.element("/HTML/BODY/DIV/DIV");
 
-
-
 assertEqual("Task1", firstItem.getText()); 
 assertEqual("line-through", firstItem.getComputedStyle("text-decoration"));
 assertEqual("Task3", secondItem.getText()); 
 assertEqual("none", secondItem.getComputedStyle("text-decoration"));
 
+//Mark all tasks as "Complete"
 btn_Complete.click();
 
 assertEqual ("Mark all as incomplete",btn_Complete.getText());
@@ -117,6 +124,7 @@ assertEqual("line-through", secondItem.getComputedStyle("text-decoration"));
 assertEqual("0 items left", itemText.getText()); 
 assertTrue (agent.doesElementExist("//*[@id='clearCompletedForm']/DIV/INPUT"));
 
+//Mark all tasks as "Incomplete"
 btn_Complete.click();
 agent.wait(1000);
 assertEqual("false",firstCheckBox.getAttribute("aria-checked"));
@@ -129,6 +137,7 @@ assertEqual("2 items left", itemText.getText());
 assertFalse(agent.doesElementExist("//*[@id='clearCompletedForm']/DIV/INPUT"));
 
   
+//Mark all tasks as "Complete" and clear the list
 btn_Complete.click();
 
 assertEqual ("Mark all as incomplete",btn_Complete.getText());
@@ -157,6 +166,7 @@ assertFalse (agent.doesElementExist("//*[@id='clearCompletedForm']/DIV/INPUT"));
 
 assertEqual("0 items left", itemText.getText()); 
 
+//Add 20 tasks so the list is scrollable
 for (var i=0; i<20; i++) {
   input.sendKeys("Task"+i)
     .sendKeys(Key.ENTER);
@@ -172,6 +182,7 @@ btn_Clear.click();
 
 assertEqual("0 items left", itemText.getText()); 
 
+//Verify input box is cleared once the task is added to the list
 input.sendKeys("Task1")
     .sendKeys(Key.ENTER);
 
