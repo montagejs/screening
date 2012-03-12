@@ -16,6 +16,7 @@
     -webkit-box-orient: vertical;
     -webkit-box-flex: 1;
     overflow: auto;
+    -webkit-padding-start: 0;
 }
 
 .scriptListView.noUploader .scriptList {
