@@ -24,22 +24,23 @@
                     }
                 }
             },
+
             "scriptList": {
-                "module": "montage/ui/list.reel",
-                "name": "List",
+                "module": "montage/ui/repetition.reel",
+                "name": "Repetition",
                 "properties": {
                     "element": {"#": "scriptList"},
-                    "axis": "vertical",
-                    "isSelectionEnabled": true
+                    "isSelectionEnabled": true,
+                    "axis": "vertical"
                 },
                 "bindings": {
                     "contentController": {
                         "boundObject": {"@": "owner"},
-                        "boundObjectPropertyPath": "scriptController",
-                        "oneway": true
+                        "boundObjectPropertyPath": "scriptController"
                     }
                 }
             },
+
             "actioneventlistener1": {
                 "module": "montage/core/event/action-event-listener",
                 "name": "ActionEventListener",
