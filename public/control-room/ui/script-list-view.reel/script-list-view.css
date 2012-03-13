@@ -17,6 +17,7 @@
     -webkit-box-flex: 1;
     overflow: auto;
     -webkit-padding-start: 0;
+    margin: 0;
 }
 
 .scriptListView.noUploader .scriptList {
@@ -50,34 +51,11 @@
 
 /* List */
 
-.scriptList .montage-list-scrollView {
-    -webkit-box-flex: 1;
+.scriptList {
+    padding: 0;
 }
 
-.scriptList li {
-    list-style: none;
-    background-color: hsl(198,50%,96%);
-}
 
-.scriptList li:hover {
-    cursor: pointer;
-    background-color: hsl(198,50%,98%);
-}
-
-.scriptList li:active {
-    background-color: hsl(198,50%,96%);
-}
-
-.scriptList li.selected {
-    cursor: default;
-    background-color: hsl(198,60%,88%);
-    color: hsl(198,30%,30%);
-    
-}
-.scriptList li.selected .scriptSource {
-    box-shadow: none;
-    border-bottom: 1px solid hsl(198,60%,75%);
-}
 
 /* Very hacky! I'd rather not have to do this */
 /*
