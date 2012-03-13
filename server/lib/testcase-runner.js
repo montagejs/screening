@@ -170,7 +170,7 @@ TestcaseRunner.prototype._executeTestInVm = function(source, result, agent, scri
         ex.columnNumber = "Unknown";
         result.reportException(ex);
         defer.resolve();
-        return defer.promise
+        return defer.promise;
     }
 
     sync.runSync(function() {

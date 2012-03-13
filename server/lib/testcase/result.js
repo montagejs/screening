@@ -36,6 +36,8 @@ Result.prototype.reportException = function(exception) {
     // Copy all from exception into this.exception, and add props later.
     this.exception = deepCopy(exception, 4);
 
+    this.exception.message = exception.message;
+
     // The following are implemented via getters, and don't copy using for-in, it seems.
     if(exception.stack) {
         var stackTrace = getStackTraceByErrorStack(exception.stack, TMP_TEST_FILE_NAME);

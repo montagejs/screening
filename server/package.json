@@ -1,6 +1,6 @@
 {
     "name": "screening",
-    "version": "0.5.0",
+    "version": "0.7.0",
     "description": "A UI testing tool for Montage based apps",
     "keywords": ["testing", "montage"],
     "homepage": "http://www.motorola.com",
