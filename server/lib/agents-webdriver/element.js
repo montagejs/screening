@@ -254,7 +254,17 @@ WebdriverElement.prototype.getSelectedIndex = function(){
  */
 WebdriverElement.prototype.setSelectedIndex = function(selectedIndex){
     var self = this;
-    return this.agent.executeScript("arguments[0].selectedIndex = arguments[1];", [this.element, selectedIndex],
+
+    // We need to force a change event to fire in order to simulate a
+    // real user interaction. (Typically selectedIndex won't fire that)
+    var script = [
+        "arguments[0].selectedIndex = arguments[1];",
+        "var changeEvent = document.createEvent('HTMLEvents');",
+        "changeEvent.initEvent('change', true, false);",
+        "arguments[0].dispatchEvent(changeEvent);",
+    ].join("\n");
+
+    return this.agent.executeScript(script, [this.element, selectedIndex],
         function() { return self; } // Allow Chaining
     );
 };
