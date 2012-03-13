@@ -145,7 +145,7 @@ exports.ScriptListView = Montage.create(Component, {
                 scriptSource.fromServer(createdScript);
 
                 self.scriptController.addObjects(scriptSource);
-                self.prepareForDraw();
+                self.needsDraw = true;
             };
             req.send(null);
         }

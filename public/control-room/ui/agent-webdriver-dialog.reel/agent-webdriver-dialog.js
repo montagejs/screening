@@ -16,8 +16,6 @@ exports.AgentWebdriverDialog = Montage.create(Component, {
     templateDidLoad: {
         value: function() {
             var self = this;
-
-            self.selectedBrowserNames.selectedIndexes = [0];
         }
     },
 
