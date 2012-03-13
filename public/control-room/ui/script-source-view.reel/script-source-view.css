@@ -1,18 +1,37 @@
+/* @override http://localhost:8081/screening/control-room/ui/script-source-view.reel/script-source-view.css */
 /* <copyright>
  This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
+
 .scriptSource {
-    border-bottom: 1px solid #DEDEDE;
-    border-top: 1px solid #FFFFFF;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: hsl(198,50%,96%);
+    border-top: 1px solid hsla(0,0%,100%,1);
+    border-bottom: 1px solid hsla(0,0%,0%,.1);
     padding: 8px 15px 8px 15px;
+    outline: none;
+}
+
+.scriptSource:hover {
+    cursor: pointer;
+    background-color: hsl(198,60%,100%);
+}
+
+.scriptSource:focus {
+    border-top: 1px solid hsl(198,100%,50%);
+    border-bottom: 1px solid hsl(198,100%,50%);
 }
 
 .selected .scriptSource {
-    border-top: 0;
-    padding-top: 9px;
-    box-shadow: 0 1px 2px #666666 inset;
+    cursor: default;
+    background-color: hsl(198,60%,88%);
+    color: hsl(198,30%,30%);
+    border-top: 1px solid hsla(0,0%,0%,.1);
+    border-bottom: 1px solid hsla(0,0%,100%,.1);
 }
 
 .scriptSource .name {
@@ -43,11 +62,7 @@ textarea {
     float: right;
     content: "\025b6";
     font-size: 0.8em;
-    margin-right: -12px;
-    
-    background-color: #17b1e9;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    color: transparent;
+    margin-right: -12px;    
+    color: #17b1e9;
     text-shadow: rgba(255,255,255,0.5) 0 5px 6px;
 }

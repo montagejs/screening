@@ -55,34 +55,6 @@
     padding: 0;
 }
 
-.scriptList li {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    background-color: hsl(198,50%,96%);
-}
-
-.scriptList li:hover {
-    cursor: pointer;
-    background-color: hsl(198,50%,98%);
-}
-
-.scriptList li:active {
-    background-color: hsl(198,50%,96%);
-}
-.scriptList li.selected {
-    cursor: default;
-    background-color: hsl(198,60%,88%);
-    color: hsl(198,30%,30%);
-}
-
-.scriptList li .scriptSource {
-    outline: none;
-}
-.scriptList li.selected .scriptSource {
-    box-shadow: none;
-    border-bottom: 1px solid hsl(198,60%,75%);
-}
 
 
 /* Very hacky! I'd rather not have to do this */
