@@ -152,6 +152,22 @@ body {
         margin-top: 10px;
     }
     
+    /* List */
+    .scriptListView .scriptList {
+        position: absolute;
+        top: 85px;
+        right: 0;
+        bottom: 65px;
+        left: 0;
+    }
+    
+    .scriptList .scriptUploader {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    }
+    
     
     /* Central */
     
