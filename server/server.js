@@ -84,7 +84,7 @@ exports.configureServer = function(customMongoDbProvider) {
         if (error || response.statusCode != 200) {
             // Fail silently, this isn't really a problem.
         } else {
-            agentPool.addAgent({}, {
+            agentPool.addAgent({browserName: "chrome"}, {
                 url: url,
                 type: agentTypes.WEBDRIVER
             });
