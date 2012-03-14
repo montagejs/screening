@@ -27,6 +27,24 @@ var WebDriverComponent = exports.WebDriverComponent = function(agent, element){
 };
 
 /**
+ * Return the component's object name
+ * @function module:screening/component.WebDriverComponent#getObjectName
+ * @return {String} The component's object name.
+ */
+WebDriverComponent.prototype.getObjectName = function(){
+    return this.agent.executeScript("return arguments[0].controller._montage_metadata.objectName;", [this.element]);
+};
+
+/**
+ * Return the component's module ID
+ * @function module:screening/component.WebDriverComponent#getModuleId
+ * @return {String} The component's module ID
+ */
+WebDriverComponent.prototype.getModuleId = function(){
+    return this.agent.executeScript("return arguments[0].controller._montage_metadata.moduleId;", [this.element]);
+};
+
+/**
  * Return the value of the specified component property.
  * @function module:screening/component.WebDriverComponent#getProperty
  * @param {String} attrName The attribute name to query.
