@@ -247,9 +247,10 @@ var POST = exports.POST = function(request) {
             if (ret.statusCode && ret.statusCode >= 400) {
                 var retBody;
                 try {
-                    retBody = JSON.parse(fullBody);
+                    var escapedBody = fullBody.replace(/\u0000/g, ""); // Selenium Server fix
+                    retBody = JSON.parse(escapedBody);
                 } catch(ex) {
-                    retBody = "The response contained malformed JSON. Raw output: " + fullBody;
+                    retBody = {value: {message: "The response contained malformed JSON. Raw output: " + fullBody}};
                 }
                 defer.reject(retBody);
             }
