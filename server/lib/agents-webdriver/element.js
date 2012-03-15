@@ -300,9 +300,10 @@ WebdriverElement.prototype.setSelectedValue = function(selectedValue){
         "       var changeEvent = document.createEvent('HTMLEvents');",
         "       changeEvent.initEvent('change', true, false);",
         "       arguments[0].dispatchEvent(changeEvent);",
-        "       break;",
+        "       return;",
         "   }",
-        "}"
+        "}",
+        "throw new Error('Option with value \"' + arguments[1] + '\" not found');"
     ].join("\n");
 
     return this.agent.executeScript(script, [this.element, selectedValue],
