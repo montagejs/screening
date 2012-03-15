@@ -30,8 +30,14 @@ var WebDriverAgent = exports.WebDriverAgent = function(session, sync, scriptObje
 };
 
 /**
- * Get the session capabilities object
- * @see The <a href="http://code.google.com/p/selenium/wiki/JsonWireProtocol#GET_/session/:sessionId">JSON Wire Protocol</a>
+ * Get the session capabilities object. Can include properties like: browserName, version, platform, javascriptEnabled,
+ * takesScreenshot, etc.
+ *
+ * @example
+ * // Get the browserName session property
+ * var browserName = agent.getSession().browserName;
+ *
+ * @see The <a href="http://code.google.com/p/selenium/wiki/JsonWireProtocol#Capabilities_JSON_Object">Capabilities JSON Object</a>
  * @function module:screening/agent.WebDriverAgent#getSession
  */
 WebDriverAgent.prototype.getSession = function() {
