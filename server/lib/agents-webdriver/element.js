@@ -249,7 +249,7 @@ WebdriverElement.prototype.getSelectedIndex = function(){
 /**
  * Set the selectedIndex of a select element
  * @function module:screening/element.WebdriverElement#setSelectedIndex
- * @param {Integer} selectedIndex Element attribute to change.
+ * @param {Integer} selectedIndex Index of option to select.
  * @return {Element} A reference to this, to allow chaining.
  */
 WebdriverElement.prototype.setSelectedIndex = function(selectedIndex){
@@ -261,10 +261,52 @@ WebdriverElement.prototype.setSelectedIndex = function(selectedIndex){
         "arguments[0].selectedIndex = arguments[1];",
         "var changeEvent = document.createEvent('HTMLEvents');",
         "changeEvent.initEvent('change', true, false);",
-        "arguments[0].dispatchEvent(changeEvent);",
+        "arguments[0].dispatchEvent(changeEvent);"
     ].join("\n");
 
     return this.agent.executeScript(script, [this.element, selectedIndex],
+        function() { return self; } // Allow Chaining
+    );
+};
+
+/**
+ * Gets the value of the selected option of a select element
+ * @function module:screening/element.WebdriverElement#getSelectedValue
+ * @return {String} Selected option value
+ */
+WebdriverElement.prototype.getSelectedValue = function(){
+    var script = [
+        "var index = arguments[0].selectedIndex;",
+        "return arguments[0].options[index].value;"
+    ].join("\n");
+
+    return this.agent.executeScript(script, [this.element]);
+};
+
+/**
+ * Selects the option within a select that has the spectified value
+ * @function module:screening/element.WebdriverElement#setSelectedValue
+ * @param {String} selectedValue Value of option to select.
+ * @return {Element} A reference to this, to allow chaining.
+ */
+WebdriverElement.prototype.setSelectedValue = function(selectedValue){
+    var self = this;
+
+    var script = [
+        "var i, options = arguments[0].options;",
+        "for(i = 0; i < options.length; ++i) {",
+        "   if(options[i].value == arguments[1]) {",
+        "       arguments[0].selectedIndex = i;",
+        "       var changeEvent = document.createEvent('HTMLEvents');",
+        "       changeEvent.initEvent('change', true, false);",
+        "       arguments[0].dispatchEvent(changeEvent);",
+        "       return;",
+        "   }",
+        "}",
+        "throw new Error('Option with value \"' + arguments[1] + '\" not found');"
+    ].join("\n");
+
+    return this.agent.executeScript(script, [this.element, selectedValue],
         function() { return self; } // Allow Chaining
     );
 };
