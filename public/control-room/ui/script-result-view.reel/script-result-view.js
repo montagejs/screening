@@ -107,6 +107,15 @@ exports.ScriptResultView = Montage.create(Component, {
                 }
                 if(data.exception){
                     var exceptionDetails = data.exception.message;
+
+                    // Hide the Selenium Server extra information in the results page, it'll still be available
+                    // in the JSON download
+                    var SELENIUM_EXTRA = "(WARNING: The server did not provide any stacktrace information)";
+                    var seleniumExtraStart = exceptionDetails.search(SELENIUM_EXTRA);
+                    if (seleniumExtraStart > -1) {
+                        exceptionDetails = exceptionDetails.substring(0, seleniumExtraStart - 1);
+                    }
+
                     if (data.exception.arguments && Array.isArray(data.exception.arguments)) {
                         var exceptionArgs = data.exception.arguments.map(function(elem) {
                             return (elem.chainable && elem.chainable._selector) ? elem.chainable._selector : elem;
