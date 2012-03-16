@@ -22,6 +22,7 @@ var Q = require("q"),
 */
 var WebDriverAgent = exports.WebDriverAgent = function(session, sync, scriptObject, result){
     this.session = session;
+    this.browserName = session.session.value.browserName;
     this.sync = sync;
     this.scriptObject = scriptObject;
     this.result = result;
@@ -284,7 +285,7 @@ WebDriverAgent.prototype.gotoUrl = function(url){
 
         // On the initial run of the webdriver execution we open a separate window
         // to allow control of the window size (chrome does not allow resizing a main window)
-        if(self.firstNavigate){
+        if(self.browserName === "chrome" && self.firstNavigate){
             self.firstNavigate = false;
             self.session.executeScript("window.open('" + url + "', 'interactionWindow', 'resizable=yes');").then(function(){
                 self.session.switchToWindow("interactionWindow").then(function(){
