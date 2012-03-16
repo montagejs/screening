@@ -33,6 +33,14 @@
                     "action": "deleteResults"
                 }
             },
+            "checkChangeListener": {
+                "module": "montage/core/event/action-event-listener",
+                "name": "ActionEventListener",
+                "properties": {
+                    "handler": {"@": "owner"},
+                    "action": "resultSelected"
+                }
+            },
             "selectAllListener": {
                 "module": "montage/core/event/action-event-listener",
                 "name": "ActionEventListener",
@@ -166,7 +174,14 @@
                         "boundObject": {"@": "repetition1"},
                         "boundObjectPropertyPath": "objectAtCurrentIteration.selected"
                     }
-                }
+                },
+                "listeners": [
+                    {
+                        "type": "change@checked",
+                        "listener": {"@": "checkChangeListener"},
+                        "capture": false
+                    }
+                ]
             },
             "clickabletext1": {
                 "module": "control-room/ui/clickable-text",
