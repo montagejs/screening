@@ -144,13 +144,20 @@ exports.ScriptResultsView = Montage.create(Component, {
             });
         }
     },
+
+    resultSelected: {
+        value: function(event) {
+            var selectedStatus = this.isAtLeastOneSelected();
+
+            this.selectAllButton.label = selectedStatus ? "Deselect All" : "Select All";
+        }
+    },
     
     selectAllResults: {
         value: function(event) {
-            var self = this;
-            var selectedStatus = !self.isAtLeastOneSelected();
+            var selectedStatus = !this.isAtLeastOneSelected();
 
-            self._results.forEach(function(elem, i) {
+            this._results.forEach(function(elem, i) {
                 elem.selected = selectedStatus;
             });
         }
