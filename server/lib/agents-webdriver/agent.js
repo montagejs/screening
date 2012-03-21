@@ -509,7 +509,7 @@ WebDriverAgent.prototype.mouseMove = function(x, y){
             // TODO: Time-based interpolation?
             function nextMove() {
                 var point = points[pointId];
-                when(self.session.moveTo(self.rootElement, point.x, point.y), function() {
+                when(self.session.moveTo(self.rootElement, point.x, point.y), function successCb() {
                     pointId++;
                     // End of list? Exit
                     if(pointId >= points.length) {
@@ -518,6 +518,8 @@ WebDriverAgent.prototype.mouseMove = function(x, y){
                     }
                     var nextPoint = points[pointId];
                     setTimeout(nextMove, nextPoint.duration); //TODO: Timing is going to be off on this, can we improve it?
+                }, function failCb(res) {
+                    defer.reject(res);
                 });
             }
             nextMove();
