@@ -129,7 +129,7 @@ TestcaseRunner.prototype._executeWebdriverTest = function(testScript, agent, opt
 
     // Start the webdriver session
     session.init(agent.capabilities, function(err) {
-        if(err) {
+        if(!err.sessionId) {
             // Wrap error message inside Error object if required
             if (!(err instanceof Error)) {
                 if (err.value && err.value.message) {
