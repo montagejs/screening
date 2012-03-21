@@ -129,12 +129,26 @@ TestcaseRunner.prototype._executeWebdriverTest = function(testScript, agent, opt
 
     // Start the webdriver session
     session.init(agent.capabilities, function(err) {
-        if(err instanceof Error) {
-            session.quit().then(function() {
-                result.reportException(err);
+        if(err) {
+            // Wrap error message inside Error object if required
+            if (!(err instanceof Error)) {
+                if (err.value && err.value.message) {
+                    err = new Error(err.value.message);
+                } else {
+                    err = new Error(err);
+                }
+            }
 
+            // If we have a valid session quit, if not simply display the results
+            if (session.sessionUrl) {
+                session.quit().then(function successCb() {
+                    result.reportException(err);
+                    writeResultsAndShowNotification();
+                });
+            } else {
+                result.reportException(err);
                 writeResultsAndShowNotification();
-            });
+            }
         } else {
             // Execute the test, using our code synchronization system
             when(self._executeTestInVm(testScript.code, result, agentConstructor, scriptObject, sync), function() {
