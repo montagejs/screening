@@ -21,23 +21,25 @@ var Session = exports.Session = function(options){
 }
 
 Session.prototype = {
-    startSession: function(desiredCapabilities){
-        var req={
+    startSession: function(desiredCapabilities) {
+        var req = {
             url: this.options.url + "/session",
-            body: JSON.stringify({desiredCapabilities: desiredCapabilities})    
+            body: JSON.stringify({desiredCapabilities: desiredCapabilities})
         }
 
-        var _self=this;
-        //print("startSession() ");
-        //pshallow(req);    
-        return when(POST(req), function(results){
-            if (results.statusCode=='302' || results.statusCode=='303'){
+        var _self = this;
+        return when(POST(req), function(results) {
+            if (results.statusCode == '302' || results.statusCode == '303') {
                 var sessionUrl = _self.sessionUrl = (results.headers.location.indexOf("http") == 0) ?
-                    results.headers.location : 
+                    results.headers.location :
                     _self.options.url + results.headers.location;
-                return when(GET({url: _self.sessionUrl}),function(response){
-                    //print("response handler for start Session: ", typeof response);
-                    //pshallow(response);
+                return when(GET({url: _self.sessionUrl}), function(response) {
+                    // Validate that the session was created on the desired browser
+                    if (desiredCapabilities.browserName !== response.value.browserName) {
+                        throw Error("The desired browser [" + desiredCapabilities.browserName +
+                            "] is not the same as the session browser [" + response.value.browserName + "]");
+                    }
+
                     _self.session = response;
                     return response;
                 });

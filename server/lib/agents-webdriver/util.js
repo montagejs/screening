@@ -10,8 +10,9 @@ var createWebdriverSession = exports.createWebdriverSession = function(url) {
     var session = new Session({url: url});
     session.init = function(caps, cb){
         caps = caps ? caps : {};
-        this.startSession(caps).then(cb, function(errorBody) {
-            console.error("**** WEBDRIVER START SESSION REJECTED! *****", errorBody);
+        this.startSession(caps).then(cb, function(err) {
+            console.error("**** WEBDRIVER START SESSION REJECTED! *****", err);
+            cb(err);
         });
     }
     return session;
