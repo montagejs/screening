@@ -115,22 +115,49 @@ TestcaseRunner.prototype._executeWebdriverTest = function(testScript, agent, opt
 
     var agentConstructor = function() { return new WebDriverAgent(session, sync, scriptObject, result); };
 
-    // Start the webdriver session
-    session.init(agent.capabilities, function() {
-        // Execute the test, using our code synchronization system
-        when(self._executeTestInVm(testScript.code, result, agentConstructor, scriptObject, sync), function() {
-            // kill the webdriver session
-            session.quit().then(function() {
-                // Write the results to the DB
-                result.finalize();
-                self.resultsProv.upsert(result.get(), function(err, object) {
-                    if (err) throw err;
-                });
-            
-                // Show the notification to the control room
-                agent.endTest(result.get());
-            });
+    var writeResultsAndShowNotification = function() {
+        // Write the results to the DB
+        result.finalize();
+
+        self.resultsProv.upsert(result.get(), function(err, object) {
+            if (err) throw err;
         });
+
+        // Show the notification to the control room
+        agent.endTest(result.get());
+    }
+
+    // Start the webdriver session
+    session.init(agent.capabilities, function(err) {
+        if(err) {
+            // Wrap error message inside Error object if required
+            if (!(err instanceof Error)) {
+                if (err.value && err.value.message) {
+                    err = new Error(err.value.message);
+                } else {
+                    err = new Error(err);
+                }
+            }
+
+            // If we have a valid session quit, if not simply display the results
+            if (session.sessionUrl) {
+                session.quit().then(function successCb() {
+                    result.reportException(err);
+                    writeResultsAndShowNotification();
+                });
+            } else {
+                result.reportException(err);
+                writeResultsAndShowNotification();
+            }
+        } else {
+            // Execute the test, using our code synchronization system
+            when(self._executeTestInVm(testScript.code, result, agentConstructor, scriptObject, sync), function() {
+                // kill the webdriver session
+                session.quit().then(function() {
+                    writeResultsAndShowNotification();
+                });
+            });
+        }
     });
 
     return result;
