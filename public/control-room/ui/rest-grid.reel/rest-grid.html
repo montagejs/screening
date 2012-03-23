@@ -12,9 +12,17 @@
                 "owner": {
                     "prototype": "control-room/ui/rest-grid.reel",
                     "properties": {
-                        "element": {
-                            "#": "restGrid"
-                        }
+                        "element": {"#": "restGrid"},
+                        "dataTable": {"#": "dataTable"},
+                        "columns": [
+                            "",
+                            "Name",
+                            "Agent",
+                            "Script",
+                            "Start",
+                            "End",
+                            "Summary"
+                        ]
                     }
                 }
             }
@@ -24,6 +32,10 @@
     <body>
         <div id="restGrid">
             <h1>REST Grid!!!</h1>
+
+            <table id="dataTable">
+
+            </table>
         </div>
     </body>
 </html>
