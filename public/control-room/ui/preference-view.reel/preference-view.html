@@ -18,7 +18,7 @@
                 },
                 "bindings": {
                     "preferenceObject": {
-                        "boundObject": {"@": "preference-repetition"},
+                        "boundObject": {"@": "preferenceRepetition"},
                         "boundObjectPropertyPath": "objectAtCurrentIteration",
                         "oneway": true
                     }
@@ -32,7 +32,7 @@
                 },
                 "bindings": {
                     "preferenceObject": {
-                        "boundObject": {"@": "preference-repetition"},
+                        "boundObject": {"@": "preferenceRepetition"},
                         "boundObjectPropertyPath": "objectAtCurrentIteration",
                         "oneway": true
                     }
@@ -46,7 +46,7 @@
                 },
                 "bindings": {
                     "preferenceObject": {
-                        "boundObject": {"@": "preference-repetition"},
+                        "boundObject": {"@": "preferenceRepetition"},
                         "boundObjectPropertyPath": "objectAtCurrentIteration",
                         "oneway": true
                     }
@@ -65,13 +65,13 @@
                 },
                 "bindings": {
                     "switchValue": {
-                        "boundObject": {"@": "preference-repetition"},
+                        "boundObject": {"@": "preferenceRepetition"},
                         "boundObjectPropertyPath": "objectAtCurrentIteration.type",
                         "oneway": true
                     }
                 }
             },
-            "preferences-controller": {
+            "preferencesController": {
                 "name": "ArrayController",
                 "module": "montage/ui/controller/array-controller",
                 "properties": {
@@ -86,14 +86,14 @@
                     }
                 }
             },
-            "preference-repetition": {
+            "preferenceRepetition": {
                 "module": "montage/ui/repetition.reel",
                 "name": "Repetition",
                 "properties": {
                     "element": {"#": "preference-repetition"},
                     "isSelectionEnabled": false,
                     "axis": "vertical",
-                    "contentController": {"@": "preferences-controller"}
+                    "contentController": {"@": "preferencesController"}
                 }
             },
             "owner": {
@@ -101,7 +101,7 @@
                 "name": "PreferenceView",
                 "properties": {
                     "element": {"#": "preferenceView"},
-                    "preferenceRepetition": {"@" : "preference-repetition"}
+                    "preferenceRepetition": {"@" : "preferenceRepetition"}
                 }
             }
         }
