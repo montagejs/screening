@@ -53,6 +53,11 @@ Session.prototype = {
             body: JSON.stringify({"url": url})
         });
     },
+    refresh: function(){
+        return POST({
+            url: this.sessionUrl + "/refresh"
+        });
+    },
     executeScript: function(script, args){
         //print("executescript session: ", JSON.stringify(this.session));
         if (!this.session.value.javascriptEnabled){
