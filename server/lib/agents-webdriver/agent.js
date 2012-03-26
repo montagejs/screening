@@ -325,9 +325,25 @@ WebDriverAgent.prototype.gotoUrl = function(url){
 WebDriverAgent.prototype.refresh = function() {
     var self = this;
 
-    return self.sync.promise(function() {
-        return self.session.refresh();
-    }, resultFilter);
+    self.sync.promise(function() {
+        var defer = Q.defer();
+
+        self.session.refresh().then(function successCb() {
+            setTimeout(function() {
+                defer.resolve();
+                self._installVisualization();
+            }, self.scriptObject.getOption("loadTimeout"));
+        }, defer.reject);
+
+        return defer.promise;
+    });
+
+    // Query the root element for mouse operations
+    this.rootElement = this.sync.promise(function() {
+        return self.session.findElement(by.xpath("//html"));
+    });
+
+    return self;
 };
 
 /**
