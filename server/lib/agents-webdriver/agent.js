@@ -318,6 +318,19 @@ WebDriverAgent.prototype.gotoUrl = function(url){
 };
 
 /**
+ * Refreshes the current page. All the webpage elements are reloaded by the browser.
+ * @function module:screening/agent.WebDriverAgent#refresh
+ * @return null, this operation does not return a value
+ */
+WebDriverAgent.prototype.refresh = function() {
+    var self = this;
+
+    return self.sync.promise(function() {
+        return self.session.refresh();
+    }, resultFilter);
+};
+
+/**
  * Make the execution wait for the given number of milliseconds.
  * @function module:screening/agent.WebDriverAgent#wait
  * @param {integer} ms The given number of milliseconds to wait
