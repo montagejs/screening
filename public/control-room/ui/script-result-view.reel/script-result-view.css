@@ -168,3 +168,7 @@ tr:nth-child(even){
 .warningBox li {
     text-align: left;
 }
+
+.montage-invisible {
+    display:none;
+}
