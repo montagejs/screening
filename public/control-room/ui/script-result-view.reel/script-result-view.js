@@ -52,7 +52,7 @@ exports.ScriptResultView = Montage.create(Component, {
     },
 
     warningsStyle: {
-        value: "none"
+        value: false
     },
 
     warnings: {
@@ -80,7 +80,7 @@ exports.ScriptResultView = Montage.create(Component, {
                 // Display Warnings if present
                 if (data.warnings && Array.isArray(data.warnings) && data.warnings.length > 0) {
                     self.warnings = data.warnings;
-                    self.warningsStyle = "block";
+                    self.warningsStyle = true;
                 }
 
                 self.messages.push({
