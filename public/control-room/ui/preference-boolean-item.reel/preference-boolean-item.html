@@ -25,13 +25,15 @@
                 }
             },
             "toggle1": {
-                "module": "montage/ui/bluemoon/toggle.reel",
-                "name": "Toggle",
+                "prototype": "montage/ui/toggle-button.reel",
                 "properties": {
-                    "element": {"#": "value"}
+                    "element": {"#": "value"},
+                    "pressedClass": "active",
+                    "pressedLabel": "On",
+                    "unpressedLabel": "Off"
                 },
                 "bindings": {
-                    "value": {
+                    "pressed": {
                         "boundObject": {"@": "owner"},
                         "boundObjectPropertyPath": "preferenceObject.value",
                         "oneway": false
@@ -50,7 +52,7 @@
     </head>
     <body>
         <div id="preferenceBooleanItem" class="preferenceBooleanItem">
-            <span id="value" type="checkbox"><label id="name"></label></span>
+            <label id="name"></label><button class="btn" id="value" type="checkbox">On</button>
         </div>
     </body>
 </html>
