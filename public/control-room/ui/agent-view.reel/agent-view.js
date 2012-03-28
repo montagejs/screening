@@ -27,6 +27,11 @@ exports.AgentView = Montage.create(Component, {
         value: null
     },
 
+    // Used for the title full text
+    agentHostElement: {
+        value: null
+    },
+
     agentHostString: {
         value: ""
     },
@@ -52,6 +57,8 @@ exports.AgentView = Montage.create(Component, {
             } else {
                 this.agentHostString = address;
             }
+
+            this.agentHostElement.title = this.agentHostString;
         }
     },
     
