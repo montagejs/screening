@@ -24,6 +24,19 @@
                     }
                 }
             },
+            "agentHostText": {
+                "prototype": "montage/ui/dynamic-text.reel",
+                "properties": {
+                    "element": {"#": "agentHost"}
+                },
+                "bindings": {
+                    "value" : {
+                        "boundObject": {"@": "owner"},
+                        "boundObjectPropertyPath": "agentHostString",
+                        "oneway": true
+                    }
+                }
+            },
             "owner": {
                 "module": "control-room/ui/agent-view.reel",
                 "name": "AgentView",
@@ -41,6 +54,7 @@
             <button id="agentDelete" title="Remove Agent" class="agentDelete">×</button>
             <div id="agentIcon" class="agentIcon"></div>
             <div id="agentName" class="agentName"></div>
+            <div id="agentHost" class="agentHost"></div>
         </div>
     </body>
 </html>

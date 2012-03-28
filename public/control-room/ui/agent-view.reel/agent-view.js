@@ -27,6 +27,10 @@ exports.AgentView = Montage.create(Component, {
         value: null
     },
 
+    agentHostString: {
+        value: ""
+    },
+
     prepareForDraw: {
         value: function() {
             var self = this;
@@ -40,6 +44,14 @@ exports.AgentView = Montage.create(Component, {
                 self.agentDelete.removeEventListener("click", clickListener, false);
             };
             this.agentDelete.addEventListener("click", clickListener, false);
+
+            // Set up the host string
+            var address = this.agent.info.address;
+            if(address.match(/^http:/)) {
+                this.agentHostString = address.substring(7); // Cut out "http://"
+            } else {
+                this.agentHostString = address;
+            }
         }
     },
     
