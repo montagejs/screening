@@ -5,7 +5,8 @@
  </copyright> */
 var Montage = require("montage/core/core").Montage,
     Component = require("montage/ui/component").Component,
-    Repetition = require("montage/ui/repetition.reel").Repetition;
+    Repetition = require("montage/ui/repetition.reel").Repetition,
+    DynamicText = require("montage/ui/dynamic-text.reel").DynamicText;
 
 exports.RestGrid = Montage.create(Component, {
     _dataTable: { value: null },
@@ -41,22 +42,7 @@ exports.RestGrid = Montage.create(Component, {
     templateDidLoad: {
         value: function() {
             var self = this;
-
-            // Repetition element
-            var repetitionElement = document.createElement("tbody");
-
-            self._repetition = Montage.create(Repetition, {
-                element: {
-                    value: repetitionElement
-                }
-            });
-        }
-    },
-
-    draw: {
-        value: function() {
-            var self = this;
-            var t = self.dataTable;
+            var t = self._dataTable;
 
             // Create thead from column names
             var head = document.createElement("thead");
@@ -68,6 +54,42 @@ exports.RestGrid = Montage.create(Component, {
                 headRow.appendChild(headColumn);
             });
             head.appendChild(headRow);
+
+            t.appendChild(head);
+
+            // Repetition element
+            var repetitionElement = document.createElement("tbody");
+            repetitionElement.id = "tableData";
+            var trElement = document.createElement("tr");
+            var tdElement = document.createElement("td");
+            tdElement.id = "testcaseName";
+            tdElement.colSpan = 7;
+
+            trElement.appendChild(tdElement);
+            repetitionElement.appendChild(trElement);
+            t.appendChild(repetitionElement);
+
+            var nameDyn = DynamicText.create();
+            nameDyn.element = tdElement;
+
+            self._repetition = Repetition.create();
+            Object.defineBinding(nameDyn, "value", {
+                "boundObject": self._repetition,
+                "boundObjectPropertyPath": "objectAtCurrentIteration",
+                "oneway": true});
+            self._repetition.element = repetitionElement;
+            self._repetition.isSelectionEnabled = false;
+            self._repetition.axis = "horizontal";
+            self._repetition.objects = [1,2,3,4,5];
+            nameDyn.attachToParentComponent();
+            self._repetition.needsDraw = true;
+        }
+    },
+
+    draw: {
+        value: function() {
+            var self = this;
+            var t = self._dataTable;
 
             // Get the data from restResourceUrl
             var xhr = new XMLHttpRequest();
@@ -82,9 +104,6 @@ exports.RestGrid = Montage.create(Component, {
             var url = self._restResourceUrl + '&limit=3';
             xhr.open("GET", url);
             xhr.send();
-
-            // append the remaining parts to the main table
-            t.appendChild(head);
         }
     }
 });
