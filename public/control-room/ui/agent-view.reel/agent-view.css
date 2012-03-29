@@ -43,6 +43,13 @@
     white-space: nowrap;
 }
 
+.agentView .agentHost {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size:.8em;
+}
+
 .agentView .agentDelete {
     position: absolute;
     top: -7px;
