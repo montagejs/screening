@@ -13,12 +13,12 @@ function cleanString(s){
 }
 
 /**
- * @param {any} expectedValue 
- * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {any} collection is the area you want to search 
+ * @param {any} value is what you are looking for
+ * @param {String} msg message associated with the call 
  */
-var assertContains = exports.assertContains = function(expectedValue, actualValue, msg){
-    return cleanString(actualValue).indexOf(cleanString(expectedValue))!=-1
+var assertContains = exports.assertContains = function(collection, value, msg){
+    return cleanString(collection).indexOf(cleanString(value))!=-1
 };
 
 /**
