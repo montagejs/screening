@@ -12,7 +12,11 @@
 }
 
 .scriptListView .scriptList {
+    /*
+    Commented out this because it caused a bug with Webkit present in Chrome 18 and Safari 5.1.5.
+    However this is NOT a bug in Chrome 19+ or Firefox
     display: -webkit-box;
+    */
     -webkit-box-orient: vertical;
     -webkit-box-flex: 1;
     overflow: auto;
