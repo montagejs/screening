@@ -132,6 +132,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
      */
     pushEvent: {
         value: function(event) {
+            if(!event.type) { console.warn("Received a typeless event from recording agent"); return; }
             this.actionStack.push(event);
         }
     },
@@ -345,7 +346,10 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                         source.push("agent.setWindowSize(" + action.width + ", " + action.height + ");\r\n");
                         break;
                     default:
-                        source.push(this._dispatchEventSource(action, prevAction, nextAction));
+                        var eventSource = this._dispatchEventSource(action, prevAction, nextAction)
+                        if(eventSource.length > 0 || eventSource === ";") {
+                            source.push(eventSource);
+                        }
                         break;
                 }
                 prevAction = action;
@@ -532,6 +536,13 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                     if (eventTable[typeKey]){ // If there are direct methods on the agent.element() object, use them.
                         source += "." + eventTable[typeKey];
                         if (eventArgs) funcArgs.push(eventArgs);
+                    } else {
+                        if(eventTable[typeKey] && eventTable[typeKey].length > 0) {
+                            console.warn("Skipping unmapped event type:", typeKey);
+                            return !nextIsChained ? ";" : "";
+                        } else {
+                            return "";
+                        }
                     }
                     break;
             }
