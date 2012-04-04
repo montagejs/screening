@@ -82,7 +82,6 @@ exports.RestGrid = Montage.create(Component, {
             self._repetition.element = repetitionElement;
             self._repetition.isSelectionEnabled = false;
             self._repetition.axis = "horizontal";
-            self._repetition.objects = [1,2,3,4,5];
 
             // Attach child components to parents
             nameDyn.attachToParentComponent();
@@ -95,6 +94,12 @@ exports.RestGrid = Montage.create(Component, {
 
             // Request a draw for the main component
             self._repetition.needsDraw = true;
+        }
+    },
+
+    dataMapper: {
+        value: function(elem) {
+            return elem._id;
         }
     },
 
@@ -111,6 +116,7 @@ exports.RestGrid = Montage.create(Component, {
                 var data = JSON.parse(event.target.responseText);
 
                 console.log(data);
+                self._repetition.objects = data.map(self.dataMapper);
             };
 
             var url = self._restResourceUrl + '&limit=3';
