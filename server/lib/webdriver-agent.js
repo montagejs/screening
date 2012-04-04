@@ -17,6 +17,7 @@ var WebDriverAgent = exports.WebDriverAgent = Object.create(BaseAgent, {
             this.io = io;
             BaseAgent.init.apply(this, arguments);
             this.id = this.friendlyName;
+            this.address = url;
             this.capabilities = capabilities;
             this.url = url;
             this.io.sockets.in("drivers").emit("agentConnected", this.getSummary());
