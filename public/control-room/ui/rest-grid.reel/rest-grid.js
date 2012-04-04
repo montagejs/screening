@@ -70,19 +70,30 @@ exports.RestGrid = Montage.create(Component, {
             t.appendChild(head);
             t.appendChild(repetitionElement);
 
+            /*
+            Declare Montage components
+             */
+
+            // Create components and set properties
             var nameDyn = DynamicText.create();
             nameDyn.element = tdElement;
 
             self._repetition = Repetition.create();
-            Object.defineBinding(nameDyn, "value", {
-                "boundObject": self._repetition,
-                "boundObjectPropertyPath": "objectAtCurrentIteration",
-                "oneway": true});
             self._repetition.element = repetitionElement;
             self._repetition.isSelectionEnabled = false;
             self._repetition.axis = "horizontal";
             self._repetition.objects = [1,2,3,4,5];
+
+            // Attach child components to parents
             nameDyn.attachToParentComponent();
+
+            // Define the bindings
+            Object.defineBinding(nameDyn, "value", {
+                "boundObject": self._repetition,
+                "boundObjectPropertyPath": "objectAtCurrentIteration",
+                "oneway": true});
+
+            // Request a draw for the main component
             self._repetition.needsDraw = true;
         }
     },
