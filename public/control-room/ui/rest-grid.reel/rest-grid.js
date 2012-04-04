@@ -55,9 +55,7 @@ exports.RestGrid = Montage.create(Component, {
             });
             head.appendChild(headRow);
 
-            t.appendChild(head);
-
-            // Repetition element
+            // Repetition element (tbody)
             var repetitionElement = document.createElement("tbody");
             repetitionElement.id = "tableData";
             var trElement = document.createElement("tr");
@@ -67,6 +65,9 @@ exports.RestGrid = Montage.create(Component, {
 
             trElement.appendChild(tdElement);
             repetitionElement.appendChild(trElement);
+
+            // Append head and repetitionElement to table
+            t.appendChild(head);
             t.appendChild(repetitionElement);
 
             var nameDyn = DynamicText.create();
