@@ -6,7 +6,8 @@
 var Montage = require("montage/core/core").Montage,
     Component = require("montage/ui/component").Component,
     Repetition = require("montage/ui/repetition.reel").Repetition,
-    DynamicText = require("montage/ui/dynamic-text.reel").DynamicText;
+    DynamicText = require("montage/ui/dynamic-text.reel").DynamicText,
+    Checkbox = require("montage/ui/checkbox.reel").Checkbox;
 
 exports.RestGrid = Montage.create(Component, {
     _dataTable: { value: null },
@@ -47,6 +48,10 @@ exports.RestGrid = Montage.create(Component, {
             // Create thead from column names
             var head = document.createElement("thead");
             var headRow = document.createElement("tr");
+            // First column (selection checkbox)
+            var selTh = document.createElement("th");
+            headRow.appendChild(selTh);
+            // Rest of the columns
             self._columns.forEach(function(column) {
                 var headColumn = document.createElement("th");
                 var headColumnText = document.createTextNode(column);
@@ -59,11 +64,21 @@ exports.RestGrid = Montage.create(Component, {
             var repetitionElement = document.createElement("tbody");
             repetitionElement.id = "tableData";
             var trElement = document.createElement("tr");
-            var tdElement = document.createElement("td");
-            tdElement.id = "testcaseName";
-            tdElement.colSpan = 7;
+            // First column (selection checkbox)
+            var tdSelectRow = document.createElement("td");
+            var checkboxElement = document.createElement("input");
+            checkboxElement.type = "checkbox";
+            checkboxElement.id = "selectRow";
+            tdSelectRow.appendChild(checkboxElement);
+            trElement.appendChild(tdSelectRow);
+            // Rest of the columns
+            var colTds = [];
+            self._columns.forEach(function(column, index) {
+                var colTd = document.createElement("td");
+                trElement.appendChild(colTd);
+                colTds.push(colTd);
+            });
 
-            trElement.appendChild(tdElement);
             repetitionElement.appendChild(trElement);
 
             // Append head and repetitionElement to table
@@ -73,10 +88,12 @@ exports.RestGrid = Montage.create(Component, {
             /*
             Declare Montage components
              */
-
             // Create components and set properties
+            var checkbox = Checkbox.create();
+            checkbox.element = checkboxElement;
+
             var nameDyn = DynamicText.create();
-            nameDyn.element = tdElement;
+            //nameDyn.element = tdSelectRow;
 
             self._repetition = Repetition.create();
             self._repetition.element = repetitionElement;
@@ -85,6 +102,7 @@ exports.RestGrid = Montage.create(Component, {
 
             // Attach child components to parents
             nameDyn.attachToParentComponent();
+            checkbox.attachToParentComponent();
 
             // Define the bindings
             Object.defineBinding(nameDyn, "value", {
@@ -99,7 +117,7 @@ exports.RestGrid = Montage.create(Component, {
 
     dataMapper: {
         value: function(elem) {
-            return elem._id;
+            return elem;
         }
     },
 
