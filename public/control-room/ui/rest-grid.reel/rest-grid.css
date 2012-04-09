@@ -1,0 +1,25 @@
+/* <copyright>
+ This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
+ No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
+ (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
+ </copyright> */
+
+.dataTable {
+    width: 100%;
+    text-align:left;
+    vertical-align:top;
+    border-collapse:collapse;
+}
+
+.dataTable th {
+    background-color: hsl(0, 0%, 40%);
+    background-image: -webkit-linear-gradient(top, hsl(0, 0%, 40%), hsl(0, 0%, 30%));
+    background-image: -moz-linear-gradient(top, hsl(0, 0%, 40%), hsl(0, 0%, 30%));
+    color: white;
+    font-size: 15px;
+    text-shadow: 0 1px 0 black;
+}
+
+.dataTable tr:nth-child(even){
+    background-color:#F1F1F1;
+}
