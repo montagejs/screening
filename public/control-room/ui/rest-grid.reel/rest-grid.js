@@ -26,7 +26,7 @@ exports.RestGrid = Montage.create(Component, {
             return this._columns;
         },
         set: function(columns) {
-            this._columns = columns;
+            this._columns = this._normalizeColumns(columns);
         }
     },
 
@@ -40,7 +40,30 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
+    _normalizeColumns: {
+        enumerable: false,
+        value: function(columns) {
+            if (!Array.isArray(columns)) {
+                throw Error("columns property must be an array!");
+            }
+
+            // Convert the column spec to property/label
+            return columns.map(function(column) {
+                if (Object.prototype.toString.call(column) === '[object Object]') {
+                    return {property: column.property, label: column.label};
+                } else {
+                    return {property: column.toString(), label: column.toString()};
+                }
+            });
+        }
+    },
+
     templateDidLoad: {
+        value: function() {
+        }
+    },
+
+    prepareForDraw: {
         value: function() {
             var self = this;
             var t = self._dataTable;
@@ -54,7 +77,7 @@ exports.RestGrid = Montage.create(Component, {
             // Rest of the columns
             self._columns.forEach(function(column) {
                 var headColumn = document.createElement("th");
-                var headColumnText = document.createTextNode(column);
+                var headColumnText = document.createTextNode(column.label);
                 headColumn.appendChild(headColumnText);
                 headRow.appendChild(headColumn);
             });
@@ -112,7 +135,7 @@ exports.RestGrid = Montage.create(Component, {
 
                 Object.defineBinding(colComponent, "value", {
                     "boundObject": self._repetition,
-                    "boundObjectPropertyPath": "objectAtCurrentIteration." + self._columns[index],
+                    "boundObjectPropertyPath": "objectAtCurrentIteration." + self._columns[index].property,
                     "oneway": true});
             });
 
@@ -143,7 +166,7 @@ exports.RestGrid = Montage.create(Component, {
                 self._repetition.objects = data.map(self.dataMapper);
             };
 
-            var url = self._restResourceUrl + '&limit=3';
+            var url = self._restResourceUrl + '&limit=30';
             xhr.open("GET", url);
             xhr.send();
         }
