@@ -37,6 +37,10 @@
     background-image: url("img/opera_medium.png");
 }
 
+.agentView .agentIcon.internetexplorer {
+    background-image: url("img/ie_medium.png");
+}
+
 .agentView .agentName {
     overflow: hidden;
     text-overflow: ellipsis;
