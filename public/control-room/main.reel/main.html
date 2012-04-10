@@ -117,18 +117,18 @@
     </head>
 
     <body>
-        <section id="scriptManager" class="mon-dock-view scriptManager">
+        <section id="scriptManager" data-montage-id="scriptManager" class="mon-dock-view scriptManager">
             <section id="topDockArea" class="dockPanel dockHorizontalPanel">
                 <!-- Empty -->
             </section>
         
             <section id="middleDockArea" class="dockHorizontalPanel flexFill">
                 <section id="leftDockArea" class="dockPanel dockVerticalPanel">
-                   <div id="scriptList" class="scriptList flexFill dockVerticalPanel"></div>
+                   <div id="scriptList" data-montage-id="scriptList" class="scriptList flexFill dockVerticalPanel"></div>
                 </section>
             
                 <section id="centralDockArea" class="dockPanel dockVerticalPanel flexFill">
-                    <div id="scriptDetail" class="scriptDetail dockVerticalPanel flexFill"></div>
+                    <div id="scriptDetail" data-montage-id="scriptDetail" class="scriptDetail dockVerticalPanel flexFill"></div>
                     <div id="emptyDetail" class="emptyDetail centeredContent flexFill">
                         <div class="centeredWrapper">
                             <p>
@@ -146,7 +146,7 @@
             </section>
         
             <section id="bottomDockArea" class="dockPanel dockHorizontalPanel">
-                <div id="agentList" class="agentList flexFill"></div>
+                <div id="agentList" data-montage-id="agentList" class="agentList flexFill"></div>
             </section>
         </section>
     </body>

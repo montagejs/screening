@@ -96,14 +96,14 @@
         </script>
     </head>
     <body>
-    <div id="resultsSearch" class="resultsSearch">
+    <div id="resultsSearch" data-montage-id="resultsSearch" class="resultsSearch">
         <span>
-            <input type="search" id="resultsSearchBox" class="resultsSearchBox" placeholder="Enter a name, agent or script name">
+            <input type="search" id="resultsSearchBox" data-montage-id="resultsSearchBox" class="resultsSearchBox" placeholder="Enter a name, agent or script name">
             <span class="button-group">
-                <button id="search" class="button icon search primary big">Search</button>
-                <button id="options" class="button icon settings" style="display: none;">Options</button><!-- Temporarily hiding Search Options -->
+                <button id="search" data-montage-id="search" class="button icon search primary big">Search</button>
+                <button id="options" data-montage-id="options" class="button icon settings" style="display: none;">Options</button><!-- Temporarily hiding Search Options -->
             </span>
-            <div id="searchOptions"></div>
+            <div id="searchOptions" data-montage-id="searchOptions"></div>
         </span>
     </div>
     </body>
