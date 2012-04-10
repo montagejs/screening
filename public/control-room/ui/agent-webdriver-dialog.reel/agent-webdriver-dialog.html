@@ -77,23 +77,23 @@
     </head>
 
     <body>
-        <div id="webdriverDialog" class="webdriverDialog">
+        <div id="webdriverDialog" data-montage-id="webdriverDialog" class="webdriverDialog">
             <div id="content">
                 <fieldset id="agentUrl">
                     <label for="url">URL</label>
-                    <input type="text" id="url"/>
+                    <input type="text" id="url" data-montage-id="url"/>
                 </fieldset>
                 <fieldset id="agentBrowserName">
                     <label for="browserName">Browser</label>
-                    <select id="browserName">
+                    <select id="browserName" data-montage-id="browserName">
                         <option value="chrome">Chrome</option>
                         <option value="firefox">Firefox</option>
                         <!--<option value="opera">Opera</option>-->
                     </select>
                 </fieldset>
                 <fieldset id="buttons" class="buttons">
-                    <button id="cancel">Cancel</button>
-                    <button id="ok" class="blue">OK</button>
+                    <button id="cancel" data-montage-id="cancel">Cancel</button>
+                    <button id="ok" data-montage-id="ok" class="blue">OK</button>
                 </fieldset>
             </div>
         </div>

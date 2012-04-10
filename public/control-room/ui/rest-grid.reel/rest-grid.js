@@ -85,20 +85,20 @@ exports.RestGrid = Montage.create(Component, {
 
             // Repetition element (tbody)
             var repetitionElement = document.createElement("tbody");
-            repetitionElement.id = "tableData";
+            repetitionElement.setAttribute('data-montage-id', 'tableData');
             var trElement = document.createElement("tr");
             // First column (selection checkbox)
             var tdSelectRow = document.createElement("td");
             var checkboxElement = document.createElement("input");
             checkboxElement.type = "checkbox";
-            checkboxElement.id = "selectRow";
+            checkboxElement.setAttribute('data-montage-id', 'selectRow');
             tdSelectRow.appendChild(checkboxElement);
             trElement.appendChild(tdSelectRow);
             // Rest of the columns
             var colTds = [];
             self._columns.forEach(function(column, index) {
                 var colTd = document.createElement("td");
-                colTd.id = "col" + index;
+                colTd.setAttribute('data-montage-id', 'col' + index);
                 trElement.appendChild(colTd);
                 colTds.push(colTd);
             });
