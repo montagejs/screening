@@ -344,31 +344,31 @@
         </script>
     </head>
     <body>
-        <div id="scriptResult">
+        <div id="scriptResult" data-montage-id="scriptResult">
             <header class="menuBar">
                 <div class="logo">Screening</div>
-                <p>(test result id: <span id="testcaseId"></span>)</p>
+                <p>(test result id: <span id="testcaseId" data-montage-id="testcaseId"></span>)</p>
             </header>
             
             <section class="box">
                 <section class="title">
-                    <h1>Test result for <span id="testcaseName"></span> (Agent: <span id="agent">Agent</span>)</h1>
+                    <h1>Test result for <span id="testcaseName" data-montage-id="testcaseName"></span> (Agent: <span id="agent" data-montage-id="agent">Agent</span>)</h1>
                 </section>
                 
                 <p class="download">
-                    <a id="downloadJson" href="#">Download result as JSON</a> 
-                    <a id="viewJson" href="#">View result as JSON</a>
+                    <a id="downloadJson" data-montage-id="downloadJson" href="#">Download result as JSON</a> 
+                    <a id="viewJson" data-montage-id="viewJson" href="#">View result as JSON</a>
                     <em class="note">(for saving the page as HTML right-click and select "save as ...")</em>
                 </p>
                 
-                <div id="warnings" class="warningBox">
+                <div id="warnings" data-montage-id="warnings" class="warningBox">
                     <p>Warning! The script contains invalid elements:</p>
-                    <ul id="warningsList">
-                        <li><strong><span id="warningType"></span></strong> - <span id="warningMessage"></span> (<span id="warningLineNumber"></span>:<span id="warningColumnNumber"></span>)</li>
+                    <ul id="warningsList" data-montage-id="warningsList">
+                        <li><strong><span id="warningType" data-montage-id="warningType"></span></strong> - <span id="warningMessage" data-montage-id="warningMessage"></span> (<span id="warningLineNumber" data-montage-id="warningLineNumber"></span>:<span id="warningColumnNumber" data-montage-id="warningColumnNumber"></span>)</li>
                     </ul>
                 </div>
                 
-                <h2>Summary (<span id="status"></span>)</h2>
+                <h2>Summary (<span id="status" data-montage-id="status"></span>)</h2>
                 <table>
                     <thead>
                         <tr>
@@ -379,15 +379,15 @@
                     <tbody>
                         <tr class="pass">
                             <td>PASSED</td>
-                            <td id="totalSuccessfulAsserts"></td>
+                            <td id="totalSuccessfulAsserts" data-montage-id="totalSuccessfulAsserts"></td>
                         </tr>
                         <tr class="alt fail">
                             <td>FAILED</td>
-                            <td id="totalFailedAsserts"></td>
+                            <td id="totalFailedAsserts" data-montage-id="totalFailedAsserts"></td>
                         </tr>
                         <tr class="exception">
                             <td>EXCEPTION</td>
-                            <td id="totalExceptions"></td>
+                            <td id="totalExceptions" data-montage-id="totalExceptions"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -403,14 +403,14 @@
                             <th class="timeColumn">Time</th>
                         </tr>
                     </thead>
-                    <tbody id="resultDetails">
+                    <tbody id="resultDetails" data-montage-id="resultDetails">
                         <tr>
-                            <td id="result">Result</td>
-                            <td id="type">Object</td>
-                            <td id="fileName" class="fileName">Filename</td>
-                            <td><span id="lineNumber">0</span> / <span id="columnNumber">0</span></td>
-                            <td><pre id="detail">Detail</pre></td>
-                            <td><span id="time">Time</span> ms</td>
+                            <td id="result" data-montage-id="result">Result</td>
+                            <td id="type" data-montage-id="type">Object</td>
+                            <td id="fileName" data-montage-id="fileName" class="fileName">Filename</td>
+                            <td><span id="lineNumber" data-montage-id="lineNumber">0</span> / <span id="columnNumber" data-montage-id="columnNumber">0</span></td>
+                            <td><pre id="detail" data-montage-id="detail">Detail</pre></td>
+                            <td><span id="time" data-montage-id="time">Time</span> ms</td>
                         </tr>
                     </tbody>
                 </table>

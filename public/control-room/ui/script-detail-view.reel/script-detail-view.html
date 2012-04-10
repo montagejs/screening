@@ -268,39 +268,39 @@
     </head>
     <body>
         <!-- One line summary of a test script -->
-        <div id="scriptDetail" class="scriptDetail">
+        <div id="scriptDetail" data-montage-id="scriptDetail" class="scriptDetail">
             <div class="menuBar">
                 <div class="buttonToggle">
-                    <button id="pauseRecord" class="red" style="display: none;">Pause Recording</button>
-                    <button id="record" class="red">Record</button>
+                    <button id="pauseRecord" data-montage-id="pauseRecord" class="red" style="display: none;">Pause Recording</button>
+                    <button id="record" data-montage-id="record" class="red">Record</button>
                 </div>
                 <div class="buttonGroup">
-                    <button id="run" class="green">Run</button>
+                    <button id="run" data-montage-id="run" class="green">Run</button>
                 </div>
                 <div class="buttonGroup">
-                    <button id="save">Save</button>
-                    <button id="delete">Delete</button>
-                    <button id="download">Download</button>
+                    <button id="save" data-montage-id="save">Save</button>
+                    <button id="delete" data-montage-id="delete">Delete</button>
+                    <button id="download" data-montage-id="download">Download</button>
                 </div>
                 <div class="buttonGroup spacer"></div>
                 <div class="buttonGroup">
-                    <button id="allResults">All Results</button>
+                    <button id="allResults" data-montage-id="allResults">All Results</button>
                 </div>
                 <div class="buttonGroup">
-                    <button id="settings">Preferences</button>
+                    <button id="settings" data-montage-id="settings">Preferences</button>
                 </div>
                 <div class="buttonGroup">
-                    <div class="versionString">Ver. <span id="serverVersion">--</span></div>
+                    <div class="versionString">Ver. <span id="serverVersion" data-montage-id="serverVersion">--</span></div>
                 </div>
             </div>
             <div class="codeHeader">
                 <label for="name">Name</label>
-                <input type="text" id="name" class="name">
+                <input type="text" id="name" data-montage-id="name" class="name">
                 <label for="tags">Tags</label>
-                <input type="text" id="tags" class="tags" placeholder="Space separated. Use &quot; &quot; for tag with multiple words.">
+                <input type="text" id="tags" data-montage-id="tags" class="tags" placeholder="Space separated. Use &quot; &quot; for tag with multiple words.">
             </div>
-            <textarea type="text" id="code" class="code"></textarea>
-            <div id="urlPrompt" style="display: none; margin: auto;"></div>
+            <textarea type="text" id="code" data-montage-id="code" class="code"></textarea>
+            <div id="urlPrompt" data-montage-id="urlPrompt" style="display: none; margin: auto;"></div>
         </div>
     </body>
 </html>
