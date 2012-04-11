@@ -125,11 +125,17 @@ exports.RestGrid = Montage.create(Component, {
 
             self._repetition = Repetition.create();
             self._repetition.element = repetitionElement;
-            self._repetition.isSelectionEnabled = false;
+            self._repetition.isSelectionEnabled = true;
             self._repetition.axis = "horizontal";
 
-            // Attach child components to parents
+            // Attach child components to parents and bind
             checkbox.attachToParentComponent();
+            Object.defineBinding(checkbox, "checked", {
+                "boundObject": self._repetition,
+                "boundObjectPropertyPath": "objectAtCurrentIteration.__selected",
+                "oneway": false
+            });
+
             colComponents.forEach(function(colComponent, index) {
                 colComponent.attachToParentComponent();
 

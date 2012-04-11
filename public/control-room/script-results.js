@@ -7,9 +7,35 @@ var Montage = require("montage/core/core").Montage,
     Application = require("montage/ui/application").Application;
 
 exports.ScriptResults = Montage.create(Application, {
+    templateDidLoad: {
+        value: function() {
+            console.log("Application start!!!");
+            this.restTable.dataMapper = this.tableDataMapper;
+        }
+    },
+
+    tableDataMapper: {
+        value: function(elem) {
+            elem.__selected = true;
+            return elem;
+        }
+    },
+
     handleRefreshTableAction: {
         value: function() {
             this.restTable.needsDraw = true;
+        }
+    },
+
+    handlePreviousPageAction: {
+      value: function() {
+        console.log("Prev. Page");
+      }
+    },
+
+    handleNextPageAction: {
+        value: function() {
+            console.log("Next Page");
         }
     }
 });

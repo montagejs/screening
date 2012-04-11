@@ -28,6 +28,32 @@
                     }
                 ]
             },
+            "previousPage": {
+                "prototype": "montage/ui/button.reel",
+                "properties": {
+                    "element": {"#": "previousPage"},
+                    "identifier": "previousPage"
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "owner"}
+                    }
+                ]
+            },
+            "nextPage": {
+                "prototype": "montage/ui/button.reel",
+                "properties": {
+                    "element": {"#": "nextPage"},
+                    "identifier": "nextPage"
+                },
+                "listeners": [
+                    {
+                        "type": "action",
+                        "listener": {"@": "owner"}
+                    }
+                ]
+            },
             "restGrid": {
                 "prototype": "control-room/ui/rest-grid.reel",
                 "properties": {
@@ -57,7 +83,14 @@
     </head>
 
     <body>
-        <button data-montage-id="refreshTable">Refresh</button>
+        <div>
+            <button data-montage-id="refreshTable">Refresh</button>
+            <button data-montage-id="previousPage">Prev. Page</button>
+            <button data-montage-id="nextPage">Next Page</button>
+            <button data-montage-id="getSelectedElements">Get selected</button>
+            <button data-montage-id="getSelectedIndexes">Get selected indexes</button>
+        </div>
+
         <div data-montage-id="scriptResults"></div>
     </body>
 </html>
