@@ -58,6 +58,42 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
+    dataMapper: {
+        value: function(elem) {
+            return elem;
+        }
+    },
+
+    selectedObjects: {
+        get: function() {
+            var selObjs = [];
+
+            this._repetition.objects.forEach(function(elem, index) {
+                if(elem.__selected) {
+                    selObjs.push({element: elem, index: index});
+                }
+            });
+
+            return selObjs;
+        }
+    },
+
+    selectedElements: {
+        get: function() {
+            return this.selectedObjects.map(function(elem) {
+                return elem.element;
+            });
+        }
+    },
+
+    selectedIndexes: {
+        get: function() {
+            return this.selectedObjects.map(function(elem) {
+                return elem.index;
+            });
+        }
+    },
+
     templateDidLoad: {
         value: function() {
         }
@@ -147,12 +183,6 @@ exports.RestGrid = Montage.create(Component, {
 
             // Request a draw for the main component
             self._repetition.needsDraw = true;
-        }
-    },
-
-    dataMapper: {
-        value: function(elem) {
-            return elem;
         }
     },
 

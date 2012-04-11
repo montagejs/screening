@@ -16,7 +16,7 @@ exports.ScriptResults = Montage.create(Application, {
 
     tableDataMapper: {
         value: function(elem) {
-            elem.__selected = true;
+            elem.__selected = false;
             return elem;
         }
     },
@@ -36,6 +36,21 @@ exports.ScriptResults = Montage.create(Application, {
     handleNextPageAction: {
         value: function() {
             console.log("Next Page");
+        }
+    },
+
+    handleGetSelectedElementsAction: {
+        value: function() {
+            var selectedElements = this.restTable.selectedElements;
+            console.log("Get selected elements!");
+            console.log(selectedElements);
+        }
+    },
+
+    handleGetSelectedIndexesAction: {
+        value: function() {
+            var selectedIndexes = this.restTable.selectedIndexes;
+            console.log("Get selected indexes!", selectedIndexes);
         }
     }
 });
