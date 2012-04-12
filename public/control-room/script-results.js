@@ -29,13 +29,13 @@ exports.ScriptResults = Montage.create(Application, {
 
     handlePreviousPageAction: {
       value: function() {
-        console.log("Prev. Page");
+          this.restTable.currentPage =  this.restTable.currentPage - 1;
       }
     },
 
     handleNextPageAction: {
         value: function() {
-            console.log("Next Page");
+            this.restTable.currentPage =  this.restTable.currentPage + 1;
         }
     },
 

@@ -30,6 +30,37 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
+    _pageSize: { value: null},
+    pageSize: {
+        enumerable: true,
+        get: function() {
+            return this._pageSize;
+        },
+        set: function(value) {
+            this._pageSize = parseInt(value);
+        }
+    },
+
+    _currentPage: {value: 1},
+    currentPage: {
+        enumerable: true,
+        get: function() {
+            return this._currentPage;
+        },
+        set: function(value) {
+            var self = this;
+
+            value = parseInt(value);
+            self._currentPage = value < 1 ? 1 : value;
+
+            self.needsDraw = true;
+
+            // Disable/Enable page buttons if we are on the first/last pages
+//            self.previousPageButtonTop.disabled = (self._currentPage === 1);
+//            self.nextPageButtonTop.disabled = (self._currentPage === self._totalPages);
+        }
+    },
+
     _restResourceUrl: { value: null },
     restResourceUrl: {
         get: function() {
@@ -55,6 +86,17 @@ exports.RestGrid = Montage.create(Component, {
                     return {property: column.toString(), label: column.toString()};
                 }
             });
+        }
+    },
+
+    constructUrl: {
+        value: function _constructUrl() {
+            var url = this._restResourceUrl + '&limit=' + this._pageSize;
+
+            // Add pagination support
+            url = url + "&skip=" + ((this._currentPage - 1) * this._pageSize);
+
+            return url;
         }
     },
 
@@ -191,6 +233,8 @@ exports.RestGrid = Montage.create(Component, {
             var self = this;
             var t = self._dataTable;
 
+            //console.log("draw!");
+
             // Get the data from restResourceUrl
             var xhr = new XMLHttpRequest();
 
@@ -198,11 +242,10 @@ exports.RestGrid = Montage.create(Component, {
                 // Parse the response
                 var data = JSON.parse(event.target.responseText);
 
-                console.log(data);
                 self._repetition.objects = data.map(self.dataMapper);
             };
 
-            var url = self._restResourceUrl + '&limit=30';
+            var url = self.constructUrl();
             xhr.open("GET", url);
             xhr.send();
         }
