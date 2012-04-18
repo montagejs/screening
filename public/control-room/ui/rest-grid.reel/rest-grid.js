@@ -3,14 +3,34 @@
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
+
+// NOTE: I'm using montage/ui/rest-grid as the module, this is subject to change. - Eliseo
+
+/**
+ *  @module montage/ui/rest-grid
+ *  @requires montage/core/core
+ *  @requires montage/ui/component
+ *  @requires montage/ui/repetition
+ *  @requires montage/ui/dynamic-text
+ *  @requires montage/ui/checkbox
+ */
 var Montage = require("montage/core/core").Montage,
     Component = require("montage/ui/component").Component,
     Repetition = require("montage/ui/repetition.reel").Repetition,
     DynamicText = require("montage/ui/dynamic-text.reel").DynamicText,
     Checkbox = require("montage/ui/checkbox.reel").Checkbox;
 
-exports.RestGrid = Montage.create(Component, {
+/**
+ * @class module:montage/ui/rest-grid.RestGrid
+ * @classdesc Main class for the RestGrid component
+ * @extends module:montage/core/core.Component
+ */
+exports.RestGrid = Montage.create(Component, /** @lends module:montage/ui/rest-grid.RestGrid# */ {
     _dataTable: { value: null },
+    /**
+     * The DOM <table> where the content is going to be rendered
+     * @type {object}
+     */
     dataTable: {
         get: function() {
             return this._dataTable;
@@ -21,6 +41,12 @@ exports.RestGrid = Montage.create(Component, {
     },
 
     _columns: { value: null },
+    /**
+     * Array of column definitions in the following format:
+     * [ {"property": "pathToObjectProperty", "label": "LabelToDisplay"}, ... ]
+     * The label property can be ommited, in that case the label will be "property"
+     * @type {array}
+     */
     columns: {
         get: function() {
             return this._columns;
@@ -30,7 +56,12 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
-    _pageSize: { value: null},
+    _pageSize: { value: 10},
+    /**
+     * Maximum number of row elements to display
+     * @type {number}
+     * @default 10
+     */
     pageSize: {
         enumerable: true,
         get: function() {
@@ -42,6 +73,10 @@ exports.RestGrid = Montage.create(Component, {
     },
 
     _currentPage: {value: 1},
+    /**
+     * Gets/Sets the current page to be displayed. Redraws the component to display the contents of the page specified.
+     * @type {number}
+     */
     currentPage: {
         enumerable: true,
         get: function() {
@@ -62,6 +97,10 @@ exports.RestGrid = Montage.create(Component, {
     },
 
     _restResourceUrl: { value: null },
+    /**
+     * The base URL of the REST data source.
+     * @type {string}
+     */
     restResourceUrl: {
         get: function() {
             return this._restResourceUrl;
@@ -71,6 +110,13 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
+    /**
+     * Modifies a column definition array and makes sure that each column has a property and label.
+     * @private
+     * @function
+     * @param {array} the column definition array
+     * @returns {array} the normalized column definition array
+     */
     _normalizeColumns: {
         enumerable: false,
         value: function(columns) {
@@ -89,6 +135,12 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
+    /**
+     * Internally used to add the required parameters to the HTTP request that retrieves the data from the REST
+     * endpoint.
+     * @private
+     * @function
+     */
     constructUrl: {
         value: function _constructUrl() {
             var url = this._restResourceUrl + '&limit=' + this._pageSize;
@@ -100,12 +152,23 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
+    /**
+     * User modifiable function that modifies an object obtained from the REST endpoint.
+     * Useful for stripping out unused properties or to calculate custom properties.
+     * @function
+     * @param {object}
+     */
     dataMapper: {
         value: function(elem) {
             return elem;
         }
     },
 
+    /**
+     * Gets the selected items from the list as an object array that contains the element and it's position index
+     * relative to the current page
+     * @type {array}
+     */
     selectedObjects: {
         get: function() {
             var selObjs = [];
@@ -120,6 +183,11 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
+    /**
+     * Similar to selectedObjects but returns only the selected elements without the index.
+     * @see module:montage/ui/rest-grid.RestGrid.selectedObjects
+     * @type {array}
+     */
     selectedElements: {
         get: function() {
             return this.selectedObjects.map(function(elem) {
@@ -128,6 +196,11 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
+    /**
+     * Similar to selectedObjects but returns only the selected indexes
+     * @see module:montage/ui/rest-grid.RestGrid.selectedObjects
+     * @type {array}
+     */
     selectedIndexes: {
         get: function() {
             return this.selectedObjects.map(function(elem) {
@@ -141,6 +214,10 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
+    /**
+     * Dynamically creates all the DOM Elements and Montage Components required to render a RestGrid
+     * @function
+     */
     prepareForDraw: {
         value: function() {
             var self = this;
@@ -228,6 +305,10 @@ exports.RestGrid = Montage.create(Component, {
         }
     },
 
+    /**
+     * Performs the HTTP Request to the REST endpoint to get the data.
+     * @function
+     */
     draw: {
         value: function() {
             var self = this;
