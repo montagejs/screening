@@ -1,7 +1,7 @@
 {
     "name": "screening",
     "description": "Montage Testing Framework",
-    "version": "0.8",
+    "version": "0.9",
     "mappings": {
         "montage": "node_modules/montage",
         "montage-samples": "node_modules/montage-samples"
