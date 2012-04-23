@@ -13,12 +13,14 @@
  *  @requires montage/ui/repetition
  *  @requires montage/ui/dynamic-text
  *  @requires montage/ui/checkbox
+ *  @requires montage/ui/anchor
  */
 var Montage = require("montage/core/core").Montage,
     Component = require("montage/ui/component").Component,
     Repetition = require("montage/ui/repetition.reel").Repetition,
     DynamicText = require("montage/ui/dynamic-text.reel").DynamicText,
-    Checkbox = require("montage/ui/checkbox.reel").Checkbox;
+    Checkbox = require("montage/ui/checkbox.reel").Checkbox,
+    Anchor = require("montage/ui/anchor.reel").Anchor;
 
 /**
  * @class module:montage/ui/rest-grid.RestGrid
@@ -232,8 +234,8 @@ exports.RestGrid = Montage.create(Component, /** @lends module:montage/ui/rest-g
             // Rest of the columns
             self._columns.forEach(function(column) {
                 var headColumn = document.createElement("th");
-                var headColumnText = document.createTextNode(column.label);
-                headColumn.appendChild(headColumnText);
+                var headLink = document.createElement("a");
+                headColumn.appendChild(headLink);
                 headRow.appendChild(headColumn);
             });
             head.appendChild(headRow);
@@ -268,6 +270,16 @@ exports.RestGrid = Montage.create(Component, /** @lends module:montage/ui/rest-g
             Declare Montage components
              */
             // Create components and set properties
+            // Links on Column names
+            var colAnchors = [];
+            self._columns.forEach(function(column, index) {
+                if (index > 0) {
+                    var colAnchor = Anchor.create();
+                    colAnchor.element = headRow.children[index].firstChild;
+                    colAnchors.push(colAnchor);
+                }
+            });
+
             var checkbox = Checkbox.create();
             checkbox.element = checkboxElement;
 
@@ -289,6 +301,12 @@ exports.RestGrid = Montage.create(Component, /** @lends module:montage/ui/rest-g
                 "boundObject": self._repetition,
                 "boundObjectPropertyPath": "objectAtCurrentIteration.__selected",
                 "oneway": false
+            });
+
+            colAnchors.forEach(function(colAnchor, index) {
+                colAnchor.attachToParentComponent();
+                colAnchor.href = "http://google.com";
+                colAnchor.textContent = self._columns[index].label;
             });
 
             colComponents.forEach(function(colComponent, index) {
