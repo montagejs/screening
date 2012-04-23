@@ -669,14 +669,18 @@ WebDriverAgent.prototype._getXPathQuery = function(selectorString){
 WebDriverAgent.prototype._installVisualization = function() {
     var self = this;
     // Install the playback visualization layer
-    fs.readFile(__dirname + "/visualizer.js", 'utf8', function(err, visScript) {
-        if(err) { console.log(err); return; }
 
-        // Inject the recording script into the page
-        when(self.session.executeScript(visScript), function() {
-            // Success
-        }, function(err) {
-            console.log("Visualization Script Failed", err.value.message);
+    // [gh-224] the visualizer is only compatible with Chrome ATM
+    if(self.browserName === "chrome") {
+        fs.readFile(__dirname + "/visualizer.js", 'utf8', function(err, visScript) {
+            if(err) { console.log(err); return; }
+
+            // Inject the recording script into the page
+            when(self.session.executeScript(visScript), function() {
+                // Success
+            }, function(err) {
+                console.log("Visualization Script Failed", err.value.message);
+            });
         });
-    });
+    }
 };
