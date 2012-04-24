@@ -22,13 +22,25 @@ module.exports = function(testcaseResultsProvider) {
         var any = req.query["any"];
         var skip = parseInt(req.query["skip"]);
         var limit = parseInt(req.query["limit"]);
+        var sort = req.query["sort"];
+        var sortDirection = req.query["sort_direction"];
         startTimeAfter = Date.parse(startTimeAfter);
         startTimeAfter = isNaN(startTimeAfter) ? undefined : new Date(startTimeAfter);
         startTimeBefore = Date.parse(startTimeBefore);
         startTimeBefore = isNaN(startTimeBefore) ? undefined : new Date(startTimeBefore);
 
+        // Construct sortFields or default to startTime desc
+        var sortFields = [];
+        if(sort && sortDirection) {
+            sortFields.push([sort, sortDirection]);
+        } else if (sort) {
+            sortFields.push(sort);
+        } else {
+            sortFields.push(["startTime", "desc"]);
+        }
+
         // Return just the basic properties (no asserts. exceptions or testcase code)
-        var justBasicProperties = {asserts:0, "testcase.code":0, exception:0, skip: skip, limit: limit};
+        var justBasicProperties = {asserts:0, "testcase.code":0, exception:0, skip: skip, limit: limit, sort: sortFields};
 
         if (startTimeAfter || startTimeBefore) {
             testcaseResultsProvider.findByDateRange(startTimeAfter, startTimeBefore, justBasicProperties,function(err, results) {
