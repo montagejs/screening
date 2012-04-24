@@ -273,11 +273,10 @@ exports.RestGrid = Montage.create(Component, /** @lends module:montage/ui/rest-g
             // Links on Column names
             var colAnchors = [];
             self._columns.forEach(function(column, index) {
-                if (index > 0) {
-                    var colAnchor = Anchor.create();
-                    colAnchor.element = headRow.children[index].firstChild;
-                    colAnchors.push(colAnchor);
-                }
+                var colAnchor = Anchor.create();
+                colAnchor.element = headRow.children[index + 1].firstChild;
+                colAnchor.element.columnIndex = index;
+                colAnchors.push(colAnchor);
             });
 
             var checkbox = Checkbox.create();
@@ -303,9 +302,13 @@ exports.RestGrid = Montage.create(Component, /** @lends module:montage/ui/rest-g
                 "oneway": false
             });
 
+            var clickListener = function(event) {
+                console.log("clickFun", event.currentTarget.columnIndex);
+            }
+
             colAnchors.forEach(function(colAnchor, index) {
                 colAnchor.attachToParentComponent();
-                colAnchor.href = "http://google.com";
+                colAnchor.element.addEventListener("click", clickListener, false);
                 colAnchor.textContent = self._columns[index].label;
             });
 
