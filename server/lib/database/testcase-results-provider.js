@@ -61,7 +61,7 @@ TestcaseResultsProvider.prototype = Object.create(Object, {
                         else {
                             cursor.skip(keywords.skip || 0);
                             cursor.limit(keywords.limit || 0);
-                            cursor.sort({startTime: -1});
+                            cursor.sort(keywords.sort);
                             cursor.toArray(function(err, results) {
                                 if (err) cb(err)
                                 else cb(null, results);
@@ -109,7 +109,7 @@ TestcaseResultsProvider.prototype = Object.create(Object, {
                         else {
                             cursor.skip(keywords.skip || 0);
                             cursor.limit(keywords.limit || 0);
-                            cursor.sort({startTime: -1});
+                            cursor.sort(keywords.sort);
                             cursor.toArray(function(err, results) {
                                 if (err) cb(err);
                                 else cb(null, results);
@@ -140,7 +140,7 @@ TestcaseResultsProvider.prototype = Object.create(Object, {
                         else {
                             cursor.skip(keywords.skip || 0);
                             cursor.limit(keywords.limit || 0);
-                            cursor.sort({startTime: -1});
+                            cursor.sort(keywords.sort);
                             cursor.toArray(function(err, results) {
                                 if (err) cb(err);
                                 else cb(null, results);
@@ -266,7 +266,7 @@ TestcaseResultsProvider.prototype = Object.create(Object, {
          *     keywords - the keywords found in options
          */
         value: function(options) {
-            var reservedKeywordsList = ["limit", "skip"];
+            var reservedKeywordsList = ["limit", "skip", "sort"];
             var retOptions = {};
             var retKeywords = {};
 
