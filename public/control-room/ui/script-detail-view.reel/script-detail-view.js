@@ -167,7 +167,7 @@ exports.ScriptDetailView = Montage.create(Component, {
         value: function() {
             var self = this;
 
-            self.addEventListener("change@scriptSource", function (event) {
+            self.addPropertyChangeListener("scriptSource", function (event) {
                 if (self.scriptSource) {
                     // Only enable recording is the selected browser is Chrome
                     if (self.selectedAgent && self.selectedAgent.info.capabilities.browserName === "chrome") {
