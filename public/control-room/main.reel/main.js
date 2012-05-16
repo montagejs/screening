@@ -112,11 +112,11 @@ exports.Main = Montage.create(Component, {
                 this.scripts.delegate.scriptManager = this;
             }
 
-            this.scriptDetail.addEventListener("change@scriptSource", function(event) {
+            this.scriptDetail.addPropertyChangeListener("scriptSource", function(event) {
                 self.scriptChanged(event.plus, event.minus);
             }, false);
 
-            this.scriptDetail.addEventListener("change@selectedAgent", function(event) {
+            this.scriptDetail.addPropertyChangeListener("selectedAgent", function(event) {
                 self.selectedAgentChanged(event.plus, event.minus);
             }, false);
 

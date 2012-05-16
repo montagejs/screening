@@ -167,7 +167,7 @@ exports.ScriptDetailView = Montage.create(Component, {
         value: function() {
             var self = this;
 
-            self.addEventListener("change@scriptSource", function (event) {
+            self.addPropertyChangeListener("scriptSource", function (event) {
                 if (self.scriptSource) {
                     // Only enable recording is the selected browser is Chrome
                     if (self.selectedAgent && self.selectedAgent.info.capabilities.browserName === "chrome") {
@@ -198,13 +198,13 @@ exports.ScriptDetailView = Montage.create(Component, {
             };
             this._codeMirror = CodeMirror.fromTextArea(this.scriptCode.element, options);
 
-            this.scriptNameField.addEventListener("change@value", function(event) {
+            this.scriptNameField.addPropertyChangeListener("value", function(event) {
                 if (self.scriptSource.name !== self.scriptNameField.value) {
                     self.needsSave = true;
                 }
             }, false);
             
-            this.scriptTags.addEventListener("change@value", function(event) {
+            this.scriptTags.addPropertyChangeListener("value", function(event) {
                 if (self.scriptSource.displayTags !== self.scriptTags.value) {
                     self.needsSave = true;
                 }
