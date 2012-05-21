@@ -160,6 +160,8 @@ exports.ScriptResultsView = Montage.create(Component, {
             this._results.forEach(function(elem, i) {
                 elem.selected = selectedStatus;
             });
+
+            this.resultSelected(event);
         }
     },
 
