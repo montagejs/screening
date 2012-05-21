@@ -9,7 +9,8 @@
                     "module": "control-room/ui/agent-webdriver-dialog.reel",
                     "name": "AgentWebdriverDialog",
                     "properties": {
-                        "element": {"#": "webdriverDialog"}
+                        "element": {"#": "webdriverDialog"},
+                        "browserName": {"@": "browserName"}
                     }
                  },
 
@@ -33,13 +34,6 @@
                     "name": "SelectInput",
                     "properties": {
                         "element": {"#": "browserName"}
-                    },
-                    "bindings": {
-                        "contentController.selectedObjects": {
-                            "boundObject": {"@": "owner"},
-                            "boundObjectPropertyPath": "selectedBrowserNames",
-                            "oneway": false
-                        }
                     }
                 },
 
