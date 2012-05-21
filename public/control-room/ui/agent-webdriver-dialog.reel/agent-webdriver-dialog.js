@@ -9,7 +9,7 @@ exports.AgentWebdriverDialog = Montage.create(Component, {
         value: "http://localhost:9515"
     },
 
-    selectedBrowserNames: {
+    browserName: {
         value: null
     },
 
@@ -25,7 +25,7 @@ exports.AgentWebdriverDialog = Montage.create(Component, {
 
             var urlAndBrowserName = {
                 url: self.url,
-                browserName: self.selectedBrowserNames.selectedObjects[0].value
+                browserName: self.browserName.contentController.selectedObjects[0].value
             };
 
             var anEvent = document.createEvent("CustomEvent");
