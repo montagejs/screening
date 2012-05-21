@@ -198,13 +198,13 @@ exports.ScriptDetailView = Montage.create(Component, {
             };
             this._codeMirror = CodeMirror.fromTextArea(this.scriptCode.element, options);
 
-            this.scriptNameField.addEventListener("change@value", function(event) {
+            this.scriptNameField.addPropertyChangeListener("value", function(event) {
                 if (self.scriptSource.name !== self.scriptNameField.value) {
                     self.needsSave = true;
                 }
             }, false);
             
-            this.scriptTags.addEventListener("change@value", function(event) {
+            this.scriptTags.addPropertyChangeListener("value", function(event) {
                 if (self.scriptSource.displayTags !== self.scriptTags.value) {
                     self.needsSave = true;
                 }
