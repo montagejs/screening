@@ -34,7 +34,7 @@ exports.configureServer = function(customMongoDbProvider) {
     var mongoDbProvider = customMongoDbProvider || new MongoDbProvider(settings.mongoDB.host, settings.mongoDB.port);
     mongoDbProvider.ensureIndexes();
     var testcaseResultsProvider = new TestcaseResultsProvider(mongoDbProvider);
-    var scriptsProvider = new ScriptsProvider(mongoDbProvider);
+    var scriptsProvider = new ScriptsProvider(mongoDbProvider.db);
 
     var testcaseRunner = new TestcaseRunner(agentPool, argv.debug, testcaseResultsProvider);
     // instantiate the singleton of our testrunner

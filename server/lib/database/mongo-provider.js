@@ -51,6 +51,12 @@ MongoDbProvider.prototype = Object.create(Object, {
         }
     },
 
+    _getSelfCollection: {
+        value: function(cb) {
+            this._getCollection(this._collectionName, cb);
+        }
+    },
+
     ensureIndexes: {
         /**
          * Defines the indexes used by this MongoDB instance.

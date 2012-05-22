@@ -3,34 +3,24 @@
  No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
-var BSON = require('mongodb').BSONPure;
+var BSON = require('mongodb').BSONPure,
+    MongoDbProvider = require("../database/mongo-provider.js");
 
-module.exports = ScriptsProvider;
-
-function ScriptsProvider(mongoDbProvider) {
-    this._db = mongoDbProvider.db;
+var ScriptsProvider = function(db) {
+    this._db = db;
 }
 
-ScriptsProvider.prototype = Object.create(Object, {
+ScriptsProvider.prototype = Object.create(MongoDbProvider.prototype, {
     constructor: {
         value: ScriptsProvider,
         enumerable: false
     },
 
+    _collectionName: { value: "scripts" },
+
     _db: {
         value: null,
         enumerable: false
-    },
-
-    _getCollection: {
-        value: function(cb) {
-            var self = this;
-
-            self._db.collection("scripts", function(err, resultsCollection) {
-                if (err) cb(err);
-                else cb(null, resultsCollection);
-            });
-        }
     },
 
     findAll: {
@@ -42,7 +32,7 @@ ScriptsProvider.prototype = Object.create(Object, {
         value: function(cb) {
             var self = this;
 
-            self._getCollection(function(err, scriptsCollection) {
+            self._getSelfCollection(function(err, scriptsCollection) {
                 if (err) cb(err);
                 else {
                     scriptsCollection.find(function(err, cursor) {
@@ -71,7 +61,7 @@ ScriptsProvider.prototype = Object.create(Object, {
         value: function(scriptId, cb) {
             var self = this;
 
-            self._getCollection(function(err, scriptsCollection) {
+            self._getSelfCollection(function(err, scriptsCollection) {
                 if (err) cb(err);
                 else {
                     scriptsCollection.findOne({"_id": new BSON.ObjectID(scriptId.toString())}, cb);
@@ -90,7 +80,7 @@ ScriptsProvider.prototype = Object.create(Object, {
         value: function(scriptName, cb) {
             var self = this;
 
-            self._getCollection(function(err, scriptsCollection) {
+            self._getSelfCollection(function(err, scriptsCollection) {
                 if (err) cb(err);
                 else {
                     scriptsCollection.find({name: scriptName}, function(err, cursor) {
@@ -118,7 +108,7 @@ ScriptsProvider.prototype = Object.create(Object, {
         value: function(tags, cb) {
             var self = this;
 
-            self._getCollection(function(err, scriptsCollection) {
+            self._getSelfCollection(function(err, scriptsCollection) {
                 if (err) cb(err);
                 else {
                     scriptsCollection.find({tags: {"$all": tags}}, function(err, cursor) {
@@ -145,7 +135,7 @@ ScriptsProvider.prototype = Object.create(Object, {
         value: function(script, cb) {
             var self = this;
 
-            self._getCollection(function(err, scriptsCollection) {
+            self._getSelfCollection(function(err, scriptsCollection) {
                 if (err) cb(err);
                 else {
                     if (script._id) {
@@ -183,7 +173,7 @@ ScriptsProvider.prototype = Object.create(Object, {
         value: function(scriptId, cb) {
             var self = this;
 
-            self._getCollection(function(err, scriptsCollection) {
+            self._getSelfCollection(function(err, scriptsCollection) {
                 if (err) cb(err);
                 else {
                     scriptsCollection.remove({"_id": new BSON.ObjectID(scriptId.toString())}, function(err, script) {
@@ -197,3 +187,5 @@ ScriptsProvider.prototype = Object.create(Object, {
         }
     }
 });
+
+module.exports = ScriptsProvider;
