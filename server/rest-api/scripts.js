@@ -66,7 +66,7 @@ module.exports = function(scriptsProvider) {
 
             var excludeCode = req.query["exclude_code"] ? req.query["exclude_code"] : false;
 
-            scriptsProvider.findAll(function(err, scripts) {
+            scriptsProvider.findAll({sort: ["name", "asc"]}, function(err, scripts) {
                 if (err) return next(new Error(err));
 
                 hydrateAttributes(scripts);
