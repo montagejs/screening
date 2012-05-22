@@ -4,6 +4,7 @@
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
 var Db = require('mongodb').Db;
+var BSON = require('mongodb').BSONPure
 var Connection = require('mongodb').Connection;
 var Server = require('mongodb').Server;
 
@@ -54,6 +55,25 @@ MongoDbProvider.prototype = Object.create(Object, {
     _getSelfCollection: {
         value: function(cb) {
             this._getCollection(this._collectionName, cb);
+        }
+    },
+
+    /**
+     * Finds a object by Id
+     *
+     * @param scriptId
+     * @param cb
+     */
+    findById: {
+        value: function(objectId, cb) {
+            var self = this;
+
+            self._getSelfCollection(function(err, objectCollection) {
+                if (err) cb(err);
+                else {
+                    objectCollection.findOne({"_id": new BSON.ObjectID(objectId.toString())}, cb);
+                }
+            });
         }
     },
 

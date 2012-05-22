@@ -51,25 +51,6 @@ ScriptsProvider.prototype = Object.create(MongoDbProvider.prototype, {
         }
     },
 
-    findById: {
-        /**
-         * Finds a single script by Id
-         *
-         * @param scriptId
-         * @param cb
-         */
-        value: function(scriptId, cb) {
-            var self = this;
-
-            self._getSelfCollection(function(err, scriptsCollection) {
-                if (err) cb(err);
-                else {
-                    scriptsCollection.findOne({"_id": new BSON.ObjectID(scriptId.toString())}, cb);
-                }
-            });
-        }
-    },
-
     findByName: {
         /**
          * Finds all the scripts that match the given name expression.
