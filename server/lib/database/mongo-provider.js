@@ -41,6 +41,12 @@ MongoDbProvider.prototype = Object.create(Object, {
         }
     },
 
+    /**
+     * Gets a reference to the specified collection
+     * @function
+     * @param collectionName {String}
+     * @parama cb {Function} callback
+     */
     _getCollection: {
         value: function(collectionName, cb) {
             var self = this;
@@ -52,12 +58,23 @@ MongoDbProvider.prototype = Object.create(Object, {
         }
     },
 
+    /**
+     * Gets a reference to the collectionName specified in this provider.
+     * @function
+     * @param cb {Function} callback
+     */
     _getSelfCollection: {
         value: function(cb) {
             this._getCollection(this._collectionName, cb);
         }
     },
 
+    /**
+     * Returns all the objects in the collection
+     * @function
+     * @param options {Object} optional sort, limit and skip parameters for the query
+     * @param cb {Function} callback
+     */
     findAll: {
         value: function(options, cb) {
             if("function" === typeof options) {
@@ -93,6 +110,7 @@ MongoDbProvider.prototype = Object.create(Object, {
     /**
      * Finds a object by Id
      *
+     * @function
      * @param scriptId
      * @param cb
      */
@@ -109,11 +127,12 @@ MongoDbProvider.prototype = Object.create(Object, {
         }
     },
 
+    /**
+     * Defines the indexes used by this MongoDB instance.
+     * The indexes will only be created if they don't exist, so it's safe to run this during startup.
+     * @function
+     */
     ensureIndexes: {
-        /**
-         * Defines the indexes used by this MongoDB instance.
-         * The indexes will only be created if they don't exist, so it's safe to run this during startup.
-         */
         value: function() {
             var self = this;
 
@@ -159,6 +178,40 @@ MongoDbProvider.prototype = Object.create(Object, {
             }
 
             return {options: retOptions, keywords: retKeywords};
+        }
+    },
+
+    /**
+     * Gets the metadata for this collection.
+     * Metadata includes:
+     * - Total objects in collection
+     * @function
+     * @param cb {Function} callback
+     */
+    metadata: {
+        value: function(restrictions, cb) {
+            var self = this;
+            var metadata = {};
+
+            if ("function" === typeof restrictions) {
+                cb = restrictions;
+                restrictions = {};
+            }
+
+            self._getSelfCollection(function(err, objectsCollection) {
+                if (err) cb(err);
+                else {
+                    objectsCollection.find(restrictions, {}, function(err, cursor) {
+                        if (err) cb(err);
+                        else {
+                            cursor.count(function(err, count) {
+                                metadata.count = count;
+                                cb(err, metadata);
+                            });
+                        }
+                    });
+                }
+            });
         }
     }
 });

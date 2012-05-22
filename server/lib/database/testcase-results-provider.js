@@ -159,38 +159,5 @@ TestcaseResultsProvider.prototype = Object.create(MongoDbProvider.prototype, {
                 }
             });
         }
-    },
-
-    metadata: {
-        /**
-         * Gets the metadata for testcase-results.
-         * Metadata includes:
-         * - Total results
-         * @param {Function} cb
-         */
-        value: function(restrictions, cb) {
-            var self = this;
-            var metadata = {};
-
-            if ("function" === typeof restrictions) {
-                cb = restrictions;
-                restrictions = {};
-            }
-
-            self._getSelfCollection(function(err, resultsCollection) {
-                if (err) cb(err);
-                else {
-                    resultsCollection.find(restrictions, {}, function(err, cursor) {
-                        if (err) cb(err);
-                        else {
-                            cursor.count(function(err, count) {
-                                metadata.count = count;
-                                cb(err, metadata);
-                            });
-                        }
-                    });
-                }
-            });
-        }
     }
 });
