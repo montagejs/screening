@@ -103,40 +103,6 @@ TestcaseResultsProvider.prototype = Object.create(MongoDbProvider.prototype, {
         }
     },
 
-    /**
-     * Update if exists, if not then insert
-     */
-    upsert: {
-        value: function(result, cb) {
-            var self = this;
-
-            self._getSelfCollection(function(err, resultsCollection) {
-                if (err) cb(err);
-                else {
-                    if (!result._id) {
-                        throw new Error("An _id property must be provided!");
-                    }
-                    var objectId = new BSON.ObjectID(result._id.toString());
-
-                    // Important: Remove _id from result before updating with $set
-                    delete result._id;
-
-                    resultsCollection.findAndModify(
-                        {"_id": objectId},
-                        [
-                            ['_id','asc']
-                        ],
-                        {$set: result},
-                        {upsert:true, "new": true},
-                        function(err, object) {
-                            cb(err, object);
-                        }
-                    );
-                }
-            });
-        }
-    },
-
     deleteMultipleById: {
         value: function(ids, cb) {
             var self = this;

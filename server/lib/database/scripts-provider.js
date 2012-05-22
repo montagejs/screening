@@ -79,43 +79,6 @@ ScriptsProvider.prototype = Object.create(MongoDbProvider.prototype, {
         }
     },
 
-    upsert: {
-        /**
-         * Updates a script if it exists, otherwise it inserts a new one
-         * @param script
-         * @param cb
-         */
-        value: function(script, cb) {
-            var self = this;
-
-            self._getSelfCollection(function(err, scriptsCollection) {
-                if (err) cb(err);
-                else {
-                    if (script._id) {
-                        var objectId = new BSON.ObjectID(script._id.toString());
-                    } else {
-                        var objectId = new BSON.ObjectID();
-                    }
-
-                    // Important: Remove _id from script before updating with $set
-                    delete script._id;
-
-                    scriptsCollection.findAndModify(
-                        {"_id": objectId},
-                        [
-                            ['_id','asc']
-                        ],
-                        {$set: script},
-                        {upsert:true, "new": true},
-                        function(err, object) {
-                            cb(err, object);
-                        }
-                    );
-                }
-            });
-        }
-    },
-
     delete: {
         /**
          * Deletes a script by it's id

@@ -42,6 +42,16 @@ MongoDbProvider.prototype = Object.create(Object, {
     },
 
     /**
+     * Generates an ObjectId
+     * @function
+     */
+    generateId: {
+        value: function() {
+            return new BSON.ObjectID();
+        }
+    },
+
+    /**
      * Gets a reference to the specified collection
      * @function
      * @param collectionName {String}
@@ -66,6 +76,43 @@ MongoDbProvider.prototype = Object.create(Object, {
     _getSelfCollection: {
         value: function(cb) {
             this._getCollection(this._collectionName, cb);
+        }
+    },
+
+    /**
+     * Updates an object if it exists, otherwise it inserts a new one
+     * @param object {Object} the object to insert into the collection
+     * @param cb {Function} callback
+     */
+    upsert: {
+        value: function(object, cb) {
+            var self = this;
+
+            self._getSelfCollection(function(err, objectsCollection) {
+                if (err) cb(err);
+                else {
+                    if (object._id) {
+                        var objectId = new BSON.ObjectID(object._id.toString());
+                    } else {
+                        var objectId = new BSON.ObjectID();
+                    }
+
+                    // Important: Remove _id from object before updating with $set
+                    delete object._id;
+
+                    objectsCollection.findAndModify(
+                        {"_id": objectId},
+                        [
+                            ['_id', 'asc']
+                        ],
+                        {$set: object},
+                        {upsert: true, "new": true},
+                        function(err, object) {
+                            cb(err, object);
+                        }
+                    );
+                }
+            });
         }
     },
 
