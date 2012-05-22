@@ -117,6 +117,61 @@ MongoDbProvider.prototype = Object.create(Object, {
     },
 
     /**
+     * Deletes an object by it's id
+     *
+     * @function
+     * @param objectId the id of the script to delete
+     * @param cb {Function} callback
+     */
+    delete: {
+        value: function(objectId, cb) {
+            var self = this;
+
+            self._getSelfCollection(function(err, objectsCollection) {
+                if (err) cb(err);
+                else {
+                    objectsCollection.remove({"_id": new BSON.ObjectID(objectId.toString())}, function(err, script) {
+                        if (err) cb(err);
+                        else {
+                            cb(null, script);
+                        }
+                    });
+                }
+            });
+        }
+    },
+
+    /**
+     * Deletes multiple objects by their id
+     * @function
+     * @param ids {Array} array of ids to delete
+     * @param cb {Function} callback
+     */
+    deleteMultipleById: {
+        value: function(ids, cb) {
+            var self = this;
+
+            // Surround the ids inside {"_id": <a real objectId>}
+            var idObjects = ids.map(function(elem) {
+                return {"_id": new BSON.ObjectID(elem.toString())};
+            });
+
+            self._getSelfCollection(function(err, objectsCollection) {
+                if (err) cb(err);
+                else {
+                    objectsCollection.remove(
+                        {$or: idObjects},
+                        {},
+                        function(err, object) {
+                            cb(err, object);
+                        }
+                    );
+                }
+            });
+        }
+    },
+
+    /**
      * Returns all the objects in the collection
      * @function
      * @param options {Object} optional sort, limit and skip parameters for the query

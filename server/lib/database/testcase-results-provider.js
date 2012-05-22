@@ -101,29 +101,5 @@ TestcaseResultsProvider.prototype = Object.create(MongoDbProvider.prototype, {
                 }
             });
         }
-    },
-
-    deleteMultipleById: {
-        value: function(ids, cb) {
-            var self = this;
-
-            // Surround the ids inside {"_id": <a real objectId>}
-            var idObjects = ids.map(function(elem) {
-                return {"_id": new BSON.ObjectID(elem.toString())};
-            });
-
-            self._getSelfCollection(function(err, resultsCollection) {
-                if (err) cb(err);
-                else {
-                    resultsCollection.remove(
-                        {$or: idObjects},
-                        {},
-                        function(err, object) {
-                            cb(err, object);
-                        }
-                    );
-                }
-            });
-        }
     }
 });

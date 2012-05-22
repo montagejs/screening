@@ -77,30 +77,6 @@ ScriptsProvider.prototype = Object.create(MongoDbProvider.prototype, {
                 }
             });
         }
-    },
-
-    delete: {
-        /**
-         * Deletes a script by it's id
-         *
-         * @param scriptId the id of the script to delete
-         * @param cb
-         */
-        value: function(scriptId, cb) {
-            var self = this;
-
-            self._getSelfCollection(function(err, scriptsCollection) {
-                if (err) cb(err);
-                else {
-                    scriptsCollection.remove({"_id": new BSON.ObjectID(scriptId.toString())}, function(err, script) {
-                        if (err) cb(err);
-                        else {
-                            cb(null, script);
-                        }
-                    });
-                }
-            });
-        }
     }
 });
 
