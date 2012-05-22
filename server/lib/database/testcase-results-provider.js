@@ -25,47 +25,6 @@ TestcaseResultsProvider.prototype = Object.create(MongoDbProvider.prototype, {
         enumerable: false
     },
 
-    generateId: {
-        value: function() {
-            return new BSON.ObjectID();
-        }
-    },
-
-    /**
-     * Returns all the available Testcase Results
-     */
-    findAll: {
-        value: function(options, cb) {
-            if("function" === typeof options) {
-                cb = options;
-                options = {};
-            }
-            var self = this;
-            var optionsAndKeywords = self.extractReservedKeywords(options);
-            options = optionsAndKeywords.options;
-            var keywords = optionsAndKeywords.keywords;
-
-            self._getSelfCollection(function(err, resultsCollection) {
-                if (err) cb(err)
-                else {
-                    resultsCollection.find({}, options, function(err, cursor) {
-                        if (err) cb(err)
-                        else {
-                            cursor.skip(keywords.skip || 0);
-                            cursor.limit(keywords.limit || 0);
-                            cursor.sort(keywords.sort);
-                            cursor.toArray(function(err, results) {
-                                if (err) cb(err)
-                                else cb(null, results);
-                            });
-                        }
-                    });
-                }
-
-            });
-        }
-    },
-
     findByDateRange: {
         /**
          * Finds all the results between the specified dates.
@@ -232,34 +191,6 @@ TestcaseResultsProvider.prototype = Object.create(MongoDbProvider.prototype, {
                     });
                 }
             });
-        }
-    },
-
-    extractReservedKeywords: {
-        /**
-         * Extracts special option reserved keywords from the options object.
-         * Used for reserved keywords like limit and skip.
-         * @param {Object} options
-         * @return {Object} an object with two properties:
-         *     options - the original options with the reserved keywords removed
-         *     keywords - the keywords found in options
-         */
-        value: function(options) {
-            var reservedKeywordsList = ["limit", "skip", "sort"];
-            var retOptions = {};
-            var retKeywords = {};
-
-            for (option in options) {
-                if (options.hasOwnProperty(option)) {
-                    if (reservedKeywordsList.indexOf(option) != -1) {
-                        retKeywords[option] = options[option];
-                    } else {
-                        retOptions[option] = options[option];
-                    }
-                }
-            }
-
-            return {options: retOptions, keywords: retKeywords};
         }
     }
 });

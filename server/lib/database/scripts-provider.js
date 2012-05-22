@@ -23,34 +23,6 @@ ScriptsProvider.prototype = Object.create(MongoDbProvider.prototype, {
         enumerable: false
     },
 
-    findAll: {
-        /**
-         * Returns all the available Scripts
-         *
-         * @param cb
-         */
-        value: function(cb) {
-            var self = this;
-
-            self._getSelfCollection(function(err, scriptsCollection) {
-                if (err) cb(err);
-                else {
-                    scriptsCollection.find(function(err, cursor) {
-                        if (err) cb(err);
-                        else {
-                            cursor.sort({name: 1});
-                            cursor.toArray(function(err, scripts) {
-                                if (err) cb(err)
-                                else cb(null, scripts);
-                            });
-                        }
-                    });
-                }
-
-            });
-        }
-    },
-
     findByName: {
         /**
          * Finds all the scripts that match the given name expression.

@@ -58,6 +58,38 @@ MongoDbProvider.prototype = Object.create(Object, {
         }
     },
 
+    findAll: {
+        value: function(options, cb) {
+            if("function" === typeof options) {
+                cb = options;
+                options = {};
+            }
+            var self = this;
+            var optionsAndKeywords = self.extractReservedKeywords(options);
+            options = optionsAndKeywords.options;
+            var keywords = optionsAndKeywords.keywords;
+
+            self._getSelfCollection(function(err, objectsCollection) {
+                if (err) cb(err)
+                else {
+                    objectsCollection.find({}, options, function(err, cursor) {
+                        if (err) cb(err)
+                        else {
+                            cursor.skip(keywords.skip || 0);
+                            cursor.limit(keywords.limit || 0);
+                            cursor.sort(keywords.sort);
+                            cursor.toArray(function(err, objects) {
+                                if (err) cb(err)
+                                else cb(null, objects);
+                            });
+                        }
+                    });
+                }
+
+            });
+        }
+    },
+
     /**
      * Finds a object by Id
      *
@@ -98,6 +130,35 @@ MongoDbProvider.prototype = Object.create(Object, {
                     })
                 }
             });
+        }
+    },
+
+    /**
+     * Extracts special option reserved keywords from the options object.
+     * Used for reserved keywords like limit and skip.
+     * @function
+     * @param {Object} options
+     * @return {Object} an object with two properties:
+     *     options - the original options with the reserved keywords removed
+     *     keywords - the keywords found in options
+     */
+    extractReservedKeywords: {
+        value: function(options) {
+            var reservedKeywordsList = ["limit", "skip", "sort"];
+            var retOptions = {};
+            var retKeywords = {};
+
+            for (option in options) {
+                if (options.hasOwnProperty(option)) {
+                    if (reservedKeywordsList.indexOf(option) != -1) {
+                        retKeywords[option] = options[option];
+                    } else {
+                        retOptions[option] = options[option];
+                    }
+                }
+            }
+
+            return {options: retOptions, keywords: retKeywords};
         }
     }
 });
