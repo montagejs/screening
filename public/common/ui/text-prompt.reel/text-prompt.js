@@ -10,10 +10,12 @@ var TextPrompt = exports.TextPrompt = Montage.create(Component, {
     hasTemplate: {value: true},
     
     headerEl: {
-        value: null
+        value: null,
+        serializable: true
     },
     titleEl: {
-        value: null
+        value: null,
+        serializable: true
     },
     
     title: {
@@ -21,7 +23,8 @@ var TextPrompt = exports.TextPrompt = Montage.create(Component, {
     },
     
     msg: {
-        value: ''
+        value: '',
+        serializable: true
     },
     
     promptInput: {
@@ -29,7 +32,8 @@ var TextPrompt = exports.TextPrompt = Montage.create(Component, {
     },
     
     value: {
-        value: null
+        value: null,
+        serializable: true
     },
     
     draw: {

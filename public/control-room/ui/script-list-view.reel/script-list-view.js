@@ -18,11 +18,13 @@ exports.ScriptListView = Montage.create(Component, {
     },
 
     scriptUploader: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     scriptList: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     prepareForDraw: {

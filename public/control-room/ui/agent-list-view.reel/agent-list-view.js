@@ -15,11 +15,13 @@ exports.AgentListView = Montage.create(Component, {
     },
 
     webdriverDialog: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     addWebdriverButton: {
-        value: null
+        value: null,
+        serializable: true
     },
     
     templateDidLoad: {

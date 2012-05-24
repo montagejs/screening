@@ -28,31 +28,38 @@ exports.ScriptDetailView = Montage.create(Component, {
     },
 
     pauseRecordButton: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     recordButton: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     runButton: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     saveButton: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     deleteButton: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     downloadButton: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     urlPrompt: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     _createNewScript: {
@@ -121,7 +128,8 @@ exports.ScriptDetailView = Montage.create(Component, {
         },
         set: function(value) {
             this._scriptCode = value;
-        }
+        },
+        serializable: true
     },
 
     _scriptNameField: {
@@ -135,11 +143,13 @@ exports.ScriptDetailView = Montage.create(Component, {
         },
         set: function(value) {
             this._scriptNameField = value;
-        }
+        },
+        serializable: true
     },
 
     scriptTags: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     _needsSave: {

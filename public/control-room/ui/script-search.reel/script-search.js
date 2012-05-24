@@ -8,11 +8,13 @@ var Component = require("montage/ui/component").Component;
 
 exports.ScriptSearch = Montage.create(Component, {
     scriptSearchBox: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     scriptSearchCombo: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     prepareForDraw: {

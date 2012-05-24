@@ -55,7 +55,8 @@ exports.Main = Montage.create(Component, {
     },
 
     agents: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     activeAgents: {
@@ -75,19 +76,23 @@ exports.Main = Montage.create(Component, {
     },
 
     scripts: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     scriptDetail: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     scriptList: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     emptyDetail: {
-        value: null
+        value: null,
+        serializable: true
     },
 
     templateDidLoad: {
