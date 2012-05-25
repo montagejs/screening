@@ -14,6 +14,7 @@ var settings = require("./settings.js"),
     simpleRequest = require("request"),
     MongoDbProvider = require("./lib/database/mongo-provider.js"),
     TestcaseResultsProvider = require("./lib/database/testcase-results-provider.js"),
+    ScriptsBatchesProvider = require("./lib/database/scripts-batches-provider.js"),
     ScriptsProvider = require("./lib/database/scripts-provider.js");
 
 // Get the Screening Version from package.json
@@ -35,6 +36,7 @@ exports.configureServer = function(customMongoDbProvider) {
     mongoDbProvider.ensureIndexes();
     var testcaseResultsProvider = new TestcaseResultsProvider(mongoDbProvider.db);
     var scriptsProvider = new ScriptsProvider(mongoDbProvider.db);
+    var scriptsBatchesProvider = new ScriptsBatchesProvider(mongoDbProvider.db);
 
     var testcaseRunner = new TestcaseRunner(agentPool, argv.debug, testcaseResultsProvider);
     // instantiate the singleton of our testrunner
@@ -44,6 +46,7 @@ exports.configureServer = function(customMongoDbProvider) {
     var agentsApi = require("./rest-api/agents.js")(agentPool, testcaseRunner, scriptsProvider);
     var scriptsApi = require("./rest-api/scripts.js")(scriptsProvider);
     var testResultsApi = require("./rest-api/test-results.js")(testcaseResultsProvider);
+    var scriptsBatchesApi = require("./rest-api/scripts-batches.js")(scriptsBatchesProvider);
 
     const SCREENING_PATH = path.join(__dirname, "../public");
 
@@ -75,6 +78,7 @@ exports.configureServer = function(customMongoDbProvider) {
     app.use(routingConfig.apiRoot + "/agents", agentsApi);
     app.use(routingConfig.apiRoot + "/scripts", scriptsApi);
     app.use(routingConfig.apiRoot + "/test_results", testResultsApi);
+    app.use(routingConfig.apiRoot + "/scripts_batches", scriptsBatchesApi);
     routingConfig.init(app);
 
     // Check to see if a local Webdriver agent is available on the default port
