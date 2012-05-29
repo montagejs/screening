@@ -287,13 +287,15 @@ WebDriverAgent.prototype.gotoUrl = function(url){
         // to allow control of the window size (chrome does not allow resizing a main window)
         if(self.browserName === "chrome" && self.firstNavigate){
             self.firstNavigate = false;
-            self.session.executeScript("window.open('" + url + "', 'interactionWindow', 'resizable=yes');").then(function(){
-                self.session.switchToWindow("interactionWindow").then(function(){
-                    setTimeout(function() {
-                        defer.resolve();
-                        self._installVisualization();
-                    }, self.scriptObject.getOption("loadTimeout"));
-                }, defer.reject);
+            self.session.get(url).then(function() {
+                self.session.executeScript("window.open('" + url + "', 'interactionWindow', 'resizable=yes');").then(function(){
+                    self.session.switchToWindow("interactionWindow").then(function(){
+                        setTimeout(function() {
+                            defer.resolve();
+                            self._installVisualization();
+                        }, self.scriptObject.getOption("loadTimeout"));
+                    }, defer.reject);
+                });
             });
         } else {
             self.session.get(url).then(function(){
