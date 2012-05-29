@@ -27,6 +27,28 @@ module.exports = function(scriptsBatchesProvider) {
         });
     });
 
+    /**
+     * GET a script batch by its Id
+     */
+    app.get("/:id", routingConfig.provides('json', '*/*'), function(req, res, next) {
+        console.log("GET scripts_batches/:id " + req.params.id);
+
+        scriptsBatchesProvider.findById(req.params.id, function(err, scriptBatch) {
+            if (err) return next(new Error(err));
+
+            if (!scriptBatch) {
+                res.statusCode = 400;
+                return next({message: "Script batch does not exist"});
+            }
+
+            res.send(scriptBatch);
+        });
+    });
+
+    /**
+     * POSTs a new script batch.
+     * The objectIds defined in <object>.scripts are converted to MongoDB ObjectIds
+     */
     app.post("/", routingConfig.provides('json', '*/*'), function(req, res, next) {
         var body = req.body;
 
@@ -41,6 +63,41 @@ module.exports = function(scriptsBatchesProvider) {
             if (err) return next(new Error(err));
 
             res.send(object);
+        });
+    });
+
+    /**
+     * Updates a script batch
+     */
+    app.put("/:id", routingConfig.provides('json', '*/*'), function(req, res, next) {
+        var id = req.params.id;
+
+        var body = req.body;
+        if (!body) {
+            res.statusCode = 400;
+            return next(new Error("Request contained no body"))
+        }
+
+        // Add id to body
+        body._id = id;
+        body.modified = new Date();
+
+        scriptsBatchesProvider.upsert(body, function(err, object) {
+            if (err) {
+                return next(new Error(JSON.stringify(err)));
+            }
+
+            res.send(object);
+        });
+    });
+
+    /**
+     * DELETEs a script batch by Id
+     */
+    app.delete("/:id", routingConfig.provides('json', '*/*'), function(req, res, next) {
+        scriptsBatchesProvider.delete(req.params.id, function(err) {
+            if (err) return next(new Error(err));
+            res.send({deleted: true});
         });
     });
 
