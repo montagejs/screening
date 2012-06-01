@@ -8,7 +8,7 @@ var path = require('path'),
     express = require('express'),
     simpleRequest = require("request");
 
-module.exports = function(agentPool, testcaseRunner, scriptsProvider) {
+module.exports = function(agentPool, testcaseRunner, scriptsProvider, scriptsBatchesProvider) {
     var app = express.createServer();
 
     app.mounted(function(otherApp) {
@@ -145,6 +145,72 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider) {
             console.error(err);
             return next({message: "Invalid scriptId: " + scriptId});
         }
+    });
+
+    /**
+     * Executes a scripts batch in the specified agent.
+     * @function
+     * @returns {Object} the same scripts batch id which will eventually contain the results
+     */
+    app.post("/:id/execute_batch/:batchId", routingConfig.provides('json', '*/*'), function(req, res, next) {
+        var agentId = req.params.id,
+            scriptsBatchesId = req.params.batchId,
+            agent = agentPool.getAgentById(agentId),
+            options = {
+                "global._requestOrigin": req.headers && req.headers.origin
+            };
+            var testcaseIds = [];
+
+        if (!agent) {
+            console.log("Attempted to run test on device that is not connected: " + agentId);
+            res.statusCode = 404;
+            return next(new Error('agent with id ' + agentId + ' does not exist'));
+        }
+
+        try {
+            scriptsBatchesProvider.findById(scriptsBatchesId, function(err, scriptsBatch) {
+                if (err) return next(new Error(err));
+
+                if (scriptsBatch.scripts && scriptsBatch.scripts.length > 0) {
+                    scriptsBatch.scripts.forEach(function(scriptId, index) {
+                        scriptsProvider.findById(scriptId, function(err, script) {
+                            if (err) return next(new Error(err));
+
+                            if (!script) {
+                                res.statusCode = 404;
+                                return next({message: "The script " + scriptId + " does not exist."});
+                            }
+
+                            try {
+                                var testcaseId = testcaseRunner.executeTest(script, {id: agentId}, options);
+                                testcaseIds.push(testcaseId);
+                                // If all the scripts are processed then add the results to the scriptsBatch object
+                                // and respond
+                                if(index === scriptsBatch.scripts.length - 1) {
+                                    scriptsBatch.results = testcaseIds;
+                                    scriptsBatchesProvider.upsert(scriptsBatch, function(err, updatedScriptsBatch) {
+                                        res.statusCode = 201;
+                                        res.send({agentId: agentId, scriptsBatchesId: scriptsBatchesId, scriptsBatch: updatedScriptsBatch});
+                                    });
+                                }
+                            } catch (ex) {
+                                console.log("Exception thrown while attempting to run test: " + ex, ex.stack);
+                                res.statusCode = 404;
+                                return next(new Error('Exception thrown while attempting to run test: ' + ex));
+                            }
+                        });
+                    });
+                } else {
+                    res.statusCode = 400;
+                    return next({message: "The batch does not contain any scripts"});
+                }
+
+            });
+        } catch (err) {
+            console.error(err);
+            return next({message: "Invalid batchId: " + scriptsBatchesId});
+        }
+
     });
 
     /**
