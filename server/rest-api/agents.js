@@ -184,9 +184,9 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider, scriptsBat
                             try {
                                 var testcaseId = testcaseRunner.executeTest(script, {id: agentId}, options);
                                 testcaseIds.push(testcaseId);
+                                // If all the scripts are processed then add the results to the scriptsBatch object
+                                // and respond
                                 if(index === scriptsBatch.scripts.length - 1) {
-                                    // Add the results to the scriptsBatch object
-                                    console.log(testcaseIds);
                                     scriptsBatch.results = testcaseIds;
                                     scriptsBatchesProvider.upsert(scriptsBatch, function(err, updatedScriptsBatch) {
                                         res.statusCode = 201;
