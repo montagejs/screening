@@ -6,17 +6,17 @@
 var BSON = require('mongodb').BSONPure,
     MongoDbProvider = require("../database/mongo-provider.js");
 
-var ScriptsBatchesProvider = function(db) {
+var BatchesProvider = function(db) {
     this._db = db;
 }
 
-ScriptsBatchesProvider.prototype = Object.create(MongoDbProvider.prototype, {
+BatchesProvider.prototype = Object.create(MongoDbProvider.prototype, {
     constructor: {
-        value: ScriptsBatchesProvider,
+        value: BatchesProvider,
         enumerable: false
     },
 
-    _collectionName: { value: "scriptsBatches" }
+    _collectionName: { value: "batches" }
 });
 
-module.exports = ScriptsBatchesProvider;
+module.exports = BatchesProvider;

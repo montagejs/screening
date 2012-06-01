@@ -6,47 +6,44 @@
 var routingConfig = require("./routing-config.js"),
     BSON = require('mongodb').BSONPure;
 
-module.exports = function(scriptsBatchesProvider) {
+module.exports = function(batchesProvider) {
     var app = express.createServer();
 
     app.mounted(function(otherApp) {
-        console.info("[scripts-batches] express app was mounted.");
+        console.info("[batches] express app was mounted.");
     });
 
     /**
-     * GETs all the available scripts batches
+     * GETs all the available batches
      */
     app.get("/", routingConfig.provides('json', '*/*'), function(req, res, next) {
-        var err;
-        if (err) return next(new Error(err));
+        batchesProvider.findAll({sort: ["name", "asc"]}, function(error, batches) {
+            if (error) return next(new Error(error));
 
-        scriptsBatchesProvider.findAll({sort: ["name", "asc"]}, function(err, scriptsBatches) {
-            if (err) return next(new Error(err));
-
-            res.send(scriptsBatches);
+            res.send(batches);
         });
     });
 
     /**
-     * GET a script batch by its Id
+     * GET a batch by its Id
      */
     app.get("/:id", routingConfig.provides('json', '*/*'), function(req, res, next) {
-        console.log("GET scripts_batches/:id " + req.params.id);
+        console.log("GET batches/:id " + req.params.id);
 
-        scriptsBatchesProvider.findById(req.params.id, function(err, scriptBatch) {
-            if (err) return next(new Error(err));
+        batchesProvider.findById(req.params.id, function(error, batch) {
+            if (error) return next(new Error(error));
 
-            if (!scriptBatch) {
+            if (!batch) {
                 res.statusCode = 400;
-                return next({message: "Script batch does not exist"});
+                return next({message: "Batch does not exist"});
             }
 
-            res.send(scriptBatch);
+            res.send(batch);
         });
     });
 
     /**
-     * POSTs a new script batch.
+     * POSTs a new batch.
      * The objectIds defined in <object>.scripts are converted to MongoDB ObjectIds
      */
     app.post("/", routingConfig.provides('json', '*/*'), function(req, res, next) {
@@ -59,15 +56,15 @@ module.exports = function(scriptsBatchesProvider) {
 
         body = parseObjectIds(body);
 
-        scriptsBatchesProvider.upsert(body, function(err, object) {
-            if (err) return next(new Error(err));
+        batchesProvider.upsert(body, function(error, batch) {
+            if (error) return next(new Error(error));
 
-            res.send(object);
+            res.send(batch);
         });
     });
 
     /**
-     * Updates a script batch
+     * Updates a batch
      */
     app.put("/:id", routingConfig.provides('json', '*/*'), function(req, res, next) {
         var id = req.params.id;
@@ -82,21 +79,21 @@ module.exports = function(scriptsBatchesProvider) {
         body._id = id;
         body.modified = new Date();
 
-        scriptsBatchesProvider.upsert(body, function(err, object) {
-            if (err) {
-                return next(new Error(JSON.stringify(err)));
+        batchesProvider.upsert(body, function(error, batch) {
+            if (error) {
+                return next(new Error(JSON.stringify(error)));
             }
 
-            res.send(object);
+            res.send(batch);
         });
     });
 
     /**
-     * DELETEs a script batch by Id
+     * DELETEs a batch by Id
      */
     app.delete("/:id", routingConfig.provides('json', '*/*'), function(req, res, next) {
-        scriptsBatchesProvider.delete(req.params.id, function(err) {
-            if (err) return next(new Error(err));
+        batchesProvider.delete(req.params.id, function(error) {
+            if (error) return next(new Error(error));
             res.send({deleted: true});
         });
     });
