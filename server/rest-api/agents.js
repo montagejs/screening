@@ -8,7 +8,7 @@ var path = require('path'),
     express = require('express'),
     simpleRequest = require("request");
 
-module.exports = function(agentPool, testcaseRunner, scriptsProvider, scriptsBatchesProvider) {
+module.exports = function(agentPool, testcaseRunner, scriptsProvider, batchesProvider) {
     var app = express.createServer();
 
     app.mounted(function(otherApp) {
@@ -148,13 +148,13 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider, scriptsBat
     });
 
     /**
-     * Executes a scripts batch in the specified agent.
+     * Executes a batch in the specified agent.
      * @function
-     * @returns {Object} the same scripts batch id which will eventually contain the results
+     * @returns {Object} the same batch object which will eventually contain the results
      */
     app.post("/:id/execute_batch/:batchId", routingConfig.provides('json', '*/*'), function(req, res, next) {
         var agentId = req.params.id,
-            scriptsBatchesId = req.params.batchId,
+            batchId = req.params.batchId,
             agent = agentPool.getAgentById(agentId),
             options = {
                 "global._requestOrigin": req.headers && req.headers.origin
@@ -168,13 +168,13 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider, scriptsBat
         }
 
         try {
-            scriptsBatchesProvider.findById(scriptsBatchesId, function(err, scriptsBatch) {
-                if (err) return next(new Error(err));
+            batchesProvider.findById(batchId, function(error, batch) {
+                if (error) return next(new Error(error));
 
-                if (scriptsBatch.scripts && scriptsBatch.scripts.length > 0) {
-                    scriptsBatch.scripts.forEach(function(scriptId, index) {
-                        scriptsProvider.findById(scriptId, function(err, script) {
-                            if (err) return next(new Error(err));
+                if (batch.scripts && batch.scripts.length > 0) {
+                    batch.scripts.forEach(function(scriptId, index) {
+                        scriptsProvider.findById(scriptId, function(error, script) {
+                            if (error) return next(new Error(error));
 
                             if (!script) {
                                 res.statusCode = 404;
@@ -184,13 +184,15 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider, scriptsBat
                             try {
                                 var testcaseId = testcaseRunner.executeTest(script, {id: agentId}, options);
                                 testcaseIds.push(testcaseId);
-                                // If all the scripts are processed then add the results to the scriptsBatch object
+                                // If all the scripts are processed then add the results to the batch object
                                 // and respond
-                                if(index === scriptsBatch.scripts.length - 1) {
-                                    scriptsBatch.results = testcaseIds;
-                                    scriptsBatchesProvider.upsert(scriptsBatch, function(err, updatedScriptsBatch) {
+                                if(index === batch.scripts.length - 1) {
+                                    batch.results = testcaseIds;
+                                    batchesProvider.upsert(batch, function(error, updatedBatch) {
+                                        if (error) return next(new Error(error));
+
                                         res.statusCode = 201;
-                                        res.send({agentId: agentId, scriptsBatchesId: scriptsBatchesId, scriptsBatch: updatedScriptsBatch});
+                                        res.send(updatedBatch);
                                     });
                                 }
                             } catch (ex) {
@@ -206,9 +208,9 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider, scriptsBat
                 }
 
             });
-        } catch (err) {
-            console.error(err);
-            return next({message: "Invalid batchId: " + scriptsBatchesId});
+        } catch (error) {
+            console.error(error);
+            return next({message: "Invalid batchId: " + batchId});
         }
 
     });
