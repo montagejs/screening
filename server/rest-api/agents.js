@@ -4,7 +4,7 @@
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
 var path = require('path'),
-    routingConfig = require("./routing-config.js");
+    routingConfig = require("./routing-config.js"),
     express = require('express'),
     simpleRequest = require("request");
 

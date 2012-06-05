@@ -14,7 +14,7 @@
  * @info        http://www.w3.org/TR/CSS2/selector.html
  * @credits     some tips from Aristotle Pagaltzis [http://plasmasturm.org/log/444/]
  */
-css2xpath = (function(){
+var css2xpath = (function(){
     var re      = [
             // add @ for attribs
             /\[([^\]~\$\*\^\|\!]+)(=[^\]]+)?\]/g, "[@$1$2]",

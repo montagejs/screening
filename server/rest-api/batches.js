@@ -4,7 +4,8 @@
  (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
  </copyright> */
 var routingConfig = require("./routing-config.js"),
-    BSON = require('mongodb').BSONPure;
+    BSON = require('mongodb').BSONPure,
+    express = require("express");
 
 module.exports = function(batchesProvider) {
     var app = express.createServer();
