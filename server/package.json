@@ -1,6 +1,6 @@
 {
     "name": "screening",
-    "version": "0.m.0",
+    "version": "0.0.0-master",
     "description": "A UI testing tool for Montage based apps",
     "keywords": ["testing", "montage"],
     "homepage": "http://www.motorola.com",
@@ -42,6 +42,8 @@
         "wrench": "1.3.x"
     },
     "devDependencies": {
+        "mocha": "*",
+        "should": "*",
         "template": "0.0.x"
     },
     "private": true
