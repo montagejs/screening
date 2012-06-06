@@ -268,6 +268,7 @@ MongoDbProvider.prototype = Object.create(Object, {
             var reservedKeywordsList = ["limit", "skip", "sort"];
             var retOptions = {};
             var retKeywords = {};
+            var option;
 
             for (option in options) {
                 if (options.hasOwnProperty(option)) {
