@@ -5,8 +5,19 @@ var socketApi = require("../lib/sockets.js");
 var path = require("path");
 
 module.exports = Object.create(Object.prototype, {
+    PORT: { value: 9999 },
+
+    BASE_URL: {
+        get: function() {
+            var self = this;
+            return 'http://127.0.0.1:' + self.PORT + '/screening/api/v1'
+        }
+    },
+
     startServer: {
         value: function(port) {
+            port = port || this.PORT;
+
             screening.configureServer();
 
             app.configure(function() {
