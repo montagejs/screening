@@ -1,18 +1,17 @@
 var request = require("request"),
     testUtils = require("./test-utils");
-    PORT = 9999;
-const BASE_URL = 'http://127.0.0.1:' + PORT + '/screening/api/v1';
+const BASE_URL = testUtils.BASE_URL;
 
 describe("REST Error Handling", function() {
     before(function(done) {
-        testUtils.startServer(PORT);
+        testUtils.startServer();
         setTimeout(done, 500);
     });
 
     /**
      * /foo does not exist, it should return a 404 even with an api_key
      */
-    it('4040 on service not yet implemented', function(done) {
+    it('404 on service not yet implemented', function(done) {
         request.get({
             uri: BASE_URL + '/foo?api_key=2112'
         }, function(error, response, body) {
