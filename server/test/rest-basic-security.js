@@ -8,6 +8,11 @@ describe("REST Error Handling", function() {
         setTimeout(done, 500);
     });
 
+    after(function(done){
+        testUtils.stopServer();
+        done();
+    });
+
     /**
      * /foo does not exist, it should return a 404 even with an api_key
      */

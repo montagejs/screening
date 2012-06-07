@@ -38,5 +38,11 @@ module.exports = Object.create(Object.prototype, {
             console.log("Environment: Node.js -", process.version, "Platform -", process.platform);
             console.log("Screening Server running on port " + port);
         }
+    },
+
+    stopServer: {
+        value: function() {
+            app.close();
+        }
     }
 });
