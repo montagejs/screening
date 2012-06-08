@@ -8,6 +8,10 @@ describe("REST Scripts", function() {
         setTimeout(done, 500);
     });
 
+    beforeEach(function(done) {
+        testUtils.clearDatabase(done);
+    });
+
     after(function(done) {
         testUtils.stopServer();
         done();
@@ -27,10 +31,8 @@ describe("REST Scripts", function() {
 
     it("should allow you to create a new script", function(done) {
         var script1 = {
-
             "code": "123_awesome",
             "name": "awesomeScript_22"
-
         };
         var script_id;
         var json_script1 = JSON.stringify(script1);
@@ -48,24 +50,7 @@ describe("REST Scripts", function() {
             bodyObj.name.should.equal(script1.name);
             bodyObj.code.should.equal(script1.code);
 
-            //To get the id of the test script using test script name, id will be used to delete the script below
-            request.get({
-                uri: BASE_URL + '/scripts?name=' + script1.name + '&api_key=5150'
-            }, function(error, response, body) {
-                response.should.be.json;
-                var bodyObj = JSON.parse(body);
-                response.statusCode.should.equal(200);
-                script_id = bodyObj[0]._id;
-
-                // Delete the script
-                request.del({
-                    uri: BASE_URL + "/scripts/" + script_id + "?api_key=5150"
-                }, function(error, response, body) {
-                    response.statusCode.should.equal(200);
-                    done();
-                })
-            });
-
+            done();
         });
     });
 });

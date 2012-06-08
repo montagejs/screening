@@ -3,6 +3,7 @@ var app = express.createServer();
 var screening = require('../server.js');
 var socketApi = require("../lib/sockets.js");
 var path = require("path");
+var MongoDbProvider = require("../lib/database/mongo-provider.js");
 
 module.exports = Object.create(Object.prototype, {
     PORT: { value: 9999 },
@@ -14,11 +15,27 @@ module.exports = Object.create(Object.prototype, {
         }
     },
 
+    customMongoDbProvider: {
+        value: new MongoDbProvider("localhost", 27018)
+    },
+
+    clearDatabase: {
+        value: function(callback) {
+            var provider = this.customMongoDbProvider;
+
+            provider.deleteAll("scripts", function() {
+                provider.deleteAll("batches", function() {
+                    provider.deleteAll("testecase-results", callback);
+                })
+            });
+        }
+    },
+
     startServer: {
         value: function(port) {
             port = port || this.PORT;
 
-            screening.configureServer();
+            screening.configureServer(this.customMongoDbProvider);
 
             app.configure(function() {
                 app.use("/screening", screening.app);
