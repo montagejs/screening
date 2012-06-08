@@ -142,6 +142,31 @@ MongoDbProvider.prototype = Object.create(Object, {
     },
 
     /**
+     * Deletes all the elements in a collection
+     *
+     * @function
+     * @param collectionName
+     * @param callback {Function}
+     */
+    deleteAll: {
+        value: function(collectionName, cb) {
+            var self = this;
+
+            self._getCollection(collectionName, function(err, collection) {
+                if (err) cb(err);
+                else {
+                    collection.remove({}, function(err, deleted) {
+                        if (err) cb(err);
+                        else {
+                            cb(null, deleted);
+                        }
+                    });
+                }
+            });
+        }
+    },
+
+    /**
      * Deletes multiple objects by their id
      * @function
      * @param ids {Array} array of ids to delete
