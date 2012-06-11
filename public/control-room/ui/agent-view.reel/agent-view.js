@@ -23,12 +23,20 @@ exports.AgentView = Montage.create(Component, {
     },
     
     agentIcon: {
+        serializable: true,
+        enumerable: false,
+        value: null
+    },
+
+    agentDelete: {
+        serializable: true,
         enumerable: false,
         value: null
     },
 
     // Used for the title full text
     agentHostElement: {
+        serializable: true,
         value: null
     },
 
