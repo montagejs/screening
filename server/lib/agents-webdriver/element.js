@@ -321,7 +321,8 @@ WebdriverElement.prototype.getText = function(){
     var self = this;
     return this.sync.promise(function() {
         return when(self.element.getTagName(), function(tagName){
-            if(tagName.value == 'input' || tagName.value == 'textarea') {
+            var tagNameLowerCase = tagName.value.toLowerCase();
+            if(tagNameLowerCase == 'input' || tagNameLowerCase == 'textarea') {
                 return self.element.getValue();
             } else {
                 return self.element.getInnerText();
