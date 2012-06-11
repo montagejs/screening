@@ -182,22 +182,27 @@ exports.ScriptResultsView = Montage.create(Component, {
     },
 
     selectAllButton: {
+        serializable: true,
         enumerable: false
     },
 
     currentPageTextField: {
+        serializable: true,
         enumerable: false
     },
 
     previousPageButtonTop: {
+        serializable: true,
         enumerable: false
     },
 
     nextPageButtonTop: {
+        serializable: true,
         enumerable: false
     },
 
     scriptResultsSearch: {
+        serializable: true,
         enumerable: false
     },
 

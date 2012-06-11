@@ -18,6 +18,7 @@ exports.ScriptResultsSearch = Montage.create(Component, {
     },
 
     resultsSearchBox: {
+        serializable: true,
         enumerable: true,
         get: function() {
             return this._resultsSearchBox;
