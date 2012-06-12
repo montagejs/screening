@@ -68,16 +68,13 @@
                 }
             },
             "substitution1": {
-                "module": "montage/ui/substitution.reel",
-                "name": "Substitution",
+                "prototype": "montage/ui/condition.reel",
                 "properties": {
                     "element": {"#": "searchOptions"},
-                    "switchComponents": {
-                        "true": {"@": "dynamictext1"}
-                    }
+                    "content": {"@": "dynamictext1"}
                 },
                 "bindings": {
-                    "switchValue": {
+                    "condition": {
                         "boundObject": {"@": "owner"},
                         "boundObjectPropertyPath": "searchOptionsVisible",
                         "oneway": true
