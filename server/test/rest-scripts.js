@@ -1,5 +1,6 @@
 var request = require("request"),
-    testUtils = require("./test-utils");
+    testUtils = require("./test-utils"),
+    assert = require("assert");
 const BASE_URL = testUtils.BASE_URL;
 
 describe("REST Scripts", function() {
@@ -52,5 +53,37 @@ describe("REST Scripts", function() {
 
             done();
         });
+    });
+
+    it("verifies that we get 3 scripts", function(done) {
+        var scripts = [
+            {
+                "code": "123_awesome",
+                "name": "awesomeScript_1"
+            },
+            {
+                "code": "123_awesome",
+                "name": "awesomeScript_2"
+            },
+            {
+                "code": "123_awesome",
+                "name": "awesomeScript_3"
+            }
+        ];
+        testUtils.insertScripts(scripts, function(error, scriptIds) {
+            assert(error === null);
+            scriptIds.length.should.equal(3);
+            request.get({
+                uri: BASE_URL + '/scripts?api_key=2112'
+            }, function(error, response, body) {
+                response.should.be.json;
+                var bodyObj = JSON.parse(body);
+                response.statusCode.should.equal(200);
+                bodyObj.should.be.array;
+                bodyObj.length.should.equal(3);
+                done();
+            });
+        });
+
     });
 });

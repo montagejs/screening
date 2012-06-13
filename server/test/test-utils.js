@@ -4,6 +4,7 @@ var screening = require('../server.js');
 var socketApi = require("../lib/sockets.js");
 var path = require("path");
 var MongoDbProvider = require("../lib/database/mongo-provider.js");
+var ScriptsProvider = require("../lib/database/scripts-provider.js");
 
 module.exports = Object.create(Object.prototype, {
     PORT: { value: 9999 },
@@ -27,6 +28,32 @@ module.exports = Object.create(Object.prototype, {
                 provider.deleteAll("batches", function() {
                     provider.deleteAll("testecase-results", callback);
                 })
+            });
+        }
+    },
+
+    /**
+     * Takes an array of Script objects and inserts them sequentially in the database.
+     * Calls the callback when done and returns the ids of the created script documents.
+     */
+    insertScripts: {
+        value: function(scripts, callback) {
+            var self = this;
+            var ids = [];
+            var scriptsProvider = new ScriptsProvider(self.customMongoDbProvider.db);
+
+            scriptsProvider.upsert(scripts.shift(), function lambda(err, object) {
+                if (err) callback(err);
+
+                if(object) {
+                    ids.push(object._id);
+
+                    if(scripts.length > 0) {
+                        scriptsProvider.upsert(scripts.shift(), lambda);
+                    } else {
+                        callback(null, ids);
+                    }
+                }
             });
         }
     },
