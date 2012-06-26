@@ -10,8 +10,10 @@ exports.AgentWebdriverDialog = Montage.create(Component, {
     },
 
     browserName: {
-        value: null
+        value: null, serializable: true
     },
+
+    crxFile: {value: null, serializable: true},
 
     templateDidLoad: {
         value: function() {
@@ -23,16 +25,30 @@ exports.AgentWebdriverDialog = Montage.create(Component, {
         value: function(event) {
             var self = this;
 
-            var urlAndBrowserName = {
+            var webdriverParams = {
                 url: self.url,
                 browserName: self.browserName.contentController.selectedObjects[0].value
             };
 
-            var anEvent = document.createEvent("CustomEvent");
-            anEvent.initCustomEvent("message.ok", true, true, urlAndBrowserName);
+            var dispatchAndHide = function() {
+                var anEvent = document.createEvent("CustomEvent");
+                anEvent.initCustomEvent("message.ok", true, true, webdriverParams);
+                self.dispatchEvent(anEvent);
+                self.popup.hide();
+            };
 
-            this.dispatchEvent(anEvent);
-            this.popup.hide();
+            if(self.crxFile.element.files && self.crxFile.element.files.length > 0) {
+                var reader = new FileReader();
+
+                reader.onload = function(readerEvt) {
+                    webdriverParams.crxFile = btoa(readerEvt.target.result);
+                    dispatchAndHide();
+                }
+
+                reader.readAsBinaryString(self.crxFile.element.files[0]);
+            } else {
+               dispatchAndHide();
+            }
         }
     },
 

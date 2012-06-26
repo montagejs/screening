@@ -10,7 +10,8 @@
                     "name": "AgentWebdriverDialog",
                     "properties": {
                         "element": {"#": "webdriverDialog"},
-                        "browserName": {"@": "browserName"}
+                        "browserName": {"@": "browserName"},
+                        "crxFile": {"@": "crxFile"}
                     }
                  },
 
@@ -34,6 +35,14 @@
                     "name": "Select",
                     "properties": {
                         "element": {"#": "browserName"}
+                    }
+                },
+
+                "crxFile": {
+                    "prototype": "montage/ui/dynamic-element.reel",
+                    "properties": {
+                        "identifier": "crxFile",
+                        "element": {"#": "crxFile"}
                     }
                 },
 
@@ -85,6 +94,10 @@
                         <option value="opera">Opera</option>
                         <option value="internet explorer">Internet Explorer</option>
                     </select>
+                </fieldset>
+                <fieldset id="chromeExtension">
+                    <label for="crxFile">Chrome Extension (Optional)</label>
+                    <input type="file" id="crxFile" data-montage-id="crxFile" accept="application/x-chrome-extension" />
                 </fieldset>
                 <fieldset id="buttons" class="buttons">
                     <button id="cancel" data-montage-id="cancel">Cancel</button>
