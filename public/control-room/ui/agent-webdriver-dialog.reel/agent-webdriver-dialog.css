@@ -19,7 +19,8 @@
     display: inline-block;
     line-height: 24px;
     padding-right: 20px;
-    width: 50px;
+    width: 120px;
+    text-align: right;
 }
 
 /* Text Field should be global at some point */
@@ -80,5 +81,31 @@
 .webdriverDialog fieldset.buttons .blue {
     float: right;
     width: 60px;
+}
+
+
+/* Input File */
+.webdriverDialog input[type="file"] {
+    vertical-align: top;
+}
+
+.webdriverDialog ::-webkit-file-upload-button {
+    padding: 6px 10px;
+    text-shadow: 0 1px hsla(0,0%,100%,.4);
+    border: 1px solid hsl(0,0%,65%);
+    border-radius: 4px;
+    background-color: hsl(0,0%,90%);
+    background-image: -webkit-linear-gradient(top, hsla(0,0%,100%,.6), hsla(0,0%,100%,0) 50%, hsla(0,0%,0%,0) 50%, hsla(0,0%,0%,.1) );
+    box-shadow: inset 0px 1px 0px hsla(0,0%,100%,.7), 0px 1px 1px hsla(0,0%,0%,.15);
+    -webkit-user-select: none;
+    font-size: 12px;
+    cursor: pointer;
+    outline: none;
+}
+.webdriverDialog input[type="file"]:hover::-webkit-file-upload-button {
+    background-color: hsl(0,0%,95%);
+}
+.webdriverDialog input[type="file"]:active::-webkit-file-upload-button {
+    background-color: hsl(0,0%,85%);
 }
 
