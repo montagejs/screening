@@ -299,7 +299,8 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider, batchesPro
     app.post("/webdriver", function(req, res, next) {
         var body = req.body,
             url = body.url,
-            browserName = body.browserName;
+            browserName = body.browserName,
+            crxFile = body.crxFile;
         if(!url) {
             console.error("No webdriver URL was passed.");
             res.statusCode = 400;
@@ -320,7 +321,11 @@ module.exports = function(agentPool, testcaseRunner, scriptsProvider, batchesPro
                 return next(new Error(errorMsg));
             }
             else {
-                var agent = agentPool.addAgent({browserName: browserName}, {
+                var capabilities = {browserName: browserName};
+                if(crxFile) {
+                    capabilities["chrome.extensions"] = [crxFile];
+                }
+                var agent = agentPool.addAgent(capabilities, {
                     url: url,
                     type: agentPool.agentTypes.WEBDRIVER
                 });
