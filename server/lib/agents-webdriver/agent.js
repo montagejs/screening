@@ -278,7 +278,7 @@ WebDriverAgent.prototype.gotoUrl = function(url){
     this.sync.promise(function() {
         var defer = Q.defer();
 
-        if(url.indexOf("http") != 0) {
+        if(url.indexOf("http") != 0 && url.indexOf("chrome-extension") != 0) {
             // prefix the url with the request origin if it is just relative
             url = self.scriptObject.getOption("global._requestOrigin") + url;
         }
