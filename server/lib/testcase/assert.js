@@ -1,8 +1,32 @@
 /* <copyright>
- This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
- No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
- (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
- </copyright> */
+Copyright (c) 2012, Motorola Mobility, Inc
+All Rights Reserved.
+BSD License.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+  - Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+  - Neither the name of Motorola Mobility nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+</copyright> */
 
 //
 // functions that get expectedValue and actualValue
@@ -13,18 +37,18 @@ function cleanString(s){
 }
 
 /**
- * @param {any} collection is the area you want to search 
+ * @param {any} collection is the area you want to search
  * @param {any} value is what you are looking for
- * @param {String} msg message associated with the call 
+ * @param {String} msg message associated with the call
  */
 var assertContains = exports.assertContains = function(collection, value, msg){
     return cleanString(collection).indexOf(cleanString(value))!=-1
 };
 
 /**
- * @param {any} expectedValue 
+ * @param {any} expectedValue
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertNotContains = exports.assertContainsNot = exports.assertNotContains = function(){
     // Just use the inverted result of assertContains, so we just implement the behvior once and it is consistent.
@@ -32,9 +56,9 @@ var assertNotContains = exports.assertContainsNot = exports.assertNotContains = 
 };
 
 /**
- * @param {any} expectedValue 
+ * @param {any} expectedValue
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertEqual = exports.assertEqual = exports.assertEquals = function(expectedValue, actualValue, msg){
     // There are (at least) two space-characters (with charcode 32 and 160), unify them before comparing.
@@ -42,9 +66,9 @@ var assertEqual = exports.assertEqual = exports.assertEquals = function(expected
 };
 
 /**
- * @param {any} expectedValue 
+ * @param {any} expectedValue
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertNotEqual = exports.assertEqualsNot = exports.assertNotEquals = exports.assertNotEqual = function(){
     // Just use the inverted result of assertEqual, so we just implement the behvior once and it is consistent.
@@ -52,9 +76,9 @@ var assertNotEqual = exports.assertEqualsNot = exports.assertNotEquals = exports
 };
 
 /**
- * @param {any} expectedValue 
+ * @param {any} expectedValue
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertStartsWith = exports.assertStartsWith = function(expectedValue, actualValue, msg){
     return cleanString(actualValue).indexOf(cleanString(expectedValue))==0;
@@ -64,9 +88,9 @@ var assertStartsNotWith = exports.assertStartsNotWith = function(expectedValue, 
 };
 
 /**
- * @param {any} expectedValue 
+ * @param {any} expectedValue
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertEndsWith = exports.assertEndsWith = function(expectedValue, actualValue, msg){
     return cleanString(actualValue).substr(-cleanString(expectedValue).length) == cleanString(expectedValue);
@@ -76,9 +100,9 @@ var assertEndsNotWith = exports.assertEndsNotWith = function(expectedValue, actu
 };
 
 /**
- * @param {any} expectedValue 
+ * @param {any} expectedValue
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertLess = exports.assertLess = function(expectedValue, actualValue, msg){
     if (!isNaN(parseFloat(expectedValue, 10)) && !isNaN(parseFloat(actualValue, 10))){
@@ -92,9 +116,9 @@ var assertGreaterOrEqual = exports.assertGreaterOrEqual = function(expectedValue
 };
 
 /**
- * @param {any} expectedValue 
+ * @param {any} expectedValue
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertGreater = exports.assertGreater = function(){
     return !assertLess.apply(this, arguments) && !assertEqual.apply(this, arguments);
@@ -106,7 +130,7 @@ var assertLessOrEqual = exports.assertLessOrEqual = function(){
 /**
  * @param {Array(2)} expectedValue, The first value is the lower value, the second the higher.
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertBetween = exports.assertBetween = function(expectedValue, actualValue, message){
     var min = expectedValue[0];
@@ -125,7 +149,7 @@ var assertNotBetween = exports.assertNotBetween = function(expectedValue, actual
 /**
  * @param {Array(2)} expectedValue, The first value is the value, the second the offset.
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertPrecision = exports.assertPrecision = function(expectedValue, actualValue, message){
     var middle = expectedValue[0];
@@ -142,7 +166,7 @@ var assertNotPrecision = exports.assertNotPrecision = function(expectedValue, ac
 
 /**
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertTrue = exports.assertTrue = function(actualValue, msg){
     return !!actualValue;
@@ -150,16 +174,16 @@ var assertTrue = exports.assertTrue = function(actualValue, msg){
 
 /**
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertFalse = exports.assertFalse = function(){
     // Just use the inverted result of assertTrue, so we just implement the behvior once and it is consistent.
-    return !assertTrue.apply(this, arguments); 
+    return !assertTrue.apply(this, arguments);
 };
 
 /**
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertEmpty = exports.assertEmpty = function(actualValue, msg){
     return !actualValue;
@@ -167,7 +191,7 @@ var assertEmpty = exports.assertEmpty = function(actualValue, msg){
 
 /**
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 var assertNotEmpty = exports.assertNotEmpty = function(){
     // Just use the inverted result of assertEmpty, so we just implement the behvior once and it is consistent.
@@ -185,9 +209,9 @@ exports.hasNoExpectedValue = "assertTrue assertFalse assertEmpty assertNotEmpty"
 
 /**
  * @param {Function} assertFunc
- * @param {any} expectedValue 
+ * @param {any} expectedValue
  * @param {any} actualValue
- * @param {String} expectedValue 
+ * @param {String} expectedValue
  */
 //assert = function(assertFunc, expectedValue, actualValue, msg){
 //    return assertFunc(expectedValue, actualValue, msg);

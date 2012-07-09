@@ -1,8 +1,32 @@
 /* <copyright>
- This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
- No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
- (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
- </copyright> */
+Copyright (c) 2012, Motorola Mobility, Inc
+All Rights Reserved.
+BSD License.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+  - Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+  - Neither the name of Motorola Mobility nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+</copyright> */
 
 /*
  * This file will be executed on a webdriver client to give it recording support.
@@ -47,7 +71,7 @@ var EventUtility = Object.create(Object, {
         enumerable: false,
         value: false
     },
-    
+
     listening: {
         get: function() {
             return this._listening;
@@ -60,35 +84,35 @@ var EventUtility = Object.create(Object, {
             }
         }
     },
-    
+
     _lastEvent: {
         value: null
     },
-    
+
     _attachedWindow: {
         enumerable: false,
         value: null
     },
-    
+
     _attachedIframe: {
         enumerable: false,
         value: null
     },
-    
+
     _eventListener: {
         enumerable: false,
         value: null
     },
-    
+
     _navigateListener: {
         enumerable: false,
         value: null
     },
-    
+
     socket: {
         value: null
     },
-    
+
     /**
     * Start listening for events on the specified window.
     * If no window is specified, will attach to the current document's window
@@ -98,28 +122,28 @@ var EventUtility = Object.create(Object, {
             if(this.listening) {
                 throw new Error("Already listening for events.");
             }
-            
+
             this._attachedWindow = null;
-            
+
             if(!targetWindow) {
                 targetWindow = document.window;
             }
-            
+
             var self = this;
             if(!this._eventListener) {
                 this._eventListener = this.willDistributeEvent.bind(this);
             }
-            
+
             eventWhitelist.forEach(function(evtName){
                 targetWindow.addEventListener(evtName, self._eventListener, true);
             });
-            
+
             this._attachedWindow = targetWindow;
             this._listening = true;
             this._dispatchResizeCaptured(); // Capture the initial window size
         }
     },
-    
+
     /**
     * Stop listening for events.
     */
@@ -129,28 +153,28 @@ var EventUtility = Object.create(Object, {
             if(targetWindow === null) {
                 return;
             }
-            
+
             var self = this;
             eventWhitelist.forEach(function(evtName){
                 targetWindow.removeEventListener(evtName, self._eventListener, true);
             });
-            
+
             this._listening = false;
         }
     },
-    
+
     pauseListening: {
         value: function() {
             this._listening = false;
         }
     },
-    
+
     resumeListening: {
         value: function() {
             this._listening = true;
         }
     },
-    
+
     /**
     * Called when montage fires any event while listening. Converts the event into a consumable object and dispatches an "eventcaptured" event.
     * @param event The original event that was fired
@@ -163,36 +187,36 @@ var EventUtility = Object.create(Object, {
                 this._dispatchResizeCaptured();
                 return;
             }
-            
+
             // Filter out events that don't have a target element (how can we replay them?)
             if(!event.target || !event.target.ownerDocument) {
                 return;
             }
-            
+
             // TODO: I'm not certain that this is the best design decision, but it'll have to do for now. Without this, we capture twice in some cases. (Capture AND bubbling)
             if(event.eventPhase === 0) {
                 return;
             }
-            
+
             // It seems that it's very easy for us to get into states where the event listener gets doubled up. Seems to be app-dependant.
             // Check to make sure we aren't re-recording the last event.
             if(event === this._lastEvent) {
                 return;
             }
             this._lastEvent = event;
-            
+
             // If in RECORD_INPUT_ONLY mode, filter out non-whitelist events
             if(eventWhitelist.indexOf(event.type) === -1) {
                 return;
             }
-            
+
             var eventObj = this.serializeEvent(event);
             if(eventObj) {
                 this._dispatchEventCaptured(eventObj);
             }
         }
     },
-    
+
     /**
     * Translates a native javascript event into a JSON serializable object
     * @param event Native javascript event to serialize
@@ -202,7 +226,7 @@ var EventUtility = Object.create(Object, {
         value: function(event) {
             var nativeEvent = event._event || event;
             var self = this;
-            
+
             var obj = {
                 type: event.type,
                 target: self.serializeTarget(event.target.ownerDocument, event.target),
@@ -211,7 +235,7 @@ var EventUtility = Object.create(Object, {
                 cancelable: event.cancelable,
                 arguments: {}
             };
-            
+
             // change is a special case. It's the only event we get for some input fields,
             // but has no value data associated with it. As such, we have to read the content of the
             // field and use that instead
@@ -225,7 +249,7 @@ var EventUtility = Object.create(Object, {
                     obj.arguments.value = event.target.value;
                 }
             }
-            
+
             // scroll events have no associated data, they only indicate that a scroll occurred
             // so we go grab the scroll information ourselves
             if(obj.type == "scroll") {
@@ -242,19 +266,19 @@ var EventUtility = Object.create(Object, {
                     }
                 }
                 if(nativeEvent.targetTouches) {
-                    var touches = this.serializeTouchList(nativeEvent.targetTouches, event.target); 
+                    var touches = this.serializeTouchList(nativeEvent.targetTouches, event.target);
                     if(touches) {
                         obj.arguments.targetTouches = touches;
-                    } 
+                    }
                 }
                 if(nativeEvent.changedTouches) {
-                    var touches = this.serializeTouchList(nativeEvent.changedTouches, event.target); 
+                    var touches = this.serializeTouchList(nativeEvent.changedTouches, event.target);
                     if(touches) {
                         obj.arguments.changedTouches = touches;
                     }
                 }
             }
-            
+
             if(obj.type === "click" || obj.type === "dblclick" || obj.type === "mousedown" || obj.type === "mouseup" || obj.type === "dragend") {
 
                 if (event.target.tagName == "SELECT" || event.target.tagName == "OPTION") { return null; } // Don't record mouse interaction with selects
@@ -277,16 +301,16 @@ var EventUtility = Object.create(Object, {
                if(propertyWhitelist.indexOf(key) != -1) {
                    // Exclude elements that contain null, false, 0, or empty string values.
                    // TODO: This may cause issues. We may need a whitelist of attributes that are always written out.
-                   if(nativeEvent[key]) { 
+                   if(nativeEvent[key]) {
                        obj.arguments[key] = nativeEvent[key];
                    }
                }
             }
-            
+
             return obj;
         }
     },
-    
+
     /**
     * Translates a TouchList array into JSON serializable objects
     * @param touchList A native TouchList object from a touch event
@@ -295,7 +319,7 @@ var EventUtility = Object.create(Object, {
     serializeTouchList: {
         value: function(touchList, eventTarget) {
             var touches = [];
-            
+
             for(var i = 0; i < touchList.length; ++i) {
                 var touch = touchList[i];
                 touches[i] = {
@@ -311,21 +335,21 @@ var EventUtility = Object.create(Object, {
                     scale: touch.scale,
                     identifier: touch.identifier
                 };
-                
+
                 // To reduce serialization complexity, if the touch target is the same as the event target we won't serialize
                 if(touch.target && touch.target != eventTarget) {
                     touches[i].target = serializeTarget(touch.target.ownerDocument, touch.target);
                 }
             }
-            
+
             if(touches.length) {
                 return touches;
             }
-            
+
             return null;
         }
     },
-    
+
     /**
     * Translates a page X/Y position into a coordinate relative to the given element
     * @param eventTarget Element to calculate t
@@ -334,25 +358,25 @@ var EventUtility = Object.create(Object, {
     serializeElementPosition: {
         value: function(element, event) {
             if(event.pageX == undefined && event.pageY == undefined) { return null; }
-            
+
             if(webkitConvertPointFromPageToNode) {
                 var offset = webkitConvertPointFromPageToNode(element, new WebKitPoint(event.pageX,event.pageY));
                 return [offset.x, offset.y];
             } else {
                 var offsetX = event.pageX;
                     offsetY = event.pageY;
-                
+
                 while(element) {
                     offsetX -= element.offsetLeft;
                     offsetY -= element.offsetTop;
                     element = element.offsetParent;
                 }
-            
+
                 return [offsetX, offsetY];
             }
         }
     },
-    
+
     /**
     * This function attempts to generate the smallest XPath possible that uniquely identifies the
     * element that it has been given. It is only guaranteed to be unique for the DOM as it exists at the time this
@@ -399,7 +423,7 @@ var EventUtility = Object.create(Object, {
             }
         }
     },
-    
+
     _dispatchResizeCaptured: {
         enumerable: false,
         value: function() {
@@ -407,7 +431,7 @@ var EventUtility = Object.create(Object, {
             this.socket.emit("resizeCaptured", this._attachedWindow.innerWidth, this._attachedWindow.innerHeight);
         }
     },
-    
+
     _dispatchNavigateCaptured: {
         enumerable: false,
         value: function(url) {
@@ -415,7 +439,7 @@ var EventUtility = Object.create(Object, {
             this.socket.emit("navigateCaptured", url);
         }
     },
-    
+
     _dispatchEventCaptured: {
         enumerable: false,
         value: function(eventObj) {
