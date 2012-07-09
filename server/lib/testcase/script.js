@@ -45,7 +45,7 @@ var Q = require("q"),
 var Script = exports.Script = function(mongoDbProvider) {
     this.mongoDbProvider = mongoDbProvider || new MongoDbProvider(settings.mongoDB.host, settings.mongoDB.port);
 
-    this.scriptsProvider = new ScriptsProvider(this.mongoDbProvider);
+    this.scriptsProvider = new ScriptsProvider(this.mongoDbProvider.db);
 
     // NOTE: the options are no objects yet (though) that looks like a no-brainer to make them
     // an object. But it would just be overhead for now, since access (for now) is only done
