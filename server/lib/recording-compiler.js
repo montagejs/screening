@@ -1,8 +1,32 @@
 /* <copyright>
- This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
- No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
- (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
- </copyright> */
+Copyright (c) 2012, Motorola Mobility, Inc
+All Rights Reserved.
+BSD License.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+  - Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+  - Neither the name of Motorola Mobility nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+</copyright> */
 
 /**
  * Map of key codes to JSON Wire Protocol codes
@@ -68,7 +92,7 @@ var KeyMap = {
  * Compiles a collection of serialized events into runnable script
  */
 var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
-    
+
     /**
      * @constructor
      * @this {RecordingCompiler}
@@ -82,11 +106,11 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             };
             // Mixin the options passed to the constructor.
             for (var i in options) this.options[i] = options[i];
-            
+
             return this;
         }
     },
-    
+
     /**
      * Clears the action stack
      */
@@ -95,7 +119,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             this.actionStack = [];
         }
     },
-    
+
     /**
      * Adds a navigate action to the action stack
      * @param url The URL to navigate to
@@ -109,7 +133,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             });
         }
     },
-    
+
     /**
      * Adds a resize action to the action stack
      * @param width Width of the innerWindow in pixels
@@ -125,7 +149,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             });
         }
     },
-    
+
     /**
      * Adds a serialized event to the action stack
      * @param event The event to serialize
@@ -136,7 +160,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             this.actionStack.push(event);
         }
     },
-    
+
     /**
      * Iterates over the action stack, and discards actions that should not contribute to the script
      */
@@ -144,11 +168,11 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
         value: function(stack) {
             var filteredStack = [],
                 action;
-            
+
             var stackSize = stack.length;
             for(var i = 0; i < stackSize; ++i) {
                 action = stack[i];
-                
+
                 switch(action.type) {
                     case "keydown":
                         if(!KeyMap[action.arguments.keyCode]) { continue; } // If the key is not in the KeyMap mapping, discard it
@@ -163,11 +187,11 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                 }
                 filteredStack.push(action); // If nothing else stopped up, add the action
             }
-            
+
             return filteredStack;
         }
     },
-    
+
     /**
      * Iterates over the action stack, finds actions that can be condensed, and condenses them
      */
@@ -176,15 +200,15 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             var condensable = ['mousemove', 'textInput'];
             var condensedStack = [];
             var action, nextAction;
-            
+
             var stackSize = stack.length;
             for(var i = 0; i < stackSize; ++i) {
                 action = stack[i];
-                
+
                 if(action.type == "resize" && stack[i+1] && stack[i+1].type == "resize") {
                     continue; // Skip sequences of resizes, only record the last one.
                 }
-                
+
                 // Condense a mousedown/mouseup/click sequence into a single action
                 // When we see a mouse down, do a look-ahead and see if the mouse up occurs on the same element and if we haven't moved too much
                 // If the mouse down/move/up all occur within a certain threshold, collapse it all into a single click;
@@ -201,15 +225,15 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                 if(action.type === "mouseup") {
                     action.target = null;
                 }
-                
+
                 if(condensable.indexOf(action.type) != -1) {
                     var condensableSet = [action];
                     var type = action.type;
                     var target = action.target;
-                        
+
                     while(i < stackSize-1) {
                         action = stack[i+1];
-                        
+
                         if((action.type == "mousemove" && type == "mousemove") || (action.type == type && action.target == target)) {
                             condensableSet.push(action);
                             ++i;
@@ -217,75 +241,75 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                         }
                         break;
                     }
-                    
+
                     if(condensableSet.length > 1) {
                         // Push the condensed action
                         condensedStack.push(this._condenseEventSet(condensableSet, type, target));
                         continue; // Skips the normal push
                     }
                 }
-                
+
                 condensedStack.push(action);
             }
-            
+
             return condensedStack;
         }
     },
-    
+
     /**
      * Condenses a set of actions that have already been identified as condensible into a single action
      */
     _condenseEventSet: {
         value: function(events, type, target) {
             var event = { target: target };
-            
+
             switch(type) {
                 case "mousemove": {
                     event.type = "mouseMoves";
                     event.target = null;
-                    
+
                     var points = [];
-                    
+
                     for(var i in events) {
                         var moveEvent = events[i];
                         points.push({x: moveEvent.arguments.pageX, y: moveEvent.arguments.pageY, timeStamp: moveEvent.timeStamp});
                     }
-                    
+
                     points = this._reducePoints(points, 5);
-                    
+
                     // Calculate the durations of the reduced moves
                     var lastTimestamp = -1;
                     for(var i in points) {
                         var point = points[i];
-                        
+
                         var duration = lastTimestamp == -1 ? 0 : point.timeStamp - lastTimestamp;
                         lastTimestamp = point.timeStamp;
-                        
+
                         delete point["timeStamp"];
                         point.duration = duration;
                     }
-                    
+
                     event.arguments = points;
                 } break;
-                
+
                 case "textInput": {
                     event.type = "sendKeys";
-                    
+
                     var keyString = "";
-                    
+
                     for(var i in events) {
                         var keyEvent = events[i];
                         keyString += keyEvent.arguments.data;
                     }
-                    
+
                     event.arguments = keyString;
                 } break;
             }
-            
+
             return event;
         }
     },
-    
+
     /**
      * Checks to see if a mousedown event can be condensed with the following events into a single "click"
      * @returns -1 if the events cannot condense, or the new stack position if they can.
@@ -301,19 +325,19 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                 nextEvent = stack[i];
                 if(nextEvent.type !== "mouseup" && nextEvent.type !== "mousemove") { return -1; } // Not condensible, something happens in between that we need to record
                 if(nextEvent.target !== event.target) { return -1; } // Clicks don't span elements
-                
+
                 deltaX = nextEvent.arguments.pageX - initialX;
                 deltaY = nextEvent.arguments.pageY - initialY;
                 dist = deltaX * deltaX + deltaY * deltaY; // No need to Sqrt, we'll compare against a premultiplied value
                 if(dist > 25) { return -1; } // 5 pixels should be enough for anyone!
-                
+
                 if(nextEvent.type === "mouseup") { break; } // We found a mouse up in range. It's a click!
             }
-            
+
             return i;
         }
     },
-    
+
     /**
      * Compile the current action stack into a runnable script
      * @returns Script string
@@ -362,7 +386,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             return source.join("\r\n");
         }
     },
-    
+
     /*
     * Calculates the perpendicular distance of a point to a line segment
     */
@@ -384,7 +408,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             return Math.sqrt((dx*dx) + (dy*dy));
         }
     },
-    
+
     /**
     * Uses the Ramer–Douglas–Peucker algorithm to reduce the numbers of points in the set of positions given
     * http://en.wikipedia.org/wiki/Ramer%E2%80%93Douglas%E2%80%93Peucker_algorithm
@@ -396,7 +420,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
         value: function(points, epsilon) {
             var dist, maxDist = 0;
             var index = 0;
-            
+
             var numPoint = points.length;
             for(var i = 1; i < numPoint; ++i) {
                 dist = this._pointToSegmentDistance(points[i], points[0], points[numPoint-1]);
@@ -420,7 +444,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             return reducedPoints;
         }
     },
-    
+
     _translateMouseButton: {
         value: function(which) {
             switch(which) {
@@ -430,7 +454,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             }
         }
     },
-    
+
     _dispatchEventSource: {
         value: function(event, prevEvent, nextEvent) {
             var source = "";
@@ -468,8 +492,8 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
 
             if(!prevIsChained) {
                 source += "agent";
-                if(event.target) { 
-                    source += ".element(\"" + event.target + "\")"; 
+                if(event.target) {
+                    source += ".element(\"" + event.target + "\")";
                 }
                 if(nextIsChained) {
                     source += "\r\n";
@@ -484,44 +508,44 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
             var eventArgs = JSON.stringify(event.arguments);
             eventArgs = eventArgs=='{}' ? '' : eventArgs;
             var typeKey = event.type.toLowerCase();
-            
+
             switch(typeKey) {
                 case "scroll":
                     source += ".setScroll";
                     funcArgs.push(event.arguments.scrollLeft, event.arguments.scrollTop);
                     break;
-                
+
                 case "keydown":
                     source += ".sendKeys";
                     funcArgs.push("Key." + KeyMap[event.arguments.keyCode]);
                     break;
-                
+
                 case "keypress":
                     source += ".sendKeys";
                     funcArgs.push("\"" + String.fromCharCode(event.arguments.which) + "\"");
                     break;
-                    
+
                 case "textinput":
                     source += ".sendKeys";
                     funcArgs.push("\"" + event.arguments.data + "\"");
                     break;
-                    
+
                 case "mousemove":
                     source += ".mouseMove";
                     funcArgs.push(event.arguments.pageX, event.arguments.pageY);
                     break;
-                
+
                 case "mousedown":
                 case "mouseup":
                     source += "." + eventTable[typeKey];
                     funcArgs.push(event.arguments.pageX, event.arguments.pageY);
                     break;
-                    
+
                 case "click":
                     source += ".click";
                     funcArgs.push(this._translateMouseButton(event.arguments.which), event.arguments.elementX, event.arguments.elementY);
                     break;
-                
+
                 case "dblclick":
                     source += ".doubleClick";
                     funcArgs.push(this._translateMouseButton(event.arguments.which), event.arguments.elementX, event.arguments.elementY);
@@ -531,7 +555,7 @@ var RecordingCompiler = exports.RecordingCompiler = Object.create(Object, {
                     source += ".setSelectedIndex";
                     funcArgs.push(event.arguments.selectedIndex);
                     break;
-                    
+
                 default:
                     if (eventTable[typeKey]){ // If there are direct methods on the agent.element() object, use them.
                         source += "." + eventTable[typeKey];
