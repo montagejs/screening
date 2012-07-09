@@ -84,30 +84,6 @@ POSSIBILITY OF SUCH DAMAGE.
                     }
                 ]
             },
-            "dynamictext1": {
-                "module": "montage/ui/dynamic-text.reel",
-                "name": "DynamicText",
-                "properties": {
-                    "value": "Advanced Options coming soon!"
-                }
-            },
-            "substitution1": {
-                "module": "montage/ui/substitution.reel",
-                "name": "Substitution",
-                "properties": {
-                    "element": {"#": "searchOptions"},
-                    "switchComponents": {
-                        "true": {"@": "dynamictext1"}
-                    }
-                },
-                "bindings": {
-                    "switchValue": {
-                        "boundObject": {"@": "owner"},
-                        "boundObjectPropertyPath": "searchOptionsVisible",
-                        "oneway": true
-                    }
-                }
-            },
             "owner": {
                 "module": "control-room/ui/script-results-search.reel",
                 "name": "ScriptResultsSearch",
@@ -127,7 +103,6 @@ POSSIBILITY OF SUCH DAMAGE.
                 <button id="search" data-montage-id="search" class="button icon search primary big">Search</button>
                 <button id="options" data-montage-id="options" class="button icon settings" style="display: none;">Options</button><!-- Temporarily hiding Search Options -->
             </span>
-            <div id="searchOptions" data-montage-id="searchOptions"></div>
         </span>
     </div>
     </body>
