@@ -1,8 +1,32 @@
 /* <copyright>
- This file contains proprietary software owned by Motorola Mobility, Inc.<br/>
- No rights, expressed or implied, whatsoever to this software are provided by Motorola Mobility, Inc. hereunder.<br/>
- (c) Copyright 2011 Motorola Mobility, Inc.  All Rights Reserved.
- </copyright> */
+Copyright (c) 2012, Motorola Mobility, Inc
+All Rights Reserved.
+BSD License.
+
+Redistribution and use in source and binary forms, with or without
+modification, are permitted provided that the following conditions are met:
+
+  - Redistributions of source code must retain the above copyright notice,
+    this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in the
+    documentation and/or other materials provided with the distribution.
+  - Neither the name of Motorola Mobility nor the names of its contributors
+    may be used to endorse or promote products derived from this software
+    without specific prior written permission.
+
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+POSSIBILITY OF SUCH DAMAGE.
+</copyright> */
 /**
 	@module screening/agent
 */
@@ -65,7 +89,7 @@ WebDriverAgent.prototype.endTest = function(message){
     var self = this;
     return this.sync.promise(function() {
         return self.session.close(); // TODO: How is the message passed back to the results?
-    }, 
+    },
     function() { return self; } // Allow Chaining
     );
 };
@@ -77,7 +101,7 @@ WebDriverAgent.prototype.endTest = function(message){
 WebDriverAgent.prototype.close = function(){
     var self = this;
     return this.sync.promise(function() {
-        // Rather than closing the window, just navigate it to a blank page. 
+        // Rather than closing the window, just navigate it to a blank page.
         // This allows us to open a "new window" during the same session.
         return self.session.get("about:blank");
     });
@@ -118,7 +142,7 @@ WebDriverAgent.prototype.debugger = function(){
  * The return value.<br>
  * @function module:screening/agent.WebDriverAgent#element
  * @param {String} selector The CSS query selector or XPath by which to reach a node.
- * @return {Element} An element 
+ * @return {Element} An element
  * @example
  * var node = agent.element('#nodeId'); // Select a node using it's ID, which triggers a CSS query.
  * var node = agent.element('#nodeId .className'); // Select a node using any kind of CSS query.
@@ -131,7 +155,7 @@ WebDriverAgent.prototype.element = function(selector){
         var defer = Q.defer();
         var xpathQuery = self._getXPathQuery(selector);
         var waitTimeout = parseInt(self.scriptObject.getOption("timeout"));
-        
+
         self.session.setImplicitWait(waitTimeout).then(function() {
             self.session.findElement(by.xpath(xpathQuery)).then(function(element) {
                 defer.resolve(new WebdriverElement(self, element));
@@ -141,7 +165,7 @@ WebDriverAgent.prototype.element = function(selector){
         }, function(err) {
             defer.reject(selector + ": " + err.value.message);
         });
-        
+
         return defer.promise;
     });
 };
@@ -150,11 +174,11 @@ WebDriverAgent.prototype.element = function(selector){
  * Return a reference to ONE component.
  * @function module:screening/agent.WebDriverAgent#component
  * @param {String} selector The CSS query selector or XPath by which to reach a node.
- * @return {WebDriverComponent} returns the component if found, otherwise null 
+ * @return {WebDriverComponent} returns the component if found, otherwise null
  * @example
  * var node = agent.component('#nodeId'); // Select a node using it's ID, which triggers a CSS query.
  * var node = agent.component('#nodeId .className'); // Select a node using any kind of CSS query.
- * 
+ *
  * var node = agent.component('//*[@id='search']'); // Select a node using an XPath query.
  */
 WebDriverAgent.prototype.component = function(selector){
@@ -203,7 +227,7 @@ WebDriverAgent.prototype.elements = function(selector){
         var defer = Q.defer();
         var xpathQuery = self._getXPathQuery(selector);
         var waitTimeout = parseInt(self.scriptObject.getOption("timeout"));
-        
+
         self.session.setImplicitWait(waitTimeout).then(function() {
             self.session.findElements(by.xpath(xpathQuery)).then(function(elements) {
                 defer.resolve(new WebdriverElementArray(self, elements));
@@ -213,7 +237,7 @@ WebDriverAgent.prototype.elements = function(selector){
         }, function(err) {
             defer.reject(selector + ": " + err.value.message);
         });
-        
+
         return defer.promise;
     });
 };
@@ -230,7 +254,7 @@ WebDriverAgent.prototype.doesElementExist = function(selector){
     return this.sync.promise(function() {
         var defer = Q.defer();
         var xpathQuery = self._getXPathQuery(selector);
-        
+
         self.session.findElement(by.xpath(xpathQuery)).then(function(element) {
             defer.resolve(true);
         }, function(err) {
@@ -243,7 +267,7 @@ WebDriverAgent.prototype.doesElementExist = function(selector){
 /**
  * Wait for the element defined by the selector waiting no longer than timeout.<br>
  * If no timeout is given, the option "timeout" is used.
- * @function module:screening/agent.WebDriverAgent#waitForElement 
+ * @function module:screening/agent.WebDriverAgent#waitForElement
  * @param {String} selector Either an XPath expression or CSS selector.
  * @param {Integer} timeout The max time that this function shall wait.
  * @returns {Agent} A reference to this, to allow chaining.
@@ -254,7 +278,7 @@ WebDriverAgent.prototype.waitForElement = function(selector, timeout){
         var defer = Q.defer();
         var xpathQuery = self._getXPathQuery(selector);
         var waitTimeout = timeout ? timeout : parseInt(self.scriptObject.getOption("timeout"));
-        
+
         self.session.setImplicitWait(waitTimeout).then(function() {
             self.session.findElement(by.xpath(xpathQuery)).then(function(element) {
                 defer.resolve(new WebdriverElement(self, element));
@@ -262,7 +286,7 @@ WebDriverAgent.prototype.waitForElement = function(selector, timeout){
                 defer.reject(err);
             });
         });
-        
+
         return defer.promise;
     });
 };
@@ -308,9 +332,9 @@ WebDriverAgent.prototype.gotoUrl = function(url){
 
         return defer.promise;
     });
-    
-    
-    
+
+
+
     // Query the root element for mouse operations
     this.rootElement = this.sync.promise(function() {
         return self.session.findElement(by.xpath("//html"));
@@ -424,7 +448,7 @@ WebDriverAgent.prototype.setScrollTo = WebDriverAgent.prototype.setScroll;
  * If the current scroll is at 1,1 and you scroll down 1,1 it tries to scroll to position 2,2.<br>
  * Note that the page's max scroll position depends on the page's size and the browser<br>
  * window dimensions.
- * @function module:screening/agent.WebDriverAgent#setScrollBy 
+ * @function module:screening/agent.WebDriverAgent#setScrollBy
  * @param {int} x The x offset by how many pixels to scroll.
  * @param {int} y The y offset by how many pixels to scroll.
  * @returns {Agent} A reference to this, to allow chaining.
@@ -476,7 +500,7 @@ WebDriverAgent.prototype.setWindowSize = function(width, height){
  * @return {Agent} A reference to this, to allow chaining.
  */
 WebDriverAgent.prototype.mouseDown = function(x, y){
-    if(typeof x !== "number") { 
+    if(typeof x !== "number") {
         throw Error("Invalid argument. Function only accepts a numeric X and Y coordinate.");
     }
     var self = this;
@@ -491,13 +515,13 @@ WebDriverAgent.prototype.mouseDown = function(x, y){
 
 /**
  * Release the left mouse button at the given coordinate.
- * @function module:screening/agent.WebDriverAgent#mouseUp 
+ * @function module:screening/agent.WebDriverAgent#mouseUp
  * @param {Number} x X coordinate
  * @param {Number} y Y coordinate
  * @return {Agent} A reference to this, to allow chaining.
  */
 WebDriverAgent.prototype.mouseUp = function(x, y){
-    if(typeof x !== "number") { 
+    if(typeof x !== "number") {
         throw Error("Invalid argument. Function only accepts a numeric X and Y coordinate.");
     }
     var self = this;
@@ -512,7 +536,7 @@ WebDriverAgent.prototype.mouseUp = function(x, y){
 
 /**
  * Perform a mouse move or series of mouse moves
- * @function module:screening/agent.WebDriverAgent#mouseMove 
+ * @function module:screening/agent.WebDriverAgent#mouseMove
  * @param {Number or Array} x X coordinate or An array of points to move the moust between
  * @param {Number} y Y coordinate
  * @return {Agent} A reference to this, to allow chaining.
@@ -520,7 +544,7 @@ WebDriverAgent.prototype.mouseUp = function(x, y){
 WebDriverAgent.prototype.mouseMove = function(x, y){
     var self = this;
     if(!x.length) {
-        if(typeof x !== "number") { 
+        if(typeof x !== "number") {
             throw Error("Invalid argument. Function only accepts a numeric X and Y coordinates or an array of coordinates");
         }
         return this.sync.promise(function() {
