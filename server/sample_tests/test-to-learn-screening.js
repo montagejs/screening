@@ -33,7 +33,7 @@ agent.mouseDown(305,163);
 agent.mouseMove([{"x":306,"y":163,"duration":0},{"x":415,"y":173,"duration":5989}]);
 agent.mouseUp(415,173);
 agent.mouseMove([{"x":418,"y":174,"duration":0},{"x":493,"y":187,"duration":84},{"x":575,"y":189,"duration":49},{"x":617,"y":181,"duration":101},{"x":636,"y":161,"duration":416}]);
-assertContains("39.28571",agent.element("/HTML/BODY/FORM/DIV[2]/INPUT").getText());
+assertContains(agent.element("/HTML/BODY/FORM/DIV[2]/INPUT").getText(),"39.28571");
 agent.wait(745);
 
 

@@ -14,7 +14,7 @@ var text = inputNode.sendKeys("ABC").getText();
 assertNotEmpty(text);
 assertEqual("ABC", text);
 assertNotEqual("XYZ", text);
-assertContains("BC", text);
+assertContains(text, "BC");
 assertStartsWith("AB", text);
 assertEndsWith("BC", text);
 assertEqual("ABC", text);
@@ -62,7 +62,7 @@ for(var i = 0; i < inputNodes.length; ++i) {
 }
 
 assertEqual(["ABC", "on"], inputText);
-assertContains("ABC", inputText);
+assertContains(inputText, "ABC");
 assertNotContains("XYZ", inputText);
 //
 // Special developer test.

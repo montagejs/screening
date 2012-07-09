@@ -20,7 +20,7 @@ assertEqual(3, nodes.length);
 for (i=0;i<nodes.length;i++)
 {
   nodes[i].setAttribute("style", "color:red");
-  assertEqual("rgb(255, 0, 0)", nodes[i].getComputedStyle("color"));
+  assertEqual("rgba(255,0,0,1)", nodes[i].getComputedStyle("color"));
 }
 
 

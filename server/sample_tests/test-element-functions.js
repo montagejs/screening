@@ -17,8 +17,7 @@ assertTrue(inputNode.isFocused());
 inputNode.setAttribute("style", "color:red");
 
 // getComputedStyle
-assertEqual(inputNode.getComputedStyle("color"), "rgb(255, 0, 0)");
-
+assertEqual(inputNode.getComputedStyle("color"), "rgba(255,0,0,1)");
 // getAttribute
 assertEqual(inputNode.getAttribute("type"), "text");
 

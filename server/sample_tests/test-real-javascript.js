@@ -7,7 +7,7 @@ var inputNode = agent.element("/html/body/div/input");
 var scrollArea = agent.element(".scrollTest");
 
 inputNode.sendKeys("javascript rox");
-if( assertContains("rox", inputNode.getText())){
+if( assertContains(inputNode.getText(),"rox")){
     agent.setScroll(10, 10);
 } else {
     inputNode.setAttribute("style", "color:red");
