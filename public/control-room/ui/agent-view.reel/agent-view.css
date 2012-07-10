@@ -51,7 +51,15 @@ POSSIBILITY OF SUCH DAMAGE.
     height: 64px;
     width: 64px;
     margin: 0px auto;
-    background-repeat: norepeat;
+    background-repeat: no-repeat;
+}
+
+.agentView .chromeExtension {
+    width: 25px;
+    height: 25px;
+    background-image: url("img/piece.png");
+    background-position: top left;
+    background-repeat: no-repeat;
 }
 
 .agentView .agentIcon.firefox {
