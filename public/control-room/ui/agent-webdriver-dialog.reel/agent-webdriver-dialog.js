@@ -43,7 +43,9 @@ exports.AgentWebdriverDialog = Montage.create(Component, {
                 reader.onload = function(readerEvt) {
                     webdriverParams.crxFile = btoa(readerEvt.target.result);
                     dispatchAndHide();
-                }
+                };
+
+                webdriverParams.crxFileName = self.crxFile.element.files[0].name;
 
                 reader.readAsBinaryString(self.crxFile.element.files[0]);
             } else {
