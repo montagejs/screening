@@ -107,11 +107,22 @@ exports.AgentView = Montage.create(Component, {
                 }
             }
 
-            if(this.agent.info.capabilities && this.agent.info.capabilities.browserName) {
-                var browserName = this.agent.info.capabilities.browserName;
-                browserName = browserName.replace(/\s/g, ""); // Remove spaces. "internet explorer" => "internetexplorer"
-                this.agentIcon.classList.add(browserName);
+            if(this.agent.info.capabilities){
+                var capabilities = this.agent.info.capabilities;
+                if(capabilities.browserName) {
+                   var browserName = this.agent.info.capabilities.browserName;
+                    browserName = browserName.replace(/\s/g, ""); // Remove spaces. "internet explorer" => "internetexplorer"
+                    this.agentIcon.classList.add(browserName);
+                }
+
+                if(capabilities["chrome.extensions"] && capabilities["chrome.extensions"].length > 0) {
+                    var extensionBadge = document.createElement('div');
+                    extensionBadge.classList.add("chromeExtension");
+                    this.agentIcon.appendChild(extensionBadge);
+
+                    this.agentIcon.title = capabilities["chrome.extensionName"];
+                }
             }
         }
-    },
+    }
 });
