@@ -8,7 +8,7 @@ script.setOption("timeout", 1000);
 script.setOption("sync.mode", "auto");
 
 
-agent.gotoUrl("/screening/node_modules/montage-samples/calculator/index.html");
+agent.gotoUrl("/screening/node_modules/montage/samples/calculator/index.html");
 agent.setWindowSize(927, 985);
 
 //Elements declaration
