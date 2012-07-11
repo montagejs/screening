@@ -3,7 +3,6 @@
     "description": "Montage Testing Framework",
     "version": "0.0",
     "mappings": {
-        "montage": "node_modules/montage",
-        "montage-samples": "node_modules/montage-samples"
+        "montage": "node_modules/montage"
     }
 }
