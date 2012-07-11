@@ -52,6 +52,13 @@ exports.ScriptListView = Montage.create(Component, {
         serializable: true
     },
 
+    isScriptListEmpty: {
+        dependencies: ["scriptController.content"],
+        get: function() {
+            return !this.scriptController.content || this.scriptController.content.length === 0;
+        }
+    },
+
     prepareForDraw: {
         value: function() {
             var self = this;
