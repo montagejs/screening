@@ -34,7 +34,6 @@ var request = require("request"),
     os = require("os"),
     commander = require("commander"),
     spawn = require("child_process").spawn,
-    path = require("path"),
     wrench = require("wrench");
 
 /**
@@ -64,7 +63,7 @@ var downloadFile = function(fileUrl, path, cb) {
 var createDataDirectory = function(homeDir) {
     var dataDir = homeDir + "/data/db";
 
-    if (!path.existsSync(dataDir)) {
+    if (!fs.existsSync(dataDir)) {
         console.log("Creating MongoDB database directory on ~/data/db");
         wrench.mkdirSyncRecursive(dataDir, 0777);
     } else {
