@@ -115,6 +115,7 @@ module.exports = function(scriptsProvider) {
             if (err) return next(new Error(err));
 
             if(!scripts.length || scripts.length === 0) {
+                res.statusCode = 400;
                 return next(new Error("There are no scripts to archive."));
             }
 
