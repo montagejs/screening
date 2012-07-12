@@ -96,11 +96,14 @@ POSSIBILITY OF SUCH DAMAGE.
                     "action": "downloadAllScripts"
                 }
             },
-            "button2": {
+            "downloadAll": {
                 "module": "montage/ui/button.reel",
                 "name": "Button",
                 "properties": {
                     "element": {"#": "downloadAll"}
+                },
+                "bindings": {
+                    "disabled": {"<-": "@owner.isScriptListEmpty"}
                 },
                 "listeners": [
                     {
