@@ -114,6 +114,10 @@ module.exports = function(scriptsProvider) {
         scriptsProvider.findAll(function(err, scripts) {
             if (err) return next(new Error(err));
 
+            if(!scripts.length || scripts.length === 0) {
+                return next(new Error("There are no scripts to archive."));
+            }
+
             // Dump all the currently displayed scripts into temp
             scripts.forEach(function(script) {
                 var newFileName = destDir + "/" + script.name;
