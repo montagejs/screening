@@ -42,6 +42,8 @@
         "wrench": "1.3.x"
     },
     "devDependencies": {
+        "mocha": "*",
+        "should": "*",
         "template": "0.0.x"
     },
     "private": true
