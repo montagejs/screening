@@ -10,8 +10,8 @@ fi
 
 echo "Setting up variables"
 BRANCH="origin/master"
-MONGO_START="/Users/ntvd76/workspace/mongodb-osx-x86_64-2.0.0 2/bin/mongod"
-TEST_DB="/Users/ntvd76/data/test-db"
+MONGO_START="/usr/local/bin/mongod"
+TEST_DB="/home/idefix/sandbox/data/test-db"
 
 echo "Getting latest code..."
 cd ../..
